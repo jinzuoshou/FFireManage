@@ -17,9 +17,9 @@ namespace FFireManage.FireDocument
     public partial class FormFireDocumentManage : Form
     {
         #region 字段
-        private Fire_HBrigade currentFire_HBrigade = null;
-        private FireHBrigadeController m_FireHBrigadeController = null;
-        private List<Fire_HBrigade> m_Fire_HBrigadeList = null;
+        private Fire_Document currentFireDocument = null;
+        private FireDocumentController m_FireDocumentController = null;
+        private List<Fire_Document> m_Fire_HBrigadeList = null;
         #endregion
 
         #region 构造函数
@@ -27,9 +27,9 @@ namespace FFireManage.FireDocument
         {
             InitializeComponent();
 
-            this.m_FireHBrigadeController = new FireHBrigadeController();
-            this.m_FireHBrigadeController.QueryEvent += m_ServiceController_QueryEvent;
-            this.m_FireHBrigadeController.DeleteEvent += m_ServiceController_DeleteEvent;
+            this.m_FireDocumentController = new FireDocumentController();
+            this.m_FireDocumentController.QueryEvent += m_ServiceController_QueryEvent;
+            this.m_FireDocumentController.DeleteEvent += m_ServiceController_DeleteEvent;
         }
         #endregion
 
@@ -44,7 +44,7 @@ namespace FFireManage.FireDocument
 
                     try
                     {
-                        GetListResultInfo<Fire_HBrigade> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_HBrigade>>(content);
+                        GetListResultInfo<Fire_Document> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_Document>>(content);
 
                         if (result.rows != null && result.rows.Count > 0)
                         {
@@ -87,7 +87,7 @@ namespace FFireManage.FireDocument
 
                         if (result.status == 10000)
                         {
-                            this.GetFireHBrigadeList(this.navigationControl1.Pac);
+                            this.GetFireDocumentList(this.navigationControl1.Pac);
                         }
                         else
                         {
@@ -130,7 +130,11 @@ namespace FFireManage.FireDocument
 
         private void CbxProvince_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            if (this.navigationControl1.CbxProvince.ComboBox.SelectedValue != null)
+            {
+                string pCode = this.navigationControl1.CbxProvince.ComboBox.SelectedValue.ToString();
+                this.GetFireDocumentList(pCode);
+            }
         }
 
         private void CbxCity_SelectedIndexChanged(object sender, EventArgs e)
@@ -138,14 +142,14 @@ namespace FFireManage.FireDocument
             if (this.navigationControl1.CbxCity.ComboBox.SelectedValue != null)
             {
                 string pCode = this.navigationControl1.CbxCity.ComboBox.SelectedValue.ToString();
-                this.GetFireHBrigadeList(pCode);
+                this.GetFireDocumentList(pCode);
             }
             else
             {
                 if (this.navigationControl1.CbxProvince.ComboBox.SelectedValue != null)
                 {
                     var provinceCode = this.navigationControl1.CbxProvince.ComboBox.SelectedValue.ToString();
-                    this.GetFireHBrigadeList(provinceCode);
+                    this.GetFireDocumentList(provinceCode);
                 }
             }
         }
@@ -155,45 +159,45 @@ namespace FFireManage.FireDocument
             if (this.navigationControl1.CbxCounty.ComboBox.SelectedValue != null)
             {
                 string pCode = this.navigationControl1.CbxCounty.ComboBox.SelectedValue.ToString();
-                this.GetFireHBrigadeList(pCode);
+                this.GetFireDocumentList(pCode);
             }
             else
             {
                 if (this.navigationControl1.CbxCity.ComboBox.SelectedValue != null)
                 {
                     var cityCode = this.navigationControl1.CbxCity.ComboBox.SelectedValue.ToString();
-                    this.GetFireHBrigadeList(cityCode.ToString());
+                    this.GetFireDocumentList(cityCode.ToString());
                 }
             }
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            FormFireHBrigade pFormFireHBrigade = new FormFireHBrigade(OperationType.Add);
-            if (pFormFireHBrigade.ShowDialog(this) == DialogResult.OK)
+            FormFireDocument pFormFireDocument = new FormFireDocument(OperationType.Add);
+            if (pFormFireDocument.ShowDialog(this) == DialogResult.OK)
             {
-                this.GetFireHBrigadeList(this.navigationControl1.Pac);
-                MessageBox.Show(this, "专业森林消防队新增成功", "提示");
+                this.GetFireDocumentList(this.navigationControl1.Pac);
+                MessageBox.Show(this, "火灾档案新增成功", "提示");
             }
         }
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
-            FormFireHBrigade pFormFireHBrigade = new FormFireHBrigade(OperationType.Edit, this.currentFire_HBrigade);
-            if (pFormFireHBrigade.ShowDialog(this) == DialogResult.OK)
+            FormFireDocument pFormFireDocument = new FormFireDocument(OperationType.Edit, this.currentFireDocument);
+            if (pFormFireDocument.ShowDialog(this) == DialogResult.OK)
             {
-                this.GetFireHBrigadeList(this.navigationControl1.Pac);
-                MessageBox.Show(this, "专业森林消防队修改成功", "提示");
+                this.GetFireDocumentList(this.navigationControl1.Pac);
+                MessageBox.Show(this, "火灾档案修改成功", "提示");
             }
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            if (this.currentFire_HBrigade != null)
+            if (this.currentFireDocument != null)
             {
-                if (MessageBox.Show(this, "您确定要删除" + this.currentFire_HBrigade.name + "吗？数据删除后不可恢复。", "删除提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                if (MessageBox.Show(this, "您确定要删除" + this.currentFireDocument.name + "吗？数据删除后不可恢复。", "删除提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    this.m_FireHBrigadeController.Delete(this.currentFire_HBrigade.id);
+                    this.m_FireDocumentController.Delete(this.currentFireDocument.id);
                 }
             }
         }
@@ -203,26 +207,26 @@ namespace FFireManage.FireDocument
             string key = this.navigationControl1.TbxSearch.Text.Trim();
             if (string.IsNullOrEmpty(key))
             {
-                this.GetFireHBrigadeList(this.navigationControl1.Pac);
+                this.GetFireDocumentList(this.navigationControl1.Pac);
                 return;
             }
 
             if (this.m_Fire_HBrigadeList == null || this.m_Fire_HBrigadeList.Count == 0)
                 return;
 
-            var tempFireHBrigades = this.m_Fire_HBrigadeList.Where<Fire_HBrigade>(u => u.name.Contains(key));
+            var tempFireDocuments = this.m_Fire_HBrigadeList.Where<Fire_Document>(u => u.name.Contains(key));
 
-            if (tempFireHBrigades == null)
+            if (tempFireDocuments == null)
                 return;
-            this.FillData(tempFireHBrigades.ToList<Fire_HBrigade>());
+            this.FillData(tempFireDocuments.ToList<Fire_Document>());
         }
 
         private void PagerControl1_OnPageChanged(object sender, EventArgs e)
         {
             if (this.navigationControl1.Pac == null || this.navigationControl1.Pac == "")
-                this.GetFireHBrigadeList(GlobeHelper.Instance.User.pac);
+                this.GetFireDocumentList(GlobeHelper.Instance.User.pac);
             else
-                this.GetFireHBrigadeList(this.navigationControl1.Pac);
+                this.GetFireDocumentList(this.navigationControl1.Pac);
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
@@ -231,16 +235,16 @@ namespace FFireManage.FireDocument
             {
                 ListViewItem item = this.listView1.SelectedItems[0];
 
-                if (item.Tag != null && item.Tag is Fire_HBrigade)
+                if (item.Tag != null && item.Tag is Fire_Document)
                 {
-                    this.currentFire_HBrigade = item.Tag as Fire_HBrigade;
+                    this.currentFireDocument = item.Tag as Fire_Document;
 
                     this.navigationControl1.BtnEdit.Enabled = true;
                     this.navigationControl1.BtnDelete.Enabled = true;
                 }
                 else
                 {
-                    this.currentFire_HBrigade = null;
+                    this.currentFireDocument = null;
 
                     this.navigationControl1.BtnDelete.Enabled = false;
                     this.navigationControl1.BtnEdit.Enabled = false;
@@ -248,7 +252,7 @@ namespace FFireManage.FireDocument
             }
             else
             {
-                this.currentFire_HBrigade = null;
+                this.currentFireDocument = null;
 
                 this.navigationControl1.BtnDelete.Enabled = false;
                 this.navigationControl1.BtnEdit.Enabled = false;
@@ -258,55 +262,55 @@ namespace FFireManage.FireDocument
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ListViewItem item = listView1.GetItemAt(e.X, e.Y);
-            if (item.Tag is Fire_PBrigade)
+            if (item.Tag is Fire_Document)
             {
-                var fireHBrigade = item.Tag as Fire_HBrigade;
-                FormFireHBrigade pFormFireForestBelt = new FormFireHBrigade(OperationType.Check, fireHBrigade);
-                pFormFireForestBelt.ShowDialog(this);
+                var fireDocument = item.Tag as Fire_Document;
+                FormFireDocument pFormFireDocument = new FormFireDocument(OperationType.Check, fireDocument);
+                pFormFireDocument.ShowDialog(this);
             }
         }
         #endregion
 
         #region 成员函数
-        private void FillData(List<Fire_HBrigade> fireHBrigadeList)
+        private void FillData(List<Fire_Document> fireDocumentList)
         {
             this.pagerControl1.Bind();
-            this.pagerControl1.bindingSource.DataSource = fireHBrigadeList;
+            this.pagerControl1.bindingSource.DataSource = fireDocumentList;
             this.pagerControl1.bindingNavigator.BindingSource = this.pagerControl1.bindingSource;
             this.listView1.Items.Clear();
 
-            if (fireHBrigadeList != null)
+            if (fireDocumentList != null)
             {
-                for (int i = 0; i < fireHBrigadeList.Count; i++)
+                for (int i = 0; i < fireDocumentList.Count; i++)
                 {
-                    Fire_HBrigade fireHBrigade = fireHBrigadeList[i];
+                    Fire_Document fireDocument = fireDocumentList[i];
 
                     ListViewItem item = new ListViewItem();
 
-                    item.SubItems.Add(fireHBrigade.name);
+                    item.SubItems.Add(fireDocument.name);
                     AreaCodeInfo county = null;
                     try
                     {
                         if (this.navigationControl1.AreaList != null)
-                            county = this.navigationControl1.AreaList.Where(a => a.Code == fireHBrigade.pac).First();
+                            county = this.navigationControl1.AreaList.Where(a => a.Code == fireDocument.pac).First();
                     }
                     catch { }
 
                     item.SubItems.Add((county == null) ? "" : county.Name);
-                    item.SubItems.Add(fireHBrigade.manager);
-                    item.SubItems.Add(fireHBrigade.longitude.ToString());
-                    item.SubItems.Add(fireHBrigade.latitude.ToString());
+                    item.SubItems.Add(fireDocument.address);
+                    item.SubItems.Add(fireDocument.longitude.ToString());
+                    item.SubItems.Add(fireDocument.latitude.ToString());
 
-                    item.Tag = fireHBrigade;
+                    item.Tag = fireDocument;
 
                     this.listView1.Items.Add(item);
                 }
             }
         }
 
-        private void GetFireHBrigadeList(string pac)
+        private void GetFireDocumentList(string pac)
         {
-            this.m_FireHBrigadeController.Get(new Dictionary<string, object>()
+            this.m_FireDocumentController.Get(new Dictionary<string, object>()
             {
                 {"pac",pac },
                 {"fetchType",3 },

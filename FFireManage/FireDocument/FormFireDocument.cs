@@ -15,20 +15,20 @@ namespace FFireManage.FireDocument
 {
     public partial class FormFireDocument : Form
     {
-        private Fire_HBrigade m_FirePBrigade = null;
+        private Fire_Document m_FireDocument = null;
         private OperationType m_OperationType;
-        private FireHBrigadeController m_FireHBrigadeController = null;
+        private FireDocumentController m_FireDocumentController = null;
 
-        public FormFireDocument(OperationType type, Fire_HBrigade firePBrigade = null)
+        public FormFireDocument(OperationType type, Fire_Document fireDocument = null)
         {
             InitializeComponent();
 
             this.m_OperationType = type;
-            this.m_FirePBrigade = firePBrigade;
-            this.m_FireHBrigadeController = new FireHBrigadeController();
+            this.m_FireDocument = fireDocument;
+            this.m_FireDocumentController = new FireDocumentController();
 
-            this.m_FireHBrigadeController.AddEvent += M_ServiceController_AddEvent;
-            this.m_FireHBrigadeController.EditEvent += M_ServiceController_EditEvent;
+            this.m_FireDocumentController.AddEvent += M_ServiceController_AddEvent;
+            this.m_FireDocumentController.EditEvent += M_ServiceController_EditEvent;
         }
 
         private void M_ServiceController_AddEvent(object sender, ServiceEventArgs e)
@@ -106,24 +106,30 @@ namespace FFireManage.FireDocument
 
             if (m_OperationType == OperationType.Add)
             {
-                this.Text = "新增专业森林消防队";
+                this.Text = "新增火灾档案";
             }
             else if (m_OperationType == OperationType.Edit)
             {
-                this.Text = "编辑专业森林消防队";
+                this.Text = "编辑火灾档案";
             }
             else if (m_OperationType == OperationType.Check)
             {
-                this.Text = "查看专业森林消防队";
+                this.Text = "查看火灾档案";
             }
 
-            /* 专业森林防火队状态 */
-            FireHBrigadeStatus fireHBrigateStatus = FireHBrigadeStatus.优秀;
-            List<object> fireForestBeltStatusList = CommonHelper.GetDataSource<FireHBrigadeStatus>(fireHBrigateStatus);
+            /* 坡位 */
+            FireDocumentSlopePosition fireDSlopePosition = FireDocumentSlopePosition.山脊;
+            List<object> fireDSlopePositionList = CommonHelper.GetDataSource<FireDocumentSlopePosition>(fireDSlopePosition);
             this.cbx_slope_position.DisplayMember = "Name";
-            this.cbx_slope_position.ValueMember = "Value";
-            this.cbx_slope_position.DataSource = fireForestBeltStatusList;
+            this.cbx_slope_position.ValueMember = "Name";
+            this.cbx_slope_position.DataSource = fireDSlopePositionList;
 
+            /* 是否已处理 */
+            IsDealWith isDealWith = IsDealWith.否;
+            List<object> isDealWithList = CommonHelper.GetDataSource<IsDealWith>(isDealWith);
+            this.cbx_IsDealWith.DisplayMember = "Name";
+            this.cbx_IsDealWith.ValueMember = "Value";
+            this.cbx_IsDealWith.DataSource = isDealWithList;
             #endregion
 
             #region 初始化行政区信息
@@ -133,7 +139,7 @@ namespace FFireManage.FireDocument
             }
             else if (m_OperationType == OperationType.Edit || m_OperationType == OperationType.Check)
             {
-                this.pacControl11.Init(this.m_FirePBrigade.pac);
+                this.pacControl11.Init(this.m_FireDocument.pac);
             }
 
             #endregion
@@ -141,12 +147,14 @@ namespace FFireManage.FireDocument
             #region 编辑查看时为控件赋值
             if (this.m_OperationType == OperationType.Edit || this.m_OperationType == OperationType.Check)
             {
-                this.coordinatesInputControl1.Longitude = this.m_FirePBrigade.longitude;
-                this.coordinatesInputControl1.Latitude = this.m_FirePBrigade.latitude;
-                SmartForm.Fill(this.tabPage_baseInfo.Controls, this.m_FirePBrigade);
+                this.coordinatesInputControl1.Longitude = this.m_FireDocument.longitude;
+                this.coordinatesInputControl1.Latitude = this.m_FireDocument.latitude;
+                this.tbx_town_name.Text = (this.m_FireDocument.town_name==null)?"":this.m_FireDocument.town_name;
+                this.tbx_village_name.Text = (this.m_FireDocument.village_name == null) ? "" : this.m_FireDocument.village_name;
+                SmartForm.Fill(this.tabPage_baseInfo.Controls, this.m_FireDocument);
 
-                this.tbx_note.Text = this.m_FirePBrigade.note;
-                this.mediaControl1.MediaFiles = this.m_FirePBrigade.mediaFiles;
+                this.tbx_description.Text = this.m_FireDocument.description;
+                this.mediaControl1.MediaFiles = this.m_FireDocument.mediaFiles;
 
                 if (this.m_OperationType == OperationType.Check)
                 {
@@ -155,9 +163,11 @@ namespace FFireManage.FireDocument
 
                     this.coordinatesInputControl1.Enabled = false;
                     this.pacControl11.Enabled = false;
+                    this.tbx_town_name.Enabled = false;
+                    this.tbx_village_name.Enabled = false;
                     SmartForm.SetControlsEnabled(this.tabPage_baseInfo.Controls,null);
 
-                    this.tbx_note.Enabled = false;
+                    this.tbx_description.Enabled = false;
 
 
                 }
@@ -173,7 +183,7 @@ namespace FFireManage.FireDocument
             try
             {
                 this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                dict = m_FirePBrigade.ObjectDescriptionToDict();
+                dict = m_FireDocument.ObjectDescriptionToDict();
             }
             catch (Exception ex)
             {
@@ -186,27 +196,33 @@ namespace FFireManage.FireDocument
             }
             if (m_OperationType == OperationType.Add)
             {
-                this.m_FirePBrigade = new Fire_HBrigade();
+                this.m_FireDocument = new Fire_Document();
             }
 
-            this.m_FirePBrigade.longitude = this.coordinatesInputControl1.Longitude;
-            this.m_FirePBrigade.latitude = this.coordinatesInputControl1.Latitude;
-            this.m_FirePBrigade.pac = this.pacControl11.LocalPac;
-            this.m_FirePBrigade.shape = Converters.LngLatToWKT(this.m_FirePBrigade.longitude, this.m_FirePBrigade.latitude);
+            this.m_FireDocument.longitude = this.coordinatesInputControl1.Longitude;
+            this.m_FireDocument.latitude = this.coordinatesInputControl1.Latitude;
+            this.m_FireDocument.pac = this.pacControl11.LocalPac;
+            this.m_FireDocument.code = this.m_FireDocument.pac;
+            this.m_FireDocument.province = this.pacControl11.Province;
+            this.m_FireDocument.city = this.pacControl11.City;
+            this.m_FireDocument.county = this.pacControl11.County;
+            this.m_FireDocument.town_name = this.tbx_town_name.Text.Trim();
+            this.m_FireDocument.village_name = this.tbx_village_name.Text.Trim();
+            this.m_FireDocument.shape = Converters.LngLatToWKT(this.m_FireDocument.longitude, this.m_FireDocument.latitude);
 
             //自动从窗体控件上取值
-            m_FirePBrigade = SmartForm.GetEntity<Fire_HBrigade>(this.tabPage_baseInfo.Controls, this.m_FirePBrigade);
+            m_FireDocument = SmartForm.GetEntity<Fire_Document>(this.tabPage_baseInfo.Controls, this.m_FireDocument);
 
-            this.m_FirePBrigade.note = this.tbx_note.Text.Trim();
-            this.m_FirePBrigade.mediaByteDict = this.mediaControl1.MediaByteDict;
+            this.m_FireDocument.description = this.tbx_description.Text.Trim();
+            this.m_FireDocument.mediaByteDict = this.mediaControl1.MediaByteDict;
 
             if (m_OperationType == OperationType.Add)
             {
-                this.m_FireHBrigadeController.Add(this.m_FirePBrigade);
+                this.m_FireDocumentController.Add(this.m_FireDocument);
             }
             else if (m_OperationType == OperationType.Edit)
             {
-                this.m_FireHBrigadeController.Edit(this.m_FirePBrigade);
+                this.m_FireDocumentController.Edit(this.m_FireDocument);
             }
         }
 
@@ -233,6 +249,20 @@ namespace FFireManage.FireDocument
                 MessageBox.Show(this, "请选择正确的行政区", "信息提示");
                 this.tabControl1.SelectedTab = this.tabPage_location;
                 this.pacControl11.Focus();
+                return false;
+            }
+            if (this.tbx_town_name.Text.Trim() == "")
+            {
+                MessageBox.Show(this, "请输入乡镇名", "信息提示");
+                this.tabControl1.SelectedTab = this.tabPage_location;
+                this.tbx_town_name.Focus();
+                return false;
+            }
+            if (this.tbx_village_name.Text.Trim() == "")
+            {
+                MessageBox.Show(this, "请输入村名", "信息提示");
+                this.tabControl1.SelectedTab = this.tabPage_location;
+                this.tbx_village_name.Focus();
                 return false;
             }
             return true;

@@ -191,3 +191,4 @@ D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Fir
 D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FireImportantUnits.FormFireImportantUnitsManage.resources
 D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FireDocument.FormFireDocument.resources
 D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FireDocument.FormFireDocumentManage.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.csprojResolveAssemblyReference.cache

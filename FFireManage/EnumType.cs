@@ -415,6 +415,12 @@ namespace FFireManage
         坡脚 = 4,
         沟谷 = 5
     }
+
+    public enum IsDealWith
+    {
+        否 = 0,
+        是 = 1
+    }
     #endregion
 }
 

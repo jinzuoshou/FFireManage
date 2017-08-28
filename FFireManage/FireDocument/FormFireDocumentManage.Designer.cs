@@ -77,7 +77,7 @@
             // 
             // columnHeader6
             // 
-            this.columnHeader6.Text = "管理员";
+            this.columnHeader6.Text = "起火地点";
             this.columnHeader6.Width = 129;
             // 
             // columnHeader4
@@ -112,7 +112,7 @@
             this.navigationControl1.Size = new System.Drawing.Size(922, 41);
             this.navigationControl1.TabIndex = 33;
             // 
-            // FormFireHBrigadeManage
+            // FormFireDocumentManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -122,7 +122,7 @@
             this.Controls.Add(this.navigationControl1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "FormFireHBrigadeManage";
+            this.Name = "FormFireDocumentManage";
             this.Text = "火灾档案管理";
             this.Load += new System.EventHandler(this.FormFireForestBeltManage_Load);
             this.ResumeLayout(false);
