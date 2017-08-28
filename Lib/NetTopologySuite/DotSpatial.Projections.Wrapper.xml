@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DotSpatial.Projections.Wrapper</name>
+    </assembly>
+    <members>
+        <member name="T:NetTopologySuite.CoordinateSystems.Transformation.DotSpatial.Projections.DotSpatialMathTransform">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.CoordinateSystems.Transformation.DotSpatial.Projections.DotSpatialMathTransform.#ctor(DotSpatial.Projections.ProjectionInfo,DotSpatial.Projections.ProjectionInfo)">
+            <summary>
+            Creates an instance of this class
+            </summary>
+            <param name="source"></param>
+            <param name="target"></param>
+        </member>
+    </members>
+</doc>

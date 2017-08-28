@@ -1,0 +1,483 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NetTopologySuite.Windows.Media</name>
+    </assembly>
+    <members>
+        <member name="T:NetTopologySuite.Windows.Media.FontGlyphReader">
+            <summary>
+             Provides methods to read <see cref="T:System.Windows.Media.Typeface"/> glyphs for strings 
+             into <see cref="T:GeoAPI.Geometries.IPolygonal"/> geometry.
+            </summary>
+             <remarks>
+             <para>
+             It is suggested to use larger point sizes to render fonts glyphs, to reduce the effects of scale-dependent hints.</para>
+             <para>The resulting geometry are in the base coordinate system of the font.</para>
+             <para>The geometry can be further transformed as necessary using <see cref="T:NetTopologySuite.Geometries.Utilities.AffineTransformation"/>s</para>
+             </remarks>
+             <author>Martin Davis</author>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.FontGlyphReader.Read(System.String,System.Windows.Media.FontFamily,System.Int32,GeoAPI.Geometries.IGeometryFactory)">
+            <summary>
+             Converts text rendered in the given <see cref="T:System.Windows.Media.Typeface"/> and pointsize to a <see cref="T:GeoAPI.Geometries.IGeometry"/> using a standard flatness factor.
+             </summary>
+             <param name="text">The text to render</param>
+             <param name="font">The <see cref="T:System.Windows.Media.FontFamily"/></param>
+             <param name="pointSize">The pointSize to render at</param>
+             <param name="geomFact">The geometry factory to use to create the result</param>
+             <returns>A polygonal geometry representing the rendered text</returns>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.FontGlyphReader.Read(System.String,System.Windows.Media.FontFamily,GeoAPI.Geometries.IGeometryFactory)">
+            <summary>
+             Converts text rendered in the given <see cref="T:System.Windows.Media.FontFamily"/> to a <see cref="T:GeoAPI.Geometries.IGeometry"/> using a standard flatness factor.
+             </summary>
+             <param name="text">The text to render</param>
+             <param name="font">The <see cref="T:System.Windows.Media.FontFamily"/></param>
+             <param name="geomFact">The geometry factory to use to create the result</param>
+             <returns>A polygonal geometry representing the rendered text</returns>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.FontGlyphReader.Read(System.String,System.Windows.Media.FontFamily,System.Windows.FontStyle,System.Single,System.Windows.Point,System.Windows.FlowDirection,System.Double,GeoAPI.Geometries.IGeometryFactory)">
+            <summary>
+             Converts text rendered in the given <see cref="T:System.Windows.Media.FontFamily"/> and pointsize to a <see cref="T:GeoAPI.Geometries.IGeometry"/> using a standard flatness factor.
+             </summary>
+             <param name="text">The text to render</param>
+             <param name="font">The <see cref="T:System.Windows.Media.FontFamily"/></param>
+             <param name="size">The size to render at</param>
+             <param name="style">The style to use</param>
+             <param name="flatness">The flatness to use</param>
+             <param name="origin">The point to start</param>
+             <param name="flowDirection">The flow direction to use</param>
+             <param name="geomFact">The geometry factory to use to create the result</param>
+             <returns>A polygonal geometry representing the rendered text</returns>
+        </member>
+        <member name="T:NetTopologySuite.Windows.Media.IdentityPointTransformation">
+            <summary>
+            Copies point ordinates with no transformtaion
+            </summary>
+            <author>Martin Davis</author>
+        </member>
+        <member name="T:NetTopologySuite.Windows.Media.InvertYPointTransformation">
+            <summary>
+            Transforms coordinates by inverting the y ordinate and adding an offset
+            </summary>
+            <author>Martin Davis</author>
+        </member>
+        <member name="T:NetTopologySuite.Windows.Media.IPointTransformation">
+            <summary>
+             Transforms a geometry <see cref="T:GeoAPI.Geometries.Coordinate"/> into a <see cref="T:System.Windows.Point"/>,
+             possibly with a mathematical transformation of the ordinate values.
+             Transformation from a model coordinate system to a view coordinate system 
+             can be efficiently performed by supplying an appropriate transformation.
+             </summary>
+             <author>Martin Davis</author>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.IPointTransformation.Transform(GeoAPI.Geometries.Coordinate,System.Windows.Point@)">
+            <summary>
+             Transforms a <see cref="T:GeoAPI.Geometries.Coordinate"/> into a <see cref="T:System.Windows.Point"/>.
+            </summary>
+            <param name="model">The source coordinate</param>
+            <param name="view">The destination point</param>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.IPointTransformation.Transform(GeoAPI.Geometries.Coordinate)">
+            <summary>
+             Transforms a <see cref="T:GeoAPI.Geometries.Coordinate"/> into a <see cref="T:System.Windows.Point"/>.
+            </summary>
+            <param name="model">The source coordinate</param>
+             <returns>A point</returns>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.IPointTransformation.Transform(GeoAPI.Geometries.Coordinate[])">
+            <summary>
+            Transforms an array of <see cref="T:GeoAPI.Geometries.Coordinate"/>s into an array of <see cref="T:System.Windows.Point"/>s.
+            </summary>
+            <param name="src">An array of <see cref="T:GeoAPI.Geometries.Coordinate"/>s</param>
+            <returns>An array of <see cref="T:System.Windows.Point"/>s</returns>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.IPointTransformation.Transform(GeoAPI.Geometries.ICoordinateSequence)">
+            <summary>
+            Transforms a coordinate sequence into an array of <see cref="T:System.Windows.Point"/>s.
+            </summary>
+            <param name="modelSequence">A coordinate sequence</param>
+            <returns>An array of <see cref="T:System.Windows.Point"/>s</returns>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.IPointToPathGeometryFactory.CreatePoint(System.Windows.Point)">
+            <summary>
+             Creates a shape representing an <see cref="T:GeoAPI.Geometries.IPoint"/>.
+            </summary>
+             <param name="point">The location of the point</param>
+             <returns>A <see cref="T:System.Windows.Media.Geometry"/></returns>
+        </member>
+        <member name="F:NetTopologySuite.Windows.Media.BasePointToPathGeometryFactory.DefaultSize">
+            <summary>
+             The default size of the shape
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.BasePointToPathGeometryFactory.#ctor">
+            <summary>
+             Creates a new factory for points with default size.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.BasePointToPathGeometryFactory.#ctor(System.Double)">
+            <summary>
+             Creates a factory for points of given size.
+            </summary>
+             <param name="size">The size of the points</param>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.BasePointToPathGeometryFactory.CreatePoint(System.Windows.Point)">
+            <summary>
+             Creates a shape representing an <see cref="T:GeoAPI.Geometries.IPoint"/>.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.DotPath.#ctor">
+            <summary>
+             Creates a new factory for points with default size.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.SquarePath.#ctor">
+            <summary>
+             Creates a new factory for points with default size.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.StarPath.#ctor">
+            <summary>
+             Creates a new factory for points with default size.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.TrianglePath.#ctor">
+            <summary>
+             Creates a new factory for points with default size.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.CirclePath.#ctor">
+            <summary>
+             Creates a new factory for points with default size.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.CrossPath.#ctor">
+            <summary>
+             Creates a new factory for points with default size.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.XPath.#ctor">
+            <summary>
+             Creates a new factory for points with default size.
+            </summary>
+        </member>
+        <member name="T:NetTopologySuite.Windows.Media.IPointShapeFactory">
+            <summary>
+             An interface for classes which create <see cref="T:System.Windows.Media.Geometry"/>s to represent
+             <see cref="T:GeoAPI.Geometries.IPoint"/> geometries. Windows.Forms does not provide an actual
+             point shape, so some other shape must be used to render points (e.g. such
+             as a Rectangle or Ellipse)
+            </summary>
+             <author>Martin Davis</author>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.IPointToStreamGeometryFactory.CreatePoint(System.Windows.Point)">
+            <summary>
+             Creates a shape representing an <see cref="T:GeoAPI.Geometries.IPoint"/>.
+            </summary>
+             <param name="point">The location of the point</param>
+             <returns>A <see cref="T:System.Windows.Media.Geometry"/></returns>
+        </member>
+        <member name="F:NetTopologySuite.Windows.Media.BasePointShapeFactory.DefaultSize">
+            <summary>
+             The default size of the shape
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.BasePointShapeFactory.#ctor">
+            <summary>
+             Creates a new factory for points with default size.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.BasePointShapeFactory.#ctor(System.Double)">
+            <summary>
+             Creates a factory for points of given size.
+            </summary>
+             <param name="size">The size of the points</param>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.BasePointShapeFactory.CreatePoint(System.Windows.Point)">
+            <summary>
+             Creates a shape representing an <see cref="T:GeoAPI.Geometries.IPoint"/>.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.Dot.#ctor">
+            <summary>
+             Creates a new factory for points with default size.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.Square.#ctor">
+            <summary>
+             Creates a new factory for points with default size.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.Star.#ctor">
+            <summary>
+             Creates a new factory for points with default size.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.Triangle.#ctor">
+            <summary>
+             Creates a new factory for points with default size.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.Circle.#ctor">
+            <summary>
+             Creates a new factory for points with default size.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.Cross.#ctor">
+            <summary>
+             Creates a new factory for points with default size.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.X.#ctor">
+            <summary>
+             Creates a new factory for points with default size.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.PolygonWpfPathGeometry.#ctor(GeoAPI.Geometries.Coordinate[],System.Collections.Generic.IEnumerable{GeoAPI.Geometries.Coordinate[]})">
+            <summary>
+             Creates a new polygon shape.
+            </summary>
+             <param name="shellVertices">The vertices of the shell</param>
+             <param name="holeVerticesCollection">A collection of Coordinate[] for each hole</param>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.PolygonWpfPathGeometry.AddRing(System.Windows.Media.PathGeometry,GeoAPI.Geometries.Coordinate[])">
+            <summary>
+             Adds a <see cref="T:System.Windows.Media.PathFigure"/> representing a polygon ring
+             having the given coordinate sequence to the supplied <see cref="!:pathGeometry"/>
+            </summary>
+            <param name="pathGeometry">The path geometry.</param>
+            <param name="coordinates">A coordinate sequence</param>
+            <returns>The path for the coordinate sequence</returns>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.PolygonWpfStreamGeometry.#ctor(GeoAPI.Geometries.Coordinate[],System.Collections.Generic.IEnumerable{GeoAPI.Geometries.Coordinate[]})">
+            <summary>
+             Creates a new polygon shape.
+            </summary>
+             <param name="shellVertices">The vertices of the shell</param>
+             <param name="holeVerticesCollection">A collection of Coordinate[] for each hole</param>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.PolygonWpfStreamGeometry.AddRing(System.Windows.Media.StreamGeometryContext,GeoAPI.Geometries.Coordinate[],System.Boolean)">
+            <summary>
+             Adds a <see cref="T:System.Windows.Media.PathFigure"/> representing a polygon ring
+             having the given coordinate sequence to the supplied <see cref="T:System.Windows.Media.StreamGeometryContext"/>
+            </summary>
+            <param name="sgc">The stream geometry context.</param>
+            <param name="coordinates">A coordinate sequence</param>
+            <param name="filled">Starting paramter for </param>
+            <returns>The path for the coordinate sequence</returns>
+        </member>
+        <member name="T:NetTopologySuite.Windows.Media.WpfGeometryReader">
+            <summary>
+             Converts a WPF <see cref="T:System.Windows.Media.Geometry"/> into a <see cref="T:GeoAPI.Geometries.IGeometry"/>.
+            </summary>
+            <remarks>
+             <para>
+             The coordinate system for <see cref="T:System.Windows.Media.Geometry"/> is typically screen coordinates,
+             which has the Y axis inverted  relative to the usual JTS coordinate system.
+             This is rectified during conversion. </para>
+             <para>
+             GraphicsPaths to be converted are expected to be linear or flat.
+             That is, <see cref="M:System.Windows.Media.Geometry.MayHaveCurves"/> must always return false.
+             Otherwise an exception will be thrown.
+             </para>
+             </remarks>
+             <author>Martin Davis</author>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.WpfGeometryReader.Read(System.Windows.Media.Geometry,GeoAPI.Geometries.IGeometryFactory)">
+            <summary>
+             Converts a flat path to a <see cref="T:GeoAPI.Geometries.IGeometry"/>.
+            </summary>
+             <param name="pathIt">The path to convert</param>
+             <param name="geomFact">The GeometryFactory to use</param>
+             <returns>A Geometry representing the path</returns>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.WpfGeometryReader.Read(System.Windows.Media.Geometry,System.Double,GeoAPI.Geometries.IGeometryFactory)">
+            <summary>
+             Converts a <see cref="T:System.Windows.Media.Geometry"/> to a Geometry, flattening it first.
+            </summary>
+             <param name="shp">The <see cref="T:System.Windows.Media.Geometry"/></param>
+             <param name="tolerance">The tolerance parameter to use</param>
+             <param name="geomFact">The GeometryFactory to use</param>
+             <returns>A Geometry representing the shape</returns>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.WpfGeometryReader.Read(System.Windows.Media.Geometry)">
+            <summary>
+             Converts a flat path to a <see cref="T:GeoAPI.Geometries.IGeometry"/>.
+            </summary>
+             <param name="wpfGeometry">The geometry to convert</param>
+            <returns>A Geometry representing the path</returns>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.WpfGeometryReader.ToCoordinates(System.Windows.Media.PathGeometry)">
+            <summary>
+             Extracts the points of the paths in a flat {@link PathIterator} into
+             a list of Coordinate arrays.
+            </summary>
+             <param name="pathGeometry">A path figure collection</param>
+             <returns>A list of coordinate arrays</returns>
+             <exception cref="T:System.ArgumentException">If a non-linear segment type is encountered</exception>
+        </member>
+        <member name="T:NetTopologySuite.Windows.Media.WpfPathGeometryWriter">
+            <summary>
+             Writes <see cref="T:GeoAPI.Geometries.IGeometry"/>s into <see cref="T:System.Windows.Media.Geometry"/>s
+             of the appropriate type.
+             This supports rendering geometries using System.Windows.Media.
+             The GeometryWriter allows supplying a <see cref="T:NetTopologySuite.Windows.Media.IPointTransformation"/>
+             class, to transform coordinates from model space into view space.
+             This is useful if a client is providing its own transformation
+             logic, rather than relying on <see cref="T:System.Windows.Media.Transform"/>.
+             <para/>
+             The writer supports removing duplicate consecutive points
+             (via the <see cref="P:NetTopologySuite.Windows.Media.WpfPathGeometryWriter.RemoveDuplicatePoints"/> property) 
+             as well as true <b>decimation</b>
+             (via the <see cref="P:NetTopologySuite.Windows.Media.WpfPathGeometryWriter.Decimation"/> property. 
+             Enabling one of these strategies can substantially improve 
+             rendering speed for large geometries.
+             It is only necessary to enable one strategy.
+             Using decimation is preferred, but this requires 
+             determining a distance below which input geometry vertices
+             can be considered unique (which may not always be feasible).
+             If neither strategy is enabled, all vertices
+             of the input <tt>Geometry</tt>
+             will be represented in the output <tt>WpfGeometry</tt>.
+            </summary>
+        </member>
+        <member name="F:NetTopologySuite.Windows.Media.WpfPathGeometryWriter.DefaultPointTransformation">
+            The point transformation used by default.
+        </member>
+        <member name="F:NetTopologySuite.Windows.Media.WpfPathGeometryWriter.DefaultPointFactory">
+            The point shape factory used by default.
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.WpfPathGeometryWriter.#ctor(NetTopologySuite.Windows.Media.IPointTransformation,NetTopologySuite.Windows.Media.IPointToPathGeometryFactory)">
+            <summary>
+             Creates a new GraphicsPathWriter with a specified point transformation and point shape factory.
+            </summary>
+             <param name="pointTransformer">A transformation from model to view space to use </param>
+             <param name="pointFactory">The PointShapeFactory to use</param>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.WpfPathGeometryWriter.#ctor(NetTopologySuite.Windows.Media.IPointTransformation)">
+            <summary>
+             Creates a new GraphicsPathWriter with a specified point transformation and the default point shape factory.
+            </summary>
+             <param name="pointTransformer">A transformation from model to view space to use </param>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.WpfPathGeometryWriter.#ctor">
+            <summary>
+             Creates a new GraphicsPathWriter with the default (identity) point transformation.
+            </summary>
+        </member>
+        <member name="P:NetTopologySuite.Windows.Media.WpfPathGeometryWriter.RemoveDuplicatePoints">
+            <summary>
+            Gets or sets whether duplicate consecutive points should be eliminated.
+            This can reduce the size of the generated Shapes
+            and improve rendering speed, especially in situations
+            where a transform reduces the extent of the geometry.
+            <para/>
+            The default is <tt>false</tt>.
+            </summary>
+        </member>
+        <member name="P:NetTopologySuite.Windows.Media.WpfPathGeometryWriter.Decimation">
+            <summary>
+            Gets or sets the decimation distance used to determine
+            whether vertices of the input geometry are 
+            considered to be duplicate and thus removed.
+            The distance is axis distance, not Euclidean distance.
+            The distance is specified in the input geometry coordinate system
+            (NOT the transformed output coordinate system).
+            <para/>
+            When rendering to a screen image, a suitably small distance should be used
+            to avoid obvious rendering defects.  
+            A distance equivalent to 2 pixels or less is recommended
+            (and perhaps even smaller to avoid any chance of visible artifacts).
+            <para/>
+            The default distance is 0.0, which disables decimation.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.WpfPathGeometryWriter.ToShape(GeoAPI.Geometries.IGeometry)">
+            <summary>
+             Creates a <see cref="T:System.Windows.Media.Geometry"/> representing a <see cref="T:GeoAPI.Geometries.IGeometry"/>, according to the specified PointTransformation and PointShapeFactory (if relevant).
+            </summary>
+        </member>
+        <member name="T:NetTopologySuite.Windows.Media.WpfStreamGeometryWriter">
+            <summary>
+             Writes <see cref="T:GeoAPI.Geometries.IGeometry"/>s into  <see cref="T:System.Windows.Media.Geometry"/>s
+             of the appropriate type.
+             This supports rendering geometries using System.Windows.Media.
+             The GeometryWriter allows supplying a <see cref="T:NetTopologySuite.Windows.Media.IPointTransformation"/>
+             class, to transform coordinates from model space into view space.
+             This is useful if a client is providing its own transformation
+             logic, rather than relying on <see cref="T:System.Windows.Media.Transform"/>.
+             <para/>
+             The writer supports removing duplicate consecutive points
+             (via the <see cref="P:NetTopologySuite.Windows.Media.WpfStreamGeometryWriter.RemoveDuplicatePoints"/> property) 
+             as well as true <b>decimation</b>
+             (via the <see cref="P:NetTopologySuite.Windows.Media.WpfStreamGeometryWriter.Decimation"/> property. 
+             Enabling one of these strategies can substantially improve 
+             rendering speed for large geometries.
+             It is only necessary to enable one strategy.
+             Using decimation is preferred, but this requires 
+             determining a distance below which input geometry vertices
+             can be considered unique (which may not always be feasible).
+             If neither strategy is enabled, all vertices
+             of the input <tt>Geometry</tt>
+             will be represented in the output <tt>WpfGeometry</tt>.
+             </summary>
+        </member>
+        <member name="F:NetTopologySuite.Windows.Media.WpfStreamGeometryWriter.DefaultPointTransformation">
+            The point transformation used by default.
+        </member>
+        <member name="F:NetTopologySuite.Windows.Media.WpfStreamGeometryWriter.DefaultPointFactory">
+            The point shape factory used by default.
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.WpfStreamGeometryWriter.#ctor(NetTopologySuite.Windows.Media.IPointTransformation,NetTopologySuite.Windows.Media.IPointToStreamGeometryFactory)">
+            <summary>
+             Creates a new GraphicsPathWriter with a specified point transformation and point shape factory.
+            </summary>
+             <param name="pointTransformer">A transformation from model to view space to use </param>
+             <param name="pointFactory">The PointShapeFactory to use</param>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.WpfStreamGeometryWriter.#ctor(NetTopologySuite.Windows.Media.IPointTransformation)">
+            <summary>
+             Creates a new GraphicsPathWriter with a specified point transformation and the default point shape factory.
+            </summary>
+             <param name="pointTransformer">A transformation from model to view space to use </param>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.WpfStreamGeometryWriter.#ctor">
+            <summary>
+             Creates a new GraphicsPathWriter with the default (identity) point transformation.
+            </summary>
+        </member>
+        <member name="P:NetTopologySuite.Windows.Media.WpfStreamGeometryWriter.RemoveDuplicatePoints">
+            <summary>
+            Gets or sets whether duplicate consecutive points should be eliminated.
+            This can reduce the size of the generated Shapes
+            and improve rendering speed, especially in situations
+            where a transform reduces the extent of the geometry.
+            <para/>
+            The default is <tt>false</tt>.
+            </summary>
+        </member>
+        <member name="P:NetTopologySuite.Windows.Media.WpfStreamGeometryWriter.Decimation">
+            <summary>
+            Gets or sets the decimation distance used to determine
+            whether vertices of the input geometry are 
+            considered to be duplicate and thus removed.
+            The distance is axis distance, not Euclidean distance.
+            The distance is specified in the input geometry coordinate system
+            (NOT the transformed output coordinate system).
+            <para/>
+            When rendering to a screen image, a suitably small distance should be used
+            to avoid obvious rendering defects.  
+            A distance equal to the equivalent of 1.5 pixels or less is recommended
+            (and perhaps even smaller to avoid any chance of visible artifacts).
+            <para/>
+            The default distance is 0.0, which disables decimation.
+            </summary>
+        </member>
+        <member name="M:NetTopologySuite.Windows.Media.WpfStreamGeometryWriter.ToShape(GeoAPI.Geometries.IGeometry)">
+            <summary>
+             Creates a <see cref="T:System.Windows.Media.Geometry"/> representing a <see cref="T:GeoAPI.Geometries.IGeometry"/>, according to the specified PointTransformation and PointShapeFactory (if relevant).
+            </summary>
+        </member>
+    </members>
+</doc>

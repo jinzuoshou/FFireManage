@@ -1,0 +1,699 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{57355004-7373-493F-BB0C-95664A322085}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>FFireManage</RootNamespace>
+    <AssemblyName>FFireManage</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>false</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge">
+      <HintPath>..\Lib\AForge.NET 2.2.5\Release\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video">
+      <HintPath>..\Lib\AForge.NET 2.2.5\Release\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.FFMPEG">
+      <HintPath>..\Lib\AForge.NET 2.2.5\Release\AForge.Video.FFMPEG.dll</HintPath>
+    </Reference>
+    <Reference Include="gdal_csharp">
+      <HintPath>..\Lib\gdal18\gdal_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="GeoAPI">
+      <HintPath>..\Lib\NetTopologySuite\GeoAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="NetTopologySuite">
+      <HintPath>..\Lib\NetTopologySuite\NetTopologySuite.dll</HintPath>
+    </Reference>
+    <Reference Include="NetTopologySuite.IO">
+      <HintPath>..\Lib\NetTopologySuite\NetTopologySuite.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="ogr_csharp">
+      <HintPath>..\Lib\gdal18\ogr_csharp.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\Lib\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="stdole, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Controls\FormDownloadMediaProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FormDownloadMediaProcess.Designer.cs">
+      <DependentUpon>FormDownloadMediaProcess.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\FormWaitingBox.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\FormWaitingBox.designer.cs">
+      <DependentUpon>FormWaitingBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MediaRemarkEventManageClass.cs" />
+    <Compile Include="Controls\ImageRemarkForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Controls\ImageRemarkForm.designer.cs">
+      <DependentUpon>ImageRemarkForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DangerousFacilities\FormDFacilities.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DangerousFacilities\FormDFacilities.Designer.cs">
+      <DependentUpon>FormDFacilities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Artificiallake\FormArtificiallake.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Artificiallake\FormArtificiallake.Designer.cs">
+      <DependentUpon>FormArtificiallake.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DangerousFacilities\FormDFacilitiesManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DangerousFacilities\FormDFacilitiesManage.Designer.cs">
+      <DependentUpon>FormDFacilitiesManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Artificiallake\FormArtificiallakeManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Artificiallake\FormArtificiallakeManage.Designer.cs">
+      <DependentUpon>FormArtificiallakeManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CoordinatesInputControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CoordinatesInputControl.designer.cs">
+      <DependentUpon>CoordinatesInputControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CoordinatesInputControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CoordinatesInputControl1.designer.cs">
+      <DependentUpon>CoordinatesInputControl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CoordinatesInputControl2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CoordinatesInputControl2.designer.cs">
+      <DependentUpon>CoordinatesInputControl2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\IPTextBox.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\IPTextBox.designer.cs">
+      <DependentUpon>IPTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\MediaControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\MediaControl.Designer.cs">
+      <DependentUpon>MediaControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NavigationControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\NavigationControl.Designer.cs">
+      <DependentUpon>NavigationControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\NTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\NumericTextBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controls\NumericTextBox.Designer.cs">
+      <DependentUpon>NumericTextBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PACControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PACControl1.Designer.cs">
+      <DependentUpon>PACControl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PACControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PACControl.Designer.cs">
+      <DependentUpon>PACControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PagerControl1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PagerControl1.designer.cs">
+      <DependentUpon>PagerControl1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomAttribute.cs" />
+    <Compile Include="EnumType.cs" />
+    <Compile Include="FireCommand\FormFireCommand.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FireCommand\FormFireCommand.Designer.cs">
+      <DependentUpon>FormFireCommand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FireCommand\FormFireCommandManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FireCommand\FormFireCommandManage.Designer.cs">
+      <DependentUpon>FormFireCommandManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FireDocument\FormFireDocument.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FireDocument\FormFireDocument.Designer.cs">
+      <DependentUpon>FormFireDocument.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FireDocument\FormFireDocumentManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FireDocument\FormFireDocumentManage.Designer.cs">
+      <DependentUpon>FormFireDocumentManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FireForestBelt\FormFireForestBelt.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FireForestBelt\FormFireForestBelt.Designer.cs">
+      <DependentUpon>FormFireForestBelt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FireForestBelt\FormFireForestBeltManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FireForestBelt\FormFireForestBeltManage.Designer.cs">
+      <DependentUpon>FormFireForestBeltManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FireHBrigade\FormFireHBrigade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FireHBrigade\FormFireHBrigade.Designer.cs">
+      <DependentUpon>FormFireHBrigade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FireHBrigade\FormFireHBrigadeManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FireHBrigade\FormFireHBrigadeManage.Designer.cs">
+      <DependentUpon>FormFireHBrigadeManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FireImportantUnits\FormFireImportantUnits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FireImportantUnits\FormFireImportantUnits.Designer.cs">
+      <DependentUpon>FormFireImportantUnits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FireImportantUnits\FormFireImportantUnitsManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FireImportantUnits\FormFireImportantUnitsManage.Designer.cs">
+      <DependentUpon>FormFireImportantUnitsManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FirePBrigade\FormFirePBrigade.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FirePBrigade\FormFirePBrigade.Designer.cs">
+      <DependentUpon>FormFirePBrigade.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FirePBrigade\FormFirePBrigadeManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FirePBrigade\FormFirePBrigadeManage.Designer.cs">
+      <DependentUpon>FormFirePBrigadeManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hot\FormHot.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hot\FormHot.designer.cs">
+      <DependentUpon>FormHot.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hot\FormHotDetails.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hot\FormHotDetails.Designer.cs">
+      <DependentUpon>FormHotDetails.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Hot\FormHotManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Hot\FormHotManage.Designer.cs">
+      <DependentUpon>FormHotManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="License\FormProofAppLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\FormProofAppLicense.Designer.cs">
+      <DependentUpon>FormProofAppLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="License\FormRegisterAppLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\FormRegisterAppLicense.Designer.cs">
+      <DependentUpon>FormRegisterAppLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="License\FormUpdateAppLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\FormUpdateAppLicense.Designer.cs">
+      <DependentUpon>FormUpdateAppLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\FireSituation.cs" />
+    <Compile Include="Model\Fire_Artificiallake.cs" />
+    <Compile Include="Model\Fire_DangerousFacilities.cs" />
+    <Compile Include="Model\Fire_Command.cs" />
+    <Compile Include="Model\Fire_Document.cs" />
+    <Compile Include="Model\Fire_Equipment.cs" />
+    <Compile Include="Model\Fire_ForestBelt.cs" />
+    <Compile Include="Model\Fire_ForestBeltPoint.cs" />
+    <Compile Include="Model\Fire_HBrigade.cs" />
+    <Compile Include="Model\Fire_ImportantUnits.cs" />
+    <Compile Include="Model\Fire_Line.cs" />
+    <Compile Include="Model\Fire_Office.cs" />
+    <Compile Include="Model\Fire_PBrigade.cs" />
+    <Compile Include="Model\Fire_Planewaterpoint.cs" />
+    <Compile Include="Model\Fire_SatelliteGroundStation.cs" />
+    <Compile Include="Model\Fire_Tarmac.cs" />
+    <Compile Include="Model\Fire_TBrigade.cs" />
+    <Compile Include="Model\Fire_Warehouse.cs" />
+    <Compile Include="Model\Fire_WarningBoards.cs" />
+    <Compile Include="Model\Fire_WeatherLevelCalculate.cs" />
+    <Compile Include="Model\Fire_WeatherStations.cs" />
+    <Compile Include="Model\GetListResultInfo.cs" />
+    <Compile Include="Model\Fire_Hot.cs" />
+    <Compile Include="Model\HotFeedback.cs" />
+    <Compile Include="Model\MediaFile.cs" />
+    <Compile Include="Model\Fire_RadioStation.cs" />
+    <Compile Include="Model\Fire_Observatory.cs" />
+    <Compile Include="Monitor\FormMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Monitor\FormMonitor.designer.cs">
+      <DependentUpon>FormMonitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Monitor\FormMonitorManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Monitor\FormMonitorManage.Designer.cs">
+      <DependentUpon>FormMonitorManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadioStation\FormRadioStation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadioStation\FormRadioStation.Designer.cs">
+      <DependentUpon>FormRadioStation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RadioStation\FormRadioStationManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RadioStation\FormRadioStationManage.Designer.cs">
+      <DependentUpon>FormRadioStationManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Service\FireDocumentController.cs" />
+    <Compile Include="Service\FireImportantUnitsController.cs" />
+    <Compile Include="Service\FireOfficeController.cs" />
+    <Compile Include="Service\FirePBrigadeController.cs" />
+    <Compile Include="Service\FireSituationController.cs" />
+    <Compile Include="Service\FireHBrigadeController.cs" />
+    <Compile Include="Service\HotController.cs" />
+    <Compile Include="Service\IServiceControler.cs" />
+    <Compile Include="Service\LoginController.cs" />
+    <Compile Include="Service\TarmacController.cs" />
+    <Compile Include="Service\FireWarehouseController.cs" />
+    <Compile Include="Tarmac\FormTarmac.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tarmac\FormTarmac.Designer.cs">
+      <DependentUpon>FormTarmac.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tarmac\FormTarmacManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Tarmac\FormTarmacManage.Designer.cs">
+      <DependentUpon>FormTarmacManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\AppConfigHelper.cs" />
+    <Compile Include="Model\AreaCodeInfo.cs" />
+    <Compile Include="Model\LicenceKeyInfo.cs" />
+    <Compile Include="License\FormAppLicenseManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\FormAppLicenseManager.Designer.cs">
+      <DependentUpon>FormAppLicenseManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="License\FormCreateAppLicense.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="License\FormCreateAppLicense.Designer.cs">
+      <DependentUpon>FormCreateAppLicense.cs</DependentUpon>
+    </Compile>
+    <Compile Include="User\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\Converters.cs" />
+    <Compile Include="Utility\GDALHelper.cs" />
+    <Compile Include="Utility\HttpHelper2.cs" />
+    <Compile Include="Model\LicenceInfo.cs" />
+    <Compile Include="User\FormUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User\FormUser.Designer.cs">
+      <DependentUpon>FormUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GlobeHelper.cs" />
+    <Compile Include="Utility\CommonHelper.cs" />
+    <Compile Include="Utility\HttpHelper.cs" />
+    <Compile Include="Model\Fire_ForestRemoteMonitoring.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BaseResultInfo.cs" />
+    <Compile Include="Service\BaseService.cs" />
+    <Compile Include="Service\ServiceController.cs" />
+    <Compile Include="Model\UserInfo.cs" />
+    <Compile Include="User\FormUserManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="User\FormUserManage2.Designer.cs">
+      <DependentUpon>FormUserManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utility\DateTimeHelper.cs" />
+    <Compile Include="Utility\ImageHelper.cs" />
+    <Compile Include="Utility\Md5Helper.cs" />
+    <Compile Include="Utility\RestSharpHelper.cs" />
+    <Compile Include="Utility\SmartForm.cs" />
+    <Compile Include="Utility\SoftRegister.cs" />
+    <Compile Include="Utility\VideoHelper.cs" />
+    <Compile Include="Warehouse\FormWarehouse.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Warehouse\FormWarehouse.Designer.cs">
+      <DependentUpon>FormWarehouse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Warehouse\FormWarehouseManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Warehouse\FormWarehouseManage.Designer.cs">
+      <DependentUpon>FormWarehouseManage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WatchTower\FormWatchTower.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WatchTower\FormWatchTower.Designer.cs">
+      <DependentUpon>FormWatchTower.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WatchTower\FormWatchTowerManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WatchTower\FormWatchTowerManage.Designer.cs">
+      <DependentUpon>FormWatchTowerManage.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Controls\FormDownloadMediaProcess.resx">
+      <DependentUpon>FormDownloadMediaProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\FormWaitingBox.resx">
+      <DependentUpon>FormWaitingBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\ImageRemarkForm.resx">
+      <DependentUpon>ImageRemarkForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DangerousFacilities\FormDFacilities.resx">
+      <DependentUpon>FormDFacilities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Artificiallake\FormArtificiallake.resx">
+      <DependentUpon>FormArtificiallake.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DangerousFacilities\FormDFacilitiesManage.resx">
+      <DependentUpon>FormDFacilitiesManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Artificiallake\FormArtificiallakeManage.resx">
+      <DependentUpon>FormArtificiallakeManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CoordinatesInputControl.resx">
+      <DependentUpon>CoordinatesInputControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CoordinatesInputControl1.resx">
+      <DependentUpon>CoordinatesInputControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\CoordinatesInputControl2.resx">
+      <DependentUpon>CoordinatesInputControl2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\IPTextBox.resx">
+      <DependentUpon>IPTextBox.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\MediaControl.resx">
+      <DependentUpon>MediaControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\NavigationControl.resx">
+      <DependentUpon>NavigationControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PACControl1.resx">
+      <DependentUpon>PACControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PACControl.resx">
+      <DependentUpon>PACControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PagerControl1.resx">
+      <DependentUpon>PagerControl1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FireCommand\FormFireCommand.resx">
+      <DependentUpon>FormFireCommand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FireCommand\FormFireCommandManage.resx">
+      <DependentUpon>FormFireCommandManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FireDocument\FormFireDocument.resx">
+      <DependentUpon>FormFireDocument.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FireDocument\FormFireDocumentManage.resx">
+      <DependentUpon>FormFireDocumentManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FireForestBelt\FormFireForestBelt.resx">
+      <DependentUpon>FormFireForestBelt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FireForestBelt\FormFireForestBeltManage.resx">
+      <DependentUpon>FormFireForestBeltManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FireHBrigade\FormFireHBrigade.resx">
+      <DependentUpon>FormFireHBrigade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FireHBrigade\FormFireHBrigadeManage.resx">
+      <DependentUpon>FormFireHBrigadeManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FireImportantUnits\FormFireImportantUnits.resx">
+      <DependentUpon>FormFireImportantUnits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FireImportantUnits\FormFireImportantUnitsManage.resx">
+      <DependentUpon>FormFireImportantUnitsManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FirePBrigade\FormFirePBrigade.resx">
+      <DependentUpon>FormFirePBrigade.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FirePBrigade\FormFirePBrigadeManage.resx">
+      <DependentUpon>FormFirePBrigadeManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hot\FormHot.resx">
+      <DependentUpon>FormHot.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hot\FormHotDetails.resx">
+      <DependentUpon>FormHotDetails.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Hot\FormHotManage.resx">
+      <DependentUpon>FormHotManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="License\FormProofAppLicense.resx">
+      <DependentUpon>FormProofAppLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="License\FormRegisterAppLicense.resx">
+      <DependentUpon>FormRegisterAppLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="License\FormUpdateAppLicense.resx">
+      <DependentUpon>FormUpdateAppLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Monitor\FormMonitor.resx">
+      <DependentUpon>FormMonitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Monitor\FormMonitorManage.resx">
+      <DependentUpon>FormMonitorManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <Compile Include="Utility\ApplicationConfigHelper.cs" />
+    <Compile Include="Utility\JsonHelper.cs" />
+    <EmbeddedResource Include="License\FormAppLicenseManager.resx">
+      <DependentUpon>FormAppLicenseManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="License\FormCreateAppLicense.resx">
+      <DependentUpon>FormCreateAppLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tarmac\FormTarmac.resx">
+      <DependentUpon>FormTarmac.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Tarmac\FormTarmacManage.resx">
+      <DependentUpon>FormTarmacManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="User\FormUser.resx">
+      <DependentUpon>FormUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="User\FormUserManage2.resx">
+      <DependentUpon>FormUserManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadioStation\FormRadioStation.resx">
+      <DependentUpon>FormRadioStation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RadioStation\FormRadioStationManage.resx">
+      <DependentUpon>FormRadioStationManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Warehouse\FormWarehouse.resx">
+      <DependentUpon>FormWarehouse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Warehouse\FormWarehouseManage.resx">
+      <DependentUpon>FormWarehouseManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WatchTower\FormWatchTower.resx">
+      <DependentUpon>FormWatchTower.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WatchTower\FormWatchTowerManage.resx">
+      <DependentUpon>FormWatchTowerManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Properties\app.manifest" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\delete16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\edit16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\register16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\proof16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\image24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\audio24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\video24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\deleteMedias24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\_return.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bg.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Cancel.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\waiting.gif" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

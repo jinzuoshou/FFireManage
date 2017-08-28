@@ -1,0 +1,13 @@
+c:\users\崇隽\documents\visual studio 2010\Projects\FFireUserManage\FFireUserManage\bin\Debug\FFireUserManage.exe
+c:\users\崇隽\documents\visual studio 2010\Projects\FFireUserManage\FFireUserManage\bin\Debug\FFireUserManage.pdb
+c:\users\崇隽\documents\visual studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireUserManage.FormMain.resources
+c:\users\崇隽\documents\visual studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireUserManage.FormUser.resources
+c:\users\崇隽\documents\visual studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireUserManage.Properties.Resources.resources
+c:\users\崇隽\documents\visual studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireUserManage.csproj.GenerateResource.Cache
+c:\users\崇隽\documents\visual studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireUserManage.exe
+c:\users\崇隽\documents\visual studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireUserManage.pdb
+C:\Users\崇隽\documents\visual studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireUserManage.FormLogin.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireUserManage.csprojResolveAssemblyReference.cache
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireUserManage\bin\Debug\FFireUserManage.exe.config
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireUserManage.FormUserGroupManage.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireUserManage.FormUserGroupAdd.resources

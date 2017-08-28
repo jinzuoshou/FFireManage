@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NetTopologySuite.IO.SpatiaLite</name>
+    </assembly>
+    <members>
+        <member name="T:NetTopologySuite.IO.GaiaGeoEndianMarker">
+            <summary>
+            Defines byte storage order
+            </summary>
+        </member>
+        <member name="T:NetTopologySuite.IO.GaiaGeoGeometryEntity">
+            <summary>
+            Generic geometry classes
+            </summary>
+        </member>
+        <member name="T:NetTopologySuite.IO.GaiaGeoBlobMark">
+            <summary>
+            Special markers used for encoding of SpatiaLite internal BLOB geometries
+            </summary>
+        </member>
+        <member name="T:NetTopologySuite.IO.GaiaGeoGeometry">
+            <summary>
+            Defines Geometry classes
+            </summary>
+        </member>
+        <member name="P:NetTopologySuite.IO.GaiaGeoReader.RepairRings">
+            <summary>
+            Gets or sets whether invalid linear rings should be fixed
+            </summary>
+        </member>
+        <member name="P:NetTopologySuite.IO.GaiaGeoWriter.UseCompressed">
+            <summary>
+            Gets or sets whether geometries should be written in compressed form
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,193 @@
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\bin\Debug\FFireManage.exe.config
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\bin\Debug\FFireManage.exe
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\bin\Debug\FFireManage.pdb
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.Properties.Resources.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.csproj.GenerateResource.Cache
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.exe
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.pdb
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.FormLogin.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.FormMain.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.Monitor.FormMonitor.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.FormUserManage.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.Monitor.FormMonitorDataBackups.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.Monitor.FormMonitorManage.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.FormUser.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.FormUserGroupManage.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.FormUserGroupAdd.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.Monitor.FormPreview.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.Monitor.VideoControl.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\bin\Debug\IPDispatcher_clr.dll
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.csprojResolveAssemblyReference.cache
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireManage.Dispatcher.FormDispatcher.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\bin\Debug\FFireManage.exe.config
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.exe
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.pdb
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\bin\Debug\FFireManage.exe
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\bin\Debug\FFireManage.pdb
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\bin\Debug\IPDispatcher_clr.dll
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.csprojResolveAssemblyReference.cache
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Dispatcher.FormDispatcher.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormLogin.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormMain.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitor.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUserManage.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitorDataBackups.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitorManage.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUser.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUserGroupManage.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUserGroupAdd.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormPreview.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.VideoControl.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Properties.Resources.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.csproj.GenerateResource.Cache
+G:\FFireManage\FFireManage\bin\Debug\FFireManage.exe.config
+G:\FFireManage\FFireManage\obj\x86\Debug\FFireManage.exe
+G:\FFireManage\FFireManage\obj\x86\Debug\FFireManage.pdb
+G:\FFireManage\FFireManage\bin\Debug\FFireManage.exe
+G:\FFireManage\FFireManage\bin\Debug\FFireManage.pdb
+G:\FFireManage\FFireManage\obj\x86\Debug\ResolveAssemblyReference.cache
+G:\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormLogin.resources
+G:\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormMain.resources
+G:\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitor.resources
+G:\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUserManage.resources
+G:\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitorDataBackups.resources
+G:\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitorManage.resources
+G:\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUser.resources
+G:\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUserGroupManage.resources
+G:\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUserGroupAdd.resources
+G:\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormPreview.resources
+G:\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.VideoControl.resources
+G:\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Properties.Resources.resources
+G:\FFireManage\FFireManage\obj\x86\Debug\GenerateResource.read.1.tlog
+G:\FFireManage\FFireManage\obj\x86\Debug\GenerateResource.write.1.tlog
+D:\U\1\FFireManage\FFireManage\bin\Debug\FFireManage.exe.config
+D:\U\1\FFireManage\FFireManage\obj\x86\Debug\FFireManage.exe
+D:\U\1\FFireManage\FFireManage\obj\x86\Debug\FFireManage.pdb
+D:\U\1\FFireManage\FFireManage\bin\Debug\FFireManage.exe
+D:\U\1\FFireManage\FFireManage\bin\Debug\FFireManage.pdb
+D:\U\1\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormLogin.resources
+D:\U\1\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormMain.resources
+D:\U\1\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitor.resources
+D:\U\1\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUserManage.resources
+D:\U\1\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitorDataBackups.resources
+D:\U\1\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitorManage.resources
+D:\U\1\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUser.resources
+D:\U\1\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUserGroupManage.resources
+D:\U\1\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUserGroupAdd.resources
+D:\U\1\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormPreview.resources
+D:\U\1\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.VideoControl.resources
+D:\U\1\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Properties.Resources.resources
+D:\U\1\FFireManage\FFireManage\obj\x86\Debug\FFireManage.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\bin\Debug\FFireManage.exe.config
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\bin\Debug\FFireManage.exe
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\bin\Debug\FFireManage.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormAppLicenseManager.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormCreateAppLicense.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormLogin.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormMain.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitor.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUserManage.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitorDataBackups.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitorManage.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUser.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormPreview.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.VideoControl.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Properties.Resources.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.csproj.GenerateResource.Cache
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.exe
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.pdb
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUserManage2.resources
+C:\Users\Administrator\Documents\Visual Studio 2010\Projects\FFireManage\FFireManage\obj\x86\Debug\FFireManage.csprojResolveAssemblyReference.cache
+D:\project\广西森林防火项目\FFireManage\FFireManage\bin\Debug\FFireManage.exe.config
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.exe
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.pdb
+D:\project\广西森林防火项目\FFireManage\FFireManage\bin\Debug\FFireManage.exe
+D:\project\广西森林防火项目\FFireManage\FFireManage\bin\Debug\FFireManage.pdb
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.csprojResolveAssemblyReference.cache
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormAppLicenseManager.resources
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormCreateAppLicense.resources
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormLogin.resources
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormMain.resources
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitor.resources
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUserManage.resources
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitorDataBackups.resources
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitorManage.resources
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUser.resources
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormPreview.resources
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.VideoControl.resources
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Properties.Resources.resources
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUserManage2.resources
+D:\project\广西森林防火项目\FFireManage\FFireManage\obj\x86\Debug\FFireManage.csproj.GenerateResource.Cache
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\FFireManage.exe.config
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\FFireManage.exe
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\FFireManage.pdb
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Controls.CoordinatesInputControl.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Controls.CoordinatesInputControl1.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Controls.CoordinatesInputControl2.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Controls.IPTextBox.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Controls.NavigationControl.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Controls.PACControl1.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Controls.PACControl.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Controls.PagerControl1.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FireCommand.FormFireCommand.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FireCommand.FormFireCommandManage.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Hot.FormHot.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Hot.FormHotManage.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.License.FormProofAppLicense.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.License.FormRegisterAppLicense.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.License.FormUpdateAppLicense.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitor.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Monitor.FormMonitorManage.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormAppLicenseManager.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormCreateAppLicense.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormLogin.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormMain.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUser.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Properties.Resources.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FormUserManage.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.csproj.GenerateResource.Cache
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.exe
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.pdb
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.WatchTower.FormWatchTower.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.WatchTower.FormWatchTowerManage.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.RadioStation.FormRadioStation.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.RadioStation.FormRadioStationManage.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FireForestBelt.FormFireForestBelt.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FireForestBelt.FormFireForestBeltManage.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Controls.MediaControl.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Artificiallake.FormArtificiallake.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.DangerousFacilities.FormDFacilities.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.DangerousFacilities.FormDFacilitiesManage.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Artificiallake.FormArtificiallakeManage.resources
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\AForge.dll
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\AForge.Video.dll
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\AForge.Video.FFMPEG.dll
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\AForge.xml
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\AForge.Video.xml
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\AForge.Video.FFMPEG.xml
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Controls.FormDownloadMediaProcess.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Controls.ImageRemarkForm.resources
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\RestSharp.dll
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\RestSharp.xml
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Controls.FormWaitingBox.resources
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\gdal_csharp.dll
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\ogr_csharp.dll
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\osr_csharp.dll
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Tarmac.FormTarmac.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Tarmac.FormTarmacManage.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Warehouse.FormWarehouse.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Warehouse.FormWarehouseManage.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.Hot.FormHotDetails.resources
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\GeoAPI.dll
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\NetTopologySuite.dll
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\NetTopologySuite.IO.dll
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\NetTopologySuite.xml
+D:\project\广西项目组\FFireManage\FFireManage\bin\Debug\NetTopologySuite.IO.xml
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FireHBrigade.FormFireHBrigade.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FireHBrigade.FormFireHBrigadeManage.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FirePBrigade.FormFirePBrigade.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FirePBrigade.FormFirePBrigadeManage.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FireImportantUnits.FormFireImportantUnits.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FireImportantUnits.FormFireImportantUnitsManage.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FireDocument.FormFireDocument.resources
+D:\project\广西项目组\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FireDocument.FormFireDocumentManage.resources

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>DotSpatial.Topology.GeoAPIConverter.Test</name>
+    </assembly>
+    <members>
+        <member name="P:NetTopologySuite.IO.Tests.RandomGeometryHelper.RandomCoordinate">
+            <summary>
+            Gets a random coordinate
+            </summary>
+        </member>
+        <member name="P:NetTopologySuite.IO.Tests.RandomGeometryHelper.Factory">
+            <summary>
+            Gets the factory to create the random geometries
+            </summary>
+        </member>
+        <member name="P:NetTopologySuite.IO.Tests.RandomGeometryHelper.Point">
+            <summary>
+            Gets a point with random ordinates
+            </summary>
+        </member>
+        <member name="P:NetTopologySuite.IO.Tests.RandomGeometryHelper.MultiPoint">
+            <summary>
+            Gets a multipoint of a random number of points with random ordinates
+            </summary>
+        </member>
+        <member name="T:NetTopologySuite.IO.Tests.RandomGeometryHelper.CreateCoordinateDelegate">
+            <summary>
+            Delegate function to create Coordinate instances. This is particulary handy for m-ordinate coordinate classes
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:NetTopologySuite.IO.Tests.RandomGeometryHelper.RandomOrdinate(GeoAPI.Geometries.Ordinate)">
+            <summary>
+            Function to create a random ordinates. For x-ordinates the values are limited to <see cref="P:NetTopologySuite.IO.Tests.RandomGeometryHelper.MinX"/> and <see cref="P:NetTopologySuite.IO.Tests.RandomGeometryHelper.MaxX"/>. For y-Ordinates the bounds are <see cref="P:NetTopologySuite.IO.Tests.RandomGeometryHelper.MinY"/> and <see cref="P:NetTopologySuite.IO.Tests.RandomGeometryHelper.MaxY"/>. z- and m-ordinates are limited to the range [0; 1000[.
+            </summary>
+            <param name="ordinate">The ordinate to obtain</param>
+            <returns>A random value that should represent an ordinate value.</returns>
+        </member>
+    </members>
+</doc>

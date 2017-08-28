@@ -1,0 +1,79 @@
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireUserManage\bin\Debug\FFireServerManage.exe.config
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireServerManage.FormLogin.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireServerManage.FormMain.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireServerManage.FormUser.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireServerManage.FormUserGroupManage.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireServerManage.FormUserGroupAdd.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireServerManage.Properties.Resources.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireServerManage.csproj.GenerateResource.Cache
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireUserManage\bin\Debug\FFireServerManage.exe
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireUserManage\bin\Debug\FFireServerManage.pdb
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireServerManage.exe
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireUserManage\obj\x86\Debug\FFireServerManage.pdb
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireServerManage\bin\Debug\FFireServerManage.exe.config
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireServerManage\obj\x86\Debug\FFireServerManage.exe
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireServerManage\obj\x86\Debug\FFireServerManage.pdb
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireServerManage\bin\Debug\FFireServerManage.exe
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireServerManage\bin\Debug\FFireServerManage.pdb
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormLogin.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormMain.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormMonitorManage.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormUser.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormUserGroupManage.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormUserGroupAdd.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireServerManage\obj\x86\Debug\FFireServerManage.Properties.Resources.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireUserManage\FFireServerManage\obj\x86\Debug\FFireServerManage.csproj.GenerateResource.Cache
+G:\FFireServerManage\FFireServerManage\bin\Debug\FFireServerManage.exe.config
+G:\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.exe
+G:\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.pdb
+G:\FFireServerManage\FFireServerManage\bin\Debug\FFireServerManage.exe
+G:\FFireServerManage\FFireServerManage\bin\Debug\FFireServerManage.pdb
+G:\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormLogin.resources
+G:\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormMain.resources
+G:\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormUserManage.resources
+G:\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormUser.resources
+G:\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormUserGroupManage.resources
+G:\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormUserGroupAdd.resources
+G:\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.Properties.Resources.resources
+G:\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.csproj.GenerateResource.Cache
+G:\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.Monitor.FormMonitor.resources
+G:\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.Monitor.FormMonitorManage.resources
+G:\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.Monitor.FormMonitorDataBackups.resources
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\bin\Debug\FFireServerManage.exe.config
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.exe
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.pdb
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\bin\Debug\FFireServerManage.exe
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\bin\Debug\FFireServerManage.pdb
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormLogin.resources
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormMain.resources
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.Monitor.FormMonitor.resources
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormUserManage.resources
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.Monitor.FormMonitorDataBackups.resources
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.Monitor.FormMonitorManage.resources
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormUser.resources
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormUserGroupManage.resources
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormUserGroupAdd.resources
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.Properties.Resources.resources
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.csproj.GenerateResource.Cache
+C:\Users\崇隽\Downloads\FFireServerManage\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.csprojResolveAssemblyReference.cache
+C:\Users\崇隽\Desktop\FFireServerManage\FFireServerManage\FFireServerManage\bin\Debug\FFireServerManage.exe.config
+C:\Users\崇隽\Desktop\FFireServerManage\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.exe
+C:\Users\崇隽\Desktop\FFireServerManage\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.pdb
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\bin\Debug\FFireServerManage.exe.config
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\bin\Debug\FFireServerManage.exe
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\bin\Debug\FFireServerManage.pdb
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormLogin.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormMain.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.Monitor.FormMonitor.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormUserManage.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.Monitor.FormMonitorDataBackups.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.Monitor.FormMonitorManage.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormUser.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormUserGroupManage.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.FormUserGroupAdd.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.Monitor.FormPreview.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.Monitor.VideoControl.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.Properties.Resources.resources
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.csproj.GenerateResource.Cache
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.exe
+C:\Users\崇隽\Documents\Visual Studio 2010\Projects\FFireServerManage\FFireServerManage\obj\x86\Debug\FFireServerManage.pdb

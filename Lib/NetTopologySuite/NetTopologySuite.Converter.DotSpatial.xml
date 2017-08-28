@@ -1,0 +1,247 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>NetTopologySuite.Converter.DotSpatial</name>
+    </assembly>
+    <members>
+        <member name="T:DotSpatial.Data.SpatialPredicate">
+            <summary>
+            Spatial operations
+            </summary>
+        </member>
+        <member name="M:DotSpatial.Topology.GeometryConverter.ToGeoAPI(DotSpatial.Topology.IGeometry,GeoAPI.Geometries.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:DotSpatial.Topology.IGeometry"/> to a <see cref="T:GeoAPI.Geometries.IGeometry"/>
+            </summary>
+            <param name="self">The <see cref="T:DotSpatial.Topology.IGeometry"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:GeoAPI.Geometries.IGeometry"/></param>
+            <param name="setUserData">Sets the <see cref="P:GeoAPI.Geometries.IGeometry.UserData"/> to <paramref name="self"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:DotSpatial.Topology.GeometryConverter.ToGeoAPI(DotSpatial.Topology.IPoint,GeoAPI.Geometries.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:DotSpatial.Topology.IPoint"/> to a <see cref="T:GeoAPI.Geometries.IPoint"/>
+            </summary>
+            <param name="self">The <see cref="T:DotSpatial.Topology.IPoint"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:GeoAPI.Geometries.IPoint"/></param>
+            <param name="setUserData">Sets the <see cref="P:GeoAPI.Geometries.IGeometry.UserData"/> to <paramref name="self"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:DotSpatial.Topology.GeometryConverter.ToGeoAPI(DotSpatial.Topology.ILineString,GeoAPI.Geometries.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:DotSpatial.Topology.ILineString"/> to a <see cref="T:GeoAPI.Geometries.ILineString"/>
+            </summary>
+            <param name="self">The <see cref="T:DotSpatial.Topology.ILineString"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:GeoAPI.Geometries.ILineString"/></param>
+            <param name="setUserData">Sets the <see cref="P:GeoAPI.Geometries.IGeometry.UserData"/> to <paramref name="self"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:DotSpatial.Topology.GeometryConverter.ToGeoAPI(DotSpatial.Topology.ILinearRing,GeoAPI.Geometries.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:DotSpatial.Topology.ILinearRing"/> to a <see cref="T:GeoAPI.Geometries.ILinearRing"/>
+            </summary>
+            <param name="self">The <see cref="T:DotSpatial.Topology.ILinearRing"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:GeoAPI.Geometries.ILinearRing"/></param>
+            <param name="setUserData">Sets the <see cref="P:GeoAPI.Geometries.IGeometry.UserData"/> to <paramref name="self"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:DotSpatial.Topology.GeometryConverter.ToGeoAPI(DotSpatial.Topology.IPolygon,GeoAPI.Geometries.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:DotSpatial.Topology.IPolygon"/> to a <see cref="T:GeoAPI.Geometries.IPolygon"/>
+            </summary>
+            <param name="self">The <see cref="T:DotSpatial.Topology.IPolygon"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:GeoAPI.Geometries.IPolygon"/></param>
+            <param name="setUserData">Sets the <see cref="P:GeoAPI.Geometries.IGeometry.UserData"/> to <paramref name="self"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:DotSpatial.Topology.GeometryConverter.ToGeoAPI(DotSpatial.Topology.IMultiPoint,GeoAPI.Geometries.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:DotSpatial.Topology.IMultiPoint"/> to a <see cref="T:GeoAPI.Geometries.IMultiPoint"/>
+            </summary>
+            <param name="self">The <see cref="T:DotSpatial.Topology.IMultiPoint"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:GeoAPI.Geometries.IMultiPoint"/></param>
+            <param name="setUserData">Sets the <see cref="P:GeoAPI.Geometries.IGeometry.UserData"/> to <paramref name="self"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:DotSpatial.Topology.GeometryConverter.ToGeoAPI(DotSpatial.Topology.IMultiLineString,GeoAPI.Geometries.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:DotSpatial.Topology.IMultiLineString"/> to a <see cref="T:GeoAPI.Geometries.IMultiLineString"/>
+            </summary>
+            <param name="self">The <see cref="T:DotSpatial.Topology.IMultiLineString"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:GeoAPI.Geometries.IMultiLineString"/></param>
+            <param name="setUserData">Sets the <see cref="P:GeoAPI.Geometries.IGeometry.UserData"/> to <paramref name="self"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:DotSpatial.Topology.GeometryConverter.ToGeoAPI(DotSpatial.Topology.IMultiPolygon,GeoAPI.Geometries.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:DotSpatial.Topology.IMultiLineString"/> to a <see cref="T:GeoAPI.Geometries.IMultiLineString"/>
+            </summary>
+            <param name="self">The <see cref="T:DotSpatial.Topology.IMultiLineString"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:GeoAPI.Geometries.IMultiLineString"/></param>
+            <param name="setUserData">Sets the <see cref="P:GeoAPI.Geometries.IGeometry.UserData"/> to <paramref name="self"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:DotSpatial.Topology.GeometryConverter.ToGeoAPI(DotSpatial.Topology.IGeometryCollection,GeoAPI.Geometries.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:DotSpatial.Topology.IGeometryCollection"/> to a <see cref="T:GeoAPI.Geometries.IGeometryCollection"/>
+            </summary>
+            <param name="self">The <see cref="T:DotSpatial.Topology.IGeometryCollection"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:GeoAPI.Geometries.IGeometryCollection"/></param>
+            <param name="setUserData">Sets the <see cref="P:GeoAPI.Geometries.IGeometry.UserData"/> to <paramref name="self"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:DotSpatial.Topology.GeometryConverter.FromPointShape(DotSpatial.Data.Shape,GeoAPI.Geometries.IGeometryFactory,System.Boolean)">
+            <summary>
+            Get the point for this shape if this is a point shape.
+            </summary>
+            <param name="shape">The shape to convert</param>
+            <param name="factory">The geometry factory to use.</param>
+            <param name="copyAttributes">A value indicating whether or not to copy the <see cref="P:DotSpatial.Data.Shape.Attributes"/> to <see cref="P:GeoAPI.Geometries.IGeometry.UserData"/></param>
+            <returns>The geometry representing the converted shape.</returns>
+        </member>
+        <member name="M:DotSpatial.Topology.GeometryConverter.FromMultiPointShape(DotSpatial.Data.Shape,GeoAPI.Geometries.IGeometryFactory,System.Boolean)">
+            <summary>
+            Creates a new MultiPoint geometry from a MultiPoint shape
+            </summary>
+            <param name="shape">The shape to convert</param>
+            <param name="factory">The geometry factory to use.</param>
+            <param name="copyAttributes">A value indicating whether or not to copy the <see cref="P:DotSpatial.Data.Shape.Attributes"/> to <see cref="P:GeoAPI.Geometries.IGeometry.UserData"/></param>
+            <returns>The geometry representing the converted shape.</returns>
+            <returns></returns>
+        </member>
+        <member name="M:DotSpatial.Topology.GeometryConverter.FromLineShape(DotSpatial.Data.Shape,GeoAPI.Geometries.IGeometryFactory,System.Boolean)">
+            <summary>
+            Gets the line for the specified index
+            </summary>
+            <param name="shape">The shape to convert</param>
+            <param name="factory">The geometry factory to use.</param>
+            <param name="copyAttributes">A value indicating whether or not to copy the <see cref="P:DotSpatial.Data.Shape.Attributes"/> to <see cref="P:GeoAPI.Geometries.IGeometry.UserData"/></param>
+            <returns>The geometry representing the converted shape.</returns>
+        </member>
+        <member name="M:DotSpatial.Topology.GeometryConverter.FromPolygonShape(DotSpatial.Data.Shape,GeoAPI.Geometries.IGeometryFactory,System.Boolean)">
+            <summary>
+            Creates a Polygon or MultiPolygon from this Polygon shape.
+            </summary>
+            <param name="shape">The shape to convert</param>
+            <param name="factory">The geometry factory to use.</param>
+            <param name="copyAttributes">A value indicating whether or not to copy the <see cref="P:DotSpatial.Data.Shape.Attributes"/> to <see cref="P:GeoAPI.Geometries.IGeometry.UserData"/></param>
+            <returns>The geometry representing the converted shape.</returns>
+        </member>
+        <member name="M:DotSpatial.Topology.GeometryConverter.PointInList(GeoAPI.Geometries.Coordinate,System.Collections.Generic.IEnumerable{GeoAPI.Geometries.Coordinate})">
+            <summary>
+            Test if a point is in a list of coordinates.
+            </summary>
+            <param name="testPoint">The point to test for.</param>
+            <param name="pointList">The list of points to look through.</param>
+            <returns>true if <paramref name="testPoint"/> is a point in the <paramref name="pointList"/> list.</returns>
+        </member>
+        <member name="M:GeoAPI.Geometries.GeometryConverter.ToDotSpatial(GeoAPI.Geometries.IGeometry,DotSpatial.Topology.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:GeoAPI.Geometries.IGeometry"/> to a <see cref="T:DotSpatial.Topology.IGeometry"/>
+            </summary>
+            <param name="geometry">The <see cref="T:GeoAPI.Geometries.IGeometry"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:DotSpatial.Topology.IGeometry"/></param>
+            <param name="setUserData">Sets the <see cref="P:DotSpatial.Topology.IGeometry.UserData"/> to <paramref name="geometry"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:GeoAPI.Geometries.GeometryConverter.ToDotSpatial(GeoAPI.Geometries.IPoint,DotSpatial.Topology.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:GeoAPI.Geometries.IPoint"/> to a <see cref="T:DotSpatial.Topology.IPoint"/>
+            </summary>
+            <param name="geometry">The <see cref="T:GeoAPI.Geometries.IPoint"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:DotSpatial.Topology.IPoint"/></param>
+            <param name="setUserData">Sets the <see cref="P:DotSpatial.Topology.IGeometry.UserData"/> to <paramref name="geometry"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:GeoAPI.Geometries.GeometryConverter.ToDotSpatial(GeoAPI.Geometries.ILineString,DotSpatial.Topology.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:GeoAPI.Geometries.ILineString"/> to a <see cref="T:DotSpatial.Topology.ILineString"/>
+            </summary>
+            <param name="geometry">The <see cref="T:GeoAPI.Geometries.ILineString"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:DotSpatial.Topology.ILineString"/></param>
+            <param name="setUserData">Sets the <see cref="P:DotSpatial.Topology.IGeometry.UserData"/> to <paramref name="geometry"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:GeoAPI.Geometries.GeometryConverter.ToDotSpatial(GeoAPI.Geometries.ILinearRing,DotSpatial.Topology.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:GeoAPI.Geometries.ILinearRing"/> to a <see cref="T:DotSpatial.Topology.ILinearRing"/>
+            </summary>
+            <param name="geometry">The <see cref="T:GeoAPI.Geometries.ILinearRing"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:DotSpatial.Topology.ILinearRing"/></param>
+            <param name="setUserData">Sets the <see cref="P:DotSpatial.Topology.IGeometry.UserData"/> to <paramref name="geometry"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:GeoAPI.Geometries.GeometryConverter.ToDotSpatial(GeoAPI.Geometries.IPolygon,DotSpatial.Topology.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:GeoAPI.Geometries.IPolygon"/> to a <see cref="T:DotSpatial.Topology.IPolygon"/>
+            </summary>
+            <param name="geometry">The <see cref="T:GeoAPI.Geometries.IPolygon"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:DotSpatial.Topology.IPolygon"/></param>
+            <param name="setUserData">Sets the <see cref="P:DotSpatial.Topology.IGeometry.UserData"/> to <paramref name="geometry"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:GeoAPI.Geometries.GeometryConverter.ToDotSpatial(GeoAPI.Geometries.IMultiPoint,DotSpatial.Topology.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:GeoAPI.Geometries.IMultiPoint"/> to a <see cref="T:DotSpatial.Topology.IMultiPoint"/>
+            </summary>
+            <param name="geometry">The <see cref="T:GeoAPI.Geometries.IMultiPoint"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:DotSpatial.Topology.IMultiPoint"/></param>
+            <param name="setUserData">Sets the <see cref="P:DotSpatial.Topology.IGeometry.UserData"/> to <paramref name="geometry"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:GeoAPI.Geometries.GeometryConverter.ToDotSpatial(GeoAPI.Geometries.IMultiLineString,DotSpatial.Topology.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:GeoAPI.Geometries.IMultiLineString"/> to a <see cref="T:DotSpatial.Topology.IMultiLineString"/>
+            </summary>
+            <param name="geometry">The <see cref="T:GeoAPI.Geometries.IMultiLineString"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:DotSpatial.Topology.IMultiLineString"/></param>
+            <param name="setUserData">Sets the <see cref="P:DotSpatial.Topology.IGeometry.UserData"/> to <paramref name="geometry"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:GeoAPI.Geometries.GeometryConverter.ToDotSpatial(GeoAPI.Geometries.IMultiPolygon,DotSpatial.Topology.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:GeoAPI.Geometries.IMultiPolygon"/> to a <see cref="T:DotSpatial.Topology.IMultiPolygon"/>
+            </summary>
+            <param name="geometry">The <see cref="T:GeoAPI.Geometries.IMultiPolygon"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:DotSpatial.Topology.IMultiPolygon"/></param>
+            <param name="setUserData">Sets the <see cref="P:DotSpatial.Topology.IGeometry.UserData"/> to <paramref name="geometry"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:GeoAPI.Geometries.GeometryConverter.ToDotSpatial(GeoAPI.Geometries.IGeometryCollection,DotSpatial.Topology.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:GeoAPI.Geometries.IGeometryCollection"/> to a <see cref="T:DotSpatial.Topology.IGeometryCollection"/>
+            </summary>
+            <param name="geometry">The <see cref="T:GeoAPI.Geometries.IGeometryCollection"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:DotSpatial.Topology.IGeometryCollection"/></param>
+            <param name="setUserData">Sets the <see cref="P:DotSpatial.Topology.IGeometry.UserData"/> to <paramref name="geometry"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:GeoAPI.Geometries.GeometryConverter.ToDotSpatial(System.Collections.Generic.IList{GeoAPI.Geometries.IGeometry},DotSpatial.Topology.IGeometryFactory,System.Boolean)">
+            <summary>
+            Converts a <see cref="T:System.Collections.Generic.IList`1"/> to a <see cref="T:System.Collections.Generic.IList`1"/>
+            </summary>
+            <param name="geometries">The <see cref="T:System.Collections.Generic.IList`1"/> to convert</param>
+            <param name="factory">The factory to create the <see cref="T:System.Collections.Generic.IList`1"/></param>
+            <param name="setUserData">Sets the <see cref="P:DotSpatial.Topology.IGeometry.UserData"/> to <paramref name="geometries"/>.UserData</param>
+            <returns>The converted geometry</returns>
+        </member>
+        <member name="M:GeoAPI.Geometries.GeometryConverter.ToDotSpatialShape(GeoAPI.Geometries.IGeometry,System.Boolean)">
+            <summary>
+            Creates a shape based on the specified geometry.  This shape will be standing alone,
+            all by itself.
+            </summary>
+            <param name="geometry">The geometry to create a shape from.</param>
+            <param name="copyAttributes">The <see cref="P:GeoAPI.Geometries.IGeometry.UserData"/> will be copied to the <see cref="P:DotSpatial.Data.Shape.Attributes"/>.</param>
+            <returns>A <see cref="T:DotSpatial.Data.Shape"/> representing the <paramref name="geometry"/></returns>
+        </member>
+        <member name="M:GeoAPI.Geometries.GeometryConverter.ShapeRangeFromGeometry(GeoAPI.Geometries.IGeometry,System.Double[],System.Int32)">
+            <summary>
+            Create a ShapeRange from a Geometry to use in constructing a Shape
+            </summary>
+            <param name="geometry"></param>
+            <param name="vertices"></param>
+            <param name="offset">offset into vertices array where this feature starts</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
