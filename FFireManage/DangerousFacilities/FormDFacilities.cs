@@ -18,7 +18,7 @@ namespace FFireManage.DangerousFacilities
     {
         private Fire_DangerousFacilities m_DangerousFacilities = null;
         private OperationType m_OperationType;
-        private ServiceController m_ServiceController = null;
+        private DangerousFacilitiesController m_DFacilitiesController = null;
 
         public FormDFacilities(OperationType type, Fire_DangerousFacilities dangerousFacilities = null)
         {
@@ -26,30 +26,38 @@ namespace FFireManage.DangerousFacilities
 
             this.m_OperationType = type;
             this.m_DangerousFacilities = dangerousFacilities;
-            this.m_ServiceController = new ServiceController();
+            this.m_DFacilitiesController = new DangerousFacilitiesController();
 
-            this.m_ServiceController.AddDangerousFacilitiesEvent += M_ServiceController_AddDangerousFacilitiesEvent;
-            this.m_ServiceController.EditDangerousFacilitiesEvent += M_ServiceController_EditDangerousFacilitiesEvent;
+            this.m_DFacilitiesController.AddEvent += m_DFacilitiesController_AddEvent;
+            this.m_DFacilitiesController.EditEvent += m_DFacilitiesController_EditEvent;
         }
 
-        private void M_ServiceController_AddDangerousFacilitiesEvent(object sender, EventArgs e)
+        private void m_DFacilitiesController_AddEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+                    string content =e.Content;
+                    try
+                    {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                    if (result.status == 10000)
-                    {
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
+                   
                 }
                 else
                 {
@@ -58,24 +66,31 @@ namespace FFireManage.DangerousFacilities
             }));
         }
 
-        private void M_ServiceController_EditDangerousFacilitiesEvent(object sender, EventArgs e)
+        private void m_DFacilitiesController_EditEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
-
-                    if (result.status == 10000)
+                    string content = e.Content;
+                    try
                     {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
                 }
                 else
@@ -218,14 +233,14 @@ namespace FFireManage.DangerousFacilities
             {
                 FormWaitingBox f = new FormWaitingBox((obj, args) =>
                 {
-                    this.m_ServiceController.AddDangerousFacilitiesForPost(this.m_DangerousFacilities);
+                    this.m_DFacilitiesController.Add(this.m_DangerousFacilities);
                 }, 10, "正在提交数据，请耐心等待....", false, false);
                 f.ShowDialog(this);
                 
             }
             else if (m_OperationType == OperationType.Edit)
             {
-                this.m_ServiceController.EditDangerousFacilitiesForPost(this.m_DangerousFacilities);
+                this.m_DFacilitiesController.Edit(this.m_DangerousFacilities);
             }
         }
 

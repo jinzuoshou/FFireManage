@@ -17,7 +17,7 @@ namespace FFireManage.FireForestBelt
     {
         private Fire_ForestBeltPoint m_FireForestBelt = null;
         private OperationType m_OperationType;
-        private ServiceController m_ServiceController = null;
+        private ForestBeltPointController m_ForestBeltController = null;
 
         public FormFireForestBelt(OperationType type, Fire_ForestBeltPoint fireForestBelt = null)
         {
@@ -25,30 +25,38 @@ namespace FFireManage.FireForestBelt
 
             this.m_OperationType = type;
             this.m_FireForestBelt = fireForestBelt;
-            this.m_ServiceController = new ServiceController();
+            this.m_ForestBeltController = new ForestBeltPointController();
 
-            this.m_ServiceController.AddFireForestBeltEvent += M_ServiceController_AddFireForestBeltEvent;
-            this.m_ServiceController.EditFireForestBeltEvent += M_ServiceController_EditFireForestBeltEventt;
+            this.m_ForestBeltController.AddEvent += m_ForestBeltControllerr_AddEvent;
+            this.m_ForestBeltController.EditEvent += m_ForestBeltController_EditEvent;
         }
 
-        private void M_ServiceController_AddFireForestBeltEvent(object sender, EventArgs e)
+        private void m_ForestBeltControllerr_AddEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                    if (result.status == 10000)
-                    {
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
+                    
                 }
                 else
                 {
@@ -57,25 +65,32 @@ namespace FFireManage.FireForestBelt
             }));
         }
 
-        private void M_ServiceController_EditFireForestBeltEventt(object sender, EventArgs e)
+        private void m_ForestBeltController_EditEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
-
-                    if (result.status == 10000)
+                    string content = e.Content;
+                    try
                     {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
-                    }
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }           
                 }
                 else
                 {
@@ -257,11 +272,11 @@ namespace FFireManage.FireForestBelt
 
             if (m_OperationType == OperationType.Add)
             {
-                this.m_ServiceController.AddFireForestBeltForPost(this.m_FireForestBelt);
+                this.m_ForestBeltController.Add(this.m_FireForestBelt);
             }
             else if (m_OperationType == OperationType.Edit)
             {
-                this.m_ServiceController.EditFireForestBeltForPost(this.m_FireForestBelt);
+                this.m_ForestBeltController.Edit(this.m_FireForestBelt);
             }
         }
 

@@ -17,7 +17,7 @@ namespace FFireManage.RadioStation
     {
         private Fire_RadioStation m_RadioStation = null;
         private OperationType m_OperationType;
-        private ServiceController m_ServiceController = null;
+        private RadioStationController m_RadioStationController = null;
 
         public FormRadioStation(OperationType type, Fire_RadioStation radioStation = null)
         {
@@ -25,30 +25,38 @@ namespace FFireManage.RadioStation
 
             this.m_OperationType = type;
             this.m_RadioStation = radioStation;
-            this.m_ServiceController = new ServiceController();
+            this.m_RadioStationController = new RadioStationController();
 
-            this.m_ServiceController.AddRadioStationEvent += M_ServiceController_AddRadioStationEvent;
-            this.m_ServiceController.EditRadioStationEvent += M_ServiceController_EditRadioStationEvent;
+            this.m_RadioStationController.AddEvent += m_RadioStationController_AddEvent;
+            this.m_RadioStationController.EditEvent += m_RadioStationController_EditEvent;
         }
 
-        private void M_ServiceController_AddRadioStationEvent(object sender, EventArgs e)
+        private void m_RadioStationController_AddEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                    if (result.status == 10000)
-                    {
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
+                   
                 }
                 else
                 {
@@ -57,25 +65,33 @@ namespace FFireManage.RadioStation
             }));
         }
 
-        private void M_ServiceController_EditRadioStationEvent(object sender, EventArgs e)
+        private void m_RadioStationController_EditEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
-
-                    if (result.status == 10000)
+                    string content = e.Content;
+                    try
                     {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
+                    
                 }
                 else
                 {
@@ -245,11 +261,11 @@ namespace FFireManage.RadioStation
 
             if (m_OperationType == OperationType.Add)
             {
-                this.m_ServiceController.AddRadioStationForPost(this.m_RadioStation);
+                this.m_RadioStationController.Add(this.m_RadioStation);
             }
             else if (m_OperationType == OperationType.Edit)
             {
-                this.m_ServiceController.EditRadioStationForPost(this.m_RadioStation);
+                this.m_RadioStationController.Edit(this.m_RadioStation);
             }
         }
 
@@ -373,7 +389,5 @@ namespace FFireManage.RadioStation
             }
             return true;
         }
-
-        
     }
 }

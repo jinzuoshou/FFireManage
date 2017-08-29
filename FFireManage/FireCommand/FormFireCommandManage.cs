@@ -17,7 +17,7 @@ namespace FFireManage.FireCommand
     {
         #region 成员变量
         private Fire_Command currentFireCommand = null;
-        private ServiceController m_ServiceController = null;
+        private FireCommandController m_FireCommandController = null;
         private List<Fire_Command> m_FireCommandList = null;
         #endregion
 
@@ -25,27 +25,39 @@ namespace FFireManage.FireCommand
         public FormFireCommandManage()
         {
             InitializeComponent();
-            this.m_ServiceController = new ServiceController();
-            this.m_ServiceController.GetFireCommandListEvent += new EventHandler(m_ServiceController_GetFireCommandListEvent);
-            this.m_ServiceController.DeleteFireCommandEvent += new EventHandler(m_ServiceController_DeleteFireCommandEvent);
+            this.m_FireCommandController = new FireCommandController();
+            this.m_FireCommandController.QueryEvent += m_FireCommandControllerr_QueryEvent;
+            this.m_FireCommandController.DeleteEvent += m_FireCommandController_DeleteEvent;
         }
         #endregion
 
         #region 事件响应
-        private void m_ServiceController_DeleteFireCommandEvent(object sender, EventArgs e)
+        private void m_FireCommandController_DeleteEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
-
-                    if (result.status == 10000)
+                    try
                     {
-                        this.GetFireCommandList(this.navigationControl1.Pac);
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.GetFireCommandList(this.navigationControl1.Pac);
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+                    
                 }
                 else
                 {
@@ -54,7 +66,7 @@ namespace FFireManage.FireCommand
             }));
         }
 
-        private void m_ServiceController_GetFireCommandListEvent(object sender, EventArgs e)
+        private void m_FireCommandControllerr_QueryEvent(object sender, ServiceEventArgs e)
         {
             if (IsDisposed || !this.IsHandleCreated) return;
 
@@ -62,22 +74,30 @@ namespace FFireManage.FireCommand
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    GetListResultInfo<Fire_Command> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_Command>>(content);
-
-                    if (result.rows != null && result.rows.Count > 0)
+                    try
                     {
-                        m_FireCommandList = result.rows;
+                        GetListResultInfo<Fire_Command> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_Command>>(content);
 
-                        this.pagerControl1.NMax = result.total;
-                        this.FillData(m_FireCommandList);
+                        if (result.rows != null && result.rows.Count > 0)
+                        {
+                            m_FireCommandList = result.rows;
+
+                            this.pagerControl1.NMax = result.total;
+                            this.FillData(m_FireCommandList);
+                        }
+                        else
+                        {
+                            this.pagerControl1.NMax = 0;
+                            this.FillData(null);
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        this.pagerControl1.NMax = 0;
-                        this.FillData(null);
+                        MessageBox.Show(this,ex.Message, "信息提示");
                     }
+                    
                 }
                 else
                 {
@@ -179,7 +199,7 @@ namespace FFireManage.FireCommand
             {
                 if (MessageBox.Show(this, "您确定要删除" + this.currentFireCommand.name + "吗？数据删除后不可恢复。", "删除提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    this.m_ServiceController.DeleteFireCommandForGet(this.currentFireCommand.id);
+                    this.m_FireCommandController.Delete(this.currentFireCommand.id);
                 }
             }
         }
@@ -295,7 +315,17 @@ namespace FFireManage.FireCommand
 
         private void GetFireCommandList(string pac)
         {
-            this.m_ServiceController.GetFireCommandListForGet(pac, 3, this.pagerControl1.PageCurrent, this.pagerControl1.PageSize, "id", "desc");
+            this.m_FireCommandController.Get(
+                new Dictionary<string, object>()
+                {
+                    {"pac",pac },
+                    {"fetchType",3},
+                    {"page", this.pagerControl1.PageCurrent},
+                    {"rows",this.pagerControl1.PageSize },
+                    {"sort","id"},
+                    {"order","desc"}
+                });
+               
         }
         #endregion
 

@@ -11,45 +11,46 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace FFireManage.Artificiallake
+namespace FFireManage.FireOffice
 {
-    public partial class FormArtificiallakeManage : Form
+    public partial class FormFireOfficeManage : Form
     {
         #region 字段
-        private Fire_Artificiallake currentArtificiallake = null;
-        private ArtificiallakeController m_ArtificiallakeController = null;
-        private List<Fire_Artificiallake> m_ArtificiallakeList = null;
+        private Fire_Office currentFireOffice = null;
+        private FireOfficeController m_FireOfficeController = null;
+        private List<Fire_Office> m_FireOfficeList = null;
         #endregion
 
         #region 构造函数
-        public FormArtificiallakeManage()
+        public FormFireOfficeManage()
         {
             InitializeComponent();
 
-            this.m_ArtificiallakeController = new ArtificiallakeController();
-            this.m_ArtificiallakeController.QueryEvent += m_ArtificiallakeController_QueryEvent;
-            this.m_ArtificiallakeController.DeleteEvent += m_ArtificiallakeController_DeleteEvent;
+            this.m_FireOfficeController = new FireOfficeController();
+            this.m_FireOfficeController.QueryEvent += m_ServiceController_QueryEvent;
+            this.m_FireOfficeController.DeleteEvent += m_ServiceController_DeleteEvent;
         }
         #endregion
 
         #region 事件响应
-        private void m_ArtificiallakeController_QueryEvent(object sender, ServiceEventArgs e)
+        private void m_ServiceController_QueryEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
                     string content = e.Content;
+
                     try
                     {
-                        GetListResultInfo<Fire_Artificiallake> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_Artificiallake>>(content);
+                        GetListResultInfo<Fire_Office> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_Office>>(content);
 
                         if (result.rows != null && result.rows.Count > 0)
                         {
-                            this.m_ArtificiallakeList = result.rows;
+                            this.m_FireOfficeList = result.rows;
 
                             this.pagerControl1.NMax = result.total;
-                            this.FillData(m_ArtificiallakeList);
+                            this.FillData(m_FireOfficeList);
 
                         }
                         else
@@ -58,10 +59,11 @@ namespace FFireManage.Artificiallake
                             this.FillData(null);
                         }
                     }
-                    catch(Exception ex)
+                    catch ( Exception ex)
                     {
                         MessageBox.Show(this, ex.Message, "提示");
                     }
+                    
                 }
                 else
                 {
@@ -70,7 +72,7 @@ namespace FFireManage.Artificiallake
             }));
         }
 
-        private void m_ArtificiallakeController_DeleteEvent(object sender, ServiceEventArgs e)
+        private void m_ServiceController_DeleteEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
@@ -84,16 +86,16 @@ namespace FFireManage.Artificiallake
 
                         if (result.status == 10000)
                         {
-                            this.GetArtificiallakeList(this.navigationControl1.Pac);
+                            this.GetFireOfficeList(this.navigationControl1.Pac);
                         }
                         else
                         {
-                            MessageBox.Show(this, result.msg, "信息提示");
+                            MessageBox.Show(this, e.Message, "提示");
                         }
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
-                        MessageBox.Show(this, ex.Message, "信息提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
                     
                 }
@@ -104,7 +106,7 @@ namespace FFireManage.Artificiallake
             }));
         }
 
-        private void FormArtificiallakeManage_Load(object sender, EventArgs e)
+        private void FormFireForestBeltManage_Load(object sender, EventArgs e)
         {
             this.pagerControl1.PageCurrent = 1;
             this.pagerControl1.Bind();
@@ -127,11 +129,7 @@ namespace FFireManage.Artificiallake
 
         private void CbxProvince_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.navigationControl1.CbxProvince.ComboBox.SelectedValue != null)
-            {
-                string pCode = this.navigationControl1.CbxProvince.ComboBox.SelectedValue.ToString();
-                this.GetArtificiallakeList(pCode);
-            }
+
         }
 
         private void CbxCity_SelectedIndexChanged(object sender, EventArgs e)
@@ -139,14 +137,14 @@ namespace FFireManage.Artificiallake
             if (this.navigationControl1.CbxCity.ComboBox.SelectedValue != null)
             {
                 string pCode = this.navigationControl1.CbxCity.ComboBox.SelectedValue.ToString();
-                this.GetArtificiallakeList(pCode);
+                this.GetFireOfficeList(pCode);
             }
             else
             {
                 if (this.navigationControl1.CbxProvince.ComboBox.SelectedValue != null)
                 {
                     var provinceCode = this.navigationControl1.CbxProvince.ComboBox.SelectedValue.ToString();
-                    this.GetArtificiallakeList(provinceCode);
+                    this.GetFireOfficeList(provinceCode);
                 }
             }
         }
@@ -156,45 +154,45 @@ namespace FFireManage.Artificiallake
             if (this.navigationControl1.CbxCounty.ComboBox.SelectedValue != null)
             {
                 string pCode = this.navigationControl1.CbxCounty.ComboBox.SelectedValue.ToString();
-                this.GetArtificiallakeList(pCode);
+                this.GetFireOfficeList(pCode);
             }
             else
             {
                 if (this.navigationControl1.CbxCity.ComboBox.SelectedValue != null)
                 {
                     var cityCode = this.navigationControl1.CbxCity.ComboBox.SelectedValue.ToString();
-                    this.GetArtificiallakeList(cityCode.ToString());
+                    this.GetFireOfficeList(cityCode.ToString());
                 }
             }
         }
 
         private void BtnAdd_Click(object sender, EventArgs e)
         {
-            FormArtificiallake pFormArtificiallake = new FormArtificiallake(OperationType.Add);
-            if (pFormArtificiallake.ShowDialog(this) == DialogResult.OK)
+            FormFireOffice pFormFireOffice = new FormFireOffice(OperationType.Add);
+            if (pFormFireOffice.ShowDialog(this) == DialogResult.OK)
             {
-                this.GetArtificiallakeList(this.navigationControl1.Pac);
-                MessageBox.Show(this, "航空灭火蓄水池新增成功", "提示");
+                this.GetFireOfficeList(this.navigationControl1.Pac);
+                MessageBox.Show(this, "森林防火办公室新增成功", "提示");
             }
         }
 
         private void BtnEdit_Click(object sender, EventArgs e)
         {
-            FormArtificiallake pFormArtificiallake = new FormArtificiallake(OperationType.Edit, this.currentArtificiallake);
-            if (pFormArtificiallake.ShowDialog(this) == DialogResult.OK)
+            FormFireOffice pFormFireOffice = new FormFireOffice(OperationType.Edit, this.currentFireOffice);
+            if (pFormFireOffice.ShowDialog(this) == DialogResult.OK)
             {
-                this.GetArtificiallakeList(this.navigationControl1.Pac);
-                MessageBox.Show(this, "航空灭火蓄水池修改成功", "提示");
+                this.GetFireOfficeList(this.navigationControl1.Pac);
+                MessageBox.Show(this, "森林防火办公室修改成功", "提示");
             }
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            if (this.currentArtificiallake != null)
+            if (this.currentFireOffice != null)
             {
-                if (MessageBox.Show(this, "您确定要删除" + this.currentArtificiallake.name + "吗？数据删除后不可恢复。", "删除提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                if (MessageBox.Show(this, "您确定要删除" + this.currentFireOffice.name + "吗？数据删除后不可恢复。", "删除提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    this.m_ArtificiallakeController.Delete(this.currentArtificiallake.id);
+                    this.m_FireOfficeController.Delete(this.currentFireOffice.id);
                 }
             }
         }
@@ -204,44 +202,44 @@ namespace FFireManage.Artificiallake
             string key = this.navigationControl1.TbxSearch.Text.Trim();
             if (string.IsNullOrEmpty(key))
             {
-                this.GetArtificiallakeList(this.navigationControl1.Pac);
+                this.GetFireOfficeList(this.navigationControl1.Pac);
                 return;
             }
 
-            if (this.m_ArtificiallakeList == null || this.m_ArtificiallakeList.Count == 0)
+            if (this.m_FireOfficeList == null || this.m_FireOfficeList.Count == 0)
                 return;
 
-            var tempArtificiallakes = this.m_ArtificiallakeList.Where<Fire_Artificiallake>(u => u.name.Contains(key));
+            var tempFireOffices = this.m_FireOfficeList.Where<Fire_Office>(u => u.name.Contains(key));
 
-            if (tempArtificiallakes == null)
+            if (tempFireOffices == null)
                 return;
-            this.FillData(tempArtificiallakes.ToList<Fire_Artificiallake>());
+            this.FillData(tempFireOffices.ToList<Fire_Office>());
         }
 
         private void PagerControl1_OnPageChanged(object sender, EventArgs e)
         {
             if (this.navigationControl1.Pac == null || this.navigationControl1.Pac == "")
-                this.GetArtificiallakeList(GlobeHelper.Instance.User.pac);
+                this.GetFireOfficeList(GlobeHelper.Instance.User.pac);
             else
-                this.GetArtificiallakeList(this.navigationControl1.Pac);
+                this.GetFireOfficeList(this.navigationControl1.Pac);
         }
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (this.listView1.SelectedItems.Count > 0)
+            if(this.listView1.SelectedItems.Count > 0)
             {
                 ListViewItem item = this.listView1.SelectedItems[0];
 
-                if (item.Tag != null && item.Tag is Fire_Artificiallake)
+                if (item.Tag != null && item.Tag is Fire_Office)
                 {
-                    this.currentArtificiallake = item.Tag as Fire_Artificiallake;
+                    this.currentFireOffice = item.Tag as Fire_Office;
 
                     this.navigationControl1.BtnEdit.Enabled = true;
                     this.navigationControl1.BtnDelete.Enabled = true;
                 }
                 else
                 {
-                    this.currentArtificiallake = null;
+                    this.currentFireOffice = null;
 
                     this.navigationControl1.BtnDelete.Enabled = false;
                     this.navigationControl1.BtnEdit.Enabled = false;
@@ -249,7 +247,7 @@ namespace FFireManage.Artificiallake
             }
             else
             {
-                this.currentArtificiallake = null;
+                this.currentFireOffice = null;
 
                 this.navigationControl1.BtnDelete.Enabled = false;
                 this.navigationControl1.BtnEdit.Enabled = false;
@@ -259,63 +257,63 @@ namespace FFireManage.Artificiallake
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ListViewItem item = listView1.GetItemAt(e.X, e.Y);
-            if (item.Tag is Fire_Artificiallake)
+            if (item.Tag is Fire_Office)
             {
-                var artificiallake = item.Tag as Fire_Artificiallake;
-                FormArtificiallake pFormArtificiallake = new FormArtificiallake(OperationType.Check, artificiallake);
-                pFormArtificiallake.ShowDialog(this);
+                var fireOffice = item.Tag as Fire_Office;
+                FormFireOffice pFormFireOffice = new FormFireOffice(OperationType.Check, fireOffice);
+                pFormFireOffice.ShowDialog(this);
             }
         }
         #endregion
 
         #region 成员函数
-        private void FillData(List<Fire_Artificiallake> artificiallakeList)
+        private void FillData(List<Fire_Office> fireOfficeList)
         {
             this.pagerControl1.Bind();
-            this.pagerControl1.bindingSource.DataSource = artificiallakeList;
+            this.pagerControl1.bindingSource.DataSource = fireOfficeList;
             this.pagerControl1.bindingNavigator.BindingSource = this.pagerControl1.bindingSource;
             this.listView1.Items.Clear();
 
-            if (artificiallakeList != null)
+            if (fireOfficeList != null)
             {
-                for (int i = 0; i < artificiallakeList.Count; i++)
+                for (int i = 0; i < fireOfficeList.Count; i++)
                 {
-                    Fire_Artificiallake artificiallake = artificiallakeList[i];
+                    Fire_Office fireOffice = fireOfficeList[i];
 
                     ListViewItem item = new ListViewItem();
 
-                    item.SubItems.Add(artificiallake.name);
+                    item.SubItems.Add(fireOffice.name);
                     AreaCodeInfo county = null;
                     try
                     {
                         if (this.navigationControl1.AreaList != null)
-                            county = this.navigationControl1.AreaList.Where(a => a.Code == artificiallake.pac).First();
+                            county = this.navigationControl1.AreaList.Where(a => a.Code == fireOffice.pac).First();
                     }
                     catch { }
 
                     item.SubItems.Add((county == null) ? "" : county.Name);
-                    item.SubItems.Add(artificiallake.manager);
-                    item.SubItems.Add(artificiallake.longitude.ToString());
-                    item.SubItems.Add(artificiallake.latitude.ToString());
+                    item.SubItems.Add(fireOffice.director);
+                    item.SubItems.Add(fireOffice.longitude.ToString());
+                    item.SubItems.Add(fireOffice.latitude.ToString());
 
-                    item.Tag = artificiallake;
+                    item.Tag = fireOffice;
 
                     this.listView1.Items.Add(item);
                 }
             }
         }
 
-        private void GetArtificiallakeList(string pac)
+        private void GetFireOfficeList(string pac)
         {
-            this.m_ArtificiallakeController.Get(new Dictionary<string, object>()
-                {
-                    {"pac",pac },
-                    {"fetchType",3},
-                    {"page", this.pagerControl1.PageCurrent},
-                    {"rows",this.pagerControl1.PageSize },
-                    {"sort","id"},
-                    {"order","desc"}
-                });
+            this.m_FireOfficeController.Get(new Dictionary<string, object>()
+            {
+                {"pac",pac },
+                {"fetchType",3 },
+                {"page", this.pagerControl1.PageCurrent},
+                {"rows",this.pagerControl1.PageSize },
+                {"sort","id" },
+                {"order","desc"}
+            });
         }
         #endregion
     }

@@ -17,7 +17,7 @@ namespace FFireManage.RadioStation
     {
         #region 字段
         private Fire_RadioStation currentRadioStation = null;
-        private ServiceController m_ServiceController = null;
+        private RadioStationController m_RadioStationController = null;
         private List<Fire_RadioStation> m_RadioStationList = null;
         #endregion
 
@@ -26,37 +26,45 @@ namespace FFireManage.RadioStation
         {
             InitializeComponent();
 
-            this.m_ServiceController = new ServiceController();
-            this.m_ServiceController.GetRadioStationListEvent += new EventHandler(m_ServiceController_GetRadioStationListEvent);
-            this.m_ServiceController.DeleteRadioStationEvent += new EventHandler(m_ServiceController_DeleteRadioStationEvent);
+            this.m_RadioStationController = new RadioStationController();
+            this.m_RadioStationController.QueryEvent += (m_RadioStationController_QueryEvent);
+            this.m_RadioStationController.DeleteEvent += (m_RadioStationController_DeleteEvent);
         }
         #endregion
 
         #region 事件响应
 
-        private void m_ServiceController_GetRadioStationListEvent(object sender, EventArgs e)
+        private void m_RadioStationController_QueryEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
                     string content = sender.ToString();
-
-                    GetListResultInfo<Fire_RadioStation> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_RadioStation>>(content);
-
-                    if (result.rows != null && result.rows.Count > 0)
+                    try
                     {
-                        m_RadioStationList = result.rows;
+                        GetListResultInfo<Fire_RadioStation> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_RadioStation>>(content);
 
-                        this.pagerControl1.NMax = result.total;
-                        this.FillData(m_RadioStationList);
+                        if (result.rows != null && result.rows.Count > 0)
+                        {
+                            m_RadioStationList = result.rows;
 
+                            this.pagerControl1.NMax = result.total;
+                            this.FillData(m_RadioStationList);
+
+                        }
+                        else
+                        {
+                            this.pagerControl1.NMax = 0;
+                            this.FillData(null);
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        this.pagerControl1.NMax = 0;
-                        this.FillData(null);
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
+
+                    
                 }
                 else
                 {
@@ -65,20 +73,32 @@ namespace FFireManage.RadioStation
             }));
         }
 
-        private void m_ServiceController_DeleteRadioStationEvent(object sender, EventArgs e)
+        private void m_RadioStationController_DeleteEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
-
-                    if (result.status == 10000)
+                    try
                     {
-                        this.GetRadioStationList(this.navigationControl1.Pac);
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.GetRadioStationList(this.navigationControl1.Pac);
+                        }
+                        else
+                        {
+                            MessageBox.Show(this,result.msg, "提示");
+                        }
                     }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+                    
                 }
                 else
                 {
@@ -177,7 +197,7 @@ namespace FFireManage.RadioStation
             {
                 if (MessageBox.Show(this, "您确定要删除" + this.currentRadioStation.name + "吗？数据删除后不可恢复。", "删除提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    this.m_ServiceController.DeleteRadioStationForGet(this.currentRadioStation.id);
+                    this.m_RadioStationController.Delete(this.currentRadioStation.id);
                 }
             }
         }
@@ -255,7 +275,15 @@ namespace FFireManage.RadioStation
         #region 成员函数
         private void GetRadioStationList(string pac)
         {
-            this.m_ServiceController.GetRadioStationListForGet(pac, 3, this.pagerControl1.PageCurrent, this.pagerControl1.PageSize, "id", "desc");
+            this.m_RadioStationController.Get(new Dictionary<string, object>()
+            {
+                {"pac",pac },
+                {"fetchType",3 },
+                {"page", this.pagerControl1.PageCurrent},
+                {"rows",this.pagerControl1.PageSize },
+                {"sort","id" },
+                {"order","desc"}
+            });
         }
         private void FillData(List<Fire_RadioStation> radioStationList)
         {

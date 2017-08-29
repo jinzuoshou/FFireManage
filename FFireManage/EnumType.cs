@@ -422,5 +422,54 @@ namespace FFireManage
         是 = 1
     }
     #endregion
+
+    #region 森林防火指挥部
+    /// <summary>
+    /// 森林防火指挥部机构编制
+    /// </summary>
+    public enum FireOfficeInstitutions
+    {
+        行政 = 1,
+        行政事业 = 2,
+        全额拨款事业 = 3,
+        差额拨款事业 = 4,
+        自收自支事业 = 5,
+        未定编 = 6,
+        其它 = 7
+    }
+
+    /// <summary>
+    /// 森林防火指挥部类型
+    /// </summary>
+    public enum FireOfficeType
+    {
+        防火指挥部 = 1,
+        森防指所 = 2,
+        其它事业机构 = 3
+    }
+
+    /// <summary>
+    /// 森林防火指挥部级别
+    /// </summary>
+    public enum FireOfficeLevel
+    {
+        省级 = 1,
+        市级 = 2,
+        县级 = 3,
+        其它 = 4
+    }
+
+    /// <summary>
+    /// 森林防火指挥部状态
+    /// </summary>
+    public enum FireOfficeStatus
+    {
+        优秀 = 1,
+        良好 = 2,
+        一般 = 3,
+        差 = 4,
+        废弃 = 5
+    }
+    #endregion
 }
 

@@ -17,7 +17,7 @@ namespace FFireManage.DangerousFacilities
     {
         #region 字段
         private Fire_DangerousFacilities currentDFacilities = null;
-        private ServiceController m_ServiceController = null;
+        private DangerousFacilitiesController m_DFacilitiesController = null;
         private List<Fire_DangerousFacilities> m_DFacilitiesList = null;
         #endregion
 
@@ -26,36 +26,44 @@ namespace FFireManage.DangerousFacilities
         {
             InitializeComponent();
 
-            this.m_ServiceController = new ServiceController();
-            this.m_ServiceController.GetDangerousFacilitiesListEvent += new EventHandler(m_ServiceController_GetDangerousFacilitiesListEvent);
-            this.m_ServiceController.DeleteDangerousFacilitiesEvent += new EventHandler(m_ServiceController_DeleteDangerousFacilitiesEvent);
+            this.m_DFacilitiesController = new DangerousFacilitiesController();
+            this.m_DFacilitiesController.QueryEvent += m_DFacilitiesController_QueryEvent;
+            this.m_DFacilitiesController.DeleteEvent += m_DFacilitiesController_DeleteEvent;
         }
         #endregion
 
         #region 事件响应
-        private void m_ServiceController_GetDangerousFacilitiesListEvent(object sender, EventArgs e)
+        private void m_DFacilitiesController_QueryEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    GetListResultInfo<Fire_DangerousFacilities> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_DangerousFacilities>>(content);
-
-                    if (result.rows != null && result.rows.Count > 0)
+                    try
                     {
-                        this.m_DFacilitiesList = result.rows;
+                        GetListResultInfo<Fire_DangerousFacilities> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_DangerousFacilities>>(content);
 
-                        this.pagerControl1.NMax = result.total;
-                        this.FillData(m_DFacilitiesList);
+                        if (result.rows != null && result.rows.Count > 0)
+                        {
+                            this.m_DFacilitiesList = result.rows;
 
+                            this.pagerControl1.NMax = result.total;
+                            this.FillData(m_DFacilitiesList);
+
+                        }
+                        else
+                        {
+                            this.pagerControl1.NMax = 0;
+                            this.FillData(null);
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        this.pagerControl1.NMax = 0;
-                        this.FillData(null);
+                        MessageBox.Show(this,ex.Message, "提示");
                     }
+                    
                 }
                 else
                 {
@@ -64,19 +72,26 @@ namespace FFireManage.DangerousFacilities
             }));
         }
 
-        private void m_ServiceController_DeleteDangerousFacilitiesEvent(object sender, EventArgs e)
+        private void m_DFacilitiesController_DeleteEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
-
-                    if (result.status == 10000)
+                    try
                     {
-                        this.GetDFacilitiesList(this.navigationControl1.Pac);
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.GetDFacilitiesList(this.navigationControl1.Pac);
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "信息提示");
                     }
                 }
                 else
@@ -176,7 +191,7 @@ namespace FFireManage.DangerousFacilities
             {
                 if (MessageBox.Show(this, "您确定要删除" + this.currentDFacilities.name + "吗？数据删除后不可恢复。", "删除提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    this.m_ServiceController.DeleteDangerousFacilitiesForGet(this.currentDFacilities.id);
+                    this.m_DFacilitiesController.Delete(this.currentDFacilities.id);
                 }
             }
         }
@@ -289,7 +304,15 @@ namespace FFireManage.DangerousFacilities
 
         private void GetDFacilitiesList(string pac)
         {
-            this.m_ServiceController.GetDangerousFacilitiesListForGet(pac, 3, this.pagerControl1.PageCurrent, this.pagerControl1.PageSize, "id", "desc");
+            this.m_DFacilitiesController.Get(new Dictionary<string, object>()
+                {
+                    {"pac",pac },
+                    {"fetchType",3},
+                    {"page", this.pagerControl1.PageCurrent},
+                    {"rows",this.pagerControl1.PageSize },
+                    {"sort","id"},
+                    {"order","desc"}
+                });
         }
         #endregion
 

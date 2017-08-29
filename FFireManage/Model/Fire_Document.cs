@@ -13,6 +13,7 @@ namespace FFireManage
 		/// <summary>
 		/// objectid
 		/// </summary>
+        [Custom(IsRequired =false)]
 		public int OBJECTID { get; set; }
 
 		/// <summary>
@@ -33,32 +34,36 @@ namespace FFireManage
 		/// <summary>
 		/// 火灾编号
 		/// </summary>
-		public string no { get; set; }
+        [Custom(Description = "火灾编号")]
+        public string no { get; set; }
 
-		/// <summary>
-		/// 热点编号
-		/// </summary>
-		public string hotid { get; set; }
+        /// <summary>
+        /// 热点编号
+        /// </summary>
+        [Custom(Description = "热点编号")]
+        public string hotid { get; set; }
 
-		/// <summary>
-		/// 火灾名称
-		/// </summary>
-		public string name { get; set; }
+        /// <summary>
+        /// 火灾名称
+        /// </summary>
+        [Custom(Description = "火灾名称")]
+        public string name { get; set; }
 
-		/// <summary>
-		/// 起火地点
-		/// </summary>
-		public string address { get; set; }
+        /// <summary>
+        /// 起火地点
+        /// </summary>
+        [Custom(Description = "起火地点")]
+        public string address { get; set; }
 
 		/// <summary>
 		/// 经度
 		/// </summary>
-		public double longitude { get; set; }
+		public Nullable<double> longitude { get; set; }
 
 		/// <summary>
 		/// 纬度
 		/// </summary>
-		public double latitude { get; set; }
+		public Nullable<double> latitude { get; set; }
 
 		/// <summary>
 		/// 起火时间
@@ -78,7 +83,7 @@ namespace FFireManage
 		/// <summary>
 		/// 延续时间
 		/// </summary>
-		public double duration { get; set; }
+		public Nullable<double> duration { get; set; }
 
 		/// <summary>
 		/// 火灾类型
@@ -93,17 +98,17 @@ namespace FFireManage
 		/// <summary>
 		/// 火场总面积
 		/// </summary>
-		public double firearea { get; set; }
+		public Nullable<double> firearea { get; set; }
 
 		/// <summary>
 		/// 受害天然林
 		/// </summary>
-		public double nf_area { get; set; }
+		public Nullable<double> nf_area { get; set; }
 
 		/// <summary>
 		/// 受害人工林
 		/// </summary>
-		public double af_proport { get; set; }
+		public Nullable<double> af_proport { get; set; }
 
 		/// <summary>
 		/// 林种
@@ -128,32 +133,32 @@ namespace FFireManage
 		/// <summary>
 		/// 损失林木
 		/// </summary>
-		public double woodloss { get; set; }
+		public Nullable<double> woodloss { get; set; }
 
 		/// <summary>
 		/// 损失林木_成林蓄积
 		/// </summary>
-		public double iwoodloss { get; set; }
+		public Nullable<double> iwoodloss { get; set; }
 
 		/// <summary>
 		/// 损失林木_幼林株数
 		/// </summary>
-		public double saplloss { get; set; }
+		public Nullable<double> saplloss { get; set; }
 
 		/// <summary>
 		/// 人员伤亡_轻伤
 		/// </summary>
-		public int inj_minor { get; set; }
+		public Nullable<int> inj_minor { get; set; }
 
 		/// <summary>
 		/// 人员伤亡_重伤
 		/// </summary>
-		public int inj_severe { get; set; }
+		public Nullable<int> inj_severe { get; set; }
 
 		/// <summary>
 		/// 人员伤亡_死亡
 		/// </summary>
-		public int inj_death { get; set; }
+		public Nullable<int> inj_death { get; set; }
 
 		/// <summary>
 		/// 火场指挥员
@@ -168,32 +173,32 @@ namespace FFireManage
 		/// <summary>
 		/// 出动专业队
 		/// </summary>
-		public int brigade { get; set; }
+		public Nullable<int> brigade { get; set; }
 
 		/// <summary>
 		/// 出动森警
 		/// </summary>
-		public int for_police { get; set; }
+		public Nullable<int> for_police { get; set; }
 
 		/// <summary>
 		/// 出动军队
 		/// </summary>
-		public int army { get; set; }
+		public Nullable<int> army { get; set; }
 
 		/// <summary>
 		/// 出动武警
 		/// </summary>
-		public int arm_police { get; set; }
+		public Nullable<int> arm_police { get; set; }
 
 		/// <summary>
 		/// 出动群众
 		/// </summary>
-		public int masses { get; set; }
+		public Nullable<int> masses { get; set; }
 
 		/// <summary>
 		/// 出动飞机架次
 		/// </summary>
-		public int plane { get; set; }
+		public Nullable<int> plane { get; set; }
 
 		/// <summary>
 		/// 机型
@@ -203,92 +208,92 @@ namespace FFireManage
 		/// <summary>
 		/// 飞行时间
 		/// </summary>
-		public double flighttime { get; set; }
+		public Nullable<double> flighttime { get; set; }
 
 		/// <summary>
 		/// 飞行费
 		/// </summary>
-		public double flightcost { get; set; }
+		public Nullable<double> flightcost { get; set; }
 
 		/// <summary>
 		/// 机降架次
 		/// </summary>
-		public int planefall { get; set; }
+		public Nullable<int> planefall { get; set; }
 
 		/// <summary>
 		/// 机降人次
 		/// </summary>
-		public int fallpeople { get; set; }
+		public Nullable<int> fallpeople { get; set; }
 
 		/// <summary>
 		/// 化灭架次
 		/// </summary>
-		public int p_chemical { get; set; }
+		public Nullable<int> p_chemical { get; set; }
 
 		/// <summary>
 		/// 吊桶次数
 		/// </summary>
-		public int p_bucket { get; set; }
+		public Nullable<int> p_bucket { get; set; }
 
 		/// <summary>
 		/// 出动车辆_指挥车
 		/// </summary>
-		public int commandcar { get; set; }
+		public Nullable<int> commandcar { get; set; }
 
 		/// <summary>
 		/// 出动车辆_运输车
 		/// </summary>
-		public int trans_car { get; set; }
+		public Nullable<int> trans_car { get; set; }
 
 		/// <summary>
 		/// 出动车辆_装甲车
 		/// </summary>
-		public int armoredcar { get; set; }
+		public Nullable<int> armoredcar { get; set; }
 
 		/// <summary>
 		/// 出动车辆_其它车辆
 		/// </summary>
-		public int othercar { get; set; }
+		public Nullable<int> othercar { get; set; }
 
 		/// <summary>
 		/// 携带电台_短波
 		/// </summary>
-		public int shortwave { get; set; }
+		public Nullable<int> shortwave { get; set; }
 
 		/// <summary>
 		/// 携带电台_超短波
 		/// </summary>
-		public int uswave { get; set; }
+		public Nullable<int> uswave { get; set; }
 
 		/// <summary>
 		/// 出动风力灭火机
 		/// </summary>
-		public int windequip { get; set; }
+		public Nullable<int> windequip { get; set; }
 
 		/// <summary>
 		/// 出动水枪
 		/// </summary>
-		public int watergun { get; set; }
+		public Nullable<int> watergun { get; set; }
 
 		/// <summary>
 		/// 二、三号工具
 		/// </summary>
-		public int n2n3tool { get; set; }
+		public Nullable<int> n2n3tool { get; set; }
 
 		/// <summary>
 		/// 其他工具
 		/// </summary>
-		public int otherequip { get; set; }
+		public Nullable<int> otherequip { get; set; }
 
 		/// <summary>
 		/// 扑火经费
 		/// </summary>
-		public double fightcost { get; set; }
+		public Nullable<double> fightcost { get; set; }
 
 		/// <summary>
 		/// 其他损失折款
 		/// </summary>
-		public double otherloss { get; set; }
+		public Nullable<double> otherloss { get; set; }
 
 		/// <summary>
 		/// 肇事者姓名
@@ -333,12 +338,12 @@ namespace FFireManage
 		/// <summary>
 		/// 气温
 		/// </summary>
-		public double tempera { get; set; }
+		public Nullable<double> tempera { get; set; }
 
 		/// <summary>
 		/// 湿度
 		/// </summary>
-		public double humidity { get; set; }
+		public Nullable<double> humidity { get; set; }
 
 		/// <summary>
 		/// 风向
@@ -353,52 +358,59 @@ namespace FFireManage
 		/// <summary>
 		/// 风速
 		/// </summary>
-		public double windspeed { get; set; }
+		public Nullable<double> windspeed { get; set; }
 
 		/// <summary>
 		/// 降雨量
 		/// </summary>
-		public double rainfall { get; set; }
+		public Nullable<double> rainfall { get; set; }
 
 		/// <summary>
 		/// 火情简介或说明
 		/// </summary>
 		public string description { get; set; }
 
-		/// <summary>
-		/// 建立时间
-		/// </summary>
-		public string cre_time { get; set; }
+        /// <summary>
+        /// 建立时间
+        /// </summary>
+        [Custom(IsRequired =false)]
+        public string cre_time { get; set; }
 
-		/// <summary>
-		/// 建立人
-		/// </summary>
-		public string cre_pers { get; set; }
+        /// <summary>
+        /// 建立人
+        /// </summary>
+        [Custom(IsRequired = false)]
+        public string cre_pers { get; set; }
 
-		/// <summary>
-		/// 最后修改时间
-		/// </summary>
-		public string mod_time { get; set; }
+        /// <summary>
+        /// 最后修改时间
+        /// </summary>
+        [Custom(IsRequired = false)]
+        public string mod_time { get; set; }
 
-		/// <summary>
-		/// 修改者
-		/// </summary>
-		public string mod_pers { get; set; }
+        /// <summary>
+        /// 修改者
+        /// </summary>
+        [Custom(IsRequired = false)]
+        public string mod_pers { get; set; }
 
-		/// <summary>
-		/// 照片一
-		/// </summary>
-		public string picture1 { get; set; }
+        /// <summary>
+        /// 照片一
+        /// </summary>
+        [Custom(IsRequired = false)]
+        public string picture1 { get; set; }
 
-		/// <summary>
-		/// 照片二
-		/// </summary>
-		public string picture2 { get; set; }
+        /// <summary>
+        /// 照片二
+        /// </summary>
+        [Custom(IsRequired = false)]
+        public string picture2 { get; set; }
 
-		/// <summary>
-		/// 视频
-		/// </summary>
-		public string video { get; set; }
+        /// <summary>
+        /// 视频
+        /// </summary>
+        [Custom(IsRequired = false)]
+        public string video { get; set; }
 
 		/// <summary>
 		/// 唯一编号
@@ -423,7 +435,7 @@ namespace FFireManage
 		/// <summary>
 		/// 海拔
 		/// </summary>
-		public double elevation { get; set; }
+		public Nullable<double> elevation { get; set; }
 
 		/// <summary>
 		/// 坡向
@@ -438,7 +450,7 @@ namespace FFireManage
 		/// <summary>
 		/// 坡度
 		/// </summary>
-		public double slope { get; set; }
+		public Nullable<double> slope { get; set; }
 
 		/// <summary>
 		/// 地类
@@ -468,112 +480,112 @@ namespace FFireManage
 		/// <summary>
 		/// 干部人数
 		/// </summary>
-		public int cadre { get; set; }
+		public Nullable<int> cadre { get; set; }
 
 		/// <summary>
 		/// 森林公安人数
 		/// </summary>
-		public int for_cop { get; set; }
+		public Nullable<int> for_cop { get; set; }
 
 		/// <summary>
 		/// 专业扑火队人数
 		/// </summary>
-		public int brigade_people { get; set; }
+		public Nullable<int> brigade_people { get; set; }
 
 		/// <summary>
 		/// 半专业扑火队人数
 		/// </summary>
-		public int hbrigade_people { get; set; }
+		public Nullable<int> hbrigade_people { get; set; }
 
 		/// <summary>
 		/// 半专业扑火队
 		/// </summary>
-		public int hbrigade { get; set; }
+		public Nullable<int> hbrigade { get; set; }
 
 		/// <summary>
 		/// 出动车辆_通讯车
 		/// </summary>
-		public int communication_car { get; set; }
+		public Nullable<int> communication_car { get; set; }
 
 		/// <summary>
 		/// 出动车辆_保障车
 		/// </summary>
-		public int support_car { get; set; }
+		public Nullable<int> support_car { get; set; }
 
 		/// <summary>
 		/// 出动车辆_高压水车
 		/// </summary>
-		public int hpw_tanker { get; set; }
+		public Nullable<int> hpw_tanker { get; set; }
 
 		/// <summary>
 		/// 出动车辆_推土机
 		/// </summary>
-		public int bulldozer { get; set; }
+		public Nullable<int> bulldozer { get; set; }
 
 		/// <summary>
 		/// 对讲机数量
 		/// </summary>
-		public int interphone { get; set; }
+		public Nullable<int> interphone { get; set; }
 
 		/// <summary>
 		/// 卫星电话数量
 		/// </summary>
-		public int satellitephone { get; set; }
+		public Nullable<int> satellitephone { get; set; }
 
 		/// <summary>
 		/// 其它通讯工具数量
 		/// </summary>
-		public int other_communication { get; set; }
+		public Nullable<int> other_communication { get; set; }
 
 		/// <summary>
 		/// 导航手持终端数量
 		/// </summary>
-		public int nav_handheld { get; set; }
+		public Nullable<int> nav_handheld { get; set; }
 
 		/// <summary>
 		/// 导航车载终端数量
 		/// </summary>
-		public int nav_vehicle { get; set; }
+		public Nullable<int> nav_vehicle { get; set; }
 
 		/// <summary>
 		/// 高压细水雾灭火机
 		/// </summary>
-		public int high_pressure_fex { get; set; }
+		public Nullable<int> high_pressure_fex { get; set; }
 
 		/// <summary>
 		/// 灭火水泵数量
 		/// </summary>
-		public int pump { get; set; }
+		public Nullable<int> pump { get; set; }
 
 		/// <summary>
 		/// 人工增雨
 		/// </summary>
-		public double artificial_rain { get; set; }
+		public Nullable<double> artificial_rain { get; set; }
 
 		/// <summary>
 		/// 灭火弹数量
 		/// </summary>
-		public int fire_bombs { get; set; }
+		public Nullable<int> fire_bombs { get; set; }
 
 		/// <summary>
 		/// 割灌机数量
 		/// </summary>
-		public int b_cutter { get; set; }
+		public Nullable<int> b_cutter { get; set; }
 
 		/// <summary>
 		/// 油锯数量
 		/// </summary>
-		public int chainsaw { get; set; }
+		public Nullable<int> chainsaw { get; set; }
 
 		/// <summary>
 		/// 相机数量
 		/// </summary>
-		public int camera1 { get; set; }
+		public Nullable<int> camera1 { get; set; }
 
 		/// <summary>
 		/// 摄像机数量
 		/// </summary>
-		public int camera2 { get; set; }
+		public Nullable<int> camera2 { get; set; }
 
 		/// <summary>
 		/// 案件处理
@@ -593,17 +605,17 @@ namespace FFireManage
 		/// <summary>
 		/// 最高气温
 		/// </summary>
-		public double high_tempera { get; set; }
+		public Nullable<double> high_tempera { get; set; }
 
 		/// <summary>
 		/// 最低气温
 		/// </summary>
-		public double low_tempera { get; set; }
+		public Nullable<double> low_tempera { get; set; }
 
 		/// <summary>
 		/// 最低湿度
 		/// </summary>
-		public double low_humidity { get; set; }
+		public Nullable<double> low_humidity { get; set; }
 
 		/// <summary>
 		/// 信息所属行政区代码
@@ -613,92 +625,92 @@ namespace FFireManage
 		/// <summary>
 		/// 受害森林面积
 		/// </summary>
-		public double forestarea { get; set; }
+		public Nullable<double> forestarea { get; set; }
 
 		/// <summary>
 		/// 受害新造林地面积
 		/// </summary>
-		public double newforestarea { get; set; }
+		public Nullable<double> newforestarea { get; set; }
 
 		/// <summary>
 		/// 出动扑火人工（工日）
 		/// </summary>
-		public int artificialfireout { get; set; }
+		public Nullable<int> artificialfireout { get; set; }
 
 		/// <summary>
 		/// 出动车辆总计
 		/// </summary>
-		public int totavehiclenumber { get; set; }
+		public Nullable<int> totavehiclenumber { get; set; }
 
 		/// <summary>
 		/// 其中汽车
 		/// </summary>
-		public int carnumber { get; set; }
+		public Nullable<int> carnumber { get; set; }
 
 		/// <summary>
 		/// 出动飞机（架次）
 		/// </summary>
-		public int planeoutnumber { get; set; }
+		public Nullable<int> planeoutnumber { get; set; }
 
 		/// <summary>
 		/// 固定翼飞机数量
 		/// </summary>
-		public int WingAirPlaneNumber { get; set; }
+		public Nullable<int> WingAirPlaneNumber { get; set; }
 
 		/// <summary>
 		/// 固定翼飞机飞行时间
 		/// </summary>
-		public int WingAirPlaneTime { get; set; }
+		public Nullable<int> WingAirPlaneTime { get; set; }
 
 		/// <summary>
 		/// 直升机数量
 		/// </summary>
-		public int HelicopterNumber { get; set; }
+		public Nullable<int> HelicopterNumber { get; set; }
 
 		/// <summary>
 		/// 直升机飞行时间
 		/// </summary>
-		public int HelicopterTime { get; set; }
+		public Nullable<int> HelicopterTime { get; set; }
 
 		/// <summary>
 		/// 无人机数量
 		/// </summary>
-		public int WuRenJiNumber { get; set; }
+		public Nullable<int> WuRenJiNumber { get; set; }
 
 		/// <summary>
 		/// 无人机飞行时间
 		/// </summary>
-		public int WuRenjiTime { get; set; }
+		public Nullable<int> WuRenjiTime { get; set; }
 
 		/// <summary>
 		/// 是否处理（0.否、1.是）
 		/// </summary>
-		public int IsDealWith { get; set; }
+		public Nullable<int> IsDealWith { get; set; }
 
 		/// <summary>
 		/// 已处理人数
 		/// </summary>
-		public int ProcessedNumber { get; set; }
+		public Nullable<int> ProcessedNumber { get; set; }
 
 		/// <summary>
 		/// 刑事处罚人数
 		/// </summary>
-		public int CriminalNumber { get; set; }
+		public Nullable<int> CriminalNumber { get; set; }
 
 		/// <summary>
 		/// 行政处罚人数
 		/// </summary>
-		public int APenaltyNumber { get; set; }
+		public Nullable<int> APenaltyNumber { get; set; }
 
 		/// <summary>
 		/// 行政处分人数
 		/// </summary>
-		public int ASanctionNumber { get; set; }
+		public Nullable<int> ASanctionNumber { get; set; }
 
 		/// <summary>
 		/// 纪律处分人数
 		/// </summary>
-		public int RecordDispositionNumber { get; set; }
+		public Nullable<int> RecordDispositionNumber { get; set; }
 
 		/// <summary>
 		/// 上报人

@@ -263,6 +263,18 @@
     <Compile Include="FireImportantUnits\FormFireImportantUnitsManage.Designer.cs">
       <DependentUpon>FormFireImportantUnitsManage.cs</DependentUpon>
     </Compile>
+    <Compile Include="FireOffice\FormFireOffice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FireOffice\FormFireOffice.Designer.cs">
+      <DependentUpon>FormFireOffice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FireOffice\FormFireOfficeManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FireOffice\FormFireOfficeManage.Designer.cs">
+      <DependentUpon>FormFireOfficeManage.cs</DependentUpon>
+    </Compile>
     <Compile Include="FirePBrigade\FormFirePBrigade.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -362,17 +374,26 @@
     <Compile Include="RadioStation\FormRadioStationManage.Designer.cs">
       <DependentUpon>FormRadioStationManage.cs</DependentUpon>
     </Compile>
+    <Compile Include="Service\AreaCodeController.cs" />
+    <Compile Include="Service\ArtificiallakeController.cs" />
+    <Compile Include="Service\DangerousFacilitiesController.cs" />
+    <Compile Include="Service\FireCommandController.cs" />
     <Compile Include="Service\FireDocumentController.cs" />
     <Compile Include="Service\FireImportantUnitsController.cs" />
     <Compile Include="Service\FireOfficeController.cs" />
     <Compile Include="Service\FirePBrigadeController.cs" />
     <Compile Include="Service\FireSituationController.cs" />
     <Compile Include="Service\FireHBrigadeController.cs" />
+    <Compile Include="Service\ForestBeltPointController.cs" />
     <Compile Include="Service\HotController.cs" />
     <Compile Include="Service\IServiceControler.cs" />
     <Compile Include="Service\LoginController.cs" />
+    <Compile Include="Service\MonitoringController.cs" />
+    <Compile Include="Service\ObservatoryController.cs" />
+    <Compile Include="Service\RadioStationController.cs" />
     <Compile Include="Service\TarmacController.cs" />
     <Compile Include="Service\FireWarehouseController.cs" />
+    <Compile Include="Service\UserController.cs" />
     <Compile Include="Tarmac\FormTarmac.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -546,6 +567,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FireImportantUnits\FormFireImportantUnitsManage.resx">
       <DependentUpon>FormFireImportantUnitsManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FireOffice\FormFireOffice.resx">
+      <DependentUpon>FormFireOffice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FireOffice\FormFireOfficeManage.resx">
+      <DependentUpon>FormFireOfficeManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FirePBrigade\FormFirePBrigade.resx">
       <DependentUpon>FormFirePBrigade.cs</DependentUpon>

@@ -19,6 +19,7 @@ using FFireManage.FireHBrigade;
 using FFireManage.FirePBrigade;
 using FFireManage.FireImportantUnits;
 using FFireManage.FireDocument;
+using FFireManage.FireOffice;
 
 namespace FFireManage
 {
@@ -117,6 +118,12 @@ namespace FFireManage
         {
             FormFireDocumentManage pFormFireDocumentManage = new FormFireDocumentManage();
             pFormFireDocumentManage.ShowDialog(this);
+        }
+
+        private void btn_FireOffice_Click(object sender, EventArgs e)
+        {
+            FormFireOfficeManage pFormFireOfficeManage = new FormFireOfficeManage();
+            pFormFireOfficeManage.ShowDialog(this);
         }
     }
 }

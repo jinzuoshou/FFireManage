@@ -17,7 +17,7 @@ namespace FFireManage.FireForestBelt
     {
         #region 字段
         private Fire_ForestBeltPoint currentFireForestBelt = null;
-        private ServiceController m_ServiceController = null;
+        private ForestBeltPointController m_ForestBeltController = null;
         private List<Fire_ForestBeltPoint> m_FireForestBeltList = null;
         #endregion
 
@@ -26,35 +26,41 @@ namespace FFireManage.FireForestBelt
         {
             InitializeComponent();
 
-            this.m_ServiceController = new ServiceController();
-            this.m_ServiceController.GetFireForestBeltListEvent += new EventHandler(m_ServiceController_GetFireForestBeltListEvent);
-            this.m_ServiceController.DeleteFireForestBeltEvent += new EventHandler(m_ServiceController_DeleteFireForestBeltEvent);
+            this.m_ForestBeltController = new ForestBeltPointController();
+            this.m_ForestBeltController.QueryEvent += m_ForestBeltController_QueryEvent;
+            this.m_ForestBeltController.DeleteEvent += m_ForestBeltController_DeleteEvent;
         }
         #endregion
 
         #region 事件响应
-        private void m_ServiceController_GetFireForestBeltListEvent(object sender, EventArgs e)
+        private void m_ForestBeltController_QueryEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-
-                    GetListResultInfo<Fire_ForestBeltPoint> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_ForestBeltPoint>>(content);
-
-                    if (result.rows != null && result.rows.Count > 0)
+                    string content = e.Content;
+                    try
                     {
-                        this.m_FireForestBeltList = result.rows;
+                        GetListResultInfo<Fire_ForestBeltPoint> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_ForestBeltPoint>>(content);
 
-                        this.pagerControl1.NMax = result.total;
-                        this.FillData(m_FireForestBeltList);
+                        if (result.rows != null && result.rows.Count > 0)
+                        {
+                            this.m_FireForestBeltList = result.rows;
 
+                            this.pagerControl1.NMax = result.total;
+                            this.FillData(m_FireForestBeltList);
+
+                        }
+                        else
+                        {
+                            this.pagerControl1.NMax = 0;
+                            this.FillData(null);
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        this.pagerControl1.NMax = 0;
-                        this.FillData(null);
+                        MessageBox.Show(this, ex.Message, "信息提示");
                     }
                 }
                 else
@@ -64,20 +70,31 @@ namespace FFireManage.FireForestBelt
             }));
         }
 
-        private void m_ServiceController_DeleteFireForestBeltEvent(object sender, EventArgs e)
+        private void m_ForestBeltController_DeleteEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
-
-                    if (result.status == 10000)
+                    string content = e.Content;
+                    try
                     {
-                        this.GetFireForestBeltList(this.navigationControl1.Pac);
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.GetFireForestBeltList(this.navigationControl1.Pac);
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "信息提示");
+                        }
                     }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "信息提示");
+                    }
+                   
                 }
                 else
                 {
@@ -176,7 +193,7 @@ namespace FFireManage.FireForestBelt
             {
                 if (MessageBox.Show(this, "您确定要删除" + this.currentFireForestBelt.name + "吗？数据删除后不可恢复。", "删除提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    this.m_ServiceController.DeleteFireForestBeltForGet(this.currentFireForestBelt.id);
+                    this.m_ForestBeltController.Delete(this.currentFireForestBelt.id);
                 }
             }
         }
@@ -289,7 +306,15 @@ namespace FFireManage.FireForestBelt
 
         private void GetFireForestBeltList(string pac)
         {
-            this.m_ServiceController.GetFireForestBeltListForGet(pac, 3, this.pagerControl1.PageCurrent, this.pagerControl1.PageSize, "id", "desc");
+            this.m_ForestBeltController.Get(new Dictionary<string, object>()
+                {
+                    {"pac",pac },
+                    {"fetchType",3},
+                    {"page", this.pagerControl1.PageCurrent},
+                    {"rows",this.pagerControl1.PageSize },
+                    {"sort","id"},
+                    {"order","desc"}
+                });
         }
         #endregion
     }

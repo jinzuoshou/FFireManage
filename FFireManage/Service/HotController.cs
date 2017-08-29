@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using FFireManage.Utility;
+
 namespace FFireManage.Service
 {
     public class HotController:BaseServiceControler<Fire_Hot>
@@ -50,6 +52,82 @@ namespace FFireManage.Service
         {
             parameterDict.Add("f", 4110002);
             this.ExecuteGet(parameterDict, OnGetDetailsEvent);
+        }
+
+        /// <summary>
+        /// 新增热点
+        /// </summary>
+        /// <param name="entity">热点实体</param>
+        public override void Add(Fire_Hot entity)
+        {
+            if (entity != null)
+            {
+                Dictionary<string, object> parameterDict = entity.ObjectToDict();
+                if (!parameterDict.ContainsKey("f"))
+                {
+                    parameterDict.Add("f", 4111001);
+                }
+                this.ExecutePost(parameterDict, OnAddEvent,entity.mediaByteDict, entity: entity);
+            }
+        }
+
+        /// <summary>
+        /// 获取热点列表
+        /// </summary>
+        /// <param name="parameterDict">参数字典</param>
+        public override void Get(Dictionary<string, object> parameterDict)
+        {
+            if(parameterDict!=null)
+            {
+                if(!parameterDict.ContainsKey("f"))
+                {
+                    parameterDict.Add("f", 4110001);
+                }
+                this.ExecuteGet(parameterDict, OnQueryEvent);
+            }
+        }
+
+        /// <summary>
+        /// 编辑热点
+        /// </summary>
+        /// <param name="entity">热点实体</param>
+        public override void Edit(Fire_Hot entity)
+        {
+            if(entity!=null)
+            {
+                Dictionary<string, object> parameterDict = entity.ObjectToDict();
+                if(!parameterDict.ContainsKey("f"))
+                {
+                    parameterDict.Add("f", 4112001);
+                }
+                this.ExecutePost(parameterDict, OnEditEvent, entity: entity);
+            }
+        }
+
+        /// <summary>
+        /// 删除热点
+        /// </summary>
+        /// <param name="parameterDict">参数字典</param>
+        public override void Delete(Dictionary<string, object> parameterDict)
+        {
+            if(parameterDict!=null)
+            {
+                if(!parameterDict.ContainsKey("f"))
+                {
+                    parameterDict.Add("f", 4113001);
+                }
+            }
+            this.ExecuteGet(parameterDict, OnDeleteEvent);
+        }
+
+        public void Delete(string id)
+        {
+            Dictionary<string, object> parameterDict = new Dictionary<string, object>()
+            {
+                {"f",4133001 },
+                {"id",id }
+            };
+            this.ExecuteGet(parameterDict, OnDeleteEvent);
         }
     }
 }

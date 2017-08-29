@@ -42,6 +42,7 @@
             this.btn_FirePBrigade = new System.Windows.Forms.Button();
             this.btn_FireImportantUnits = new System.Windows.Forms.Button();
             this.btn_FireDocument = new System.Windows.Forms.Button();
+            this.btn_FireOffice = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUserManage
@@ -184,11 +185,22 @@
             this.btn_FireDocument.UseVisualStyleBackColor = true;
             this.btn_FireDocument.Click += new System.EventHandler(this.btn_FireDocument_Click);
             // 
+            // btn_FireOffice
+            // 
+            this.btn_FireOffice.Location = new System.Drawing.Point(328, 241);
+            this.btn_FireOffice.Name = "btn_FireOffice";
+            this.btn_FireOffice.Size = new System.Drawing.Size(93, 36);
+            this.btn_FireOffice.TabIndex = 16;
+            this.btn_FireOffice.Text = "森林防火办公室";
+            this.btn_FireOffice.UseVisualStyleBackColor = true;
+            this.btn_FireOffice.Click += new System.EventHandler(this.btn_FireOffice_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.btn_FireOffice);
             this.Controls.Add(this.btn_FireDocument);
             this.Controls.Add(this.btn_FireImportantUnits);
             this.Controls.Add(this.btn_FirePBrigade);
@@ -228,5 +240,6 @@
         private System.Windows.Forms.Button btn_FirePBrigade;
         private System.Windows.Forms.Button btn_FireImportantUnits;
         private System.Windows.Forms.Button btn_FireDocument;
+        private System.Windows.Forms.Button btn_FireOffice;
     }
 }

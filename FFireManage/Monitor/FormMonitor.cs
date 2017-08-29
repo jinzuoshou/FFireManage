@@ -11,37 +11,45 @@ namespace FFireManage.Monitor
     {
         private Fire_ForestRemoteMonitoring m_Monitor = null;
         private OperationType m_OperationType;
-        private ServiceController m_ServiceController = null;
+        private MonitoringController m_MonitoringController = null;
+
         public FormMonitor(OperationType type, Fire_ForestRemoteMonitoring monitor =null)
         {
             InitializeComponent();
 
             this.m_OperationType = type;
             this.m_Monitor = monitor;
-            this.m_ServiceController = new ServiceController();
+            this.m_MonitoringController = new MonitoringController();
 
-            this.m_ServiceController.AddMonitorEvent += M_ServiceController_AddMonitorEvent;
-            this.m_ServiceController.EditMonitorEvent += M_ServiceController_EditMonitorEvent;
+            this.m_MonitoringController.AddEvent += m_MonitoringController_AddEvent;
+            this.m_MonitoringController.EditEvent += m_MonitoringController_EditEvent;
         }
 
-        private void M_ServiceController_EditMonitorEvent(object sender, EventArgs e)
+        private void m_MonitoringController_EditEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
-
-                    if (result.status == 10000)
+                    string content = e.Content;
+                    try
                     {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
                 }
                 else
@@ -51,24 +59,32 @@ namespace FFireManage.Monitor
             }));
         }
 
-        private void M_ServiceController_AddMonitorEvent(object sender, EventArgs e)
+        private void m_MonitoringController_AddEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                    if (result.status == 10000)
-                    {
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this,ex.Message, "提示");
                     }
+                    
                 }
                 else
                 {
@@ -399,14 +415,14 @@ namespace FFireManage.Monitor
                 //m_Monitor.createTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 m_Monitor.cre_pers = GlobeHelper.Instance.User.name;
 
-                this.m_ServiceController.AddMonitorForPost(m_Monitor);
+                this.m_MonitoringController.Add(m_Monitor);
             }
             else
             {
                 //m_Monitor.modifyTime = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                 m_Monitor.mod_pers = GlobeHelper.Instance.User.name;
 
-                this.m_ServiceController.EditMonitorForPost(m_Monitor);
+                this.m_MonitoringController.Edit(m_Monitor);
             }
 
         }

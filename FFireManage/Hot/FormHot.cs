@@ -19,7 +19,8 @@ namespace FFireManage.Hot
         private Fire_Hot currentHot = null;
         private UserInfo m_User = null;
         private OperationType m_OperationType;
-        private ServiceController m_ServiceController = null;
+        private HotController m_HotController = null;
+        private AreaCodeController m_AreaCodeController = null;
         private List<AreaCodeInfo> m_AreaList = null;
 
         private string m_Pac = null;
@@ -53,14 +54,16 @@ namespace FFireManage.Hot
             InitializeComponent();
             this.m_OperationType = type;
             this.currentHot = hot;
-            this.m_ServiceController = new ServiceController();
-            this.m_ServiceController.GetAreaCodeListEvent += M_ServiceController_GetAreaCodeListEvent;
 
-            this.m_ServiceController.AddHotEvent += M_ServiceController_AddHotEvent;
-            this.m_ServiceController.EditHotEvent += M_ServiceController_EditHotEvent;
+            this.m_AreaCodeController = new AreaCodeController();
+            this.m_AreaCodeController.QueryEvent += m_AreaCodeController_QueryEvent;
+
+            this.m_HotController = new HotController();
+            this.m_HotController.AddEvent += m_HotController_AddEvent;
+            this.m_HotController.EditEvent += m_HotController_EditEvent;
         }
 
-        private void M_ServiceController_GetAreaCodeListEvent(object sender, EventArgs e)
+        private void m_AreaCodeController_QueryEvent(object sender, ServiceEventArgs e)
         {
             if (IsDisposed || !this.IsHandleCreated) return;
 
@@ -68,15 +71,22 @@ namespace FFireManage.Hot
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    GetListResultInfo<AreaCodeInfo> result = JsonHelper.JSONToObject<GetListResultInfo<AreaCodeInfo>>(content);
-
-                    if (result.rows != null && result.rows.Count > 0)
+                    try
                     {
-                        m_AreaList = result.rows;
+                        GetListResultInfo<AreaCodeInfo> result = JsonHelper.JSONToObject<GetListResultInfo<AreaCodeInfo>>(content);
 
-                        this.LoadProvince(m_AreaList);
+                        if (result.rows != null && result.rows.Count > 0)
+                        {
+                            m_AreaList = result.rows;
+
+                            this.LoadProvince(m_AreaList);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this,ex.Message, "信息提示");
                     }
                 }
                 else
@@ -168,11 +178,11 @@ namespace FFireManage.Hot
             this.m_User = user;
             if (this.m_User.pac.Length == 6 && this.m_User.pac.EndsWith("0000"))
             {
-                this.m_ServiceController.GetAreaCodeList(this.m_User.pac, 3);
+                this.m_AreaCodeController.GetList(this.m_User.pac, 3);
             }
             else if (this.m_User.pac.Length == 6 && !this.m_User.pac.EndsWith("0000"))
             {
-                this.m_ServiceController.GetAreaCodeList(this.m_User.pac.Substring(0, 2) + "0000", 3);
+                this.m_AreaCodeController.GetList(this.m_User.pac.Substring(0, 2) + "0000", 3);
             }
         }
         private void LoadProvince(List<AreaCodeInfo> areaList)
@@ -332,11 +342,11 @@ namespace FFireManage.Hot
             if (m_OperationType==OperationType.Add)
             {
                 this.currentHot.status = 0;
-                this.m_ServiceController.AddHotForPost(this.currentHot);
+                this.m_HotController.Add(this.currentHot);
             }
             else if(m_OperationType==OperationType.Edit)
             { 
-                this.m_ServiceController.EditHotForPost(this.currentHot);
+                this.m_HotController.Edit(this.currentHot);
             }
         }
 
@@ -344,24 +354,32 @@ namespace FFireManage.Hot
         {
             this.Close();
         }
-        private void M_ServiceController_EditHotEvent(object sender, EventArgs e)
+        private void m_HotController_EditEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+                    string content = e.Content;
 
-                    if (result.status == 10000)
+                    try
                     {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
                 }
                 else
@@ -371,25 +389,33 @@ namespace FFireManage.Hot
             }));
         }
 
-        private void M_ServiceController_AddHotEvent(object sender, EventArgs e)
+        private void m_HotController_AddEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+                    try
+                    {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                    if (result.status == 10000)
-                    {
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
+                    
                 }
                 else
                 {

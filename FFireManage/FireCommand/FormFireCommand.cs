@@ -17,37 +17,44 @@ namespace FFireManage.FireCommand
     {
         private Fire_Command m_FireCommand = null;
         private OperationType m_OperationType;
-        private ServiceController m_ServiceController = null;
+        private FireCommandController m_FireCommandController = null;
 
         public FormFireCommand(OperationType type, Fire_Command fireCommand = null)
         {
             InitializeComponent();
             this.m_OperationType = type;
             this.m_FireCommand = fireCommand;
-            this.m_ServiceController = new ServiceController();
+            this.m_FireCommandController = new FireCommandController();
 
-            this.m_ServiceController.AddFireCommandEvent += M_ServiceController_AddFireCommandEvent;
-            this.m_ServiceController.EditFireCommandEvent += M_ServiceController_EditFireCommandEvent;
+            this.m_FireCommandController.AddEvent += m_FireCommandController_AddEvent;
+            this.m_FireCommandController.EditEvent += m_FireCommandController_EditEvent;
         }
 
-        private void M_ServiceController_EditFireCommandEvent(object sender, EventArgs e)
+        private void m_FireCommandController_EditEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
-
-                    if (result.status == 10000)
+                    string content = e.Content;
+                    try
                     {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
                 }
                 else
@@ -57,23 +64,30 @@ namespace FFireManage.FireCommand
             }));
         }
 
-        private void M_ServiceController_AddFireCommandEvent(object sender, EventArgs e)
+        private void m_FireCommandController_AddEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                    if (result.status == 10000)
-                    {
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
                 }
                 else
@@ -295,11 +309,11 @@ namespace FFireManage.FireCommand
 
             if (m_OperationType == OperationType.Add)
             {
-                this.m_ServiceController.AddFireCommandForPost(this.m_FireCommand);
+                this.m_FireCommandController.Add(this.m_FireCommand);
             }
             else if (m_OperationType == OperationType.Edit)
             {
-                this.m_ServiceController.EditFireCommandForPost(this.m_FireCommand);
+                this.m_FireCommandController.Edit(this.m_FireCommand);
             }
         }
 

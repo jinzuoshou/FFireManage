@@ -16,7 +16,7 @@ namespace FFireManage.Hot
     {
         #region 成员变量
         private Fire_Hot currentHot = null;
-        private ServiceController m_ServiceController = null;
+        private HotController m_HotController = null;
         private List<Fire_Hot> currentHotList = null;
         private ListViewItem currentItem = null;
         #endregion
@@ -26,14 +26,14 @@ namespace FFireManage.Hot
         {
             InitializeComponent();
 
-            this.m_ServiceController = new ServiceController();
-            this.m_ServiceController.GetHotListEvent+=new EventHandler(m_ServiceController_GetHotListEvent);
-            this.m_ServiceController.DeleteHotEvent+=new EventHandler(m_ServiceController_DeleteHotEvent);
+            this.m_HotController = new HotController();
+            this.m_HotController.QueryEvent+=new EventHandler<ServiceEventArgs>(m_HotController_QueryEvent);
+            this.m_HotController.DeleteEvent+=new EventHandler<ServiceEventArgs>(m_HotController_DeleteEvent);
         }
         #endregion
 
         #region 事件响应
-        private void m_ServiceController_GetHotListEvent(object sender, EventArgs e)
+        private void m_HotController_QueryEvent(object sender, ServiceEventArgs e)
         {
             if (IsDisposed || !this.IsHandleCreated) return;
 
@@ -41,23 +41,30 @@ namespace FFireManage.Hot
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-
-                    GetListResultInfo<Fire_Hot> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_Hot>>(content);
-
-                    if (result.rows != null && result.rows.Count > 0)
+                    string content = e.Content;
+                    try
                     {
-                        currentHotList = result.rows;
+                        GetListResultInfo<Fire_Hot> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_Hot>>(content);
 
-                        this.pager1.NMax = result.total;
-                        this.FillData(currentHotList);
-                        
+                        if (result.rows != null && result.rows.Count > 0)
+                        {
+                            currentHotList = result.rows;
+
+                            this.pager1.NMax = result.total;
+                            this.FillData(currentHotList);
+
+                        }
+                        else
+                        {
+                            this.pager1.NMax = 0;
+                            this.FillData(null);
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        this.pager1.NMax = 0;
-                        this.FillData(null);
+                        MessageBox.Show(this, ex.Message, "信息提示");
                     }
+                    
                 }
                 else
                 {
@@ -67,20 +74,32 @@ namespace FFireManage.Hot
                 }
             }));
         }
-        private void m_ServiceController_DeleteHotEvent(object sender, EventArgs e)
+        private void m_HotController_DeleteEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
-
-                    if (result.status == 10000)
+                    try
                     {
-                        this.GetHotList(this.navigationControl1.Pac);
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.GetHotList(this.navigationControl1.Pac);
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+                    
                 }
                 else
                 {
@@ -184,7 +203,7 @@ namespace FFireManage.Hot
             {
                 if (MessageBox.Show(this, "您确定要删除" + this.currentHot.no + "吗？数据删除后不可恢复。", "删除提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    this.m_ServiceController.DeleteHotForGet(this.currentHot.id);
+                    this.m_HotController.Delete(this.currentHot.id);
                 }
             }
         }
@@ -290,7 +309,16 @@ namespace FFireManage.Hot
 
         private void GetHotList(string pac)
         {
-            this.m_ServiceController.GetHotListForGet(pac,3,(this.pager1.PageCurrent==0)?1:this.pager1.PageCurrent,this.pager1.PageSize, "reporttime", "desc");
+            this.m_HotController.Get(new Dictionary<string, object>()
+            {
+                {"pac",pac },
+                {"fetchType",3 },
+                {"page", (this.pager1.PageCurrent==0)?1:this.pager1.PageCurrent},
+                {"rows",this.pager1.PageSize},
+                {"sort","reporttime" },
+                {"order","desc"}
+            });
+           
         }
         #endregion
 

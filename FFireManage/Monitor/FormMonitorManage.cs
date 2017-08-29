@@ -16,7 +16,7 @@ namespace FFireManage.Monitor
     {
         #region 成员变量
         private Fire_ForestRemoteMonitoring currentMonitor = null;
-        private ServiceController m_ServiceController = null;
+        private MonitoringController m_MonitoringController = null;
         private List<Fire_ForestRemoteMonitoring> m_MonitorList = null;
         #endregion
 
@@ -25,13 +25,77 @@ namespace FFireManage.Monitor
         {
             InitializeComponent();
 
-            this.m_ServiceController = new ServiceController();
-            this.m_ServiceController.GetMonitorListEvent += new EventHandler(m_ServiceController_GetMonitorListEvent);
-            this.m_ServiceController.DeleteMonitorEvent += new EventHandler(m_ServiceController_DeleteMonitorEvent);
+            this.m_MonitoringController = new MonitoringController();
+            this.m_MonitoringController.QueryEvent += m_MonitoringController_QueryEvent;
+            this.m_MonitoringController.DeleteEvent += m_MonitoringController_DeleteEvent;
         }
         #endregion
 
         #region 事件响应
+
+        private void m_MonitoringController_DeleteEvent(object sender, ServiceEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = sender.ToString();
+
+                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+
+                    if (result.status == 10000)
+                    {
+                        this.GetMonitorList(this.navigationControl1.Pac);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(this, sender.ToString(), "提示");
+                }
+            }));
+        }
+
+        private void m_MonitoringController_QueryEvent(object sender, ServiceEventArgs e)
+        {
+            if (IsDisposed || !this.IsHandleCreated) return;
+
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+
+                    try
+                    {
+                        GetListResultInfo<Fire_ForestRemoteMonitoring> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_ForestRemoteMonitoring>>(content);
+
+                        if (result.rows != null && result.rows.Count > 0)
+                        {
+                            m_MonitorList = result.rows;
+
+                            this.pagerControl1.NMax = result.total;
+                            this.FillData(m_MonitorList);
+                        }
+                        else
+                        {
+                            this.pagerControl1.NMax = 0;
+                            this.FillData(null);
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "信息提示");
+                    }
+                    
+                }
+                else
+                {
+                    MessageBox.Show(sender.ToString(), "信息提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    this.Close();
+                }
+            }));
+        }
         private void FormMonitorManage_Load(object sender, EventArgs e)
         {
             this.pagerControl1.PageCurrent = 1;
@@ -87,7 +151,7 @@ namespace FFireManage.Monitor
             {
                 if (MessageBox.Show(this, "您确定要删除" + this.currentMonitor.name + "吗？数据删除后不可恢复。", "删除提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    this.m_ServiceController.DeleteMonitorForGet(this.currentMonitor.id);
+                    this.m_MonitoringController.Delete(this.currentMonitor.id);
                 }
             }
         }
@@ -154,63 +218,7 @@ namespace FFireManage.Monitor
             this.FillData(tempMonitors.ToList<Fire_ForestRemoteMonitoring>());
         }
 
-        private void m_ServiceController_DeleteMonitorEvent(object sender, EventArgs e)
-        {
-            this.Invoke(new MethodInvoker(delegate ()
-            {
-                if (e != null)
-                {
-                    string content = sender.ToString();
-
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
-
-                    if (result.status == 10000)
-                    {
-                        this.GetMonitorList(this.navigationControl1.Pac);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show(this, sender.ToString(), "提示");
-                }
-            }));
-        }
-
-        private void m_ServiceController_GetMonitorListEvent(object sender, EventArgs e)
-        {
-            if (IsDisposed || !this.IsHandleCreated) return;
-
-            this.Invoke(new MethodInvoker(delegate ()
-            {
-                if (e != null)
-                {
-                    string content = sender.ToString();
-
-                    GetListResultInfo<Fire_ForestRemoteMonitoring> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_ForestRemoteMonitoring>>(content);
-
-                    if (result.rows != null && result.rows.Count > 0)
-                    {
-                        m_MonitorList = result.rows;
-
-                        this.pagerControl1.NMax = result.total;
-                        this.FillData(m_MonitorList);
-                        
-                        
-                    }
-                    else
-                    {
-                        this.pagerControl1.NMax = 0;
-                        this.FillData(null);
-                    }
-                }
-                else
-                {
-                    MessageBox.Show(sender.ToString(), "获取热点列表出错", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    this.Close();
-                }
-            }));
-        }
+        
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -286,7 +294,15 @@ namespace FFireManage.Monitor
 
         private void GetMonitorList(string pac)
         {
-            this.m_ServiceController.GetMonitorForGet(pac,3,this.pagerControl1.PageCurrent,this.pagerControl1.PageSize,"id","desc");
+            this.m_MonitoringController.Get(new Dictionary<string, object>()
+            {
+                {"pac",pac },
+                {"fetchType",3 },
+                {"page", this.pagerControl1.PageCurrent},
+                {"rows",this.pagerControl1.PageSize },
+                {"sort","id" },
+                {"order","desc"}
+            });
         }
         #endregion
 
