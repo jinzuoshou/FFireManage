@@ -118,7 +118,7 @@ namespace FFireManage.FireCommand
             FireCommandType fireCommandType = FireCommandType.其它事业机构;
             List<object> fireCommandTypeList = CommonHelper.GetDataSource<FireCommandType>(fireCommandType);
             this.cbx_type.DisplayMember = "Name";
-            this.cbx_type.ValueMember = "Value";
+            this.cbx_type.ValueMember = "Name";
             this.cbx_type.DataSource = fireCommandTypeList;
 
             /* 森林防火指挥部机构编制 */
@@ -168,7 +168,7 @@ namespace FFireManage.FireCommand
                 this.tbx_commander_phone.Text = this.m_FireCommand.commander_phone.ToString();
                 this.tbx_phone.Text = this.m_FireCommand.phone;
                 this.tbx_num_people.Text = this.m_FireCommand.num_people.ToString();
-                this.cbx_type.SelectedValue = (int)this.m_FireCommand.type;
+                this.cbx_type.SelectedValue = this.m_FireCommand.type;
                 this.cbx_institutions.SelectedValue = this.m_FireCommand.institutions;
                 this.cbx_level.SelectedValue = (this.m_FireCommand.level!=null)?this.m_FireCommand.level:"";
                 this.cbx_status.SelectedValue = (int)this.m_FireCommand.status;
@@ -299,7 +299,7 @@ namespace FFireManage.FireCommand
             this.m_FireCommand.commander_phone = this.tbx_commander_phone.Text;
             this.m_FireCommand.phone = this.tbx_phone.Text;
             this.m_FireCommand.num_people = Convert.ToInt32(this.tbx_num_people.Text.Trim());
-            this.m_FireCommand.type = (int)this.cbx_type.SelectedValue;
+            this.m_FireCommand.type = this.cbx_type.SelectedValue.ToString();
             this.m_FireCommand.institutions = this.cbx_institutions.SelectedValue.ToString();
             this.m_FireCommand.shape = GDALHelper.LngLatToWktPoint(this.m_FireCommand.longitude, this.m_FireCommand.latitude);
             this.m_FireCommand.level = this.cbx_level.SelectedValue.ToString();

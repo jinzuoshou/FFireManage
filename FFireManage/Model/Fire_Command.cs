@@ -69,7 +69,7 @@ namespace FFireManage
 		/// <summary>
 		/// 类型
 		/// </summary>
-		public int type { get; set; }
+		public string type { get; set; }
 
 		/// <summary>
 		/// 级别
