@@ -23,7 +23,6 @@ using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using static System.Windows.Forms.Control;
 
 namespace FFireManage.Utility
 {
@@ -56,7 +55,7 @@ namespace FFireManage.Utility
         /// 修改备注：无
         /// 版本：1.0
         /// </remarks>
-        public static T GetEntity<T>(ControlCollection controls, T obj = default(T))
+        public static T GetEntity<T>(Control.ControlCollection controls, T obj = default(T))
             where T : class, new()
         {
             return ControlHelper.EvaluateContainer<T>(controls,obj);
@@ -276,7 +275,7 @@ namespace FFireManage.Utility
         /// 修改备注：无
         /// 版本：1.0
         /// </remarks>
-        internal static T EvaluateContainer<T>(ControlCollection controls, T obj = default(T))
+        internal static T EvaluateContainer<T>(Control.ControlCollection controls, T obj = default(T))
             where T : class, new()
         {
             if (obj == null)
