@@ -1,0 +1,5 @@
+D:\Work\Repos\FFireManage\FFireDataDocking\obj\x86\Debug\FFireDataDocking.csprojResolveAssemblyReference.cache
+D:\Work\Repos\FFireManage\FFireDataDocking\obj\x86\Debug\FFireDataDocking.FormDataDocking.resources
+D:\Work\Repos\FFireManage\FFireDataDocking\obj\x86\Debug\FFireDataDocking.FormMain.resources
+D:\Work\Repos\FFireManage\FFireDataDocking\obj\x86\Debug\FFireDataDocking.Properties.Resources.resources
+D:\Work\Repos\FFireManage\FFireDataDocking\obj\x86\Debug\FFireDataDocking.csproj.GenerateResource.Cache

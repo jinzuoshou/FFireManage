@@ -15,12 +15,13 @@ using FFireManage.RadioStation;
 using FFireManage.FireForestBelt;
 using FFireManage.Artificiallake;
 using FFireManage.DangerousFacilities;
-using FFireManage.FireHBrigade;
+using FFireManage.FireWarehouse;
 using FFireManage.FirePBrigade;
 using FFireManage.FireImportantUnits;
 using FFireManage.FireDocument;
 using FFireManage.FireOffice;
 using FFireManage.PlaneWaterPoint;
+using FFireManage.SatelliteGroundStation;
 
 namespace FFireManage
 {
@@ -131,6 +132,18 @@ namespace FFireManage
         {
             FormPlaneWaterPointManage pFormPlaneWaterPointManage = new FormPlaneWaterPointManage();
             pFormPlaneWaterPointManage.ShowDialog(this);
+        }
+
+        private void btn_SatelliteGroundStation_Click(object sender, EventArgs e)
+        {
+            FormSatelliteGroundStationManage pFormSatelliteGroundStationManage = new FormSatelliteGroundStationManage();
+            pFormSatelliteGroundStationManage.ShowDialog(this);
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            FormWarehouseManage pFormWarehouseManage = new FormWarehouseManage();
+            pFormWarehouseManage.ShowDialog(this);
         }
     }
 }

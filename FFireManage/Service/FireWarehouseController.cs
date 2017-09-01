@@ -49,7 +49,7 @@ namespace FFireManage.Service
         {
             if(parameterDict!=null)
             {
-                parameterDict.Add("f", null);
+                parameterDict.Add("f", 4270001);
                 this.ExecuteGet(parameterDict,OnQueryEvent);
             }
         }
@@ -71,7 +71,7 @@ namespace FFireManage.Service
             if (entity != null)
             {
                 Dictionary<string, object> parameterDict = entity.ObjectToDict();
-                parameterDict.Add("f", null);
+                parameterDict.Add("f", 4271001);
                 this.ExecutePost(parameterDict, OnAddEvent,(entity.mediaByteDict==null)?new Dictionary<string, object>():entity.mediaByteDict,entity:entity);
             }
 
@@ -94,7 +94,7 @@ namespace FFireManage.Service
             if (entity != null)
             {
                 Dictionary<string, object> parameterDict = entity.ObjectToDict();
-                parameterDict.Add("f", null);
+                parameterDict.Add("f", 4272001);
                 this.ExecutePost(parameterDict, OnEditEvent);
             }
         }
@@ -115,7 +115,7 @@ namespace FFireManage.Service
         {
             if(parameterDict!=null)
             {
-                parameterDict.Add("f", null);
+                parameterDict.Add("f", 4273001);
                 this.ExecuteGet(parameterDict,OnDeleteEvent);
             }
         }
@@ -160,7 +160,7 @@ namespace FFireManage.Service
             if (parameterDict != null)
             {
                 if (!parameterDict.ContainsKey("f"))
-                    parameterDict.Add("f", null);
+                    parameterDict.Add("f", 4271002);
                 this.ExecuteGet(parameterDict, OnDeleteMediaEvent);
             }
         }
@@ -181,7 +181,7 @@ namespace FFireManage.Service
         {
             Dictionary<string, object> parameterDict = new Dictionary<string, object>()
             {
-                {"f",null},
+                {"f",4273002},
                 {"id",id }
             };
             this.ExecuteGet(parameterDict, OnDeleteEvent);
@@ -204,7 +204,7 @@ namespace FFireManage.Service
         {
             Dictionary<string, object> parameterDict = new Dictionary<string, object>()
             {
-                {"f",null },
+                {"f",4271002  },
                 {"id",id }
             };
             this.ExecutePost(parameterDict, OnAddMediaEvent, fileDict);
@@ -226,7 +226,7 @@ namespace FFireManage.Service
         {
             Dictionary<string, object> parameterDict = new Dictionary<string, object>()
             {
-                {"f", null},
+                {"f", 4273002 },
                 {"id",id }
             };
             this.ExecuteGet(parameterDict, OnDeleteMediaEvent);

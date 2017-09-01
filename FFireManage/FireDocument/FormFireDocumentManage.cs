@@ -1,4 +1,4 @@
-﻿using FFireManage.FireHBrigade;
+﻿using FFireManage.FireWarehouse;
 using FFireManage.Model;
 using FFireManage.Service;
 using FFireManage.Utility;

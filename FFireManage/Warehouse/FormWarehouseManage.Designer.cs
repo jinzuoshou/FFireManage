@@ -1,4 +1,4 @@
-﻿namespace FFireManage.Warehouse
+﻿namespace FFireManage.FireWarehouse
 {
     partial class FormWarehouseManage
     {
@@ -51,13 +51,15 @@
             this.listView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
-            this.listView1.Location = new System.Drawing.Point(0, 39);
+            this.listView1.Location = new System.Drawing.Point(0, 41);
             this.listView1.Margin = new System.Windows.Forms.Padding(3, 6, 3, 6);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(934, 436);
-            this.listView1.TabIndex = 37;
+            this.listView1.Size = new System.Drawing.Size(922, 399);
+            this.listView1.TabIndex = 34;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            this.listView1.SelectedIndexChanged += new System.EventHandler(this.listView1_SelectedIndexChanged);
+            this.listView1.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listView1_MouseDoubleClick);
             // 
             // columnHeader1
             // 
@@ -65,7 +67,7 @@
             // 
             // columnHeader2
             // 
-            this.columnHeader2.Text = "无线电台站名称";
+            this.columnHeader2.Text = "防火物资储备库名称";
             this.columnHeader2.Width = 132;
             // 
             // columnHeader3
@@ -91,37 +93,38 @@
             // pagerControl1
             // 
             this.pagerControl1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pagerControl1.Location = new System.Drawing.Point(0, 475);
-            this.pagerControl1.Margin = new System.Windows.Forms.Padding(3, 23, 3, 23);
+            this.pagerControl1.Location = new System.Drawing.Point(0, 440);
+            this.pagerControl1.Margin = new System.Windows.Forms.Padding(3, 16, 3, 16);
             this.pagerControl1.Name = "pagerControl1";
             this.pagerControl1.NMax = 0;
             this.pagerControl1.PageCount = 0;
             this.pagerControl1.PageCurrent = 0;
             this.pagerControl1.PageSize = 20;
-            this.pagerControl1.Size = new System.Drawing.Size(934, 33);
-            this.pagerControl1.TabIndex = 38;
+            this.pagerControl1.Size = new System.Drawing.Size(922, 35);
+            this.pagerControl1.TabIndex = 35;
             // 
             // navigationControl1
             // 
             this.navigationControl1.Dock = System.Windows.Forms.DockStyle.Top;
             this.navigationControl1.Location = new System.Drawing.Point(0, 0);
-            this.navigationControl1.Margin = new System.Windows.Forms.Padding(3, 95, 3, 95);
+            this.navigationControl1.Margin = new System.Windows.Forms.Padding(3, 67, 3, 67);
             this.navigationControl1.Name = "navigationControl1";
-            this.navigationControl1.Size = new System.Drawing.Size(934, 39);
-            this.navigationControl1.TabIndex = 36;
+            this.navigationControl1.Size = new System.Drawing.Size(922, 41);
+            this.navigationControl1.TabIndex = 33;
             // 
             // FormWarehouseManage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(934, 508);
+            this.ClientSize = new System.Drawing.Size(922, 475);
             this.Controls.Add(this.listView1);
             this.Controls.Add(this.pagerControl1);
             this.Controls.Add(this.navigationControl1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormWarehouseManage";
-            this.Text = "森林防火物资储备库管理";
+            this.Text = "森林防火物资储备库";
+            this.Load += new System.EventHandler(this.FormFireForestBeltManage_Load);
             this.ResumeLayout(false);
 
         }

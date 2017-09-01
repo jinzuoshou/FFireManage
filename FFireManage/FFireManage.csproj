@@ -386,6 +386,18 @@
     <Compile Include="RadioStation\FormRadioStationManage.Designer.cs">
       <DependentUpon>FormRadioStationManage.cs</DependentUpon>
     </Compile>
+    <Compile Include="SatelliteGroundStation\FormSatelliteGroundStation.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SatelliteGroundStation\FormSatelliteGroundStation.Designer.cs">
+      <DependentUpon>FormSatelliteGroundStation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="SatelliteGroundStation\FormSatelliteGroundStationManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SatelliteGroundStation\FormSatelliteGroundStationManage.Designer.cs">
+      <DependentUpon>FormSatelliteGroundStationManage.cs</DependentUpon>
+    </Compile>
     <Compile Include="Service\AreaCodeController.cs" />
     <Compile Include="Service\ArtificiallakeController.cs" />
     <Compile Include="Service\DangerousFacilitiesController.cs" />
@@ -404,6 +416,7 @@
     <Compile Include="Service\ObservatoryController.cs" />
     <Compile Include="Service\PlanewaterpointControler.cs" />
     <Compile Include="Service\RadioStationController.cs" />
+    <Compile Include="Service\SatelliteGroundStationControler.cs" />
     <Compile Include="Service\TarmacController.cs" />
     <Compile Include="Service\FireWarehouseController.cs" />
     <Compile Include="Service\UserController.cs" />
@@ -630,6 +643,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="PlaneWaterPoint\FormPlaneWaterPointManage.resx">
       <DependentUpon>FormPlaneWaterPointManage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SatelliteGroundStation\FormSatelliteGroundStation.resx">
+      <DependentUpon>FormSatelliteGroundStation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SatelliteGroundStation\FormSatelliteGroundStationManage.resx">
+      <DependentUpon>FormSatelliteGroundStationManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tarmac\FormTarmac.resx">
       <DependentUpon>FormTarmac.cs</DependentUpon>

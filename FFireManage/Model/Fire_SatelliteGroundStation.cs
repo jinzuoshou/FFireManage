@@ -16,25 +16,29 @@ namespace FFireManage
         [Custom(IsRequired = false)]
         public int objectid { get; set; }
 
-		/// <summary>
-		/// 名称
-		/// </summary>
-		public string name { get; set; }
+        /// <summary>
+        /// 名称
+        /// </summary>
+        [Custom(Description = "名称")]
+        public string name { get; set; }
 
-		/// <summary>
-		/// 地址
-		/// </summary>
-		public string address { get; set; }
+        /// <summary>
+        /// 地址
+        /// </summary>
+        [Custom(Description = "地址")]
+        public string address { get; set; }
 
-		/// <summary>
-		/// 管理员
-		/// </summary>
-		public string manager { get; set; }
+        /// <summary>
+        /// 管理员
+        /// </summary>
+        [Custom(Description = "管理员")]
+        public string manager { get; set; }
 
-		/// <summary>
-		/// 管理员电话
-		/// </summary>
-		public string phone { get; set; }
+        /// <summary>
+        /// 管理员电话
+        /// </summary>
+        [Custom(Description = "管理员电话")]
+        public string phone { get; set; }
 
 		/// <summary>
 		/// 经度
@@ -56,10 +60,10 @@ namespace FFireManage
 		/// </summary>
 		public double antdiameter { get; set; }
 
-		/// <summary>
-		/// IP地址
-		/// </summary>
-		public string ip { get; set; }
+        /// <summary>
+        /// IP地址
+        /// </summary>
+        public string ip { get; set; }
 
 		/// <summary>
 		/// 建立时间

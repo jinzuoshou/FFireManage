@@ -1,4 +1,4 @@
-﻿namespace FFireManage.FireHBrigade
+﻿namespace FFireManage.FireWarehouse
 {
     partial class FormFireHBrigade
     {

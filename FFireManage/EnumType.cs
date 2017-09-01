@@ -518,5 +518,21 @@ namespace FFireManage
         废弃 = 5
     }
     #endregion
+    #region 卫星地面站
+    /// <summary>
+    /// 卫星地面站状态
+    /// </summary>
+    public enum SGSStatus
+    {
+        
+        优秀 = 1,
+        良好 = 2,
+        一般 = 3,
+        差 = 4,
+        废弃 = 5
+    }
+    #endregion
 }
+    
+
 
