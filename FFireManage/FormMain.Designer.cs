@@ -44,6 +44,7 @@
             this.btn_FireDocument = new System.Windows.Forms.Button();
             this.btn_FireOffice = new System.Windows.Forms.Button();
             this.btn_PlaneWaterPoint = new System.Windows.Forms.Button();
+            this.btn_WarningBoards = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUserManage
@@ -206,11 +207,22 @@
             this.btn_PlaneWaterPoint.UseVisualStyleBackColor = true;
             this.btn_PlaneWaterPoint.Click += new System.EventHandler(this.btn_PlaneWaterPoint_Click);
             // 
+            // btn_WarningBoards
+            // 
+            this.btn_WarningBoards.Location = new System.Drawing.Point(569, 22);
+            this.btn_WarningBoards.Name = "btn_WarningBoards";
+            this.btn_WarningBoards.Size = new System.Drawing.Size(93, 36);
+            this.btn_WarningBoards.TabIndex = 18;
+            this.btn_WarningBoards.Text = "大型警示牌";
+            this.btn_WarningBoards.UseVisualStyleBackColor = true;
+            this.btn_WarningBoards.Click += new System.EventHandler(this.btn_WarningBoards_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.btn_WarningBoards);
             this.Controls.Add(this.btn_PlaneWaterPoint);
             this.Controls.Add(this.btn_FireOffice);
             this.Controls.Add(this.btn_FireDocument);
@@ -254,5 +266,6 @@
         private System.Windows.Forms.Button btn_FireDocument;
         private System.Windows.Forms.Button btn_FireOffice;
         private System.Windows.Forms.Button btn_PlaneWaterPoint;
+        private System.Windows.Forms.Button btn_WarningBoards;
     }
 }

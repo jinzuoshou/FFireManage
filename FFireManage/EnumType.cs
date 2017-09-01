@@ -518,5 +518,24 @@ namespace FFireManage
         废弃 = 5
     }
     #endregion
+
+
+    #region 大型警示牌
+    public enum WarningBoardsType
+    {
+        宣传牌 = 1,
+        宣传碑 = 2,
+        宣传标语 = 3
+    }
+
+    public enum WarningBoardsStatus
+    {
+        优秀 = 1,
+        良好 = 2,
+        一般 = 3,
+        差=4,
+        废弃=5
+    }
+    #endregion
 }
 

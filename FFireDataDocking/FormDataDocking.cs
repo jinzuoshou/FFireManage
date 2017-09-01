@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 using ESRI.ArcGIS.esriSystem;
 using ESRI.ArcGIS.Geodatabase;
@@ -76,10 +78,17 @@ namespace FFireDataDocking
                 fireCommandList.ForEach((f) =>
                  {
                      f.shape = FFireDataManger.Converters.PointToWKT(f.longitude, f.latitude);
+                     f.mediaByteDict=GetFileDict(f);
                  });
             }
-
-
+            foreach(Fire_Command fireCommand in fireCommandList)
+            {
+                Task task = Task.Factory.StartNew(() => 
+                {
+                    this.m_FireCommandConotroller.Add(fireCommand);
+                });
+            }
+            
         }
 
         private List<T> GetEntities<T>(IFeatureClass featureClass)
@@ -163,14 +172,30 @@ namespace FFireDataDocking
             return entities;
         }
 
-        //private Dictionary<string, object> GetFileDict(Fire_Command fireCommand)
-        //{
-        //    Dictionary<string, object> fileDict = new Dictionary<string, object>();
-        //    if (fireCommand.picture1 != null && fireCommand.picture1 != "")
-        //    {
+        private Dictionary<string, object> GetFileDict(Fire_Command fireCommand)
+        {
+            Dictionary<string, object> fileDict = new Dictionary<string, object>();
+            if (fireCommand.picture1 != null && fireCommand.picture1 != "")
+            {
+                string filePath = Regex.Replace(fireCommand.picture1, @"[\r\n]", "");
 
-        //    }
-        //}
+                string fileName = System.IO.Path.GetFileNameWithoutExtension(filePath);
+                fileDict.Add(fileName, filePath);
+            }
+            if (fireCommand.picture2 != null && fireCommand.picture2 != "")
+            {
+                string filePath = Regex.Replace(fireCommand.picture2, @"[\r\n]", "");
+                string fileName = System.IO.Path.GetFileName(filePath);
+                fileDict.Add(fileName, filePath);
+            }
+            if (fireCommand.video != null && fireCommand.video != "")
+            {
+                string filePath = Regex.Replace(fireCommand.video, @"[\r\n]", "");
+                string fileName = System.IO.Path.GetFileName(filePath);
+                fileDict.Add(fileName, filePath);
+            }
+            return fileDict;
+        }
 
     }
 }

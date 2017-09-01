@@ -21,6 +21,7 @@ using FFireManage.FireImportantUnits;
 using FFireManage.FireDocument;
 using FFireManage.FireOffice;
 using FFireManage.PlaneWaterPoint;
+using FFireManage.WarningBoards;
 
 namespace FFireManage
 {
@@ -131,6 +132,12 @@ namespace FFireManage
         {
             FormPlaneWaterPointManage pFormPlaneWaterPointManage = new FormPlaneWaterPointManage();
             pFormPlaneWaterPointManage.ShowDialog(this);
+        }
+
+        private void btn_WarningBoards_Click(object sender, EventArgs e)
+        {
+            FormWarningBoardsManage pFormWarningBoardsManage = new FormWarningBoardsManage();
+            pFormWarningBoardsManage.ShowDialog(this);
         }
     }
 }
