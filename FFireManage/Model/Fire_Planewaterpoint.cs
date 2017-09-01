@@ -19,22 +19,26 @@ namespace FFireManage
 		/// <summary>
 		/// 名称
 		/// </summary>
+        [Custom(Description = "名称")]
 		public string name { get; set; }
 
-		/// <summary>
-		/// 地址
-		/// </summary>
-		public string address { get; set; }
+        /// <summary>
+        /// 地址
+        /// </summary>
+        [Custom(Description = "地址")]
+        public string address { get; set; }
 
-		/// <summary>
-		/// 管理员
-		/// </summary>
-		public string manager { get; set; }
+        /// <summary>
+        /// 管理员
+        /// </summary>
+        [Custom(Description = "管理员")]
+        public string manager { get; set; }
 
-		/// <summary>
-		/// 管理员电话
-		/// </summary>
-		public string phone { get; set; }
+        /// <summary>
+        /// 管理员电话
+        /// </summary>
+        [Custom(Description = "管理员电话")]
+        public string phone { get; set; }
 
 		/// <summary>
 		/// 经度
@@ -46,20 +50,22 @@ namespace FFireManage
 		/// </summary>
 		public double latitude { get; set; }
 
-		/// <summary>
-		/// 建立时间
-		/// </summary>
-		public string cre_time { get; set; }
+        /// <summary>
+        /// 建立时间
+        /// </summary>
+        [Custom(IsRequired = false)]
+        public string cre_time { get; set; }
 
 		/// <summary>
 		/// 建立人
 		/// </summary>
 		public string cre_pers { get; set; }
 
-		/// <summary>
-		/// 最后修改时间
-		/// </summary>
-		public string mod_time { get; set; }
+        /// <summary>
+        /// 最后修改时间
+        /// </summary>
+        [Custom(IsRequired = false)]
+        public string mod_time { get; set; }
 
 		/// <summary>
 		/// 修改者
@@ -121,20 +127,23 @@ namespace FFireManage
 		/// </summary>
 		public string is_take_water { get; set; }
 
-		/// <summary>
-		/// 照片一
-		/// </summary>
-		public string picture1 { get; set; }
+        /// <summary>
+        /// 照片一
+        /// </summary>
+        [Custom(IsRequired = false)]
+        public string picture1 { get; set; }
 
-		/// <summary>
-		/// 照片二
-		/// </summary>
-		public string picture2 { get; set; }
+        /// <summary>
+        /// 照片二
+        /// </summary>
+        [Custom(IsRequired = false)]
+        public string picture2 { get; set; }
 
-		/// <summary>
-		/// 视频
-		/// </summary>
-		public string video { get; set; }
+        /// <summary>
+        /// 视频
+        /// </summary>
+        [Custom(IsRequired = false)]
+        public string video { get; set; }
 
 		/// <summary>
 		/// 备注

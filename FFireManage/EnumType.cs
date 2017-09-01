@@ -471,5 +471,52 @@ namespace FFireManage
         废弃 = 5
     }
     #endregion
+
+    #region 飞机吊桶取水点
+    /// <summary>
+    /// 是否有电线索道
+    /// </summary>
+    public enum PWIsCableway
+    {
+        是 = 1,
+        否 = 2
+    }
+    /// <summary>
+    /// 能否吊桶取水
+    /// </summary>
+    public enum PWIsTakeWater
+    {
+        是 = 1,
+        否 = 2
+    }
+    /// <summary>
+    /// 飞机吊桶取水点管理单位
+    /// </summary>
+    public enum PWManagementUnit
+    {
+        管理单位1 = 1,
+        管理单位2 = 2,
+        管理单位3 = 3
+    }
+    /// <summary>
+    /// 是否有网箱养鱼
+    /// </summary>
+    public enum PWIsCageFish
+    {
+        是 = 1,
+        否 = 2
+    }
+    /// <summary>
+    /// 飞机吊桶取水点状态
+    /// </summary>
+    public enum PWStatus
+    {
+        优秀 = 1,
+        良好 = 2,
+        一般 = 3,
+        差 = 4,
+        废弃 = 5
+    }
+    #endregion
 }
 

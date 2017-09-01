@@ -362,6 +362,18 @@
     <Compile Include="Monitor\FormMonitorManage.Designer.cs">
       <DependentUpon>FormMonitorManage.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlaneWaterPoint\FormPlaneWaterPoint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlaneWaterPoint\FormPlaneWaterPoint.Designer.cs">
+      <DependentUpon>FormPlaneWaterPoint.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlaneWaterPoint\FormPlaneWaterPointManage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlaneWaterPoint\FormPlaneWaterPointManage.Designer.cs">
+      <DependentUpon>FormPlaneWaterPointManage.cs</DependentUpon>
+    </Compile>
     <Compile Include="RadioStation\FormRadioStation.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -390,6 +402,7 @@
     <Compile Include="Service\LoginController.cs" />
     <Compile Include="Service\MonitoringController.cs" />
     <Compile Include="Service\ObservatoryController.cs" />
+    <Compile Include="Service\PlanewaterpointControler.cs" />
     <Compile Include="Service\RadioStationController.cs" />
     <Compile Include="Service\TarmacController.cs" />
     <Compile Include="Service\FireWarehouseController.cs" />
@@ -611,6 +624,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="License\FormCreateAppLicense.resx">
       <DependentUpon>FormCreateAppLicense.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlaneWaterPoint\FormPlaneWaterPoint.resx">
+      <DependentUpon>FormPlaneWaterPoint.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlaneWaterPoint\FormPlaneWaterPointManage.resx">
+      <DependentUpon>FormPlaneWaterPointManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Tarmac\FormTarmac.resx">
       <DependentUpon>FormTarmac.cs</DependentUpon>
