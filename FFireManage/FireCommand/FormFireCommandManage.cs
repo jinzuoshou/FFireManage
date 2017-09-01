@@ -297,11 +297,11 @@ namespace FFireManage.FireCommand
                     try
                     {
                         if (this.navigationControl1.AreaList != null)
-                            county = this.navigationControl1.AreaList.Where(a => a.Code == monitor.pac).First();
+                            county = this.navigationControl1.AreaList.Where(a => a.code == monitor.pac).First();
                     }
                     catch { }
 
-                    item.SubItems.Add((county == null) ? "" : county.Name);
+                    item.SubItems.Add((county == null) ? "" : county.name);
                     item.SubItems.Add(monitor.director);
                     item.SubItems.Add(monitor.longitude.ToString());
                     item.SubItems.Add(monitor.latitude.ToString());

@@ -287,11 +287,11 @@ namespace FFireManage.FireOffice
                     try
                     {
                         if (this.navigationControl1.AreaList != null)
-                            county = this.navigationControl1.AreaList.Where(a => a.Code == fireOffice.pac).First();
+                            county = this.navigationControl1.AreaList.Where(a => a.code == fireOffice.pac).First();
                     }
                     catch { }
 
-                    item.SubItems.Add((county == null) ? "" : county.Name);
+                    item.SubItems.Add((county == null) ? "" : county.name);
                     item.SubItems.Add(fireOffice.director);
                     item.SubItems.Add(fireOffice.longitude.ToString());
                     item.SubItems.Add(fireOffice.latitude.ToString());

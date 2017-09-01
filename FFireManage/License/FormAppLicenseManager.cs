@@ -43,7 +43,7 @@ namespace FFireManage
                     string content = sender.ToString();
                     if (this.current_AreaCode != null)
                     {
-                        string pac = this.current_AreaCode.Code;
+                        string pac = this.current_AreaCode.code;
                         this.m_ServiceController.GetLicenceListByPac(pac, 1000, 0);
                     }
                 }
@@ -66,7 +66,7 @@ namespace FFireManage
                     string content = sender.ToString();
                     if (this.current_AreaCode != null)
                     {
-                        string pac = this.current_AreaCode.Code;
+                        string pac = this.current_AreaCode.code;
 
                         this.m_ServiceController.GetLicenceListByPac(pac, 1000, 0);
                     }
@@ -178,28 +178,28 @@ namespace FFireManage
             if (areaCodeList == null)
                 return;
 
-            var provinces = areaCodeList.Where(a => a.Code.EndsWith("0000"));
+            var provinces = areaCodeList.Where(a => a.code.EndsWith("0000"));
             if (provinces == null)
                 return;
             provinces.ToList().ForEach(provine =>
                 {
-                    TreeNode provinceNode = new TreeNode(provine.Name);
+                    TreeNode provinceNode = new TreeNode(provine.name);
                     provinceNode.Tag = provine;
-                    var cities = areaCodeList.Where(a => a.Code.EndsWith("00") && a.Code != provine.Code);
+                    var cities = areaCodeList.Where(a => a.code.EndsWith("00") && a.code != provine.code);
                     if (cities == null)
                         return;
                     cities.ToList().ForEach(city =>
                     {
-                        TreeNode cityNode = new TreeNode(city.Name);
+                        TreeNode cityNode = new TreeNode(city.name);
                         cityNode.Tag = city;
                         provinceNode.Nodes.Add(cityNode);
 
-                        var counties = areaCodeList.Where(a => !a.Code.EndsWith("00") && a.Code.Substring(0,4)+"00"==city.Code);
+                        var counties = areaCodeList.Where(a => !a.code.EndsWith("00") && a.code.Substring(0,4)+"00"==city.code);
                         if (counties == null)
                             return;
                         counties.ToList().ForEach(county =>
                         {
-                            TreeNode countyNode = new TreeNode(county.Name);
+                            TreeNode countyNode = new TreeNode(county.name);
                             countyNode.Tag = county;
                             cityNode.Nodes.Add(countyNode);
                         });
@@ -238,7 +238,7 @@ namespace FFireManage
 
                 if (areaCode != null)
                 {
-                    string pac = areaCode.Code;
+                    string pac = areaCode.code;
 
                     this.m_ServiceController.GetLicenceListByPac(pac, 1000, 0);
                 }
@@ -260,7 +260,7 @@ namespace FFireManage
                 if (this.current_AreaCode == null)
                     this.m_ServiceController.GetLicenceListByPac(GlobeHelper.Instance.User.pac, 1000, 1);
                 else
-                    this.m_ServiceController.GetLicenceListByPac(this.current_AreaCode.Code, 1000, 1);
+                    this.m_ServiceController.GetLicenceListByPac(this.current_AreaCode.code, 1000, 1);
             }
         }
 
@@ -274,7 +274,7 @@ namespace FFireManage
                 if (this.current_AreaCode == null)
                     this.m_ServiceController.GetLicenceListByPac(GlobeHelper.Instance.User.pac, 1000, 1);
                 else
-                    this.m_ServiceController.GetLicenceListByPac(this.current_AreaCode.Code, 1000, 1);
+                    this.m_ServiceController.GetLicenceListByPac(this.current_AreaCode.code, 1000, 1);
             }
         }
 
@@ -288,7 +288,7 @@ namespace FFireManage
                 if (this.current_AreaCode == null)
                     this.m_ServiceController.GetLicenceListByPac(GlobeHelper.Instance.User.pac, 1000, 1);
                 else
-                    this.m_ServiceController.GetLicenceListByPac(this.current_AreaCode.Code, 1000, 1);
+                    this.m_ServiceController.GetLicenceListByPac(this.current_AreaCode.code, 1000, 1);
             }
 
         }

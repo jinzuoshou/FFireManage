@@ -292,10 +292,10 @@ namespace FFireManage.Hot
                     try
                     {
                         if (this.navigationControl1.AreaList != null)
-                            county = this.navigationControl1.AreaList.Where(a => a.Code == hot.pac).First();
+                            county = this.navigationControl1.AreaList.Where(a => a.code == hot.pac).First();
                     }
                     catch { }
-                    item.SubItems.Add((hot.county == null && county!=null) ? county.Name : hot.county);
+                    item.SubItems.Add((hot.county == null && county!=null) ? county.name : hot.county);
                     item.SubItems.Add(Enum.GetName(typeof(HotType), hot.type));
                     item.SubItems.Add(hot.reporter);
                     item.SubItems.Add(hot.reporttime);

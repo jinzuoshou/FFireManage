@@ -39,14 +39,26 @@ namespace FFireManage.Monitor
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
-
-                    if (result.status == 10000)
+                    string content = e.Content;
+                    try
                     {
-                        this.GetMonitorList(this.navigationControl1.Pac);
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.GetMonitorList(this.navigationControl1.Pac);
+                        }
+                        else
+                        {
+                            MessageBox.Show(result.msg, "信息提示");
+                        }
                     }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "信息提示");
+                    }
+
+                    
                 }
                 else
                 {
@@ -91,11 +103,10 @@ namespace FFireManage.Monitor
                 else
                 {
                     MessageBox.Show(sender.ToString(), "信息提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                    this.Close();
                 }
             }));
         }
+
         private void FormMonitorManage_Load(object sender, EventArgs e)
         {
             this.pagerControl1.PageCurrent = 1;

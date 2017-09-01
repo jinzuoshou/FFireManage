@@ -287,11 +287,11 @@ namespace FFireManage.FireHBrigade
                     try
                     {
                         if (this.navigationControl1.AreaList != null)
-                            county = this.navigationControl1.AreaList.Where(a => a.Code == fireHBrigade.pac).First();
+                            county = this.navigationControl1.AreaList.Where(a => a.code == fireHBrigade.pac).First();
                     }
                     catch { }
 
-                    item.SubItems.Add((county == null) ? "" : county.Name);
+                    item.SubItems.Add((county == null) ? "" : county.name);
                     item.SubItems.Add(fireHBrigade.manager);
                     item.SubItems.Add(fireHBrigade.longitude.ToString());
                     item.SubItems.Add(fireHBrigade.latitude.ToString());

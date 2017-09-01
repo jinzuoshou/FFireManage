@@ -14,7 +14,7 @@ namespace FFireManage.Controls
 {
     public partial class PACControl : UserControl
     {
-        private ServiceController m_ServiceController = null;
+        private AreaCodeController m_AreaCodeController = null;
         private List<AreaCodeInfo> m_AreaList = null;
         private string m_AccountPac = null;
 
@@ -72,11 +72,11 @@ namespace FFireManage.Controls
         public PACControl()
         {
             InitializeComponent();
-            this.m_ServiceController = new ServiceController();
-            this.m_ServiceController.GetAreaCodeListEvent += M_ServiceController_GetAreaCodeListEvent;
+            this.m_AreaCodeController = new AreaCodeController();
+            this.m_AreaCodeController.QueryEvent += m_AreaCodeController_QueryEvent;
         }
 
-        private void M_ServiceController_GetAreaCodeListEvent(object sender, EventArgs e)
+        private void m_AreaCodeController_QueryEvent(object sender, ServiceEventArgs e)
         {
             //if (IsDisposed || !this.IsHandleCreated) return;
 
@@ -84,16 +84,23 @@ namespace FFireManage.Controls
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    GetListResultInfo<AreaCodeInfo> result = JsonHelper.JSONToObject<GetListResultInfo<AreaCodeInfo>>(content);
-
-                    if (result.rows != null && result.rows.Count > 0)
+                    try 
                     {
-                        m_AreaList = result.rows;
+                        GetListResultInfo<AreaCodeInfo> result = JsonHelper.JSONToObject<GetListResultInfo<AreaCodeInfo>>(content);
 
-                        this.LoadProvince(m_AreaList);
+                        if (result.rows != null && result.rows.Count > 0)
+                        {
+                            m_AreaList = result.rows;
+                            this.LoadProvince(m_AreaList);
+                        }
                     }
+                    catch
+                    {
+
+                    }
+                    
                 }
                 else
                 {
@@ -108,11 +115,11 @@ namespace FFireManage.Controls
             this.m_LocalPac = pac;
             if(this.m_AccountPac.Length == 6 && this.m_AccountPac.EndsWith("0000"))
             {
-                this.m_ServiceController.GetAreaCodeList(this.m_AccountPac, 3);
+                this.m_AreaCodeController.GetList(this.m_AccountPac, 3);
             }
             else if(this.m_AccountPac.Length == 6 && !this.m_AccountPac.EndsWith("0000"))
             {
-                this.m_ServiceController.GetAreaCodeList(this.m_AccountPac.Substring(0, 2) + "0000", 3);
+                this.m_AreaCodeController.GetList(this.m_AccountPac.Substring(0, 2) + "0000", 3);
             }
         }
 
@@ -120,14 +127,14 @@ namespace FFireManage.Controls
         {
             if (areaList == null || areaList.Count == 0)
                 return;
-            if (this.m_AccountPac.Length == 6 && this.m_AccountPac.EndsWith("00"))
+            if (this.m_AccountPac.Length == 6)
             {
-                var provinces = areaList.Where<AreaCodeInfo>(u => u.Code.EndsWith("0000")).OrderBy<AreaCodeInfo,string>(u=>u.Code);
+                var provinces = areaList.Where<AreaCodeInfo>(u => u.code.EndsWith("0000")).OrderBy<AreaCodeInfo,string>(u=>u.code);
                 if (provinces == null)
                     return;
                 
-                this.cbxProvince.DisplayMember = "Name";
-                this.cbxProvince.ValueMember = "Code";
+                this.cbxProvince.DisplayMember = "name";
+                this.cbxProvince.ValueMember = "code";
                 this.cbxProvince.DataSource = provinces.ToList<AreaCodeInfo>();
                 this.cbxProvince.Enabled = false;
             }
@@ -137,18 +144,18 @@ namespace FFireManage.Controls
         {
             if (this.m_AreaList == null || this.m_AreaList.Count == 0)
                 return;
-            var cities = this.m_AreaList.Where<AreaCodeInfo>(a => a.Code.EndsWith("00") && !a.Code.EndsWith("0000")).OrderBy<AreaCodeInfo, string>(u => u.Code);
+            var cities = this.m_AreaList.Where<AreaCodeInfo>(a => a.code.EndsWith("00") && !a.code.EndsWith("0000")).OrderBy<AreaCodeInfo, string>(u => u.code);
             if (cities == null || cities.Count()==0)
                 return;
             List<AreaCodeInfo> cityList = cities.ToList<AreaCodeInfo>();
             cityList.Insert(0, new AreaCodeInfo()
             {
-                Name = "",
-                Code = null
+                name = "",
+                code = null
             });
             
-            this.cbxCity.DisplayMember = "Name";
-            this.cbxCity.ValueMember = "Code";
+            this.cbxCity.DisplayMember = "name";
+            this.cbxCity.ValueMember = "code";
             this.cbxCity.DataSource = cityList;
             
             if (this.m_LocalPac != null)
@@ -187,18 +194,18 @@ namespace FFireManage.Controls
             List<AreaCodeInfo> countyList = new List<AreaCodeInfo>();
             if (cityCode!=null)
             {
-                var counties = this.m_AreaList.Where<AreaCodeInfo>(a => !a.Code.EndsWith("00") && cityCode.ToString().Substring(0,4)==a.Code.Substring(0,4)).OrderBy<AreaCodeInfo, string>(u => u.Code);
+                var counties = this.m_AreaList.Where<AreaCodeInfo>(a => !a.code.EndsWith("00") && cityCode.ToString().Substring(0,4)==a.code.Substring(0,4)).OrderBy<AreaCodeInfo, string>(u => u.code);
                 if (counties != null)
                     countyList = counties.ToList<AreaCodeInfo>();
             }
             
             countyList.Insert(0, new AreaCodeInfo()
             {
-                Name="",
-                Code=null
+                name="",
+                code=null
             });
-            this.cbxCounty.DisplayMember = "Name";
-            this.cbxCounty.ValueMember = "Code";
+            this.cbxCounty.DisplayMember = "name";
+            this.cbxCounty.ValueMember = "code";
             this.cbxCounty.DataSource = countyList;
             if (this.m_LocalPac != null)
             {

@@ -69,7 +69,7 @@ namespace FFireManage
 
         private void FormCreateAppLicense_Load(object sender, EventArgs e)
         {
-            this.pacControl1.Init(m_Area.Code);
+            this.pacControl1.Init(m_Area.code);
             DeviceType1 deviceType = DeviceType1.移动;
             List<object> deviceTypeList = CommonHelper.GetDataSource<DeviceType1>(deviceType);
             this.cbxDeviceType.DisplayMember = "Name";

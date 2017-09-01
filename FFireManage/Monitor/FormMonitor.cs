@@ -394,7 +394,7 @@ namespace FFireManage.Monitor
             m_Monitor.latitude = latitude;
             m_Monitor.shape = GDALHelper.LngLatToWktPoint(this.m_Monitor.longitude, this.m_Monitor.latitude);
             m_Monitor.county = this.pacControl1.CbxCounty.Text;
-            m_Monitor.deviceid = "111";
+            m_Monitor.deviceid = this.tbx_deviceid.Text;
 
             m_Monitor.height = height;
             m_Monitor.elevation = elevation;

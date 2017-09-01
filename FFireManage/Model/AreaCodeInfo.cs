@@ -10,24 +10,16 @@ namespace FFireManage
     /// </summary>
     public class AreaCodeInfo
     {
-        private string code;
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Code
+        public string code
         {
-            get { return code; }
-            set { code = value; }
+            get;
+            set;
         }
 
-        private string name;
-        /// <summary>
-        /// 
-        /// </summary>
-        public string Name
+        public string name
         {
-            get { return name; }
-            set { name = value; }
+            get;
+            set;
         }
 
         public override string ToString()

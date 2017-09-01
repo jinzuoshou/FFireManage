@@ -286,11 +286,11 @@ namespace FFireManage.DangerousFacilities
                     try
                     {
                         if (this.navigationControl1.AreaList != null)
-                            county = this.navigationControl1.AreaList.Where(a => a.Code == dFacilities.pac).First();
+                            county = this.navigationControl1.AreaList.Where(a => a.code == dFacilities.pac).First();
                     }
                     catch { }
 
-                    item.SubItems.Add((county == null) ? "" : county.Name);
+                    item.SubItems.Add((county == null) ? "" : county.name);
                     item.SubItems.Add(dFacilities.manager);
                     item.SubItems.Add(dFacilities.longitude.ToString());
                     item.SubItems.Add(dFacilities.latitude.ToString());

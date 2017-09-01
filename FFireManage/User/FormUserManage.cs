@@ -122,9 +122,9 @@ namespace FFireManage
         {
             for (int i = 0; i < this.m_AreaList.Count; i++)
             {
-                if (this.m_AreaList[i].Code == pac)
+                if (this.m_AreaList[i].code == pac)
                 {
-                    return this.m_AreaList[i].Name;
+                    return this.m_AreaList[i].name;
                 }
             }
 
@@ -226,7 +226,7 @@ namespace FFireManage
                 return;
             if (this.m_User.pac.Length == 6 && this.m_User.pac.EndsWith("00"))
             {
-                var provinces = areaList.Where<AreaCodeInfo>(u => u.Code.EndsWith("0000")).OrderBy<AreaCodeInfo, string>(u => u.Code);
+                var provinces = areaList.Where<AreaCodeInfo>(u => u.code.EndsWith("0000")).OrderBy<AreaCodeInfo, string>(u => u.code);
                 if (provinces == null)
                     return;
 
@@ -246,14 +246,14 @@ namespace FFireManage
                 string pCode = this.cbxProvince.ComboBox.SelectedValue.ToString();
                 this.GetUsers(pCode);
             }
-            var cities = this.m_AreaList.Where<AreaCodeInfo>(a => a.Code.EndsWith("00") && !a.Code.EndsWith("0000")).OrderBy<AreaCodeInfo, string>(u => u.Code);
+            var cities = this.m_AreaList.Where<AreaCodeInfo>(a => a.code.EndsWith("00") && !a.code.EndsWith("0000")).OrderBy<AreaCodeInfo, string>(u => u.code);
             if (cities == null || cities.Count() == 0)
                 return;
             List<AreaCodeInfo> cityList = cities.ToList<AreaCodeInfo>();
             cityList.Insert(0, new AreaCodeInfo()
             {
-                Name = "所属市",
-                Code = null
+                name = "所属市",
+                code = null
             });
 
             this.cbxCity.ComboBox.DisplayMember = "Name";
@@ -282,7 +282,7 @@ namespace FFireManage
             if (cityCode != null)
             {
                 this.GetUsers(cityCode.ToString());
-                var counties = this.m_AreaList.Where<AreaCodeInfo>(a => !a.Code.EndsWith("00") && cityCode.ToString().Substring(0, 4) == a.Code.Substring(0, 4)).OrderBy<AreaCodeInfo, string>(u => u.Code);
+                var counties = this.m_AreaList.Where<AreaCodeInfo>(a => !a.code.EndsWith("00") && cityCode.ToString().Substring(0, 4) == a.code.Substring(0, 4)).OrderBy<AreaCodeInfo, string>(u => u.code);
                 if (counties != null)
                     countyList = counties.ToList<AreaCodeInfo>();
 
@@ -313,8 +313,8 @@ namespace FFireManage
 
             countyList.Insert(0, new AreaCodeInfo()
             {
-                Name = "所属县",
-                Code = null
+                name = "所属县",
+                code = null
             });
             this.cbxCounty.ComboBox.DisplayMember = "Name";
             this.cbxCounty.ComboBox.ValueMember = "Code";

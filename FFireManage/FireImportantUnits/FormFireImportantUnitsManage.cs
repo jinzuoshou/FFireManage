@@ -287,11 +287,11 @@ namespace FFireManage.FireImportantUnits
                     try
                     {
                         if (this.navigationControl1.AreaList != null)
-                            county = this.navigationControl1.AreaList.Where(a => a.Code == fireImportantUnits.pac).First();
+                            county = this.navigationControl1.AreaList.Where(a => a.code == fireImportantUnits.pac).First();
                     }
                     catch { }
 
-                    item.SubItems.Add((county == null) ? "" : county.Name);
+                    item.SubItems.Add((county == null) ? "" : county.name);
                     item.SubItems.Add(fireImportantUnits.manager);
                     item.SubItems.Add(fireImportantUnits.longitude.ToString());
                     item.SubItems.Add(fireImportantUnits.latitude.ToString());

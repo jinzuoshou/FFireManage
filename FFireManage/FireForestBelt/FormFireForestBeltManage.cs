@@ -288,11 +288,11 @@ namespace FFireManage.FireForestBelt
                     try
                     {
                         if (this.navigationControl1.AreaList != null)
-                            county = this.navigationControl1.AreaList.Where(a => a.Code == fireForestBelt.pac).First();
+                            county = this.navigationControl1.AreaList.Where(a => a.code == fireForestBelt.pac).First();
                     }
                     catch { }
 
-                    item.SubItems.Add((county == null) ? "" : county.Name);
+                    item.SubItems.Add((county == null) ? "" : county.name);
                     item.SubItems.Add(fireForestBelt.build_unit);
                     item.SubItems.Add(fireForestBelt.longitude.ToString());
                     item.SubItems.Add(fireForestBelt.latitude.ToString());

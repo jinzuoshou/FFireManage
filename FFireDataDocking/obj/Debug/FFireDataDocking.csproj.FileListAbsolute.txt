@@ -48,3 +48,5 @@ F:\广西项目\Repos\FFireManage\FFireDataDocking\bin\Debug\RestSharp.xml
 F:\广西项目\Repos\FFireManage\FFireDataDocking\bin\Debug\AForge.Video.FFMPEG.xml
 F:\广西项目\Repos\FFireManage\FFireDataDocking\bin\Debug\AForge.Video.xml
 F:\广西项目\Repos\FFireManage\FFireDataDocking\bin\Debug\AForge.xml
+F:\广西项目\Repos\FFireManage\FFireDataDocking\bin\Debug\log4net.dll
+F:\广西项目\Repos\FFireManage\FFireDataDocking\bin\Debug\log4net.xml

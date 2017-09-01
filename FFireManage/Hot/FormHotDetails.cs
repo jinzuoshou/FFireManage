@@ -318,7 +318,7 @@ namespace FFireManage.Hot
                 return;
             if (this.m_User.pac.Length == 6 && this.m_User.pac.EndsWith("00"))
             {
-                var provinces = areaList.Where<AreaCodeInfo>(u => u.Code.EndsWith("0000")).OrderBy<AreaCodeInfo, string>(u => u.Code);
+                var provinces = areaList.Where<AreaCodeInfo>(u => u.code.EndsWith("0000")).OrderBy<AreaCodeInfo, string>(u => u.code);
                 if (provinces == null)
                     return;
 
@@ -332,7 +332,7 @@ namespace FFireManage.Hot
         {
             if (this.m_AreaList == null || this.m_AreaList.Count == 0)
                 return;
-            var cities = this.m_AreaList.Where<AreaCodeInfo>(a => a.Code.EndsWith("00") && !a.Code.EndsWith("0000")).OrderBy<AreaCodeInfo, string>(u => u.Code);
+            var cities = this.m_AreaList.Where<AreaCodeInfo>(a => a.code.EndsWith("00") && !a.code.EndsWith("0000")).OrderBy<AreaCodeInfo, string>(u => u.code);
             if (cities == null || cities.Count() == 0)
                 return;
             List<AreaCodeInfo> cityList = cities.ToList<AreaCodeInfo>();
@@ -378,7 +378,7 @@ namespace FFireManage.Hot
             List<AreaCodeInfo> countyList = new List<AreaCodeInfo>();
             if (cityCode != null)
             {
-                var counties = this.m_AreaList.Where<AreaCodeInfo>(a => !a.Code.EndsWith("00") && cityCode.ToString().Substring(0, 4) == a.Code.Substring(0, 4)).OrderBy<AreaCodeInfo, string>(u => u.Code);
+                var counties = this.m_AreaList.Where<AreaCodeInfo>(a => !a.code.EndsWith("00") && cityCode.ToString().Substring(0, 4) == a.code.Substring(0, 4)).OrderBy<AreaCodeInfo, string>(u => u.code);
                 if (counties != null)
                     countyList = counties.ToList<AreaCodeInfo>();
             }

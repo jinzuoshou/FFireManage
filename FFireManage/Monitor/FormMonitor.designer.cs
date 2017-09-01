@@ -56,6 +56,8 @@ namespace FFireManage.Monitor
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.pacControl1 = new FFireManage.Controls.PACControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.tbx_deviceid = new System.Windows.Forms.TextBox();
+            this.label21 = new System.Windows.Forms.Label();
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.checkBox1 = new System.Windows.Forms.CheckBox();
             this.cbxChannel1 = new System.Windows.Forms.ComboBox();
@@ -79,8 +81,6 @@ namespace FFireManage.Monitor
             this.label19 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.tbxIp2 = new FFireManage.Controls.IPTextBox();
-            this.label21 = new System.Windows.Forms.Label();
-            this.tbx_deviceid = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -322,9 +322,9 @@ namespace FFireManage.Monitor
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.pacControl1);
-            this.tabPage2.Location = new System.Drawing.Point(4, 26);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(283, 254);
+            this.tabPage2.Size = new System.Drawing.Size(283, 258);
             this.tabPage2.TabIndex = 4;
             this.tabPage2.Text = "行政区域";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -359,6 +359,22 @@ namespace FFireManage.Monitor
             this.tabPage3.Text = "数字云台配置信息";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
+            // tbx_deviceid
+            // 
+            this.tbx_deviceid.Location = new System.Drawing.Point(89, 137);
+            this.tbx_deviceid.Name = "tbx_deviceid";
+            this.tbx_deviceid.Size = new System.Drawing.Size(180, 23);
+            this.tbx_deviceid.TabIndex = 5;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(30, 140);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(56, 17);
+            this.label21.TabIndex = 13;
+            this.label21.Text = "设备编号";
+            // 
             // tabPage4
             // 
             this.tabPage4.Controls.Add(this.checkBox1);
@@ -372,10 +388,10 @@ namespace FFireManage.Monitor
             this.tabPage4.Controls.Add(this.label13);
             this.tabPage4.Controls.Add(this.label7);
             this.tabPage4.Controls.Add(this.tbxIp1);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 26);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(283, 258);
+            this.tabPage4.Size = new System.Drawing.Size(283, 254);
             this.tabPage4.TabIndex = 2;
             this.tabPage4.Text = "可见光";
             this.tabPage4.UseVisualStyleBackColor = true;
@@ -488,10 +504,10 @@ namespace FFireManage.Monitor
             this.tabPage5.Controls.Add(this.label19);
             this.tabPage5.Controls.Add(this.label20);
             this.tabPage5.Controls.Add(this.tbxIp2);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Location = new System.Drawing.Point(4, 26);
             this.tabPage5.Name = "tabPage5";
             this.tabPage5.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage5.Size = new System.Drawing.Size(283, 258);
+            this.tabPage5.Size = new System.Drawing.Size(283, 254);
             this.tabPage5.TabIndex = 3;
             this.tabPage5.Text = "近红外";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -578,22 +594,6 @@ namespace FFireManage.Monitor
             this.tbxIp2.Padding = new System.Windows.Forms.Padding(1);
             this.tbxIp2.Size = new System.Drawing.Size(140, 21);
             this.tbxIp2.TabIndex = 22;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(30, 140);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(56, 17);
-            this.label21.TabIndex = 13;
-            this.label21.Text = "设备编号";
-            // 
-            // tbx_deviceid
-            // 
-            this.tbx_deviceid.Location = new System.Drawing.Point(89, 137);
-            this.tbx_deviceid.Name = "tbx_deviceid";
-            this.tbx_deviceid.Size = new System.Drawing.Size(180, 23);
-            this.tbx_deviceid.TabIndex = 5;
             // 
             // FormMonitor
             // 

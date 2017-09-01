@@ -305,11 +305,11 @@ namespace FFireManage.RadioStation
                     try
                     {
                         if (this.navigationControl1.AreaList != null)
-                            county = this.navigationControl1.AreaList.Where(a => a.Code == radioStation.pac).First();
+                            county = this.navigationControl1.AreaList.Where(a => a.code == radioStation.pac).First();
                     }
                     catch { }
                     
-                    item.SubItems.Add((county == null) ? "" : county.Name);
+                    item.SubItems.Add((county == null) ? "" : county.name);
                     item.SubItems.Add(radioStation.manager);
                     item.SubItems.Add(radioStation.longitude.ToString());
                     item.SubItems.Add(radioStation.latitude.ToString());
