@@ -20,6 +20,7 @@ using FFireManage.FirePBrigade;
 using FFireManage.FireImportantUnits;
 using FFireManage.FireDocument;
 using FFireManage.FireOffice;
+using FFireManage.PlaneWaterPoint;
 
 namespace FFireManage
 {
@@ -44,7 +45,7 @@ namespace FFireManage
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-             //DispatcherManager.Instance.Login(GlobeHelper.Instance.User.account, GlobeHelper.Instance.User.password, AppConfigHelper.GetAppConfig("Ip"), AppConfigHelper.GetAppConfig("Ip"), "3D5B0ACB9E6031823CE4E07B90B2E769");
+            //DispatcherManager.Instance.Login(GlobeHelper.Instance.User.account, GlobeHelper.Instance.User.password, AppConfigHelper.GetAppConfig("Ip"), AppConfigHelper.GetAppConfig("Ip"), "3D5B0ACB9E6031823CE4E07B90B2E769");
         }
 
         private void btnAppLicense_Click(object sender, EventArgs e)
@@ -124,6 +125,12 @@ namespace FFireManage
         {
             FormFireOfficeManage pFormFireOfficeManage = new FormFireOfficeManage();
             pFormFireOfficeManage.ShowDialog(this);
+        }
+
+        private void btn_PlaneWaterPoint_Click(object sender, EventArgs e)
+        {
+            FormPlaneWaterPointManage pFormPlaneWaterPointManage = new FormPlaneWaterPointManage();
+            pFormPlaneWaterPointManage.ShowDialog(this);
         }
     }
 }

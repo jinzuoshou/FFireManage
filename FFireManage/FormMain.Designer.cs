@@ -43,6 +43,7 @@
             this.btn_FireImportantUnits = new System.Windows.Forms.Button();
             this.btn_FireDocument = new System.Windows.Forms.Button();
             this.btn_FireOffice = new System.Windows.Forms.Button();
+            this.btn_PlaneWaterPoint = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUserManage
@@ -195,11 +196,22 @@
             this.btn_FireOffice.UseVisualStyleBackColor = true;
             this.btn_FireOffice.Click += new System.EventHandler(this.btn_FireOffice_Click);
             // 
+            // btn_PlaneWaterPoint
+            // 
+            this.btn_PlaneWaterPoint.Location = new System.Drawing.Point(450, 241);
+            this.btn_PlaneWaterPoint.Name = "btn_PlaneWaterPoint";
+            this.btn_PlaneWaterPoint.Size = new System.Drawing.Size(93, 36);
+            this.btn_PlaneWaterPoint.TabIndex = 17;
+            this.btn_PlaneWaterPoint.Text = "飞机吊桶取水点";
+            this.btn_PlaneWaterPoint.UseVisualStyleBackColor = true;
+            this.btn_PlaneWaterPoint.Click += new System.EventHandler(this.btn_PlaneWaterPoint_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.btn_PlaneWaterPoint);
             this.Controls.Add(this.btn_FireOffice);
             this.Controls.Add(this.btn_FireDocument);
             this.Controls.Add(this.btn_FireImportantUnits);
@@ -241,5 +253,6 @@
         private System.Windows.Forms.Button btn_FireImportantUnits;
         private System.Windows.Forms.Button btn_FireDocument;
         private System.Windows.Forms.Button btn_FireOffice;
+        private System.Windows.Forms.Button btn_PlaneWaterPoint;
     }
 }
