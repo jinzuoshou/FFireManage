@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -14,6 +15,7 @@ using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
 using FFireDataManger;
 using FFireManage;
+using FFireManage.Model;
 using FFireManage.Service;
 using FFireManage.Utility;
 using log4net;
@@ -23,12 +25,52 @@ namespace FFireDataDocking
     public partial class FormDataDocking : Form
     {
         private FireCommandController m_FireCommandConotroller = null;
+        private AreaCodeController m_AreaCodeController = null;
+        private List<AreaCodeInfo> areaCodeList = null;
         private static log4net.ILog fireCommandLog = LogManager.GetLogger("FireCommandLogger");
         public FormDataDocking()
         {
             InitializeComponent();
+            this.btnAddFireCommand.Enabled = false;
+
             m_FireCommandConotroller = new FireCommandController();
             m_FireCommandConotroller.AddEvent += M_FireCommandConotroller_AddEvent;
+
+            this.m_AreaCodeController = new AreaCodeController();
+            this.m_AreaCodeController.QueryEvent += M_AreaCodeController_QueryEvent;
+        }
+
+        private void M_AreaCodeController_QueryEvent(object sender, ServiceEventArgs e)
+        {
+            if (IsDisposed || !this.IsHandleCreated) return;
+
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+
+                    try
+                    {
+                        GetListResultInfo<AreaCodeInfo> result = JsonHelper.JSONToObject<GetListResultInfo<AreaCodeInfo>>(content);
+
+                        if (result.rows != null && result.rows.Count > 0)
+                        {
+                            areaCodeList = result.rows;
+                            this.btnAddFireCommand.Enabled = true;
+                        }
+                    }
+                    catch
+                    {
+
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(sender.ToString(), "获取行政区出错", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }));
         }
 
         private void M_FireCommandConotroller_AddEvent(object sender, ServiceEventArgs e)
@@ -81,15 +123,15 @@ namespace FFireDataDocking
                      f.mediaByteDict=GetFileDict(f);
                  });
             }
-            foreach(Fire_Command fireCommand in fireCommandList)
+            foreach (Fire_Command fireCommand in fireCommandList)
             {
-                Task task = Task.Factory.StartNew(() => 
+                Task task = Task.Factory.StartNew(() =>
                 {
                     this.m_FireCommandConotroller.Add(fireCommand);
                 });
                 task.Wait();
             }
-            
+            MessageBox.Show(this, "森林防火指挥部入库成功");
         }
 
         private List<T> GetEntities<T>(IFeatureClass featureClass)
@@ -179,24 +221,36 @@ namespace FFireDataDocking
             if (fireCommand.picture1 != null && fireCommand.picture1 != "")
             {
                 string filePath = Regex.Replace(fireCommand.picture1, @"[\r\n]", "");
-
-                string fileName = System.IO.Path.GetFileNameWithoutExtension(filePath);
-                fileDict.Add(fileName, filePath);
+                if (File.Exists(filePath))
+                {
+                    string fileName = System.IO.Path.GetFileNameWithoutExtension(filePath);
+                    fileDict.Add(fileName, filePath);
+                }
             }
             if (fireCommand.picture2 != null && fireCommand.picture2 != "")
             {
                 string filePath = Regex.Replace(fireCommand.picture2, @"[\r\n]", "");
-                string fileName = System.IO.Path.GetFileName(filePath);
-                fileDict.Add(fileName, filePath);
+                if (File.Exists(filePath))
+                {
+                    string fileName = System.IO.Path.GetFileName(filePath);
+                    fileDict.Add(fileName, filePath);
+                }
             }
             if (fireCommand.video != null && fireCommand.video != "")
             {
                 string filePath = Regex.Replace(fireCommand.video, @"[\r\n]", "");
-                string fileName = System.IO.Path.GetFileName(filePath);
-                fileDict.Add(fileName, filePath);
+                if (File.Exists(filePath))
+                {
+                    string fileName = System.IO.Path.GetFileName(filePath);
+                    fileDict.Add(fileName, filePath);
+                }
             }
             return fileDict;
         }
 
+        private void FormDataDocking_Load(object sender, EventArgs e)
+        {
+            this.m_AreaCodeController.GetList("450000", 3);
+        }
     }
 }

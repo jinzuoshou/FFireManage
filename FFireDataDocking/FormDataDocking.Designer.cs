@@ -62,6 +62,7 @@
             this.Controls.Add(this.btnAddFireCommand);
             this.Name = "FormDataDocking";
             this.Text = "上传数据";
+            this.Load += new System.EventHandler(this.FormDataDocking_Load);
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).EndInit();
             this.ResumeLayout(false);
 

@@ -235,7 +235,7 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(93, 36);
             this.button2.TabIndex = 20;
-            this.button2.Text = "森林防火物资储备库";
+            this.button2.Text = "大型警示牌储备库";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
