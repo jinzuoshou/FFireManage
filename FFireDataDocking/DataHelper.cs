@@ -70,7 +70,21 @@ namespace FFireDataDocking
                                     {
                                         if (!Convert.IsDBNull(pRow.get_Value(i)))
                                         {
-                                            info.SetValue(entity, Convert.ChangeType(pRow.get_Value(i), info.PropertyType), null);
+                                            type = info.PropertyType;
+
+                                            //判断convertsionType是否为nullable泛型类
+                                            if (type.IsGenericType && type.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
+                                            {
+                                                //如果type为nullable类，声明一个NullableConverter类，该类提供从Nullable类到基础基元类型的转换
+                                                System.ComponentModel.NullableConverter nullableConverter = new System.ComponentModel.NullableConverter(type);
+                                                //将type转换为nullable对的基础基元类型
+                                                type = nullableConverter.UnderlyingType;
+                                                info.SetValue(entity, Convert.ChangeType(pRow.get_Value(i), type), null);
+                                            }
+                                            else
+                                            {
+                                                info.SetValue(entity, Convert.ChangeType(pRow.get_Value(i), info.PropertyType), null);
+                                            }
                                         }
                                     }
                                 }
@@ -79,7 +93,21 @@ namespace FFireDataDocking
                             {
                                 if (!Convert.IsDBNull(pRow.get_Value(i)))
                                 {
-                                    info.SetValue(entity, Convert.ChangeType(pRow.get_Value(i), info.PropertyType), null);
+                                    type = info.PropertyType;
+
+                                    //判断convertsionType是否为nullable泛型类
+                                    if (type.IsGenericType && type.GetGenericTypeDefinition().Equals(typeof(Nullable<>)))
+                                    {
+                                        //如果type为nullable类，声明一个NullableConverter类，该类提供从Nullable类到基础基元类型的转换
+                                        System.ComponentModel.NullableConverter nullableConverter = new System.ComponentModel.NullableConverter(type);
+                                        //将type转换为nullable对的基础基元类型
+                                        type = nullableConverter.UnderlyingType;
+                                        info.SetValue(entity, Convert.ChangeType(pRow.get_Value(i), type), null);
+                                    }
+                                    else
+                                    {
+                                        info.SetValue(entity, Convert.ChangeType(pRow.get_Value(i), info.PropertyType), null);
+                                    }
                                 }
                             }
                         }

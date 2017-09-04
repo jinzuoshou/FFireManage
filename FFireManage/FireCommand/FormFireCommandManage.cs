@@ -292,7 +292,6 @@ namespace FFireManage.FireCommand
                     ListViewItem item = new ListViewItem();
 
                     item.SubItems.Add(monitor.name);
-                    item.SubItems.Add(monitor.name);
                     AreaCodeInfo county = null;
                     try
                     {

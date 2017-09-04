@@ -62,6 +62,8 @@
             this.mediaControl1 = new FFireManage.Controls.MediaControl();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.tbx_address = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage_location.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -127,6 +129,8 @@
             // 
             // tabPage_baseInfo
             // 
+            this.tabPage_baseInfo.Controls.Add(this.tbx_address);
+            this.tabPage_baseInfo.Controls.Add(this.label13);
             this.tabPage_baseInfo.Controls.Add(this.label12);
             this.tabPage_baseInfo.Controls.Add(this.cbx_status);
             this.tabPage_baseInfo.Controls.Add(this.label11);
@@ -348,7 +352,7 @@
             // 
             this.tbx_name.Location = new System.Drawing.Point(87, 18);
             this.tbx_name.Name = "tbx_name";
-            this.tbx_name.Size = new System.Drawing.Size(474, 23);
+            this.tbx_name.Size = new System.Drawing.Size(185, 23);
             this.tbx_name.TabIndex = 12;
             // 
             // label1
@@ -401,6 +405,22 @@
             this.btnOK.Text = "确定(&O)";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // tbx_address
+            // 
+            this.tbx_address.Location = new System.Drawing.Point(374, 18);
+            this.tbx_address.Name = "tbx_address";
+            this.tbx_address.Size = new System.Drawing.Size(185, 23);
+            this.tbx_address.TabIndex = 35;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(333, 21);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 17);
+            this.label13.TabIndex = 34;
+            this.label13.Text = "地址:";
             // 
             // FormFireCommand
             // 
@@ -461,5 +481,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox tbx_note;
         private Controls.MediaControl mediaControl1;
+        private System.Windows.Forms.TextBox tbx_address;
+        private System.Windows.Forms.Label label13;
     }
 }

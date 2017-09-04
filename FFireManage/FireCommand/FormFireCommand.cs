@@ -78,7 +78,6 @@ namespace FFireManage.FireCommand
                         if (result.status == 10000)
                         {
                             this.DialogResult = DialogResult.OK;
-                            this.Close();
                         }
                         else
                         {
@@ -162,10 +161,11 @@ namespace FFireManage.FireCommand
                 this.coordinatesInputControl1.Longitude = this.m_FireCommand.longitude;
                 this.coordinatesInputControl1.Latitude = this.m_FireCommand.latitude;
                 this.tbx_name.Text = this.m_FireCommand.name;
+                this.tbx_address.Text = (this.m_FireCommand.address == null) ? "" : this.m_FireCommand.address;
                 this.tbx_director.Text = this.m_FireCommand.director;
                 this.tbx_dir_phone.Text = this.m_FireCommand.dir_phone;
                 this.tbx_commander.Text = this.m_FireCommand.commander;
-                this.tbx_commander_phone.Text = this.m_FireCommand.commander_phone.ToString();
+                this.tbx_commander_phone.Text = (this.m_FireCommand.commander_phone==null)?null:this.m_FireCommand.commander_phone.ToString();
                 this.tbx_phone.Text = this.m_FireCommand.phone;
                 this.tbx_num_people.Text = this.m_FireCommand.num_people.ToString();
                 this.cbx_type.SelectedValue = this.m_FireCommand.type;
@@ -174,6 +174,8 @@ namespace FFireManage.FireCommand
                 this.cbx_status.SelectedValue = (int)this.m_FireCommand.status;
 
                 this.tbx_note.Text = this.m_FireCommand.note;
+
+                this.mediaControl1.MediaFiles = this.m_FireCommand.mediaFiles;
 
                 if (this.m_OperationType == OperationType.Check)
                 {
@@ -190,6 +192,7 @@ namespace FFireManage.FireCommand
                     this.tbx_phone.Enabled = false;
                     this.tbx_num_people.Enabled = false;
                     this.cbx_type.Enabled = false;
+                    this.cbx_level.Enabled = false;
                     this.cbx_institutions.Enabled = false;
 
                     this.cbx_status.Enabled = false;
@@ -217,11 +220,18 @@ namespace FFireManage.FireCommand
                 this.pacControl11.Focus();
                 return;
             }
-            if (this.tbx_name.Text == "")
+            if (this.tbx_name.Text.Trim() == "")
             {
                 MessageBox.Show(this, "请输入森林防火指挥部名称", "信息提示");
                 this.tabControl1.SelectedTab = this.tabPage_baseInfo;
                 this.tbx_name.Focus();
+                return;
+            }
+            if (this.tbx_address.Text.Trim() == "")
+            {
+                MessageBox.Show(this, "请输入森林防火指挥部地址", "信息提示");
+                this.tabControl1.SelectedTab = this.tabPage_baseInfo;
+                this.tbx_address.Focus();
                 return;
             }
             if (this.tbx_director.Text.Trim() == "")
@@ -293,6 +303,7 @@ namespace FFireManage.FireCommand
             this.m_FireCommand.latitude = this.coordinatesInputControl1.Latitude;
             this.m_FireCommand.pac=this.pacControl11.LocalPac;
             this.m_FireCommand.name = this.tbx_name.Text;
+            this.m_FireCommand.address = this.tbx_address.Text.Trim();
             this.m_FireCommand.director = this.tbx_director.Text;
             this.m_FireCommand.dir_phone = this.tbx_dir_phone.Text;
             this.m_FireCommand.commander = this.tbx_commander.Text;
