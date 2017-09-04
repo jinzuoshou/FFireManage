@@ -17,7 +17,7 @@ namespace FFireManage.WatchTower
     {
         #region 字段
         private Fire_Observatory currentWatchTower = null;
-        private ServiceController m_ServiceController = null;
+        private ObservatoryController m_ObservatoryController = null;
         private List<Fire_Observatory> m_WatchTowerList = null;
         #endregion
 
@@ -25,37 +25,45 @@ namespace FFireManage.WatchTower
         public FormWatchTowerManage()
         {
             InitializeComponent();
-            this.m_ServiceController = new ServiceController();
-            this.m_ServiceController.GetWatchTowerListEvent += new EventHandler(m_ServiceController_GetWatchTowerListEvent);
-            this.m_ServiceController.DeleteWatchTowerEvent += new EventHandler(m_ServiceController_DeleteWatchTowerEvent);
+            this.m_ObservatoryController = new ObservatoryController();
+            this.m_ObservatoryController.QueryEvent += m_ObservatoryController_QueryEvent;
+            this.m_ObservatoryController.DeleteEvent += m_ObservatoryController_DeleteEvent;
         }
 
         #endregion
 
         #region 事件响应
-        private void m_ServiceController_GetWatchTowerListEvent(object sender, EventArgs e)
+        private void m_ObservatoryController_QueryEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    GetListResultInfo<Fire_Observatory> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_Observatory>>(content);
-
-                    if (result.rows != null && result.rows.Count > 0)
+                    try 
                     {
-                        m_WatchTowerList = result.rows;
+                        GetListResultInfo<Fire_Observatory> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_Observatory>>(content);
 
-                        this.pagerControl1.NMax = result.total;
-                        this.FillData(m_WatchTowerList);
+                        if (result.rows != null && result.rows.Count > 0)
+                        {
+                            m_WatchTowerList = result.rows;
 
+                            this.pagerControl1.NMax = result.total;
+                            this.FillData(m_WatchTowerList);
+
+                        }
+                        else
+                        {
+                            this.pagerControl1.NMax = 0;
+                            this.FillData(null);
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        this.pagerControl1.NMax = 0;
-                        this.FillData(null);
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
+                    
                 }
                 else
                 {
@@ -64,20 +72,28 @@ namespace FFireManage.WatchTower
             }));
         }
 
-        private void m_ServiceController_DeleteWatchTowerEvent(object sender, EventArgs e)
+        private void m_ObservatoryController_DeleteEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
-
-                    if (result.status == 10000)
+                    try
                     {
-                        this.GetWatchTowerList(this.navigationControl1.Pac);
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.GetWatchTowerList(this.navigationControl1.Pac);
+                        }
                     }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+                    
                 }
                 else
                 {
@@ -215,7 +231,7 @@ namespace FFireManage.WatchTower
             {
                 if (MessageBox.Show(this, "您确定要删除" + this.currentWatchTower.name + "吗？数据删除后不可恢复。", "删除提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
                 {
-                    this.m_ServiceController.DeleteWatchTowerForGet(this.currentWatchTower.id);
+                    this.m_ObservatoryController.Delete(this.currentWatchTower.id);
                 }
             }
         }
@@ -293,7 +309,15 @@ namespace FFireManage.WatchTower
         #region 成员函数
         private void GetWatchTowerList(string pac)
         {
-            this.m_ServiceController.GetWatchTowerListForGet(pac, 3, this.pagerControl1.PageCurrent, this.pagerControl1.PageSize, "id", "desc");
+            this.m_ObservatoryController.Get(new Dictionary<string, object>()
+            {
+                {"pac",pac },
+                {"fetchType",3 },
+                {"page" ,this.pagerControl1.PageCurrent},
+                {"rows", this.pagerControl1.PageSize},
+                {"sort","id" },
+                {"order","desc" }
+            });
         }
         #endregion
     }

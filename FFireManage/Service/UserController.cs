@@ -135,7 +135,7 @@ namespace FFireManage.Service
         /// 修改备注：无
         /// 版本：1.0
         /// </remarks>
-        public void Delete(string id)
+        public void Delete(int id)
         {
             Dictionary<string, object> parameterDict = new Dictionary<string, object>()
             {

@@ -18,7 +18,7 @@ namespace FFireManage.Hot
         private HotOperate hotOperate;
         private HotController hotControler = null;
         private List<AreaCodeInfo> m_AreaList = null;
-        private ServiceController m_ServiceController = null;
+        private AreaCodeController m_AreaCodeController = null;
         private UserInfo m_User = null;
 
         public FormHotDetails(Fire_Hot hot,HotOperate hotOperate)
@@ -33,11 +33,11 @@ namespace FFireManage.Hot
             this.hotControler.AuditEvent += new EventHandler<ServiceEventArgs>(HotControler_AuditEvent);
             this.hotControler.FeedbackEvent += new EventHandler<ServiceEventArgs>(HotControler_FeedbackEvent);
 
-            this.m_ServiceController = new ServiceController();
-            this.m_ServiceController.GetAreaCodeListEvent += M_ServiceController_GetAreaCodeListEvent;
+            this.m_AreaCodeController = new AreaCodeController();
+            this.m_AreaCodeController.QueryEvent += m_AreaCodeController_QueryEvent;
         }
 
-        private void M_ServiceController_GetAreaCodeListEvent(object sender, EventArgs e)
+        private void m_AreaCodeController_QueryEvent(object sender, ServiceEventArgs e)
         {
             if (IsDisposed || !this.IsHandleCreated) return;
 
@@ -45,15 +45,22 @@ namespace FFireManage.Hot
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    GetListResultInfo<AreaCodeInfo> result = JsonHelper.JSONToObject<GetListResultInfo<AreaCodeInfo>>(content);
-
-                    if (result.rows != null && result.rows.Count > 0)
+                    try 
                     {
-                        m_AreaList = result.rows;
+                        GetListResultInfo<AreaCodeInfo> result = JsonHelper.JSONToObject<GetListResultInfo<AreaCodeInfo>>(content);
 
-                        this.LoadProvince(m_AreaList);
+                        if (result.rows != null && result.rows.Count > 0)
+                        {
+                            m_AreaList = result.rows;
+
+                            this.LoadProvince(m_AreaList);
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "信息提示");
                     }
                 }
                 else
@@ -305,11 +312,11 @@ namespace FFireManage.Hot
             this.m_User = user;
             if (this.m_User.pac.Length == 6 && this.m_User.pac.EndsWith("0000"))
             {
-                this.m_ServiceController.GetAreaCodeList(this.m_User.pac, 3);
+                this.m_AreaCodeController.GetList(this.m_User.pac, 3);
             }
             else if (this.m_User.pac.Length == 6 && !this.m_User.pac.EndsWith("0000"))
             {
-                this.m_ServiceController.GetAreaCodeList(this.m_User.pac.Substring(0, 2) + "0000", 3);
+                this.m_AreaCodeController.GetList(this.m_User.pac.Substring(0, 2) + "0000", 3);
             }
         }
         private void LoadProvince(List<AreaCodeInfo> areaList)

@@ -14,33 +14,41 @@ namespace FFireManage.License
     public partial class FormUpdateAppLicense : Form
     {
         private LicenceInfo m_License = null;
-        private ServiceController m_ServiceController = null;
+        private LicenseController m_LicenseController = null;
+
         public FormUpdateAppLicense(LicenceInfo license)
         {
             InitializeComponent();
             this.m_License = license;
 
-            this.m_ServiceController = new ServiceController();
-            this.m_ServiceController.UpdateLicenseEvent += M_ImeiController_UpdateLicenseEvent;
+            this.m_LicenseController = new LicenseController();
+            this.m_LicenseController.EditEvent += m_LicenseController_EditEvent;
         }
 
-        private void M_ImeiController_UpdateLicenseEvent(object sender, EventArgs e)
+        private void m_LicenseController_EditEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
                     string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+                    try
+                    {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                    if (result.status == 10000)
-                    {
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
                 }
                 else
@@ -81,14 +89,12 @@ namespace FFireManage.License
                 this.tbxImei.SelectAll();
                 return;
             }
-            this.m_ServiceController.UpdateLicenseForPost(m_License.id,imei, pac,key);
+            this.m_LicenseController.Update(m_License.id,imei, pac,key);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
-
-        
     }
 }

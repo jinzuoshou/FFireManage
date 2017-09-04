@@ -17,7 +17,7 @@ namespace FFireManage.Artificiallake
     {
         private Fire_Artificiallake m_Artificiallake = null;
         private OperationType m_OperationType;
-        private ServiceController m_ServiceController = null;
+        private ArtificiallakeController m_ArtificiallakeController = null;
 
         public FormArtificiallake(OperationType type, Fire_Artificiallake artificiallake = null)
         {
@@ -25,30 +25,39 @@ namespace FFireManage.Artificiallake
 
             this.m_OperationType = type;
             this.m_Artificiallake = artificiallake;
-            this.m_ServiceController = new ServiceController();
+            this.m_ArtificiallakeController = new ArtificiallakeController();
 
-            this.m_ServiceController.AddArtificiallakeEvent += M_ServiceController_AddArtificiallakeEvent;
-            this.m_ServiceController.EditArtificiallakeEvent += M_ServiceController_EditArtificiallakeEvent;
+            this.m_ArtificiallakeController.AddEvent += m_ArtificiallakeController_AddEvent;
+            this.m_ArtificiallakeController.EditEvent += m_ArtificiallakeController_EditEvent;
         }
 
-        private void M_ServiceController_AddArtificiallakeEvent(object sender, EventArgs e)
+        private void m_ArtificiallakeController_AddEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+                    string content = e.Content;
 
-                    if (result.status == 10000)
+                    try 
                     {
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
+                   
                 }
                 else
                 {
@@ -57,25 +66,34 @@ namespace FFireManage.Artificiallake
             }));
         }
 
-        private void M_ServiceController_EditArtificiallakeEvent(object sender, EventArgs e)
+        private void m_ArtificiallakeController_EditEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+                    string content = e.Content;
 
-                    if (result.status == 10000)
+                    try
                     {
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
 
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
+                    
                 }
                 else
                 {
@@ -245,11 +263,11 @@ namespace FFireManage.Artificiallake
 
             if (m_OperationType == OperationType.Add)
             {
-                this.m_ServiceController.AddArtificiallakeForPost(this.m_Artificiallake);
+                this.m_ArtificiallakeController.Add(this.m_Artificiallake);
             }
             else if (m_OperationType == OperationType.Edit)
             {
-                this.m_ServiceController.EditArtificiallakeForPost(this.m_Artificiallake);
+                this.m_ArtificiallakeController.Edit(this.m_Artificiallake);
             }
         }
 

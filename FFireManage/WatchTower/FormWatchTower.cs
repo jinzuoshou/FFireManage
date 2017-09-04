@@ -17,7 +17,7 @@ namespace FFireManage.WatchTower
     {
         private Fire_Observatory m_WatchTower = null;
         private OperationType m_OperationType;
-        private ServiceController m_ServiceController = null;
+        private ObservatoryController m_ObservatoryController = null;
 
         public FormWatchTower(OperationType type, Fire_Observatory watchTower = null)
         {
@@ -25,30 +25,38 @@ namespace FFireManage.WatchTower
 
             this.m_OperationType = type;
             this.m_WatchTower = watchTower;
-            this.m_ServiceController = new ServiceController();
+            this.m_ObservatoryController = new ObservatoryController();
 
-            this.m_ServiceController.AddWatchTowerEvent += M_ServiceController_AddWatchTowerEvent;
-            this.m_ServiceController.EditWatchTowerEvent += M_ServiceController_EditWatchTowerEvent;
+            this.m_ObservatoryController.AddEvent += m_ObservatoryController_AddEvent;
+            this.m_ObservatoryController.EditEvent += m_ObservatoryController_EditEvent;
         }
 
-        private void M_ServiceController_AddWatchTowerEvent(object sender, EventArgs e)
+        private void m_ObservatoryController_AddEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+                    string content = e.Content;
 
-                    if (result.status == 10000)
+                    try
                     {
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
+                    
                 }
                 else
                 {
@@ -57,25 +65,33 @@ namespace FFireManage.WatchTower
             }));
         }
 
-        private void M_ServiceController_EditWatchTowerEvent(object sender, EventArgs e)
+        private void m_ObservatoryController_EditEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
-
-                    if (result.status == 10000)
+                    string content = e.Content;
+                    try
                     {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
+                    
                 }
                 else
                 {
@@ -268,11 +284,11 @@ namespace FFireManage.WatchTower
 
             if (m_OperationType == OperationType.Add)
             {
-                this.m_ServiceController.AddWatchTowerForPost(this.m_WatchTower);
+                this.m_ObservatoryController.Add(this.m_WatchTower);
             }
             else if (m_OperationType == OperationType.Edit)
             {
-                this.m_ServiceController.EditWatchTowerForPost(this.m_WatchTower);
+                this.m_ObservatoryController.Edit(this.m_WatchTower);
             }
         }
 

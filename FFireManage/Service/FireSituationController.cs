@@ -27,8 +27,11 @@ namespace FFireManage.Service
         public override void Delete(Dictionary<string, object> parameterDict)
         {
             if (parameterDict != null)
-                parameterDict.Add("f", 4193001);
-            this.ExecuteGet(parameterDict, OnDeleteEvent);
+            {
+                if (!parameterDict.ContainsKey("f"))
+                    parameterDict.Add("f", 4193001);
+                this.ExecuteGet(parameterDict, OnDeleteEvent);
+            }
         }
 
         /// <summary>
@@ -38,7 +41,8 @@ namespace FFireManage.Service
         public override void Edit(FireSituation entity)
         {
             Dictionary<string, object> parameterDict = entity.ObjectToDict();
-            parameterDict.Add("f", 4192001);
+            if (!parameterDict.ContainsKey("f"))
+                parameterDict.Add("f", 4192001);
             this.ExecutePost(parameterDict, OnEditEvent, entity.MediaFileDict);
         }
 
@@ -50,7 +54,8 @@ namespace FFireManage.Service
         {
             if (parameterDict != null)
             {
-                parameterDict.Add("f", 4190001);
+                if (!parameterDict.ContainsKey("f"))
+                    parameterDict.Add("f", 4190001);
                 this.ExecuteGet(parameterDict, OnQueryEvent);
             }
         }

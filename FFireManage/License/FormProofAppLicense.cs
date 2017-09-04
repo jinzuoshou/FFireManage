@@ -13,12 +13,12 @@ namespace FFireManage.License
 {
     public partial class FormProofAppLicense : Form
     {
-        private ServiceController m_ServiceController = null;
+        private LicenseController m_ServiceController = null;
         public FormProofAppLicense()
         {
             InitializeComponent();
 
-            this.m_ServiceController = new ServiceController();
+            this.m_ServiceController = new LicenseController();
             this.m_ServiceController.ProofLicenseEvent += M_ImeiController_ProofLicenseEvent;
         }
 
@@ -76,7 +76,7 @@ namespace FFireManage.License
                 this.tbxImei.SelectAll();
                 return;
             }
-            this.m_ServiceController.ProofLicenseForPost(imei);
+            this.m_ServiceController.ProofLicense(imei);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

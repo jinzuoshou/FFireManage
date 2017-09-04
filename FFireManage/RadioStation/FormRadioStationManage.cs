@@ -40,7 +40,7 @@ namespace FFireManage.RadioStation
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
                     try
                     {
                         GetListResultInfo<Fire_RadioStation> result = JsonHelper.JSONToObject<GetListResultInfo<Fire_RadioStation>>(content);

@@ -417,7 +417,6 @@
     <Compile Include="Service\PlanewaterpointControler.cs" />
     <Compile Include="Service\RadioStationController.cs" />
     <Compile Include="Service\SatelliteGroundStationControler.cs" />
-    <Compile Include="Service\TarmacController.cs" />
     <Compile Include="Service\FireWarehouseController.cs" />
     <Compile Include="Service\UserController.cs" />
     <Compile Include="Service\WarningBoardsController.cs" />
@@ -478,7 +477,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseResultInfo.cs" />
     <Compile Include="Service\BaseService.cs" />
-    <Compile Include="Service\ServiceController.cs" />
+    <Compile Include="Service\LicenseController.cs" />
     <Compile Include="Model\UserInfo.cs" />
     <Compile Include="User\FormUserManage.cs">
       <SubType>Form</SubType>

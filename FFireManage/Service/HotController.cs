@@ -44,13 +44,15 @@ namespace FFireManage.Service
 
         public void Audit(Dictionary<string, object> parameterDict)
         {
-            parameterDict.Add("f", 4112002);
+            if(!parameterDict.ContainsKey("f"))
+                parameterDict.Add("f", 4112002);
             this.ExecutePost(parameterDict, OnAuditEvent);
         }
 
         public void GetDetails(Dictionary<string, object> parameterDict)
         {
-            parameterDict.Add("f", 4110002);
+            if (!parameterDict.ContainsKey("f"))
+                parameterDict.Add("f", 4110002);
             this.ExecuteGet(parameterDict, OnGetDetailsEvent);
         }
 

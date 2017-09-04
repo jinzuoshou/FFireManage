@@ -16,7 +16,8 @@ namespace FFireManage
     public partial class FormUserManage : Form
     {
         private UserInfo m_User = null;
-        private ServiceController m_ServiceController = null;
+        private AreaCodeController m_AreaCodeController = null;
+        private UserController m_UserController = null;
         private List<AreaCodeInfo> m_AreaList = null;
         private UserInfo currentUser;
         private List<UserInfo> m_UserList = null;
@@ -52,16 +53,17 @@ namespace FFireManage
 
             this.m_User = GlobeHelper.Instance.User;
 
-            this.m_ServiceController = new ServiceController();
-            this.m_ServiceController.GetAreaCodeListEvent += new EventHandler(ServiceController_GetAreaCodeListEvent);
+            this.m_AreaCodeController = new AreaCodeController();
+            this.m_AreaCodeController.QueryEvent += m_AreaCodeController_QueryEvent;
 
-            this.m_ServiceController.GetUserListByPacEvent += new EventHandler(ServiceController_GetUserListByPacEvent);
-            this.m_ServiceController.DeleteUserEvent += new EventHandler(ServiceController_DeleteUserEvent);
+            this.m_UserController = new UserController();
+            this.m_UserController.QueryEvent += m_UserController_QueryEvent;
+            this.m_UserController.DeleteEvent += m_UserController_DeleteEvent;
 
 
         }
 
-        public void ServiceController_GetUserListByPacEvent(object sender, EventArgs e)
+        private void m_UserController_QueryEvent(object sender, ServiceEventArgs e)
         {
             if (IsDisposed || !this.IsHandleCreated) return;
 
@@ -69,47 +71,66 @@ namespace FFireManage
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    GetListResultInfo<UserInfo>  result= JsonHelper.JSONToObject<GetListResultInfo<UserInfo>>(content);
+                    try 
+                    {
+                        GetListResultInfo<UserInfo> result = JsonHelper.JSONToObject<GetListResultInfo<UserInfo>>(content);
+
+
+                        if (result.rows != null && result.rows.Count > 0)
+                        {
+                            this.m_UserList = result.rows;
+
+                            this.pagerControl1.NMax = result.total;
+                            this.FillData(m_UserList);
+                        }
+                        else
+                        {
+                            this.pagerControl1.NMax = 0;
+                            this.FillData(null);
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "信息提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
                     
-
-                    if (result.rows != null && result.rows.Count > 0)
-                    {
-                        this.m_UserList = result.rows;
-
-                        this.pagerControl1.NMax = result.total;
-                        this.FillData(m_UserList);
-                    }
-                    else
-                    {
-                        this.pagerControl1.NMax = 0;
-                        this.FillData(null);
-                    }
                 }
                 else
                 {
-                    MessageBox.Show(sender.ToString(), "获取行政区出错", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(sender.ToString(), "信息提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     this.Close();
                 }
             }));
         }
 
-        private void ServiceController_DeleteUserEvent(object sender, EventArgs e)
+        private void m_UserController_DeleteEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
-
-                    if (result.status == 10000)
+                    string content = e.Content;
+                    try 
                     {
-                        this.GetUsers(this.Pac);
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.GetUsers(this.Pac);
+                        }
+                        else 
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+                    
                 }
                 else
                 {
@@ -149,7 +170,7 @@ namespace FFireManage
 
         private void GetUsers(string pac,int fetchType=3)
         {
-            this.m_ServiceController.GetUserListByPac(this.Pac, fetchType);
+            this.m_AreaCodeController.GetList(this.Pac, fetchType);
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -186,15 +207,15 @@ namespace FFireManage
             this.m_User = user;
             if (this.m_User.pac.Length == 6 && this.m_User.pac.EndsWith("0000"))
             {
-                this.m_ServiceController.GetAreaCodeList(this.m_User.pac, 3);
+                this.m_AreaCodeController.GetList(this.m_User.pac, 3);
             }
             else if (this.m_User.pac.Length == 6 && !this.m_User.pac.EndsWith("0000"))
             {
-                this.m_ServiceController.GetAreaCodeList(this.m_User.pac.Substring(0, 2) + "0000", 3);
+                this.m_AreaCodeController.GetList(this.m_User.pac.Substring(0, 2) + "0000", 3);
             }
         }
 
-        private void ServiceController_GetAreaCodeListEvent(object sender, EventArgs e)
+        private void m_AreaCodeController_QueryEvent(object sender, ServiceEventArgs e)
         {
             if (IsDisposed || !this.IsHandleCreated) return;
 
@@ -202,16 +223,24 @@ namespace FFireManage
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    GetListResultInfo<AreaCodeInfo> result = JsonHelper.JSONToObject<GetListResultInfo<AreaCodeInfo>>(content);
-
-                    if (result.rows != null && result.rows.Count > 0)
+                    try
                     {
-                        m_AreaList = result.rows;
+                        GetListResultInfo<AreaCodeInfo> result = JsonHelper.JSONToObject<GetListResultInfo<AreaCodeInfo>>(content);
 
-                        this.LoadProvince(m_AreaList);
+                        if (result.rows != null && result.rows.Count > 0)
+                        {
+                            m_AreaList = result.rows;
+
+                            this.LoadProvince(m_AreaList);
+                        }
                     }
+                    catch
+                    {
+
+                    }
+                    
                 }
                 else
                 {
@@ -413,7 +442,7 @@ namespace FFireManage
             {
                 if (MessageBox.Show(this, "您确定要删除" + this.currentUser.account + "吗？数据删除后不可恢复。", "删除提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    this.m_ServiceController.DeleteUserForGet(this.currentUser.id);
+                    this.m_UserController.Delete(this.currentUser.id);
                 }
             }
         }

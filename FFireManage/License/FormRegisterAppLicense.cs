@@ -14,14 +14,14 @@ namespace FFireManage.License
     public partial class FormRegisterAppLicense : Form
     {
         private LicenceInfo m_License = null;
-        private ServiceController m_ServiceController = null;
+        private LicenseController m_LicenseController = null;
         public FormRegisterAppLicense(LicenceInfo license)
         {
             InitializeComponent();
             this.m_License = license;
 
-            this.m_ServiceController = new ServiceController();
-            this.m_ServiceController.RegisterLicenseEvent += M_ImeiController_RegisterLicenseEvent;
+            this.m_LicenseController = new LicenseController();
+            this.m_LicenseController.AddEvent += m_LicenseController_AddEvent;
         }
         private void FormRegisterAppLicense_Load(object sender, EventArgs e)
         {
@@ -33,23 +33,29 @@ namespace FFireManage.License
             this.tbxKey.Text = this.m_License.key;
         }
 
-        private void M_ImeiController_RegisterLicenseEvent(object sender, EventArgs e)
+        private void m_LicenseController_AddEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                    if (result.status == 10000)
-                    {
-                        this.DialogResult = DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
                 }
                 else
@@ -77,7 +83,7 @@ namespace FFireManage.License
                 this.tbxImei.SelectAll();
                 return;
             }
-            this.m_ServiceController.RegisterLicenseForPost(key, imei, device);
+            this.m_LicenseController.Register(key, imei, device);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

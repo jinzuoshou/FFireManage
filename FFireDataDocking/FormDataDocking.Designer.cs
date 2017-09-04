@@ -31,6 +31,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDataDocking));
             this.btnAddFireCommand = new System.Windows.Forms.Button();
             this.axLicenseControl1 = new ESRI.ArcGIS.Controls.AxLicenseControl();
+            this.btnAddFireHBrigade = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.axLicenseControl1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,11 +54,22 @@
             this.axLicenseControl1.Size = new System.Drawing.Size(32, 32);
             this.axLicenseControl1.TabIndex = 3;
             // 
+            // btnAddFireHBrigade
+            // 
+            this.btnAddFireHBrigade.Location = new System.Drawing.Point(206, 29);
+            this.btnAddFireHBrigade.Name = "btnAddFireHBrigade";
+            this.btnAddFireHBrigade.Size = new System.Drawing.Size(140, 23);
+            this.btnAddFireHBrigade.TabIndex = 4;
+            this.btnAddFireHBrigade.Text = "半专业森林防火消防队";
+            this.btnAddFireHBrigade.UseVisualStyleBackColor = true;
+            this.btnAddFireHBrigade.Click += new System.EventHandler(this.btnAddFireHBrigade_Click);
+            // 
             // FormDataDocking
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(812, 522);
+            this.Controls.Add(this.btnAddFireHBrigade);
             this.Controls.Add(this.axLicenseControl1);
             this.Controls.Add(this.btnAddFireCommand);
             this.Name = "FormDataDocking";
@@ -72,5 +84,6 @@
 
         private System.Windows.Forms.Button btnAddFireCommand;
         private ESRI.ArcGIS.Controls.AxLicenseControl axLicenseControl1;
+        private System.Windows.Forms.Button btnAddFireHBrigade;
     }
 }

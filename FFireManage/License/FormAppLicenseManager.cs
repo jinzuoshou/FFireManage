@@ -15,24 +15,27 @@ namespace FFireManage
 {
     public partial class FormAppLicenseManager : Form
     {
-        private ServiceController m_ServiceController = null;
+        private LicenseController m_LicenseController = null;
         private LicenceInfo current_Licence = null;
         private AreaCodeInfo current_AreaCode = null;
+        private AreaCodeController m_AreaCodeController = null;
 
         public FormAppLicenseManager()
         {
             InitializeComponent();
 
-            this.m_ServiceController = new ServiceController();
-            this.m_ServiceController.GetAreaCodeListEvent += new EventHandler(ServiceController_GetAreaCodeListEvent);
+            this.m_LicenseController = new LicenseController();
 
-            this.m_ServiceController.GetLicenceListByPacEvent += new EventHandler(ServiceController_GetLicenceListByPacEvent);
+            this.m_LicenseController.DeleteEvent += m_LicenseController_DeleteEvent;
+            this.m_LicenseController.LogoutLicenseEvent += m_LicenseController_LogoutLicenseEvent;
+            this.m_LicenseController.QueryEvent += m_LicenseController_QueryEvent;
 
-            this.m_ServiceController.DeleteLicenseEvent += new EventHandler(ImeiController_DeleteEvent);
-            this.m_ServiceController.LogoutLicenseEvent += M_ImeiController_LogoutLicenseEvent;
+            this.m_AreaCodeController = new AreaCodeController();
+            this.m_AreaCodeController.QueryEvent += m_AreaCodeController_QueryEvent;
         }
 
-        private void M_ImeiController_LogoutLicenseEvent(object sender, EventArgs e)
+
+        private void m_LicenseController_LogoutLicenseEvent(object sender, ServiceEventArgs e)
         {
             if (IsDisposed || !this.IsHandleCreated) return;
 
@@ -40,11 +43,24 @@ namespace FFireManage
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    if (this.current_AreaCode != null)
+                    string content = e.Content;
+                    try 
                     {
-                        string pac = this.current_AreaCode.code;
-                        this.m_ServiceController.GetLicenceListByPac(pac, 1000, 0);
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
+                        if (this.current_AreaCode != null && result.status==10000)
+                        {
+                            string pac = this.current_AreaCode.code;
+                            this.m_LicenseController.Get(pac, 1000, 0);
+                        }
+                        else
+                        {
+                            MessageBox.Show(result.msg, "信息提示");
+                        }
+
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "信息提示");
                     }
                 }
                 else
@@ -55,7 +71,7 @@ namespace FFireManage
             }));
         }
 
-        private void ImeiController_DeleteEvent(object sender, EventArgs e)
+        private void m_LicenseController_DeleteEvent(object sender, ServiceEventArgs e)
         {
             if (IsDisposed || !this.IsHandleCreated) return;
 
@@ -63,23 +79,34 @@ namespace FFireManage
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-                    if (this.current_AreaCode != null)
-                    {
-                        string pac = this.current_AreaCode.code;
+                    string content = e.Content;
 
-                        this.m_ServiceController.GetLicenceListByPac(pac, 1000, 0);
+                    try
+                    {
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
+                        if (this.current_AreaCode != null && result.status==10000)
+                        {
+                            string pac = this.current_AreaCode.code;
+                            this.m_LicenseController.Get(pac, 1000, 0);
+                        }
+                        else
+                        {
+                            MessageBox.Show(result.msg, "信息提示");
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "信息提示");
                     }
                 }
                 else
                 {
                     MessageBox.Show(sender.ToString(), "删除许可出错", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 }
             }));
         }
 
-        public void ServiceController_GetLicenceListByPacEvent(object sender, EventArgs e)
+        public void m_LicenseController_QueryEvent(object sender, ServiceEventArgs e)
         {
             if (IsDisposed || !this.IsHandleCreated) return;
 
@@ -87,20 +114,28 @@ namespace FFireManage
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    GetListResultInfo<LicenceInfo> result = JsonHelper.JSONToObject<GetListResultInfo<LicenceInfo>>(content);
+                    try 
+                    {
+                        GetListResultInfo<LicenceInfo> result = JsonHelper.JSONToObject<GetListResultInfo<LicenceInfo>>(content);
+
+                        if (result != null && result.rows != null && result.rows.Count > 0)
+                        {
+                            List<LicenceInfo> licenceList = result.rows;
+
+                            this.FillData(licenceList);
+                        }
+                        else
+                        {
+                            this.FillData(null);
+                        }
+                    }
+                    catch
+                    {
+
+                    }
                     
-                    if (result != null && result.rows != null && result.rows.Count > 0)
-                    {
-                        List<LicenceInfo> licenceList = result.rows;
-
-                        this.FillData(licenceList);
-                    }
-                    else
-                    {
-                        this.FillData(null);
-                    }
                 }
                 else
                 {
@@ -144,7 +179,7 @@ namespace FFireManage
             }
         }
 
-        public void ServiceController_GetAreaCodeListEvent(object sender, EventArgs e)
+        public void m_AreaCodeController_QueryEvent(object sender, ServiceEventArgs e)
         {
             if (IsDisposed || !this.IsHandleCreated) return;
 
@@ -152,17 +187,23 @@ namespace FFireManage
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
-
-                    GetListResultInfo<AreaCodeInfo> result = JsonHelper.JSONToObject<GetListResultInfo<AreaCodeInfo>>(content);
-
-                    if (result.rows != null && result.rows.Count > 0)
+                    string content = e.Content;
+                    try
                     {
-                        List<AreaCodeInfo> areaCodeList = result.rows;
+                        GetListResultInfo<AreaCodeInfo> result = JsonHelper.JSONToObject<GetListResultInfo<AreaCodeInfo>>(content);
 
-                        this.LoadAreaList(areaCodeList);
+                        if (result.rows != null && result.rows.Count > 0)
+                        {
+                            List<AreaCodeInfo> areaCodeList = result.rows;
 
+                            this.LoadAreaList(areaCodeList);
+                        }
                     }
+                    catch(Exception ex)
+                    {
+                        MessageBox.Show(ex.Message, "信息提示");
+                    }
+                    
                 }
                 else
                 {
@@ -223,7 +264,7 @@ namespace FFireManage
             3 --- 查询最低为县级的行政区列表
             */
 
-            this.m_ServiceController.GetAreaCodeList(pac, 3);
+            this.m_AreaCodeController.GetList(pac, 3);
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
@@ -240,7 +281,7 @@ namespace FFireManage
                 {
                     string pac = areaCode.code;
 
-                    this.m_ServiceController.GetLicenceListByPac(pac, 1000, 0);
+                    this.m_LicenseController.Get(pac, 1000, 0);
                 }
                 this.btnAdd.Enabled = true;
             }
@@ -258,9 +299,9 @@ namespace FFireManage
             if (pFormCreateAppLicense.ShowDialog(this) == DialogResult.OK)
             {
                 if (this.current_AreaCode == null)
-                    this.m_ServiceController.GetLicenceListByPac(GlobeHelper.Instance.User.pac, 1000, 1);
+                    this.m_LicenseController.Get(GlobeHelper.Instance.User.pac, 1000, 1);
                 else
-                    this.m_ServiceController.GetLicenceListByPac(this.current_AreaCode.code, 1000, 1);
+                    this.m_LicenseController.Get(this.current_AreaCode.code, 1000, 1);
             }
         }
 
@@ -272,9 +313,9 @@ namespace FFireManage
             if (pFormUpdateAppLicense.ShowDialog(this) == DialogResult.OK)
             {
                 if (this.current_AreaCode == null)
-                    this.m_ServiceController.GetLicenceListByPac(GlobeHelper.Instance.User.pac, 1000, 1);
+                    this.m_LicenseController.Get(GlobeHelper.Instance.User.pac, 1000, 1);
                 else
-                    this.m_ServiceController.GetLicenceListByPac(this.current_AreaCode.code, 1000, 1);
+                    this.m_LicenseController.Get(this.current_AreaCode.code, 1000, 1);
             }
         }
 
@@ -286,9 +327,9 @@ namespace FFireManage
             if (formRegister.ShowDialog(this) == DialogResult.OK)
             {
                 if (this.current_AreaCode == null)
-                    this.m_ServiceController.GetLicenceListByPac(GlobeHelper.Instance.User.pac, 1000, 1);
+                    this.m_LicenseController.Get(GlobeHelper.Instance.User.pac, 1000, 1);
                 else
-                    this.m_ServiceController.GetLicenceListByPac(this.current_AreaCode.code, 1000, 1);
+                    this.m_LicenseController.Get(this.current_AreaCode.code, 1000, 1);
             }
 
         }
@@ -299,7 +340,7 @@ namespace FFireManage
             {
                 if (MessageBox.Show(this, string.Format("您确定要注销授权码为{0}、设备序列号为{1}的许可吗",this.current_Licence.key,this.current_Licence.imei), "注销提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) ==DialogResult.Yes)
                 {
-                    this.m_ServiceController.LogoutLicenseForPost(this.current_Licence.key,this.current_Licence.imei);
+                    this.m_LicenseController.LogoutLicenseForPost(this.current_Licence.key,this.current_Licence.imei);
                 }
             }
         }
@@ -310,7 +351,7 @@ namespace FFireManage
             {
                 if (MessageBox.Show(this, string.Format("您确定要删除授权码为{0}、设备序列号为{1}的许可吗?数据删除后不可恢复。", this.current_Licence.key, this.current_Licence.imei), "删除提示", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == System.Windows.Forms.DialogResult.Yes)
                 {
-                    this.m_ServiceController.DeleteLicenseForGet(this.current_Licence.id);
+                    this.m_LicenseController.Delete(this.current_Licence.id);
                 }
             }
 

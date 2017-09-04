@@ -123,7 +123,7 @@
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormFireHBrigadeManage";
-            this.Text = "专业队森林防火队管理";
+            this.Text = "半专业队森林防火队管理";
             this.Load += new System.EventHandler(this.FormFireForestBeltManage_Load);
             this.ResumeLayout(false);
 

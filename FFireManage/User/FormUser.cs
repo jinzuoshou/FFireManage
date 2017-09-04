@@ -16,16 +16,16 @@ namespace FFireManage
     {
         private UserInfo m_User = null;
 
-        private ServiceController m_ServiceController = null;
+        private UserController m_UserController = null;
         private OperationType m_OperationType = OperationType.Add;
 
         public FormUser()
         {
             InitializeComponent();
 
-            this.m_ServiceController = new ServiceController();
-            this.m_ServiceController.EditUserEvent += new EventHandler(ServiceController_EditUserEvent);
-            this.m_ServiceController.RegistUserEvent += new EventHandler(ServiceController_RegistUserEvent);
+            this.m_UserController = new UserController();
+            this.m_UserController.EditEvent += m_UserController_EditEvent;
+            this.m_UserController.AddEvent += m_UserController_AddEvent;
             
         }
 
@@ -45,26 +45,34 @@ namespace FFireManage
             
         }
 
-        private void ServiceController_EditUserEvent(object sender, EventArgs e)
+        private void m_UserController_EditEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+                    try 
+                    {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                    if (result.status == 10000)
-                    {
-                       
-                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+
+                            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch(Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
+                    
                 }
                 else
                 {
@@ -73,25 +81,34 @@ namespace FFireManage
             }));
         }
 
-        private void ServiceController_RegistUserEvent(object sender, EventArgs e)
+        private void m_UserController_AddEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate()
             {
                 if (e != null)
                 {
-                    string content = sender.ToString();
+                    string content = e.Content;
 
-                    BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+                    try
+                    {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
 
-                    if (result.status == 10000)
-                    {
-                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                        this.Close();
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
                     }
-                    else
+                    catch (Exception ex)
                     {
-                        MessageBox.Show(this, result.msg, "提示");
+                        MessageBox.Show(this, ex.Message, "提示");
                     }
+
+                    
                 }
                 else
                 {
@@ -171,7 +188,7 @@ namespace FFireManage
 
                 m_User.subscriber = type.ToString() + "-" + allowlogin.ToString();
 
-                this.m_ServiceController.EditUserForPost(m_User);
+                this.m_UserController.Edit(m_User);
             }
             else if(m_OperationType == OperationType.Add)
             {
@@ -191,7 +208,7 @@ namespace FFireManage
 
                 m_User.subscriber = type.ToString() + "-" + allowlogin.ToString();
 
-                this.m_ServiceController.RegistUserForPost(m_User);
+                this.m_UserController.Add(m_User);
             }
 
         }

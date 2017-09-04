@@ -15,7 +15,7 @@ namespace FFireManage
     public partial class FormCreateAppLicense : Form
     {
         private AreaCodeInfo m_Area = null;
-        private ServiceController m_ServiceController = null;
+        private LicenseController m_ServiceController = null;
         public int Number
         {
             get
@@ -37,8 +37,8 @@ namespace FFireManage
         {
             InitializeComponent();
             this.m_Area = areaCode;
-            this.m_ServiceController = new ServiceController();
-            this.m_ServiceController.CreateLicenceKeyEvent += M_ServiceController_CreateLicenceKeyEvent;
+            this.m_ServiceController = new LicenseController();
+            this.m_ServiceController.CreateLicenceEvent += M_ServiceController_CreateLicenceKeyEvent;
         }
 
         private void M_ServiceController_CreateLicenceKeyEvent(object sender, EventArgs e)
@@ -89,7 +89,7 @@ namespace FFireManage
                 this.pacControl1.Focus();
                 return;
             }
-            this.m_ServiceController.CreateLicenseKeyForPost(GlobeHelper.Instance.User.account,pac, number, deviceType);
+            this.m_ServiceController.CreateLicense(GlobeHelper.Instance.User.account,pac, number, deviceType);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)

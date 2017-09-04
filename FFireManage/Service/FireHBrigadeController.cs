@@ -73,7 +73,8 @@ namespace FFireManage.Service
             if(entity!=null)
             {
                 Dictionary<string, object> parameterDict =entity.ObjectToDict();
-                parameterDict.Add("f", 4201001);
+                if (!parameterDict.ContainsKey("f"))
+                    parameterDict.Add("f", 4201001);
                 this.ExecutePost(parameterDict, OnAddEvent, (entity.mediaByteDict == null) ? new Dictionary<string, object>() : entity.mediaByteDict, entity: entity);
             }
         }
@@ -95,7 +96,8 @@ namespace FFireManage.Service
             if (entity != null)
             {
                 Dictionary<string, object> parameterDict = entity.ObjectToDict();
-                parameterDict.Add("f", 4202001);
+                if (!parameterDict.ContainsKey("f"))
+                    parameterDict.Add("f", 4202001);
                 this.ExecutePost(parameterDict, OnEditEvent);
             }
         }

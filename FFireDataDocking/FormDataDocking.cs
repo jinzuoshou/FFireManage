@@ -10,6 +10,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ESRI.ArcGIS.ADF;
 using ESRI.ArcGIS.esriSystem;
 using ESRI.ArcGIS.Geodatabase;
 using ESRI.ArcGIS.Geometry;
@@ -26,8 +27,22 @@ namespace FFireDataDocking
     {
         private FireCommandController m_FireCommandConotroller = null;
         private AreaCodeController m_AreaCodeController = null;
-        private List<AreaCodeInfo> areaCodeList = null;
+        private FireHBrigadeController m_FireHBrigadeController = null;
+        private FirePBrigadeController m_FirePBrigadeController = null;
+
+
         private static log4net.ILog fireCommandLog = LogManager.GetLogger("FireCommandLogger");
+        private static log4net.ILog fireHBrigadeLog = LogManager.GetLogger("FireHBrigadeLogger");
+        private static log4net.ILog firePBrigadeLog = LogManager.GetLogger("FirePBrigadeLogger");
+
+        private List<AreaCodeInfo> areaCodeList = null;
+        
+        private Fire_Command currentFireCommand = null;
+        private Fire_HBrigade currentFireHBrigade = null;
+
+        private Dictionary<string, IFeatureClass> featureClassDict = new Dictionary<string, IFeatureClass>();
+        private IWorkspace workspace = null;
+
         public FormDataDocking()
         {
             InitializeComponent();
@@ -38,6 +53,18 @@ namespace FFireDataDocking
 
             this.m_AreaCodeController = new AreaCodeController();
             this.m_AreaCodeController.QueryEvent += M_AreaCodeController_QueryEvent;
+
+            this.m_FireHBrigadeController = new FireHBrigadeController();
+            this.m_FireHBrigadeController.AddEvent += M_FireHBrigadeController_AddEvent;
+
+            workspace = WorkspaceUtility.GetWorkspace(@"F:\广西项目\guangxi\Data\Caches.gdb");
+        }
+
+       
+
+        private void FormDataDocking_Load(object sender, EventArgs e)
+        {
+            this.m_AreaCodeController.GetList("450000", 3);
         }
 
         private void M_AreaCodeController_QueryEvent(object sender, ServiceEventArgs e)
@@ -73,6 +100,7 @@ namespace FFireDataDocking
             }));
         }
 
+        #region 森林防火指挥部
         private void M_FireCommandConotroller_AddEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
@@ -86,7 +114,26 @@ namespace FFireDataDocking
 
                         if (result.status == 10000)
                         {
+                            currentFireCommand.id = result.obj;
+
                             fireCommandLog.Info(string.Format("{0}插入{1}", result.obj, result.msg));
+                            IFeatureClass featureClass = null;
+                            if (featureClassDict.ContainsKey("Fire_Command"))
+                            {
+                                featureClass = featureClassDict["Fire_Command"];
+                            }
+                            else
+                            {
+                                featureClass = (workspace as IFeatureWorkspace).OpenFeatureClass("Fire_Command");
+                            }
+                            if(featureClass!=null)
+                            {
+                                if(this.SetValue(featureClass, currentFireCommand.OBJECTID, currentFireCommand.id))
+                                {
+                                    fireCommandLog.Info(string.Format("本地库插入{0}成功",  result.msg));
+                                }
+
+                            }
                         }
                         else
                         {
@@ -108,25 +155,30 @@ namespace FFireDataDocking
 
         private void btnAddFireCommand_Click(object sender, EventArgs e)
         {
-            IWorkspace workspace = WorkspaceUtility.GetWorkspace(@"F:\广西项目\guangxi\Data\Caches.gdb");
             if (workspace == null)
-                return;
-            IFeatureDataset featureDataSet = (workspace as IFeatureWorkspace).OpenFeatureDataset("FireInfo");
+                workspace=WorkspaceUtility.GetWorkspace(@"F:\广西项目\guangxi\Data\Caches.gdb");
+            
             IFeatureClass fireCommandFeatureClass = (workspace as IFeatureWorkspace).OpenFeatureClass("Fire_Command");
 
-            List<Fire_Command> fireCommandList = GetEntities<Fire_Command>(fireCommandFeatureClass);
+            if(fireCommandFeatureClass!=null && !featureClassDict.ContainsKey("Fire_Command"))
+            {
+                featureClassDict.Add("Fire_Command", fireCommandFeatureClass);
+            }
+
+            List<Fire_Command> fireCommandList = fireCommandFeatureClass.GetEntities<Fire_Command>();
             if (fireCommandList != null)
             {
                 fireCommandList.ForEach((f) =>
                  {
                      f.shape = FFireDataManger.Converters.PointToWKT(f.longitude, f.latitude);
-                     f.mediaByteDict=GetFileDict(f);
+                     f.mediaByteDict=GetMediaDict(f);
                  });
             }
             foreach (Fire_Command fireCommand in fireCommandList)
             {
                 Task task = Task.Factory.StartNew(() =>
                 {
+                    currentFireCommand = fireCommand;
                     this.m_FireCommandConotroller.Add(fireCommand);
                 });
                 task.Wait();
@@ -134,88 +186,7 @@ namespace FFireDataDocking
             MessageBox.Show(this, "森林防火指挥部入库成功");
         }
 
-        private List<T> GetEntities<T>(IFeatureClass featureClass)
-        where T : class, new()
-        {
-            if (featureClass == null)
-                return null;
-
-            ITable pTable = featureClass as ITable;
-
-            ICursor pCursor = pTable.Search(null, false);
-            IRow pRow = pCursor.NextRow();
-
-            List<T> entities = new List<T>();
-            while (pRow != null)
-            {
-                T entity = new T();
-                Type type = entity.GetType();
-                PropertyInfo[] propertyInfos = type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty | BindingFlags.GetField); //获取指定名称的属性
-                StringBuilder strBuild = new StringBuilder();
-                for (int i = 0; i < pRow.Fields.FieldCount; i++)
-                {
-                    for (int j = 0; j < propertyInfos.Length; j++)
-                    {
-                        PropertyInfo info = propertyInfos[j];
-                        if (pRow.Fields.get_Field(i).Type == esriFieldType.esriFieldTypeGeometry)
-                        {
-
-                        }
-                        else if (pRow.Fields.get_Field(i).Type == esriFieldType.esriFieldTypeBlob)
-                        {
-                            //pDataRow[i] = "Element";
-                        }
-                        else if (pRow.Fields.Field[i].Name == info.Name)
-                        {
-                            object[] objAttrs = info.GetCustomAttributes(typeof(CustomAttribute), true);
-                            if (objAttrs != null && objAttrs.Length > 0)
-                            {
-                                CustomAttribute attr = objAttrs[0] as CustomAttribute;
-                                if (attr != null)
-                                {
-                                    if (attr.EnumType != null)
-                                    {
-                                        int value = 0;
-                                        try
-                                        {
-                                            value = Convert.ToInt32(Enum.Parse(attr.EnumType, Convert.ToString(pRow.get_Value(i))));
-                                        }
-                                        catch
-                                        {
-                                            value = 0;
-                                        }
-                                        finally
-                                        {
-                                            info.SetValue(entity, value, null);
-                                        }
-                                    }
-                                    else
-                                    {
-                                        if (!Convert.IsDBNull(pRow.get_Value(i)))
-                                        {
-                                            info.SetValue(entity, Convert.ChangeType(pRow.get_Value(i), info.PropertyType), null);
-                                        }
-                                    }
-                                }
-                            }
-                            else
-                            {
-                                if (!Convert.IsDBNull(pRow.get_Value(i)))
-                                {
-                                    info.SetValue(entity, Convert.ChangeType(pRow.get_Value(i), info.PropertyType), null);
-                                }
-                            }
-                        }
-                    }
-                }
-                entities.Add(entity);
-                pRow = pCursor.NextRow();
-            }
-            System.Runtime.InteropServices.Marshal.ReleaseComObject(pCursor);
-            return entities;
-        }
-
-        private Dictionary<string, object> GetFileDict(Fire_Command fireCommand)
+        private Dictionary<string, object> GetMediaDict(Fire_Command fireCommand)
         {
             Dictionary<string, object> fileDict = new Dictionary<string, object>();
             if (fireCommand.picture1 != null && fireCommand.picture1 != "")
@@ -247,10 +218,150 @@ namespace FFireDataDocking
             }
             return fileDict;
         }
+        #endregion
 
-        private void FormDataDocking_Load(object sender, EventArgs e)
+        #region 半专业森林消防队
+        private void btnAddFireHBrigade_Click(object sender, EventArgs e)
         {
-            this.m_AreaCodeController.GetList("450000", 3);
+            if (workspace == null)
+                workspace = WorkspaceUtility.GetWorkspace(@"F:\广西项目\guangxi\Data\Caches.gdb");
+
+            IFeatureClass featureClass = (workspace as IFeatureWorkspace).OpenFeatureClass("Fire_HBrigade");
+
+            if (featureClass != null && !featureClassDict.ContainsKey("Fire_HBrigade"))
+            {
+                featureClassDict.Add("Fire_HBrigade", featureClass);
+            }
+
+            List<Fire_HBrigade> entities = featureClass.GetEntities<Fire_HBrigade>();
+            if (entities != null)
+            {
+                entities.ForEach((f) =>
+                {
+                    f.shape = FFireDataManger.Converters.PointToWKT(f.longitude, f.latitude);
+                    f.mediaByteDict = GetMediaDict(f);
+                });
+            }
+            foreach (Fire_HBrigade entity in entities)
+            {
+                Task task = Task.Factory.StartNew(() =>
+                {
+                    currentFireHBrigade = entity;
+                    this.m_FireHBrigadeController.Add(entity);
+                });
+                task.Wait();
+            }
+            MessageBox.Show(this, "半专业森林消防队入库成功");
+        }
+
+        private Dictionary<string, object> GetMediaDict(Fire_HBrigade fireHBrigade)
+        {
+            Dictionary<string, object> fileDict = new Dictionary<string, object>();
+            if (fireHBrigade.picture1 != null && fireHBrigade.picture1 != "")
+            {
+                string filePath = Regex.Replace(fireHBrigade.picture1, @"[\r\n]", "");
+                if (File.Exists(filePath))
+                {
+                    string fileName = System.IO.Path.GetFileNameWithoutExtension(filePath);
+                    fileDict.Add(fileName, filePath);
+                }
+            }
+            if (fireHBrigade.picture2 != null && fireHBrigade.picture2 != "")
+            {
+                string filePath = Regex.Replace(fireHBrigade.picture2, @"[\r\n]", "");
+                if (File.Exists(filePath))
+                {
+                    string fileName = System.IO.Path.GetFileName(filePath);
+                    fileDict.Add(fileName, filePath);
+                }
+            }
+            if (fireHBrigade.video != null && fireHBrigade.video != "")
+            {
+                string filePath = Regex.Replace(fireHBrigade.video, @"[\r\n]", "");
+                if (File.Exists(filePath))
+                {
+                    string fileName = System.IO.Path.GetFileName(filePath);
+                    fileDict.Add(fileName, filePath);
+                }
+            }
+            return fileDict;
+        }
+
+        private void M_FireHBrigadeController_AddEvent(object sender, ServiceEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            currentFireHBrigade.id = result.obj;
+
+                            fireHBrigadeLog.Info(string.Format("{0}插入{1}", result.obj, result.msg));
+                            IFeatureClass featureClass = null;
+                            if (featureClassDict.ContainsKey("Fire_HBrigade"))
+                            {
+                                featureClass = featureClassDict["Fire_HBrigade"];
+                            }
+                            else
+                            {
+                                featureClass = (workspace as IFeatureWorkspace).OpenFeatureClass("Fire_HBrigade");
+                            }
+                            if (featureClass != null)
+                            {
+                                if (this.SetValue(featureClass, currentFireHBrigade.OBJECTID, currentFireHBrigade.id))
+                                {
+                                    fireHBrigadeLog.Info(string.Format("本地库插入{0}成功", result.msg));
+                                }
+                            }
+                        }
+                        else
+                        {
+                            fireHBrigadeLog.Error(string.Format("{0}插入{1}", result.obj, result.msg));
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        fireHBrigadeLog.Error(ex.Message);
+                    }
+
+                }
+                else
+                {
+                    fireHBrigadeLog.Error(sender.ToString());
+                }
+            }));
+        }
+        #endregion
+
+        private bool SetValue(IFeatureClass featureClass, int objectId, string id)
+        {
+            int idFieldIndex = featureClass.FindField("id");
+            IQueryFilter queryFilter = new QueryFilterClass
+            {
+                SubFields = "id",
+                WhereClause = string.Format("OBJECTID={0}", objectId)
+            };
+
+            // Create a ComReleaser for buffer management.  
+            using (ComReleaser comReleaser = new ComReleaser())
+            {
+                // Create a feature buffer containing the values to be updated.  
+                IFeatureBuffer featureBuffer = featureClass.CreateFeatureBuffer();
+                featureBuffer.set_Value(idFieldIndex, id);
+                comReleaser.ManageLifetime(featureBuffer);
+
+                // Cast the class to ITable and perform the updates.  
+                ITable table = (ITable)featureClass;
+                IRowBuffer rowBuffer = (IRowBuffer)featureBuffer;
+                table.UpdateSearchedRows(queryFilter, rowBuffer);
+                return true;
+            }
         }
     }
 }
