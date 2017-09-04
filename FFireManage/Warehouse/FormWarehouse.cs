@@ -17,7 +17,7 @@ namespace FFireManage.FireWarehouse
     {
         private Fire_Warehouse m_Warehouse = null;
         private OperationType m_OperationType;
-        private FireWarehouseController m_FireHBrigadeController = null;
+        private FireWarehouseController m_FireWarehouseController = null;
 
         public FormWarehouse(OperationType type, Fire_Warehouse fireWarehouse = null)
         {
@@ -25,10 +25,10 @@ namespace FFireManage.FireWarehouse
 
             this.m_OperationType = type;
             this.m_Warehouse = fireWarehouse;
-            this.m_FireHBrigadeController = new FireWarehouseController();
+            this.m_FireWarehouseController = new FireWarehouseController();
 
-            this.m_FireHBrigadeController.AddEvent += M_ServiceController_AddEvent;
-            this.m_FireHBrigadeController.EditEvent += M_ServiceController_EditEvent;
+            this.m_FireWarehouseController.AddEvent += M_ServiceController_AddEvent;
+            this.m_FireWarehouseController.EditEvent += M_ServiceController_EditEvent;
         }
 
         private void M_ServiceController_AddEvent(object sender, ServiceEventArgs e)
@@ -117,12 +117,19 @@ namespace FFireManage.FireWarehouse
                 this.Text = "查看防火物资储备库";
             }
 
+            /* 防火物资储备库类型 */
+            WarehouseType warehouseType = WarehouseType.国家级物质储备库;
+            List<object> warningBoardsTypeList = CommonHelper.GetDataSource<WarehouseType>(warehouseType);
+            this.cmb_type.DisplayMember = "Name";
+            this.cmb_type.ValueMember = "Name";
+            this.cmb_type.DataSource = warningBoardsTypeList;
+
             /* 防火物资储备库状态 */
-            FireHBrigadeStatus fireHBrigateStatus = FireHBrigadeStatus.优秀;
-            List<object> fireForestBeltStatusList = CommonHelper.GetDataSource<FireHBrigadeStatus>(fireHBrigateStatus);
+            WarehouseStatus warehouseStatus = WarehouseStatus.优秀;
+            List<object> warehouseStatusList = CommonHelper.GetDataSource<WarehouseStatus>(warehouseStatus);
             this.cbx_status.DisplayMember = "Name";
-            this.cbx_status.ValueMember = "Value";
-            this.cbx_status.DataSource = fireForestBeltStatusList;
+            this.cbx_status.ValueMember = "Name";
+            this.cbx_status.DataSource = warehouseStatusList;
 
             #endregion
 
@@ -202,11 +209,11 @@ namespace FFireManage.FireWarehouse
 
             if (m_OperationType == OperationType.Add)
             {
-                this.m_FireHBrigadeController.Add(this.m_Warehouse);
+                this.m_FireWarehouseController.Add(this.m_Warehouse);
             }
             else if (m_OperationType == OperationType.Edit)
             {
-                this.m_FireHBrigadeController.Edit(this.m_Warehouse);
+                this.m_FireWarehouseController.Edit(this.m_Warehouse);
             }
         }
 

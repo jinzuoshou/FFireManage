@@ -87,6 +87,7 @@ namespace FFireDataDocking
                 {
                     this.m_FireCommandConotroller.Add(fireCommand);
                 });
+                task.Wait();
             }
             
         }

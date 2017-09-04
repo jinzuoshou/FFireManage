@@ -46,6 +46,7 @@
             this.btn_PlaneWaterPoint = new System.Windows.Forms.Button();
             this.btn_SatelliteGroundStation = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnUserManage
@@ -228,11 +229,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(328, 307);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(93, 36);
+            this.button2.TabIndex = 20;
+            this.button2.Text = "森林防火物资储备库";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 561);
+            this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btn_SatelliteGroundStation);
             this.Controls.Add(this.btn_PlaneWaterPoint);
@@ -280,5 +292,6 @@
         private System.Windows.Forms.Button btn_PlaneWaterPoint;
         private System.Windows.Forms.Button btn_SatelliteGroundStation;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
     }
 }

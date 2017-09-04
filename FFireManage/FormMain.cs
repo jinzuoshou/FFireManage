@@ -22,6 +22,7 @@ using FFireManage.FireDocument;
 using FFireManage.FireOffice;
 using FFireManage.PlaneWaterPoint;
 using FFireManage.SatelliteGroundStation;
+using FFireManage.WarningBoards;
 
 namespace FFireManage
 {
@@ -144,6 +145,12 @@ namespace FFireManage
         {
             FormWarehouseManage pFormWarehouseManage = new FormWarehouseManage();
             pFormWarehouseManage.ShowDialog(this);
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            FormWarningBoardsManage pFormWarningBoardsManage = new FormWarningBoardsManage();
+            pFormWarningBoardsManage.ShowDialog(this);
         }
     }
 }

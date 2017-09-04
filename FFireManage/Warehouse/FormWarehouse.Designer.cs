@@ -31,7 +31,14 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_location = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.coordinatesInputControl1 = new FFireManage.Controls.CoordinatesInputControl();
+            this.pacControl11 = new FFireManage.Controls.PACControl1();
             this.tabPage_baseInfo = new System.Windows.Forms.TabPage();
+            this.tbx_user_id = new FFireManage.Controls.NTextBox();
+            this.txt_typeid = new System.Windows.Forms.TextBox();
+            this.txt_mat_id = new System.Windows.Forms.TextBox();
+            this.txt_build_area = new System.Windows.Forms.TextBox();
+            this.txt_reserve_type = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -58,16 +65,9 @@
             this.tabPage_note = new System.Windows.Forms.TabPage();
             this.tbx_note = new System.Windows.Forms.TextBox();
             this.tabPage_mediaInfo = new System.Windows.Forms.TabPage();
+            this.mediaControl1 = new FFireManage.Controls.MediaControl();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.txt_reserve_type = new System.Windows.Forms.TextBox();
-            this.txt_build_area = new System.Windows.Forms.TextBox();
-            this.txt_mat_id = new System.Windows.Forms.TextBox();
-            this.txt_typeid = new System.Windows.Forms.TextBox();
-            this.coordinatesInputControl1 = new FFireManage.Controls.CoordinatesInputControl();
-            this.pacControl11 = new FFireManage.Controls.PACControl1();
-            this.mediaControl1 = new FFireManage.Controls.MediaControl();
-            this.tbx_user_id = new FFireManage.Controls.NTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage_location.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -113,6 +113,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "经纬度坐标";
             // 
+            // coordinatesInputControl1
+            // 
+            this.coordinatesInputControl1.Latitude = 0D;
+            this.coordinatesInputControl1.Location = new System.Drawing.Point(6, 14);
+            this.coordinatesInputControl1.Longitude = 0D;
+            this.coordinatesInputControl1.MaximumSize = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.MinimumSize = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.Name = "coordinatesInputControl1";
+            this.coordinatesInputControl1.Size = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.TabIndex = 0;
+            // 
+            // pacControl11
+            // 
+            this.pacControl11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pacControl11.Location = new System.Drawing.Point(36, 202);
+            this.pacControl11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pacControl11.Name = "pacControl11";
+            this.pacControl11.Size = new System.Drawing.Size(529, 38);
+            this.pacControl11.TabIndex = 11;
+            // 
             // tabPage_baseInfo
             // 
             this.tabPage_baseInfo.AutoScroll = true;
@@ -152,11 +172,58 @@
             this.tabPage_baseInfo.Text = "基本信息";
             this.tabPage_baseInfo.UseVisualStyleBackColor = true;
             // 
+            // tbx_user_id
+            // 
+            this.tbx_user_id.AccessibleName = "user_id";
+            this.tbx_user_id.Location = new System.Drawing.Point(425, 147);
+            this.tbx_user_id.MaxLength = 4;
+            this.tbx_user_id.Name = "tbx_user_id";
+            this.tbx_user_id.Size = new System.Drawing.Size(220, 23);
+            this.tbx_user_id.TabIndex = 176;
+            this.tbx_user_id.Text = "0";
+            this.tbx_user_id.TextChanged += new System.EventHandler(this.tbx_num_people_TextChanged);
+            // 
+            // txt_typeid
+            // 
+            this.txt_typeid.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
+            this.txt_typeid.AccessibleName = "typeid";
+            this.txt_typeid.Location = new System.Drawing.Point(425, 110);
+            this.txt_typeid.Name = "txt_typeid";
+            this.txt_typeid.Size = new System.Drawing.Size(220, 23);
+            this.txt_typeid.TabIndex = 175;
+            // 
+            // txt_mat_id
+            // 
+            this.txt_mat_id.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
+            this.txt_mat_id.AccessibleName = "mat_id";
+            this.txt_mat_id.Location = new System.Drawing.Point(87, 147);
+            this.txt_mat_id.Name = "txt_mat_id";
+            this.txt_mat_id.Size = new System.Drawing.Size(220, 23);
+            this.txt_mat_id.TabIndex = 174;
+            // 
+            // txt_build_area
+            // 
+            this.txt_build_area.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
+            this.txt_build_area.AccessibleName = "build_area";
+            this.txt_build_area.Location = new System.Drawing.Point(86, 113);
+            this.txt_build_area.Name = "txt_build_area";
+            this.txt_build_area.Size = new System.Drawing.Size(220, 23);
+            this.txt_build_area.TabIndex = 173;
+            // 
+            // txt_reserve_type
+            // 
+            this.txt_reserve_type.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
+            this.txt_reserve_type.AccessibleName = "reserve_type";
+            this.txt_reserve_type.Location = new System.Drawing.Point(85, 188);
+            this.txt_reserve_type.Name = "txt_reserve_type";
+            this.txt_reserve_type.Size = new System.Drawing.Size(220, 23);
+            this.txt_reserve_type.TabIndex = 172;
+            // 
             // textBox2
             // 
             this.textBox2.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
             this.textBox2.AccessibleName = "name";
-            this.textBox2.Location = new System.Drawing.Point(424, 229);
+            this.textBox2.Location = new System.Drawing.Point(425, 232);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(220, 23);
             this.textBox2.TabIndex = 171;
@@ -228,7 +295,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(20, 147);
+            this.label6.Location = new System.Drawing.Point(19, 153);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 17);
             this.label6.TabIndex = 163;
@@ -237,11 +304,11 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(44, 113);
+            this.label5.Location = new System.Drawing.Point(43, 116);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(44, 17);
+            this.label5.Size = new System.Drawing.Size(35, 17);
             this.label5.TabIndex = 162;
-            this.label5.Text = "面积：";
+            this.label5.Text = "面积:";
             // 
             // label4
             // 
@@ -255,7 +322,7 @@
             // dtp_build_year
             // 
             this.dtp_build_year.AccessibleName = "build_year";
-            this.dtp_build_year.Location = new System.Drawing.Point(424, 189);
+            this.dtp_build_year.Location = new System.Drawing.Point(425, 189);
             this.dtp_build_year.Name = "dtp_build_year";
             this.dtp_build_year.Size = new System.Drawing.Size(220, 23);
             this.dtp_build_year.TabIndex = 160;
@@ -392,6 +459,15 @@
             this.tabPage_mediaInfo.Text = "多媒体文件";
             this.tabPage_mediaInfo.UseVisualStyleBackColor = true;
             // 
+            // mediaControl1
+            // 
+            this.mediaControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mediaControl1.Location = new System.Drawing.Point(3, 3);
+            this.mediaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.mediaControl1.Name = "mediaControl1";
+            this.mediaControl1.Size = new System.Drawing.Size(716, 439);
+            this.mediaControl1.TabIndex = 0;
+            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -413,82 +489,6 @@
             this.btnOK.Text = "确定(&O)";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // txt_reserve_type
-            // 
-            this.txt_reserve_type.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
-            this.txt_reserve_type.AccessibleName = "reserve_type";
-            this.txt_reserve_type.Location = new System.Drawing.Point(85, 188);
-            this.txt_reserve_type.Name = "txt_reserve_type";
-            this.txt_reserve_type.Size = new System.Drawing.Size(220, 23);
-            this.txt_reserve_type.TabIndex = 172;
-            // 
-            // txt_build_area
-            // 
-            this.txt_build_area.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
-            this.txt_build_area.AccessibleName = "build_area";
-            this.txt_build_area.Location = new System.Drawing.Point(86, 113);
-            this.txt_build_area.Name = "txt_build_area";
-            this.txt_build_area.Size = new System.Drawing.Size(220, 23);
-            this.txt_build_area.TabIndex = 173;
-            // 
-            // txt_mat_id
-            // 
-            this.txt_mat_id.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
-            this.txt_mat_id.AccessibleName = "mat_id";
-            this.txt_mat_id.Location = new System.Drawing.Point(85, 142);
-            this.txt_mat_id.Name = "txt_mat_id";
-            this.txt_mat_id.Size = new System.Drawing.Size(220, 23);
-            this.txt_mat_id.TabIndex = 174;
-            // 
-            // txt_typeid
-            // 
-            this.txt_typeid.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
-            this.txt_typeid.AccessibleName = "typeid";
-            this.txt_typeid.Location = new System.Drawing.Point(422, 110);
-            this.txt_typeid.Name = "txt_typeid";
-            this.txt_typeid.Size = new System.Drawing.Size(220, 23);
-            this.txt_typeid.TabIndex = 175;
-            // 
-            // coordinatesInputControl1
-            // 
-            this.coordinatesInputControl1.Latitude = 0D;
-            this.coordinatesInputControl1.Location = new System.Drawing.Point(6, 14);
-            this.coordinatesInputControl1.Longitude = 0D;
-            this.coordinatesInputControl1.MaximumSize = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.MinimumSize = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.Name = "coordinatesInputControl1";
-            this.coordinatesInputControl1.Size = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.TabIndex = 0;
-            // 
-            // pacControl11
-            // 
-            this.pacControl11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pacControl11.Location = new System.Drawing.Point(36, 202);
-            this.pacControl11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pacControl11.Name = "pacControl11";
-            this.pacControl11.Size = new System.Drawing.Size(529, 38);
-            this.pacControl11.TabIndex = 11;
-            // 
-            // mediaControl1
-            // 
-            this.mediaControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mediaControl1.Location = new System.Drawing.Point(3, 3);
-            this.mediaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.mediaControl1.Name = "mediaControl1";
-            this.mediaControl1.Size = new System.Drawing.Size(716, 439);
-            this.mediaControl1.TabIndex = 0;
-            // 
-            // tbx_user_id
-            // 
-            this.tbx_user_id.AccessibleName = "user_id";
-            this.tbx_user_id.Location = new System.Drawing.Point(422, 147);
-            this.tbx_user_id.MaxLength = 4;
-            this.tbx_user_id.Name = "tbx_user_id";
-            this.tbx_user_id.Size = new System.Drawing.Size(220, 23);
-            this.tbx_user_id.TabIndex = 176;
-            this.tbx_user_id.Text = "0";
-            this.tbx_user_id.TextChanged += new System.EventHandler(this.tbx_num_people_TextChanged);
             // 
             // FormWarehouse
             // 
