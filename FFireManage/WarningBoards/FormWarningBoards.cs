@@ -204,6 +204,7 @@ namespace FFireManage.WarningBoards
             //自动从窗体控件上取值
             m_FireWarningBoards = SmartForm.GetEntity<Fire_WarningBoards>(this.tabPage_baseInfo.Controls, this.m_FireWarningBoards);
 
+            this.m_FireWarningBoards.build_year = this.dtp_build_year.Value.ToString("yyyy-MM-dd hh:mm:ss");
             this.m_FireWarningBoards.note = this.tbx_note.Text.Trim();
             this.m_FireWarningBoards.mediaByteDict = this.mediaControl1.MediaByteDict;
 

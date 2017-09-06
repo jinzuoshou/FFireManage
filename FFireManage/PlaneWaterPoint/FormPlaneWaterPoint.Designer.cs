@@ -31,9 +31,12 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_location = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.coordinatesInputControl1 = new FFireManage.Controls.CoordinatesInputControl();
+            this.pacControl11 = new FFireManage.Controls.PACControl1();
             this.tabPage_baseInfo = new System.Windows.Forms.TabPage();
+            this.txt_management_unit = new System.Windows.Forms.TextBox();
+            this.cbx_Type = new System.Windows.Forms.ComboBox();
             this.cbx_is_take_water = new System.Windows.Forms.ComboBox();
-            this.cbx_management_unit = new System.Windows.Forms.ComboBox();
             this.cbx_is_cage_fish = new System.Windows.Forms.ComboBox();
             this.cbx_is_cableway = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -43,7 +46,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.tbx_type = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.tbx_phone = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
@@ -60,17 +62,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tbx_name = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.tabPage_note = new System.Windows.Forms.TabPage();
-            this.tbx_note = new System.Windows.Forms.TextBox();
-            this.tabPage_mediaInfo = new System.Windows.Forms.TabPage();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.coordinatesInputControl1 = new FFireManage.Controls.CoordinatesInputControl();
-            this.pacControl11 = new FFireManage.Controls.PACControl1();
             this.tbx_maximum_depth = new FFireManage.Controls.NTextBox();
             this.tbx_storage_capacity = new FFireManage.Controls.NTextBox();
             this.tbx_storage_area = new FFireManage.Controls.NTextBox();
+            this.tabPage_note = new System.Windows.Forms.TabPage();
+            this.tbx_note = new System.Windows.Forms.TextBox();
+            this.tabPage_mediaInfo = new System.Windows.Forms.TabPage();
             this.mediaControl1 = new FFireManage.Controls.MediaControl();
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage_location.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -91,7 +91,7 @@
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(730, 475);
+            this.tabControl1.Size = new System.Drawing.Size(730, 381);
             this.tabControl1.TabIndex = 8;
             // 
             // tabPage_location
@@ -116,11 +116,32 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "经纬度坐标";
             // 
+            // coordinatesInputControl1
+            // 
+            this.coordinatesInputControl1.Latitude = 0D;
+            this.coordinatesInputControl1.Location = new System.Drawing.Point(6, 14);
+            this.coordinatesInputControl1.Longitude = 0D;
+            this.coordinatesInputControl1.MaximumSize = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.MinimumSize = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.Name = "coordinatesInputControl1";
+            this.coordinatesInputControl1.Size = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.TabIndex = 0;
+            // 
+            // pacControl11
+            // 
+            this.pacControl11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pacControl11.Location = new System.Drawing.Point(36, 202);
+            this.pacControl11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pacControl11.Name = "pacControl11";
+            this.pacControl11.Size = new System.Drawing.Size(529, 38);
+            this.pacControl11.TabIndex = 11;
+            // 
             // tabPage_baseInfo
             // 
             this.tabPage_baseInfo.AutoScroll = true;
+            this.tabPage_baseInfo.Controls.Add(this.txt_management_unit);
+            this.tabPage_baseInfo.Controls.Add(this.cbx_Type);
             this.tabPage_baseInfo.Controls.Add(this.cbx_is_take_water);
-            this.tabPage_baseInfo.Controls.Add(this.cbx_management_unit);
             this.tabPage_baseInfo.Controls.Add(this.cbx_is_cage_fish);
             this.tabPage_baseInfo.Controls.Add(this.cbx_is_cableway);
             this.tabPage_baseInfo.Controls.Add(this.label10);
@@ -130,7 +151,6 @@
             this.tabPage_baseInfo.Controls.Add(this.label9);
             this.tabPage_baseInfo.Controls.Add(this.label7);
             this.tabPage_baseInfo.Controls.Add(this.label6);
-            this.tabPage_baseInfo.Controls.Add(this.tbx_type);
             this.tabPage_baseInfo.Controls.Add(this.label3);
             this.tabPage_baseInfo.Controls.Add(this.tbx_phone);
             this.tabPage_baseInfo.Controls.Add(this.label8);
@@ -153,10 +173,30 @@
             this.tabPage_baseInfo.Location = new System.Drawing.Point(4, 26);
             this.tabPage_baseInfo.Name = "tabPage_baseInfo";
             this.tabPage_baseInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_baseInfo.Size = new System.Drawing.Size(722, 445);
+            this.tabPage_baseInfo.Size = new System.Drawing.Size(722, 351);
             this.tabPage_baseInfo.TabIndex = 0;
             this.tabPage_baseInfo.Text = "基本信息";
             this.tabPage_baseInfo.UseVisualStyleBackColor = true;
+            // 
+            // txt_management_unit
+            // 
+            this.txt_management_unit.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
+            this.txt_management_unit.AccessibleName = "management_unit";
+            this.txt_management_unit.Location = new System.Drawing.Point(436, 141);
+            this.txt_management_unit.Name = "txt_management_unit";
+            this.txt_management_unit.Size = new System.Drawing.Size(220, 23);
+            this.txt_management_unit.TabIndex = 105;
+            // 
+            // cbx_Type
+            // 
+            this.cbx_Type.AccessibleDescription = "";
+            this.cbx_Type.AccessibleName = "Type";
+            this.cbx_Type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_Type.FormattingEnabled = true;
+            this.cbx_Type.Location = new System.Drawing.Point(101, 73);
+            this.cbx_Type.Name = "cbx_Type";
+            this.cbx_Type.Size = new System.Drawing.Size(195, 25);
+            this.cbx_Type.TabIndex = 104;
             // 
             // cbx_is_take_water
             // 
@@ -167,16 +207,6 @@
             this.cbx_is_take_water.Name = "cbx_is_take_water";
             this.cbx_is_take_water.Size = new System.Drawing.Size(220, 25);
             this.cbx_is_take_water.TabIndex = 103;
-            // 
-            // cbx_management_unit
-            // 
-            this.cbx_management_unit.AccessibleName = "management_unit";
-            this.cbx_management_unit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_management_unit.FormattingEnabled = true;
-            this.cbx_management_unit.Location = new System.Drawing.Point(436, 144);
-            this.cbx_management_unit.Name = "cbx_management_unit";
-            this.cbx_management_unit.Size = new System.Drawing.Size(220, 25);
-            this.cbx_management_unit.TabIndex = 102;
             // 
             // cbx_is_cage_fish
             // 
@@ -227,7 +257,7 @@
             // 
             // txt_traffic_condition
             // 
-            this.txt_traffic_condition.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
+            this.txt_traffic_condition.AccessibleDescription = "required;length:^.{0,254}$:{0}1~255";
             this.txt_traffic_condition.AccessibleName = "traffic_condition";
             this.txt_traffic_condition.Location = new System.Drawing.Point(101, 186);
             this.txt_traffic_condition.Name = "txt_traffic_condition";
@@ -260,16 +290,6 @@
             this.label6.Size = new System.Drawing.Size(59, 17);
             this.label6.TabIndex = 85;
             this.label6.Text = "蓄水容量:";
-            // 
-            // tbx_type
-            // 
-            this.tbx_type.AccessibleName = "type";
-            this.tbx_type.Location = new System.Drawing.Point(101, 72);
-            this.tbx_type.Name = "tbx_type";
-            this.tbx_type.ReadOnly = true;
-            this.tbx_type.Size = new System.Drawing.Size(195, 23);
-            this.tbx_type.TabIndex = 83;
-            this.tbx_type.Text = "飞机吊桶取水点";
             // 
             // label3
             // 
@@ -346,7 +366,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(1, 219);
+            this.label17.Location = new System.Drawing.Point(-2, 222);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(95, 17);
             this.label17.TabIndex = 51;
@@ -416,6 +436,36 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "名称:";
             // 
+            // tbx_maximum_depth
+            // 
+            this.tbx_maximum_depth.AccessibleName = "maximum_depth";
+            this.tbx_maximum_depth.Location = new System.Drawing.Point(436, 106);
+            this.tbx_maximum_depth.MaxLength = 8;
+            this.tbx_maximum_depth.Name = "tbx_maximum_depth";
+            this.tbx_maximum_depth.Size = new System.Drawing.Size(220, 23);
+            this.tbx_maximum_depth.TabIndex = 87;
+            this.tbx_maximum_depth.Text = "0";
+            // 
+            // tbx_storage_capacity
+            // 
+            this.tbx_storage_capacity.AccessibleName = "storage_capacity";
+            this.tbx_storage_capacity.Location = new System.Drawing.Point(101, 147);
+            this.tbx_storage_capacity.MaxLength = 8;
+            this.tbx_storage_capacity.Name = "tbx_storage_capacity";
+            this.tbx_storage_capacity.Size = new System.Drawing.Size(195, 23);
+            this.tbx_storage_capacity.TabIndex = 86;
+            this.tbx_storage_capacity.Text = "0";
+            // 
+            // tbx_storage_area
+            // 
+            this.tbx_storage_area.AccessibleName = "storage_area";
+            this.tbx_storage_area.Location = new System.Drawing.Point(102, 106);
+            this.tbx_storage_area.MaxLength = 8;
+            this.tbx_storage_area.Name = "tbx_storage_area";
+            this.tbx_storage_area.Size = new System.Drawing.Size(194, 23);
+            this.tbx_storage_area.TabIndex = 84;
+            this.tbx_storage_area.Text = "0";
+            // 
             // tabPage_note
             // 
             this.tabPage_note.Controls.Add(this.tbx_note);
@@ -448,10 +498,19 @@
             this.tabPage_mediaInfo.Text = "多媒体文件";
             this.tabPage_mediaInfo.UseVisualStyleBackColor = true;
             // 
+            // mediaControl1
+            // 
+            this.mediaControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mediaControl1.Location = new System.Drawing.Point(3, 3);
+            this.mediaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.mediaControl1.Name = "mediaControl1";
+            this.mediaControl1.Size = new System.Drawing.Size(716, 439);
+            this.mediaControl1.TabIndex = 0;
+            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(601, 502);
+            this.btnCancel.Location = new System.Drawing.Point(601, 408);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 11;
@@ -462,7 +521,7 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(505, 502);
+            this.btnOK.Location = new System.Drawing.Point(505, 408);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 10;
@@ -470,70 +529,11 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // coordinatesInputControl1
-            // 
-            this.coordinatesInputControl1.Latitude = 0D;
-            this.coordinatesInputControl1.Location = new System.Drawing.Point(6, 14);
-            this.coordinatesInputControl1.Longitude = 0D;
-            this.coordinatesInputControl1.MaximumSize = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.MinimumSize = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.Name = "coordinatesInputControl1";
-            this.coordinatesInputControl1.Size = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.TabIndex = 0;
-            // 
-            // pacControl11
-            // 
-            this.pacControl11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pacControl11.Location = new System.Drawing.Point(36, 202);
-            this.pacControl11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pacControl11.Name = "pacControl11";
-            this.pacControl11.Size = new System.Drawing.Size(529, 38);
-            this.pacControl11.TabIndex = 11;
-            // 
-            // tbx_maximum_depth
-            // 
-            this.tbx_maximum_depth.AccessibleName = "maximum_depth";
-            this.tbx_maximum_depth.Location = new System.Drawing.Point(436, 106);
-            this.tbx_maximum_depth.MaxLength = 4;
-            this.tbx_maximum_depth.Name = "tbx_maximum_depth";
-            this.tbx_maximum_depth.Size = new System.Drawing.Size(220, 23);
-            this.tbx_maximum_depth.TabIndex = 87;
-            this.tbx_maximum_depth.Text = "0";
-            // 
-            // tbx_storage_capacity
-            // 
-            this.tbx_storage_capacity.AccessibleName = "storage_capacity";
-            this.tbx_storage_capacity.Location = new System.Drawing.Point(101, 147);
-            this.tbx_storage_capacity.MaxLength = 4;
-            this.tbx_storage_capacity.Name = "tbx_storage_capacity";
-            this.tbx_storage_capacity.Size = new System.Drawing.Size(195, 23);
-            this.tbx_storage_capacity.TabIndex = 86;
-            this.tbx_storage_capacity.Text = "0";
-            // 
-            // tbx_storage_area
-            // 
-            this.tbx_storage_area.AccessibleName = "storage_area";
-            this.tbx_storage_area.Location = new System.Drawing.Point(102, 106);
-            this.tbx_storage_area.MaxLength = 4;
-            this.tbx_storage_area.Name = "tbx_storage_area";
-            this.tbx_storage_area.Size = new System.Drawing.Size(194, 23);
-            this.tbx_storage_area.TabIndex = 84;
-            this.tbx_storage_area.Text = "0";
-            // 
-            // mediaControl1
-            // 
-            this.mediaControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mediaControl1.Location = new System.Drawing.Point(3, 3);
-            this.mediaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.mediaControl1.Name = "mediaControl1";
-            this.mediaControl1.Size = new System.Drawing.Size(716, 439);
-            this.mediaControl1.TabIndex = 0;
-            // 
             // FormPlaneWaterPoint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(736, 540);
+            this.ClientSize = new System.Drawing.Size(736, 446);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.tabControl1);
@@ -564,7 +564,6 @@
         private System.Windows.Forms.TabPage tabPage_baseInfo;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.ComboBox cbx_status;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label_w_equipm;
         private System.Windows.Forms.Label label5;
@@ -583,7 +582,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox tbx_manager;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox tbx_type;
         private System.Windows.Forms.Label label3;
         private Controls.NTextBox tbx_storage_capacity;
         private System.Windows.Forms.Label label6;
@@ -597,7 +595,9 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ComboBox cbx_is_cage_fish;
         private System.Windows.Forms.ComboBox cbx_is_cableway;
-        private System.Windows.Forms.ComboBox cbx_management_unit;
         private System.Windows.Forms.ComboBox cbx_is_take_water;
+        private System.Windows.Forms.ComboBox cbx_Type;
+        private System.Windows.Forms.ComboBox cbx_status;
+        private System.Windows.Forms.TextBox txt_management_unit;
     }
 }

@@ -19,12 +19,14 @@ namespace FFireManage
 		/// <summary>
 		/// 名称
 		/// </summary>
+        [Custom(Description = "名称")]
 		public string name { get; set; }
 
-		/// <summary>
-		/// 地址
-		/// </summary>
-		public string address { get; set; }
+        /// <summary>
+        /// 地址
+        /// </summary>
+        [Custom(Description = "地址")]
+        public string address { get; set; }
 
 		/// <summary>
 		/// 管理员
@@ -89,7 +91,7 @@ namespace FFireManage
 		/// <summary>
 		/// 天线高度
 		/// </summary>
-		public double height { get; set; }
+		public Nullable<double> height { get; set; }
 
 		/// <summary>
 		/// 建立时间
@@ -165,7 +167,7 @@ namespace FFireManage
         /// <summary>
         /// 海拔
         /// </summary>
-        public double elevation { get; set; }
+        public Nullable<double> elevation { get; set; }
 
         /// <summary>
         /// 县名

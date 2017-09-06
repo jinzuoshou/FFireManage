@@ -172,7 +172,7 @@ namespace FFireManage.FireWarehouse
             if (pFormFireWarehouse.ShowDialog(this) == DialogResult.OK)
             {
                 this.GetFireWarehouseList(this.navigationControl1.Pac);
-                MessageBox.Show(this, "专业森林消防队新增成功", "提示");
+                MessageBox.Show(this, "防火物资储备库新增成功", "提示");
             }
         }
 
@@ -182,7 +182,7 @@ namespace FFireManage.FireWarehouse
             if (pFormFireWarehouse.ShowDialog(this) == DialogResult.OK)
             {
                 this.GetFireWarehouseList(this.navigationControl1.Pac);
-                MessageBox.Show(this, "专业森林消防队修改成功", "提示");
+                MessageBox.Show(this, "防火物资储备库修改成功", "提示");
             }
         }
 
@@ -257,7 +257,7 @@ namespace FFireManage.FireWarehouse
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ListViewItem item = listView1.GetItemAt(e.X, e.Y);
-            if (item.Tag is Fire_PBrigade)
+            if (item.Tag is Fire_Warehouse)
             {
                 var fireWarehouse = item.Tag as Fire_Warehouse;
                 FormWarehouse pFormFireForestBelt = new FormWarehouse(OperationType.Check, fireWarehouse);

@@ -262,8 +262,7 @@ namespace FFireManage
 		/// <summary>
 		/// 状态
 		/// </summary>
-        [Custom(IsEnumValue =true,EnumType =typeof(FireHBrigadeStatus))]
-		public Nullable<int> status { get; set; }
+		public string status { get; set; }
 
 		/// <summary>
 		/// 帐篷

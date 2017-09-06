@@ -116,13 +116,13 @@ namespace FFireManage.PlaneWaterPoint
             {
                 this.Text = "查看专业森林消防队";
             }
-          
-            /* 飞机吊桶取水点形状 */
-            //Shape artificiallakeShape = Shape.点;
-            //List<object> artificiallakeShapeList = CommonHelper.GetDataSource<Shape>(artificiallakeShape);
-            //this.cbx_shape.DisplayMember = "Name";
-            //this.cbx_shape.ValueMember = "Value";
-            //this.cbx_shape.DataSource = artificiallakeShapeList;
+
+            /* 飞机吊桶取水点状态 */
+            PWType firePWType = PWType.水库;
+            List<object> firePWTypeList = CommonHelper.GetDataSource<PWType>(firePWType);
+            this.cbx_Type.DisplayMember = "Name";
+            this.cbx_Type.ValueMember = "Name";
+            this.cbx_Type.DataSource = firePWTypeList;
 
             /* 飞机吊桶取水点状态 */
             PWStatus firePWStatus = PWStatus.优秀;
@@ -151,13 +151,6 @@ namespace FFireManage.PlaneWaterPoint
             this.cbx_is_cage_fish.DisplayMember = "Name";
             this.cbx_is_cage_fish.ValueMember = "Name";
             this.cbx_is_cage_fish.DataSource = isCageFishList;
-
-            /* 飞机吊桶取水点管理单位 */
-            PWManagementUnit pWManagementUnit = PWManagementUnit.管理单位1;
-            List<object> aLManagementUnitList = CommonHelper.GetDataSource<PWManagementUnit>(pWManagementUnit);
-            this.cbx_management_unit.DisplayMember = "Name";
-            this.cbx_management_unit.ValueMember = "Name";
-            this.cbx_management_unit.DataSource = aLManagementUnitList;
             #endregion
 
             #region 初始化行政区信息

@@ -258,11 +258,11 @@ namespace FFireManage.PlaneWaterPoint
         private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
             ListViewItem item = listView1.GetItemAt(e.X, e.Y);
-            if (item.Tag is Fire_PBrigade)
+            if (item.Tag is Fire_Planewaterpoint)
             {
-                var fireHBrigade = item.Tag as Fire_PBrigade;
-                FormFirePBrigade pFormFireForestBelt = new FormFirePBrigade(OperationType.Check, fireHBrigade);
-                pFormFireForestBelt.ShowDialog(this);
+                var firePlanewaterpoint = item.Tag as Fire_Planewaterpoint;
+                FormPlaneWaterPoint pFormPlaneWaterPoint = new FormPlaneWaterPoint(OperationType.Check, firePlanewaterpoint);
+                pFormPlaneWaterPoint.ShowDialog(this);
             }
         }
         #endregion

@@ -184,7 +184,7 @@ namespace FFireManage.Service
         {
             Dictionary<string, object> parameterDict = new Dictionary<string, object>()
             {
-                {"f",4273002},
+                {"f",4273001},
                 {"id",id }
             };
             this.ExecuteGet(parameterDict, OnDeleteEvent);

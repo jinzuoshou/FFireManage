@@ -117,6 +117,7 @@ namespace FFireManage.FireImportantUnits
                 this.Text = "查看重点防火单位";
             }
 
+            /* 专业森林防火队类型 */
             FireImportantUnitsType fireIUnitsType = FireImportantUnitsType.县级防火检查站;
             List<object> fireIUnitsTypeList = CommonHelper.GetDataSource<FireImportantUnitsType>(fireIUnitsType);
             this.cbx_type.DisplayMember = "Name";
@@ -127,7 +128,7 @@ namespace FFireManage.FireImportantUnits
             FireHBrigadeStatus fireHBrigateStatus = FireHBrigadeStatus.优秀;
             List<object> fireForestBeltStatusList = CommonHelper.GetDataSource<FireHBrigadeStatus>(fireHBrigateStatus);
             this.cbx_status.DisplayMember = "Name";
-            this.cbx_status.ValueMember = "Value";
+            this.cbx_status.ValueMember = "Name";
             this.cbx_status.DataSource = fireForestBeltStatusList;
 
             #endregion

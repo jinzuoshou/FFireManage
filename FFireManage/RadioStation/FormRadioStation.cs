@@ -117,15 +117,6 @@ namespace FFireManage.RadioStation
                 this.Text = "查看无线电台站";
             }
 
-            /* 无线电台站形状 */
-            Shape radioStationShape = Shape.点;
-            List<object> radioStationShapeList = CommonHelper.GetDataSource<Shape>(radioStationShape);
-            this.cbx_shape.DisplayMember = "Name";
-            this.cbx_shape.ValueMember = "Value";
-            this.cbx_shape.DataSource = radioStationShapeList;
-            this.cbx_shape.SelectedValue = 1;
-            this.cbx_shape.Enabled = false;
-
             /* 瞭望台状态 */
             RadioStationStatus radioStationStatus = RadioStationStatus.优秀;
             List<object> watchTowerStatusList = CommonHelper.GetDataSource<RadioStationStatus>(radioStationStatus);
@@ -153,41 +144,9 @@ namespace FFireManage.RadioStation
             {
                 this.coordinatesInputControl1.Longitude = this.m_RadioStation.longitude;
                 this.coordinatesInputControl1.Latitude = this.m_RadioStation.latitude;
-                this.tbx_name.Text = this.m_RadioStation.name;
-                if (this.m_RadioStation.shape.Contains("POINT"))
-                {
-                    this.cbx_shape.SelectedValue = 1;
-                }
-                else if (this.m_RadioStation.shape.Contains("LINEstring"))
-                {
-                    this.cbx_shape.SelectedValue = 2;
-                }
-                else if (this.m_RadioStation.shape.Contains("POLYGON"))
-                {
-                    this.cbx_shape.SelectedValue = 3;
-                }
-                this.tbx_d_type.SelectedText = this.m_RadioStation.d_type;
-                this.cbx_status.SelectedValue = (int)this.m_RadioStation.status;
-                this.tbx_manager.Text = this.m_RadioStation.manager;
-                this.tbx_phone.Text = this.m_RadioStation.phone;
-                this.tbx_num_radio.Text = this.m_RadioStation.num_radio;
-                this.tbx_radioname.Text = this.m_RadioStation.radioname;
-                this.tbx_type.SelectedText = this.m_RadioStation.type;
-                this.tbx_coding.Text = this.m_RadioStation.coding;
-                this.tbx_r_frequenc.Text = this.m_RadioStation.r_frequenc;
-                this.tbx_l_frequenc.Text = this.m_RadioStation.l_frequenc;
-                this.tbx_power.Text = this.m_RadioStation.power;
-                this.tbx_elevation.Text = this.m_RadioStation.elevation.ToString();
-                this.tbx_height.Text = this.m_RadioStation.height.ToString();
-                
-                this.tbx_units.Text = this.m_RadioStation.units;
-                try
-                {
-                    this.dtp_build_year.Value = Convert.ToDateTime(this.m_RadioStation.build_year);
-                }
-                catch
-                { }
-                
+
+                //窗体自动赋值
+                SmartForm.Fill(this.tabPage_baseInfo.Controls, this.m_RadioStation);
 
                 this.tbx_note.Text = this.m_RadioStation.note;
                 this.mediaControl1.MediaFiles = this.m_RadioStation.mediaFiles;
@@ -199,25 +158,10 @@ namespace FFireManage.RadioStation
 
                     this.coordinatesInputControl1.Enabled = false;
                     this.pacControl11.Enabled = false;
-                    this.tbx_name.Enabled = false;
-                    this.cbx_status.Enabled = false;
-                    this.tbx_d_type.Enabled = false;
-                    this.cbx_status.Enabled = false;
-                    this.tbx_manager.Enabled = false;
-                    this.tbx_phone.Enabled = false;
-                    this.tbx_num_radio.Enabled = false;
-                    this.tbx_radioname.Enabled = false;
-                    this.tbx_type.Enabled = false;
-                    this.tbx_coding.Enabled = false;
-                    this.tbx_r_frequenc.Enabled = false;
-                    this.tbx_l_frequenc.Enabled = false;
-                    this.tbx_power.Enabled = false;
-                    this.tbx_elevation.Enabled = false;
-                    this.tbx_height.Enabled = false;
-                    this.tbx_units.Enabled = false;
-                    this.dtp_build_year.Enabled = false;
-                    this.tbx_note.Enabled = false;
 
+                    SmartForm.SetControlsEnabled(this.tabPage_baseInfo.Controls, null);
+
+                    this.tbx_note.Enabled = false;
                 }
             }
             #endregion
@@ -227,6 +171,22 @@ namespace FFireManage.RadioStation
         {
             if (!IsCondition())
                 return;
+            IDictionary<string, string> dict = new Dictionary<string, string>();
+            try
+            {
+                this.tabControl1.SelectedTab = this.tabPage_baseInfo;
+                dict = m_RadioStation.ObjectDescriptionToDict();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            if (!SmartForm.Validator(this.tabPage_baseInfo.Controls, dict))
+            {
+                return;
+            }
+
             if (m_OperationType == OperationType.Add)
             {
                 this.m_RadioStation = new Fire_RadioStation();
@@ -236,25 +196,11 @@ namespace FFireManage.RadioStation
             this.m_RadioStation.pac = this.pacControl11.LocalPac;
             this.m_RadioStation.city = this.pacControl11.City;
             this.m_RadioStation.county = this.pacControl11.County;
-            this.m_RadioStation.name = this.tbx_name.Text;
-            if ((int)this.cbx_shape.SelectedValue == 1)
-            {
-                this.m_RadioStation.shape = GDALHelper.LngLatToWktPoint(this.m_RadioStation.longitude, this.m_RadioStation.latitude);
-            }
-            this.m_RadioStation.d_type = this.tbx_d_type.Text.Trim();
-            this.m_RadioStation.status = (int)this.cbx_status.SelectedValue;
-            this.m_RadioStation.manager = this.tbx_manager.Text;
-            this.m_RadioStation.phone = this.tbx_phone.Text;
-            this.m_RadioStation.num_radio = this.tbx_num_radio.Text;
-            this.m_RadioStation.radioname = this.tbx_radioname.Text;
-            this.m_RadioStation.coding = this.tbx_coding.Text;
-            this.m_RadioStation.type = this.tbx_type.Text;
-            this.m_RadioStation.r_frequenc = this.tbx_r_frequenc.Text;
-            this.m_RadioStation.l_frequenc = this.tbx_l_frequenc.Text;
-            this.m_RadioStation.power = this.tbx_power.Text;
-            this.m_RadioStation.elevation = Convert.ToDouble(this.tbx_elevation.Text);
-            this.m_RadioStation.height = Convert.ToDouble(this.tbx_height.Text.Trim());
-            this.m_RadioStation.units = this.tbx_units.Text;
+            this.m_RadioStation.shape = Converters.LngLatToWKT(this.m_RadioStation.longitude, this.m_RadioStation.latitude);
+
+            //自动从窗体控件上取值
+            this.m_RadioStation = SmartForm.GetEntity<Fire_RadioStation>(this.tabPage_baseInfo.Controls, this.m_RadioStation);
+
             this.m_RadioStation.build_year = this.dtp_build_year.Value.ToString("yyyy-MM-dd hh:mm:ss");
             this.m_RadioStation.note = this.tbx_note.Text.Trim();
             this.m_RadioStation.mediaByteDict = this.mediaControl1.MediaByteDict;

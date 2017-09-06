@@ -420,18 +420,6 @@
     <Compile Include="Service\FireWarehouseController.cs" />
     <Compile Include="Service\UserController.cs" />
     <Compile Include="Service\WarningBoardsController.cs" />
-    <Compile Include="Tarmac\FormTarmac.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Tarmac\FormTarmac.Designer.cs">
-      <DependentUpon>FormTarmac.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Tarmac\FormTarmacManage.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Tarmac\FormTarmacManage.Designer.cs">
-      <DependentUpon>FormTarmacManage.cs</DependentUpon>
-    </Compile>
     <Compile Include="Utility\AppConfigHelper.cs" />
     <Compile Include="Model\AreaCodeInfo.cs" />
     <Compile Include="Model\LicenceKeyInfo.cs" />
@@ -661,12 +649,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SatelliteGroundStation\FormSatelliteGroundStationManage.resx">
       <DependentUpon>FormSatelliteGroundStationManage.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Tarmac\FormTarmac.resx">
-      <DependentUpon>FormTarmac.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Tarmac\FormTarmacManage.resx">
-      <DependentUpon>FormTarmacManage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="User\FormLogin.resx">
       <DependentUpon>FormLogin.cs</DependentUpon>

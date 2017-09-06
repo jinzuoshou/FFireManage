@@ -262,7 +262,7 @@ namespace FFireManage
 		/// <summary>
 		/// 状态
 		/// </summary>
-		public int status { get; set; }
+		public string status { get; set; }
 
 		/// <summary>
 		/// 帐篷

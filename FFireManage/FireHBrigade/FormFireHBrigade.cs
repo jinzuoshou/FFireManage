@@ -121,7 +121,7 @@ namespace FFireManage.FireWarehouse
             FireHBrigadeStatus fireHBrigateStatus = FireHBrigadeStatus.优秀;
             List<object> fireForestBeltStatusList = CommonHelper.GetDataSource<FireHBrigadeStatus>(fireHBrigateStatus);
             this.cbx_status.DisplayMember = "Name";
-            this.cbx_status.ValueMember = "Value";
+            this.cbx_status.ValueMember = "Name";
             this.cbx_status.DataSource = fireForestBeltStatusList;
 
             #endregion

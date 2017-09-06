@@ -489,15 +489,7 @@ namespace FFireManage
         是 = 1,
         否 = 2
     }
-    /// <summary>
-    /// 飞机吊桶取水点管理单位
-    /// </summary>
-    public enum PWManagementUnit
-    {
-        管理单位1 = 1,
-        管理单位2 = 2,
-        管理单位3 = 3
-    }
+
     /// <summary>
     /// 是否有网箱养鱼
     /// </summary>
@@ -516,6 +508,12 @@ namespace FFireManage
         一般 = 3,
         差 = 4,
         废弃 = 5
+    }
+    public enum PWType
+    {
+        水库=1,
+        湖泊=2,
+        河流=3
     }
     #endregion
 
@@ -552,6 +550,3 @@ namespace FFireManage
     }
     #endregion
 }
-
-
-

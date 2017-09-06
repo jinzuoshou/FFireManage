@@ -24,6 +24,7 @@ namespace FFireManage
 		/// <summary>
 		/// 名称
 		/// </summary>
+        [Custom(Description = "名称")]
 		public string name { get; set; }
 
 		/// <summary>
@@ -150,10 +151,11 @@ namespace FFireManage
 		/// </summary>
 		public string note { get; set; }
 
-		/// <summary>
-		/// 地址
-		/// </summary>
-		public string address { get; set; }
+        /// <summary>
+        /// 地址
+        /// </summary>
+        [Custom(Description = "地址")]
+        public string address { get; set; }
 
 		/// <summary>
 		/// 唯一编号
@@ -169,6 +171,21 @@ namespace FFireManage
 		/// 行政区划代码
 		/// </summary>
 		public string pac { get; set; }
+
+        /// <summary>
+        /// 地区
+        /// </summary>
+        public string city_name { get; set; }
+
+        /// <summary>
+        /// 县名
+        /// </summary>
+        public string county_name { get; set; }
+
+        /// <summary>
+        /// 基地类型
+        /// </summary>
+        public string base_type { get; set; }
 
         /// <summary>
         /// 媒体字典

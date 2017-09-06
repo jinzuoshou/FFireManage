@@ -121,7 +121,7 @@ namespace FFireManage.FirePBrigade
             FirePBrigadeStatus firePBrigateStatus = FirePBrigadeStatus.优秀;
             List<object> firePBrigateStatusList = CommonHelper.GetDataSource<FirePBrigadeStatus>(firePBrigateStatus);
             this.cbx_status.DisplayMember = "Name";
-            this.cbx_status.ValueMember = "Value";
+            this.cbx_status.ValueMember = "Name";
             this.cbx_status.DataSource = firePBrigateStatusList;
 
             #endregion

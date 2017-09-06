@@ -24,17 +24,20 @@ namespace FFireManage
 		/// <summary>
 		/// 起始地点
 		/// </summary>
+        [Custom(Description = "起始地点")]
 		public string start_addr { get; set; }
 
-		/// <summary>
-		/// 终止地点
-		/// </summary>
-		public string stop_addr { get; set; }
+        /// <summary>
+        /// 终止地点
+        /// </summary>
+        [Custom(Description = "终止地点")]
+        public string stop_addr { get; set; }
 
-		/// <summary>
-		/// 名称
-		/// </summary>
-		public string name { get; set; }
+        /// <summary>
+        /// 名称
+        /// </summary>
+        [Custom(Description = "名称")]
+        public string name { get; set; }
 
 		/// <summary>
 		/// 营造位置
@@ -46,10 +49,11 @@ namespace FFireManage
 		/// </summary>
 		public string build_year { get; set; }
 
-		/// <summary>
-		/// 树种
-		/// </summary>
-		public string tree_type { get; set; }
+        /// <summary>
+        /// 树种
+        /// </summary>
+        [Custom(Description = "树种")]
+        public string tree_type { get; set; }
 
         /// <summary>
         /// 类型
@@ -61,15 +65,17 @@ namespace FFireManage
         /// </summary>
         public string build_unit { get; set; }
 
-		/// <summary>
-		/// 长度
-		/// </summary>
-		public double belt_len { get; set; }
+        /// <summary>
+        /// 长度
+        /// </summary>
+        [Custom(Description = "长度")]
+        public Nullable<double> belt_len { get; set; }
 
-		/// <summary>
-		/// 宽度
-		/// </summary>
-		public double belt_width { get; set; }
+        /// <summary>
+        /// 宽度
+        /// </summary>
+        [Custom(Description = "宽度")]
+        public Nullable<double> belt_width { get; set; }
 
         /// <summary>
         /// 状态
@@ -110,35 +116,47 @@ namespace FFireManage
 		/// </summary>
 		public double latitude { get; set; }
 
-		/// <summary>
-		/// 株行距
-		/// </summary>
-		public string row_spacing { get; set; }
+        /// <summary>
+        /// 株行距
+        /// </summary>
+        [Custom(Description = "株行距")]
+        public string row_spacing { get; set; }
 
 		/// <summary>
 		/// 唯一编号
 		/// </summary>
 		public string id { get; set; }
 
-		/// <summary>
-		/// 管理单位
-		/// </summary>
-		public string management_unit { get; set; }
+        /// <summary>
+        /// 管理单位
+        /// </summary>
+        [Custom(Description = "管理单位")]
+        public string management_unit { get; set; }
 
-		/// <summary>
-		/// 管理员电话
-		/// </summary>
-		public string phone { get; set; }
+        /// <summary>
+        /// 管理员电话
+        /// </summary>
+        [Custom(Description = "管理员电话")]
+        public string phone { get; set; }
 
-		/// <summary>
-		/// 管理员
-		/// </summary>
-		public string manager { get; set; }
+        /// <summary>
+        /// 管理员
+        /// </summary>
+        [Custom(Description = "管理员")]
+        public string manager { get; set; }
 
 		/// <summary>
 		/// 行政区划代码
 		/// </summary>
 		public string pac { get; set; }
+
+        /// <summary>
+        /// 地区
+        /// </summary>
+        public string city_name { get; set; }
+
+        //县名
+        public string county_name { get; set; }
 
         /// <summary>
         /// 媒体字典

@@ -31,17 +31,13 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_location = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.coordinatesInputControl1 = new FFireManage.Controls.CoordinatesInputControl();
-            this.pacControl11 = new FFireManage.Controls.PACControl1();
             this.tabPage_baseInfo = new System.Windows.Forms.TabPage();
-            this.tbx_user_id = new FFireManage.Controls.NTextBox();
-            this.txt_typeid = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.txt_mat_id = new System.Windows.Forms.TextBox();
-            this.txt_build_area = new System.Windows.Forms.TextBox();
             this.txt_reserve_type = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txt_director = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txt_management_unit = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.cmb_type = new System.Windows.Forms.ComboBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -65,9 +61,15 @@
             this.tabPage_note = new System.Windows.Forms.TabPage();
             this.tbx_note = new System.Windows.Forms.TextBox();
             this.tabPage_mediaInfo = new System.Windows.Forms.TabPage();
-            this.mediaControl1 = new FFireManage.Controls.MediaControl();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.coordinatesInputControl1 = new FFireManage.Controls.CoordinatesInputControl();
+            this.pacControl11 = new FFireManage.Controls.PACControl1();
+            this.ntx_typeid = new FFireManage.Controls.NTextBox();
+            this.ntx_build_area = new FFireManage.Controls.NTextBox();
+            this.ntx_quantity = new FFireManage.Controls.NTextBox();
+            this.tbx_user_id = new FFireManage.Controls.NTextBox();
+            this.mediaControl1 = new FFireManage.Controls.MediaControl();
             this.tabControl1.SuspendLayout();
             this.tabPage_location.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -113,37 +115,19 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "经纬度坐标";
             // 
-            // coordinatesInputControl1
-            // 
-            this.coordinatesInputControl1.Latitude = 0D;
-            this.coordinatesInputControl1.Location = new System.Drawing.Point(6, 14);
-            this.coordinatesInputControl1.Longitude = 0D;
-            this.coordinatesInputControl1.MaximumSize = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.MinimumSize = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.Name = "coordinatesInputControl1";
-            this.coordinatesInputControl1.Size = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.TabIndex = 0;
-            // 
-            // pacControl11
-            // 
-            this.pacControl11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pacControl11.Location = new System.Drawing.Point(36, 202);
-            this.pacControl11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pacControl11.Name = "pacControl11";
-            this.pacControl11.Size = new System.Drawing.Size(529, 38);
-            this.pacControl11.TabIndex = 11;
-            // 
             // tabPage_baseInfo
             // 
             this.tabPage_baseInfo.AutoScroll = true;
+            this.tabPage_baseInfo.Controls.Add(this.ntx_typeid);
+            this.tabPage_baseInfo.Controls.Add(this.ntx_build_area);
+            this.tabPage_baseInfo.Controls.Add(this.ntx_quantity);
+            this.tabPage_baseInfo.Controls.Add(this.label15);
             this.tabPage_baseInfo.Controls.Add(this.tbx_user_id);
-            this.tabPage_baseInfo.Controls.Add(this.txt_typeid);
             this.tabPage_baseInfo.Controls.Add(this.txt_mat_id);
-            this.tabPage_baseInfo.Controls.Add(this.txt_build_area);
             this.tabPage_baseInfo.Controls.Add(this.txt_reserve_type);
-            this.tabPage_baseInfo.Controls.Add(this.textBox2);
+            this.tabPage_baseInfo.Controls.Add(this.txt_director);
             this.tabPage_baseInfo.Controls.Add(this.label14);
-            this.tabPage_baseInfo.Controls.Add(this.textBox1);
+            this.tabPage_baseInfo.Controls.Add(this.txt_management_unit);
             this.tabPage_baseInfo.Controls.Add(this.label13);
             this.tabPage_baseInfo.Controls.Add(this.cmb_type);
             this.tabPage_baseInfo.Controls.Add(this.label10);
@@ -172,61 +156,41 @@
             this.tabPage_baseInfo.Text = "基本信息";
             this.tabPage_baseInfo.UseVisualStyleBackColor = true;
             // 
-            // tbx_user_id
+            // label15
             // 
-            this.tbx_user_id.AccessibleName = "user_id";
-            this.tbx_user_id.Location = new System.Drawing.Point(425, 147);
-            this.tbx_user_id.MaxLength = 4;
-            this.tbx_user_id.Name = "tbx_user_id";
-            this.tbx_user_id.Size = new System.Drawing.Size(220, 23);
-            this.tbx_user_id.TabIndex = 176;
-            this.tbx_user_id.Text = "0";
-            this.tbx_user_id.TextChanged += new System.EventHandler(this.tbx_num_people_TextChanged);
-            // 
-            // txt_typeid
-            // 
-            this.txt_typeid.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
-            this.txt_typeid.AccessibleName = "typeid";
-            this.txt_typeid.Location = new System.Drawing.Point(425, 110);
-            this.txt_typeid.Name = "txt_typeid";
-            this.txt_typeid.Size = new System.Drawing.Size(220, 23);
-            this.txt_typeid.TabIndex = 175;
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(357, 189);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(59, 17);
+            this.label15.TabIndex = 177;
+            this.label15.Text = "物资数量:";
             // 
             // txt_mat_id
             // 
-            this.txt_mat_id.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
+            this.txt_mat_id.AccessibleDescription = "length:^.{0,3}$:{0}1~4";
             this.txt_mat_id.AccessibleName = "mat_id";
             this.txt_mat_id.Location = new System.Drawing.Point(87, 147);
             this.txt_mat_id.Name = "txt_mat_id";
             this.txt_mat_id.Size = new System.Drawing.Size(220, 23);
             this.txt_mat_id.TabIndex = 174;
             // 
-            // txt_build_area
-            // 
-            this.txt_build_area.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
-            this.txt_build_area.AccessibleName = "build_area";
-            this.txt_build_area.Location = new System.Drawing.Point(86, 113);
-            this.txt_build_area.Name = "txt_build_area";
-            this.txt_build_area.Size = new System.Drawing.Size(220, 23);
-            this.txt_build_area.TabIndex = 173;
-            // 
             // txt_reserve_type
             // 
-            this.txt_reserve_type.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
+            this.txt_reserve_type.AccessibleDescription = "length:^.{0,49}$:{0}1~50";
             this.txt_reserve_type.AccessibleName = "reserve_type";
             this.txt_reserve_type.Location = new System.Drawing.Point(85, 188);
             this.txt_reserve_type.Name = "txt_reserve_type";
             this.txt_reserve_type.Size = new System.Drawing.Size(220, 23);
             this.txt_reserve_type.TabIndex = 172;
             // 
-            // textBox2
+            // txt_director
             // 
-            this.textBox2.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
-            this.textBox2.AccessibleName = "name";
-            this.textBox2.Location = new System.Drawing.Point(425, 232);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(220, 23);
-            this.textBox2.TabIndex = 171;
+            this.txt_director.AccessibleDescription = "length:^.{0,49}$:{0}1~50";
+            this.txt_director.AccessibleName = "director";
+            this.txt_director.Location = new System.Drawing.Point(425, 232);
+            this.txt_director.Name = "txt_director";
+            this.txt_director.Size = new System.Drawing.Size(220, 23);
+            this.txt_director.TabIndex = 171;
             // 
             // label14
             // 
@@ -237,14 +201,14 @@
             this.label14.TabIndex = 170;
             this.label14.Text = "单位负责人:";
             // 
-            // textBox1
+            // txt_management_unit
             // 
-            this.textBox1.AccessibleDescription = "required;length:^.{0,29}$:{0}1~30";
-            this.textBox1.AccessibleName = "name";
-            this.textBox1.Location = new System.Drawing.Point(86, 229);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(220, 23);
-            this.textBox1.TabIndex = 169;
+            this.txt_management_unit.AccessibleDescription = "required;length:^.{0,29}$:{0}1~30";
+            this.txt_management_unit.AccessibleName = "management_unit";
+            this.txt_management_unit.Location = new System.Drawing.Point(86, 229);
+            this.txt_management_unit.Name = "txt_management_unit";
+            this.txt_management_unit.Size = new System.Drawing.Size(220, 23);
+            this.txt_management_unit.TabIndex = 169;
             // 
             // label13
             // 
@@ -257,7 +221,7 @@
             // 
             // cmb_type
             // 
-            this.cmb_type.AccessibleName = "status";
+            this.cmb_type.AccessibleName = "type";
             this.cmb_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmb_type.FormattingEnabled = true;
             this.cmb_type.Location = new System.Drawing.Point(86, 72);
@@ -268,7 +232,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(356, 194);
+            this.label10.Location = new System.Drawing.Point(19, 269);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(59, 17);
             this.label10.TabIndex = 166;
@@ -322,7 +286,7 @@
             // dtp_build_year
             // 
             this.dtp_build_year.AccessibleName = "build_year";
-            this.dtp_build_year.Location = new System.Drawing.Point(425, 189);
+            this.dtp_build_year.Location = new System.Drawing.Point(88, 264);
             this.dtp_build_year.Name = "dtp_build_year";
             this.dtp_build_year.Size = new System.Drawing.Size(220, 23);
             this.dtp_build_year.TabIndex = 160;
@@ -330,7 +294,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(45, 75);
+            this.label3.Location = new System.Drawing.Point(43, 75);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(35, 17);
             this.label3.TabIndex = 82;
@@ -459,15 +423,6 @@
             this.tabPage_mediaInfo.Text = "多媒体文件";
             this.tabPage_mediaInfo.UseVisualStyleBackColor = true;
             // 
-            // mediaControl1
-            // 
-            this.mediaControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mediaControl1.Location = new System.Drawing.Point(3, 3);
-            this.mediaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.mediaControl1.Name = "mediaControl1";
-            this.mediaControl1.Size = new System.Drawing.Size(716, 439);
-            this.mediaControl1.TabIndex = 0;
-            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -489,6 +444,76 @@
             this.btnOK.Text = "确定(&O)";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // coordinatesInputControl1
+            // 
+            this.coordinatesInputControl1.Latitude = 0D;
+            this.coordinatesInputControl1.Location = new System.Drawing.Point(6, 14);
+            this.coordinatesInputControl1.Longitude = 0D;
+            this.coordinatesInputControl1.MaximumSize = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.MinimumSize = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.Name = "coordinatesInputControl1";
+            this.coordinatesInputControl1.Size = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.TabIndex = 0;
+            // 
+            // pacControl11
+            // 
+            this.pacControl11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pacControl11.Location = new System.Drawing.Point(36, 202);
+            this.pacControl11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pacControl11.Name = "pacControl11";
+            this.pacControl11.Size = new System.Drawing.Size(529, 38);
+            this.pacControl11.TabIndex = 11;
+            // 
+            // ntx_typeid
+            // 
+            this.ntx_typeid.AccessibleName = "typeid";
+            this.ntx_typeid.Location = new System.Drawing.Point(425, 110);
+            this.ntx_typeid.MaxLength = 4;
+            this.ntx_typeid.Name = "ntx_typeid";
+            this.ntx_typeid.Size = new System.Drawing.Size(220, 23);
+            this.ntx_typeid.TabIndex = 180;
+            this.ntx_typeid.Text = "0";
+            // 
+            // ntx_build_area
+            // 
+            this.ntx_build_area.AccessibleName = "build_area";
+            this.ntx_build_area.Location = new System.Drawing.Point(86, 110);
+            this.ntx_build_area.MaxLength = 8;
+            this.ntx_build_area.Name = "ntx_build_area";
+            this.ntx_build_area.Size = new System.Drawing.Size(220, 23);
+            this.ntx_build_area.TabIndex = 179;
+            this.ntx_build_area.Text = "0";
+            // 
+            // ntx_quantity
+            // 
+            this.ntx_quantity.AccessibleName = "quantity";
+            this.ntx_quantity.Location = new System.Drawing.Point(425, 189);
+            this.ntx_quantity.MaxLength = 4;
+            this.ntx_quantity.Name = "ntx_quantity";
+            this.ntx_quantity.Size = new System.Drawing.Size(220, 23);
+            this.ntx_quantity.TabIndex = 178;
+            this.ntx_quantity.Text = "0";
+            // 
+            // tbx_user_id
+            // 
+            this.tbx_user_id.AccessibleName = "user_id";
+            this.tbx_user_id.Location = new System.Drawing.Point(425, 147);
+            this.tbx_user_id.MaxLength = 4;
+            this.tbx_user_id.Name = "tbx_user_id";
+            this.tbx_user_id.Size = new System.Drawing.Size(220, 23);
+            this.tbx_user_id.TabIndex = 176;
+            this.tbx_user_id.Text = "0";
+            this.tbx_user_id.TextChanged += new System.EventHandler(this.tbx_num_people_TextChanged);
+            // 
+            // mediaControl1
+            // 
+            this.mediaControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mediaControl1.Location = new System.Drawing.Point(3, 3);
+            this.mediaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.mediaControl1.Name = "mediaControl1";
+            this.mediaControl1.Size = new System.Drawing.Size(716, 443);
+            this.mediaControl1.TabIndex = 0;
             // 
             // FormWarehouse
             // 
@@ -547,15 +572,17 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txt_director;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txt_management_unit;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cmb_type;
-        private System.Windows.Forms.TextBox txt_typeid;
         private System.Windows.Forms.TextBox txt_mat_id;
-        private System.Windows.Forms.TextBox txt_build_area;
         private System.Windows.Forms.TextBox txt_reserve_type;
         private Controls.NTextBox tbx_user_id;
+        private Controls.NTextBox ntx_quantity;
+        private System.Windows.Forms.Label label15;
+        private Controls.NTextBox ntx_build_area;
+        private Controls.NTextBox ntx_typeid;
     }
 }

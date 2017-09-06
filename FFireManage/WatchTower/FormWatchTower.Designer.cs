@@ -34,11 +34,12 @@
             this.coordinatesInputControl1 = new FFireManage.Controls.CoordinatesInputControl();
             this.pacControl11 = new FFireManage.Controls.PACControl1();
             this.tabPage_baseInfo = new System.Windows.Forms.TabPage();
+            this.tbx_address = new System.Windows.Forms.TextBox();
+            this.cbx_build_unit = new System.Windows.Forms.ComboBox();
             this.cbx_structure = new System.Windows.Forms.ComboBox();
             this.tbx_video_surveillance = new System.Windows.Forms.TextBox();
             this.label21 = new System.Windows.Forms.Label();
             this.dtp_build_year = new System.Windows.Forms.DateTimePicker();
-            this.tbx_build_unit = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -59,7 +60,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.tbx_manager = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.cbx_shape = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tbx_name = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -80,6 +80,10 @@
             this.mediaControl1 = new FFireManage.Controls.MediaControl();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.label16 = new System.Windows.Forms.Label();
+            this.tbx_base_type = new System.Windows.Forms.TextBox();
+            this.tbx_management_unit = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage_location.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -153,11 +157,16 @@
             // tabPage_baseInfo
             // 
             this.tabPage_baseInfo.AutoScroll = true;
+            this.tabPage_baseInfo.Controls.Add(this.tbx_management_unit);
+            this.tabPage_baseInfo.Controls.Add(this.label22);
+            this.tabPage_baseInfo.Controls.Add(this.tbx_base_type);
+            this.tabPage_baseInfo.Controls.Add(this.label16);
+            this.tabPage_baseInfo.Controls.Add(this.tbx_address);
+            this.tabPage_baseInfo.Controls.Add(this.cbx_build_unit);
             this.tabPage_baseInfo.Controls.Add(this.cbx_structure);
             this.tabPage_baseInfo.Controls.Add(this.tbx_video_surveillance);
             this.tabPage_baseInfo.Controls.Add(this.label21);
             this.tabPage_baseInfo.Controls.Add(this.dtp_build_year);
-            this.tabPage_baseInfo.Controls.Add(this.tbx_build_unit);
             this.tabPage_baseInfo.Controls.Add(this.label12);
             this.tabPage_baseInfo.Controls.Add(this.label20);
             this.tabPage_baseInfo.Controls.Add(this.label19);
@@ -178,7 +187,6 @@
             this.tabPage_baseInfo.Controls.Add(this.label4);
             this.tabPage_baseInfo.Controls.Add(this.tbx_manager);
             this.tabPage_baseInfo.Controls.Add(this.label3);
-            this.tabPage_baseInfo.Controls.Add(this.cbx_shape);
             this.tabPage_baseInfo.Controls.Add(this.label2);
             this.tabPage_baseInfo.Controls.Add(this.tbx_name);
             this.tabPage_baseInfo.Controls.Add(this.label1);
@@ -202,11 +210,33 @@
             this.tabPage_baseInfo.Text = "基本信息";
             this.tabPage_baseInfo.UseVisualStyleBackColor = true;
             // 
+            // tbx_address
+            // 
+            this.tbx_address.AccessibleDescription = "length:^.{0,49}$:{0}1~50";
+            this.tbx_address.AccessibleName = "address";
+            this.tbx_address.Location = new System.Drawing.Point(439, 18);
+            this.tbx_address.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbx_address.Name = "tbx_address";
+            this.tbx_address.Size = new System.Drawing.Size(215, 23);
+            this.tbx_address.TabIndex = 69;
+            // 
+            // cbx_build_unit
+            // 
+            this.cbx_build_unit.AccessibleName = "build_unit";
+            this.cbx_build_unit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbx_build_unit.FormattingEnabled = true;
+            this.cbx_build_unit.Location = new System.Drawing.Point(439, 285);
+            this.cbx_build_unit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbx_build_unit.Name = "cbx_build_unit";
+            this.cbx_build_unit.Size = new System.Drawing.Size(215, 25);
+            this.cbx_build_unit.TabIndex = 68;
+            // 
             // cbx_structure
             // 
+            this.cbx_structure.AccessibleName = "structure";
             this.cbx_structure.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_structure.FormattingEnabled = true;
-            this.cbx_structure.Location = new System.Drawing.Point(101, 339);
+            this.cbx_structure.Location = new System.Drawing.Point(101, 285);
             this.cbx_structure.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbx_structure.Name = "cbx_structure";
             this.cbx_structure.Size = new System.Drawing.Size(215, 25);
@@ -214,7 +244,8 @@
             // 
             // tbx_video_surveillance
             // 
-            this.tbx_video_surveillance.Location = new System.Drawing.Point(439, 382);
+            this.tbx_video_surveillance.AccessibleName = "video_surveillance";
+            this.tbx_video_surveillance.Location = new System.Drawing.Point(439, 323);
             this.tbx_video_surveillance.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbx_video_surveillance.Name = "tbx_video_surveillance";
             this.tbx_video_surveillance.Size = new System.Drawing.Size(215, 23);
@@ -223,7 +254,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(364, 388);
+            this.label21.Location = new System.Drawing.Point(364, 326);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(59, 17);
             this.label21.TabIndex = 60;
@@ -231,24 +262,17 @@
             // 
             // dtp_build_year
             // 
-            this.dtp_build_year.Location = new System.Drawing.Point(101, 382);
+            this.dtp_build_year.AccessibleName = "build_year";
+            this.dtp_build_year.Location = new System.Drawing.Point(101, 323);
             this.dtp_build_year.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dtp_build_year.Name = "dtp_build_year";
             this.dtp_build_year.Size = new System.Drawing.Size(215, 23);
             this.dtp_build_year.TabIndex = 59;
             // 
-            // tbx_build_unit
-            // 
-            this.tbx_build_unit.Location = new System.Drawing.Point(439, 339);
-            this.tbx_build_unit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbx_build_unit.Name = "tbx_build_unit";
-            this.tbx_build_unit.Size = new System.Drawing.Size(215, 23);
-            this.tbx_build_unit.TabIndex = 58;
-            // 
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(364, 345);
+            this.label12.Location = new System.Drawing.Point(364, 291);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(59, 17);
             this.label12.TabIndex = 57;
@@ -257,7 +281,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(23, 387);
+            this.label20.Location = new System.Drawing.Point(27, 326);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(59, 17);
             this.label20.TabIndex = 55;
@@ -266,7 +290,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(51, 344);
+            this.label19.Location = new System.Drawing.Point(51, 290);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(35, 17);
             this.label19.TabIndex = 53;
@@ -275,7 +299,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(47, 303);
+            this.label17.Location = new System.Drawing.Point(51, 259);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(35, 17);
             this.label17.TabIndex = 51;
@@ -284,7 +308,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(340, 303);
+            this.label18.Location = new System.Drawing.Point(340, 259);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(83, 17);
             this.label18.TabIndex = 47;
@@ -293,7 +317,7 @@
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(15, 260);
+            this.label14.Location = new System.Drawing.Point(15, 228);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(71, 17);
             this.label14.TabIndex = 42;
@@ -302,7 +326,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(340, 260);
+            this.label15.Location = new System.Drawing.Point(340, 227);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(83, 17);
             this.label15.TabIndex = 39;
@@ -311,7 +335,7 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(15, 216);
+            this.label10.Location = new System.Drawing.Point(15, 194);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(71, 17);
             this.label10.TabIndex = 38;
@@ -320,7 +344,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(352, 216);
+            this.label13.Location = new System.Drawing.Point(352, 194);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(71, 17);
             this.label13.TabIndex = 35;
@@ -329,7 +353,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(51, 62);
+            this.label8.Location = new System.Drawing.Point(51, 57);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(35, 17);
             this.label8.TabIndex = 34;
@@ -337,9 +361,10 @@
             // 
             // cbx_status
             // 
+            this.cbx_status.AccessibleName = "status";
             this.cbx_status.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_status.FormattingEnabled = true;
-            this.cbx_status.Location = new System.Drawing.Point(439, 57);
+            this.cbx_status.Location = new System.Drawing.Point(439, 52);
             this.cbx_status.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbx_status.Name = "cbx_status";
             this.cbx_status.Size = new System.Drawing.Size(215, 25);
@@ -348,7 +373,7 @@
             // label11
             // 
             this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(388, 62);
+            this.label11.Location = new System.Drawing.Point(388, 57);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(35, 17);
             this.label11.TabIndex = 31;
@@ -356,9 +381,10 @@
             // 
             // cbx_type
             // 
+            this.cbx_type.AccessibleName = "type";
             this.cbx_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_type.FormattingEnabled = true;
-            this.cbx_type.Location = new System.Drawing.Point(101, 57);
+            this.cbx_type.Location = new System.Drawing.Point(101, 52);
             this.cbx_type.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cbx_type.Name = "cbx_type";
             this.cbx_type.Size = new System.Drawing.Size(215, 25);
@@ -367,7 +393,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(15, 175);
+            this.label9.Location = new System.Drawing.Point(15, 158);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(71, 17);
             this.label9.TabIndex = 27;
@@ -376,7 +402,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(364, 175);
+            this.label7.Location = new System.Drawing.Point(364, 158);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(59, 17);
             this.label7.TabIndex = 25;
@@ -385,7 +411,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(340, 138);
+            this.label5.Location = new System.Drawing.Point(340, 126);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(83, 17);
             this.label5.TabIndex = 21;
@@ -394,7 +420,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(27, 138);
+            this.label6.Location = new System.Drawing.Point(27, 126);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 17);
             this.label6.TabIndex = 19;
@@ -403,7 +429,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(388, 101);
+            this.label4.Location = new System.Drawing.Point(388, 92);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(35, 17);
             this.label4.TabIndex = 17;
@@ -411,7 +437,8 @@
             // 
             // tbx_manager
             // 
-            this.tbx_manager.Location = new System.Drawing.Point(101, 97);
+            this.tbx_manager.AccessibleName = "manager";
+            this.tbx_manager.Location = new System.Drawing.Point(101, 88);
             this.tbx_manager.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbx_manager.Name = "tbx_manager";
             this.tbx_manager.Size = new System.Drawing.Size(215, 23);
@@ -420,33 +447,25 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(39, 100);
+            this.label3.Location = new System.Drawing.Point(39, 91);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(47, 17);
             this.label3.TabIndex = 15;
             this.label3.Text = "管理员:";
             // 
-            // cbx_shape
-            // 
-            this.cbx_shape.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbx_shape.FormattingEnabled = true;
-            this.cbx_shape.Location = new System.Drawing.Point(439, 18);
-            this.cbx_shape.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbx_shape.Name = "cbx_shape";
-            this.cbx_shape.Size = new System.Drawing.Size(215, 25);
-            this.cbx_shape.TabIndex = 14;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(364, 24);
+            this.label2.Location = new System.Drawing.Point(388, 24);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 17);
+            this.label2.Size = new System.Drawing.Size(35, 17);
             this.label2.TabIndex = 13;
-            this.label2.Text = "几何形状:";
+            this.label2.Text = "地址:";
             // 
             // tbx_name
             // 
+            this.tbx_name.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
+            this.tbx_name.AccessibleName = "name";
             this.tbx_name.Location = new System.Drawing.Point(101, 18);
             this.tbx_name.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbx_name.Name = "tbx_name";
@@ -464,81 +483,112 @@
             // 
             // tbx_look_area
             // 
-            this.tbx_look_area.Location = new System.Drawing.Point(101, 134);
+            this.tbx_look_area.AccessibleName = "look_area";
+            this.tbx_look_area.Location = new System.Drawing.Point(101, 122);
+            this.tbx_look_area.MaxLength = 8;
             this.tbx_look_area.Name = "tbx_look_area";
             this.tbx_look_area.Size = new System.Drawing.Size(215, 23);
             this.tbx_look_area.TabIndex = 64;
+            this.tbx_look_area.Text = "0";
             // 
             // tbx_look_forest_area
             // 
-            this.tbx_look_forest_area.Location = new System.Drawing.Point(439, 134);
+            this.tbx_look_forest_area.AccessibleName = "look_forest_area";
+            this.tbx_look_forest_area.Location = new System.Drawing.Point(439, 122);
+            this.tbx_look_forest_area.MaxLength = 8;
             this.tbx_look_forest_area.Name = "tbx_look_forest_area";
             this.tbx_look_forest_area.Size = new System.Drawing.Size(215, 23);
             this.tbx_look_forest_area.TabIndex = 0;
+            this.tbx_look_forest_area.Text = "0";
             // 
             // tbx_look_coverage
             // 
-            this.tbx_look_coverage.Location = new System.Drawing.Point(101, 172);
+            this.tbx_look_coverage.AccessibleName = "look_coverage";
+            this.tbx_look_coverage.Location = new System.Drawing.Point(101, 155);
+            this.tbx_look_coverage.MaxLength = 8;
             this.tbx_look_coverage.Name = "tbx_look_coverage";
             this.tbx_look_coverage.Size = new System.Drawing.Size(215, 23);
             this.tbx_look_coverage.TabIndex = 0;
+            this.tbx_look_coverage.Text = "0";
             // 
             // tbx_c_area
             // 
-            this.tbx_c_area.Location = new System.Drawing.Point(439, 172);
+            this.tbx_c_area.AccessibleName = "c_area";
+            this.tbx_c_area.Location = new System.Drawing.Point(439, 155);
+            this.tbx_c_area.MaxLength = 8;
             this.tbx_c_area.Name = "tbx_c_area";
             this.tbx_c_area.Size = new System.Drawing.Size(215, 23);
             this.tbx_c_area.TabIndex = 65;
+            this.tbx_c_area.Text = "0";
             // 
             // tbx_telescope
             // 
-            this.tbx_telescope.Location = new System.Drawing.Point(101, 211);
+            this.tbx_telescope.AccessibleName = "telescope";
+            this.tbx_telescope.Location = new System.Drawing.Point(101, 189);
+            this.tbx_telescope.MaxLength = 4;
             this.tbx_telescope.Name = "tbx_telescope";
             this.tbx_telescope.Size = new System.Drawing.Size(215, 23);
             this.tbx_telescope.TabIndex = 0;
+            this.tbx_telescope.Text = "0";
             // 
             // tbx_interphone
             // 
-            this.tbx_interphone.Location = new System.Drawing.Point(439, 211);
+            this.tbx_interphone.AccessibleName = "interphone";
+            this.tbx_interphone.Location = new System.Drawing.Point(439, 189);
+            this.tbx_interphone.MaxLength = 4;
             this.tbx_interphone.Name = "tbx_interphone";
             this.tbx_interphone.Size = new System.Drawing.Size(215, 23);
             this.tbx_interphone.TabIndex = 66;
+            this.tbx_interphone.Text = "0";
             // 
             // tbx_compass_instrument
             // 
-            this.tbx_compass_instrument.Location = new System.Drawing.Point(101, 255);
+            this.tbx_compass_instrument.AccessibleName = "compass_instrument";
+            this.tbx_compass_instrument.Location = new System.Drawing.Point(101, 222);
+            this.tbx_compass_instrument.MaxLength = 4;
             this.tbx_compass_instrument.Name = "tbx_compass_instrument";
             this.tbx_compass_instrument.Size = new System.Drawing.Size(215, 23);
             this.tbx_compass_instrument.TabIndex = 67;
+            this.tbx_compass_instrument.Text = "0";
             // 
             // tbx_telephone
             // 
-            this.tbx_telephone.Location = new System.Drawing.Point(439, 255);
+            this.tbx_telephone.AccessibleName = "telephone";
+            this.tbx_telephone.Location = new System.Drawing.Point(439, 222);
             this.tbx_telephone.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbx_telephone.MaxLength = 4;
             this.tbx_telephone.Name = "tbx_telephone";
             this.tbx_telephone.Size = new System.Drawing.Size(215, 23);
             this.tbx_telephone.TabIndex = 63;
+            this.tbx_telephone.Text = "0";
             // 
             // tbx_phone
             // 
-            this.tbx_phone.Location = new System.Drawing.Point(439, 97);
+            this.tbx_phone.AccessibleName = "phone";
+            this.tbx_phone.Location = new System.Drawing.Point(439, 88);
             this.tbx_phone.Name = "tbx_phone";
             this.tbx_phone.Size = new System.Drawing.Size(215, 23);
             this.tbx_phone.TabIndex = 0;
             // 
             // tbx_elevation
             // 
-            this.tbx_elevation.Location = new System.Drawing.Point(101, 298);
+            this.tbx_elevation.AccessibleName = "elevation";
+            this.tbx_elevation.Location = new System.Drawing.Point(101, 254);
+            this.tbx_elevation.MaxLength = 4;
             this.tbx_elevation.Name = "tbx_elevation";
             this.tbx_elevation.Size = new System.Drawing.Size(215, 23);
             this.tbx_elevation.TabIndex = 0;
+            this.tbx_elevation.Text = "0";
             // 
             // tbx_radio
             // 
-            this.tbx_radio.Location = new System.Drawing.Point(439, 298);
+            this.tbx_radio.AccessibleName = "radio";
+            this.tbx_radio.Location = new System.Drawing.Point(439, 254);
+            this.tbx_radio.MaxLength = 4;
             this.tbx_radio.Name = "tbx_radio";
             this.tbx_radio.Size = new System.Drawing.Size(215, 23);
             this.tbx_radio.TabIndex = 0;
+            this.tbx_radio.Text = "0";
             // 
             // tabPage_note
             // 
@@ -554,6 +604,7 @@
             // 
             // tbx_note
             // 
+            this.tbx_note.AccessibleName = "note";
             this.tbx_note.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tbx_note.Location = new System.Drawing.Point(3, 4);
             this.tbx_note.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
@@ -606,6 +657,44 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(27, 357);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(59, 17);
+            this.label16.TabIndex = 70;
+            this.label16.Text = "基地类型:";
+            // 
+            // tbx_base_type
+            // 
+            this.tbx_base_type.AccessibleDescription = "length:^.{0,29}$:{0}1~30";
+            this.tbx_base_type.AccessibleName = "base_type";
+            this.tbx_base_type.Location = new System.Drawing.Point(101, 354);
+            this.tbx_base_type.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbx_base_type.Name = "tbx_base_type";
+            this.tbx_base_type.Size = new System.Drawing.Size(215, 23);
+            this.tbx_base_type.TabIndex = 71;
+            // 
+            // tbx_management_unit
+            // 
+            this.tbx_management_unit.AccessibleDescription = "length:^.{0,29}$:{0}1~30";
+            this.tbx_management_unit.AccessibleName = "management_unit";
+            this.tbx_management_unit.Location = new System.Drawing.Point(439, 354);
+            this.tbx_management_unit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbx_management_unit.Name = "tbx_management_unit";
+            this.tbx_management_unit.Size = new System.Drawing.Size(215, 23);
+            this.tbx_management_unit.TabIndex = 73;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(364, 357);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(59, 17);
+            this.label22.TabIndex = 72;
+            this.label22.Text = "管理单位:";
+            // 
             // FormWatchTower
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -653,7 +742,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox tbx_manager;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox cbx_shape;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbx_name;
         private System.Windows.Forms.Label label1;
@@ -677,7 +765,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TabPage tabPage_note;
         private System.Windows.Forms.TextBox tbx_note;
-        private System.Windows.Forms.TextBox tbx_build_unit;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.DateTimePicker dtp_build_year;
@@ -685,5 +772,11 @@
         private System.Windows.Forms.Label label21;
         private System.Windows.Forms.ComboBox cbx_structure;
         private Controls.MediaControl mediaControl1;
+        private System.Windows.Forms.ComboBox cbx_build_unit;
+        private System.Windows.Forms.TextBox tbx_address;
+        private System.Windows.Forms.TextBox tbx_management_unit;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.TextBox tbx_base_type;
+        private System.Windows.Forms.Label label16;
     }
 }

@@ -110,6 +110,16 @@ namespace FFireManage
 		public string pac { get; set; }
 
         /// <summary>
+        /// 地区
+        /// </summary>
+        public string city_name { get; set; }
+
+        /// <summary>
+        /// 县名
+        /// </summary>
+        public string county_name { get; set; }
+         
+        /// <summary>
         /// 媒体字典
         /// </summary>
         [Custom(IsRequired = false)]

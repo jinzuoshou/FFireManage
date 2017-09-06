@@ -79,7 +79,6 @@ namespace FFireManage
         /// <summary>
         /// 建立人
         /// </summary>
-        [Custom(IsRequired = false)]
         public string cre_pers { get; set; }
 
         /// <summary>
@@ -91,13 +90,11 @@ namespace FFireManage
         /// <summary>
         /// 修改者
         /// </summary>
-        [Custom(IsRequired = false)]
         public string mod_pers { get; set; }
 
         /// <summary>
         /// 建设年度
         /// </summary>
-        [Custom(IsRequired = false)]
         public string build_year { get; set; }
 
         /// <summary>

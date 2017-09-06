@@ -204,6 +204,7 @@ namespace FFireManage.FireWarehouse
             //自动从窗体控件上取值
             m_Warehouse = SmartForm.GetEntity<Fire_Warehouse>(this.tabPage_baseInfo.Controls, this.m_Warehouse);
 
+            this.m_Warehouse.build_year = this.dtp_build_year.Value.ToString("yyyy-MM-dd hh:mm:ss");
             this.m_Warehouse.note = this.tbx_note.Text.Trim();
             this.m_Warehouse.mediaByteDict = this.mediaControl1.MediaByteDict;
 

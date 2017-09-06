@@ -121,18 +121,8 @@ namespace FFireManage.WatchTower
             WatchTowerType watchTowerType = WatchTowerType.铁质了望台;
             List<object> watchTowerTypeList = CommonHelper.GetDataSource<WatchTowerType>(watchTowerType);
             this.cbx_type.DisplayMember = "Name";
-            this.cbx_type.ValueMember = "Value";
+            this.cbx_type.ValueMember = "Name";
             this.cbx_type.DataSource = watchTowerTypeList;
-
-
-            /* 瞭望台形状 */
-            Shape watchTowerShape = Shape.点;
-            List<object> watchTowerShapeList = CommonHelper.GetDataSource<Shape>(watchTowerShape);
-            this.cbx_shape.DisplayMember = "Name";
-            this.cbx_shape.ValueMember = "Value";
-            this.cbx_shape.DataSource = watchTowerShapeList;
-            this.cbx_shape.SelectedValue = 1;
-            this.cbx_shape.Enabled = false;
 
             /* 瞭望台状态 */
             WatchTowerStatus watchTowerStatus = WatchTowerStatus.优秀;
@@ -145,8 +135,16 @@ namespace FFireManage.WatchTower
             WatchTowerStructure watchTowerStructure = WatchTowerStructure.一层;
             List<object> watchTowerStructureList = CommonHelper.GetDataSource<WatchTowerStructure>(watchTowerStructure);
             this.cbx_structure.DisplayMember = "Name";
-            this.cbx_structure.ValueMember = "Value";
+            this.cbx_structure.ValueMember = "Name";
             this.cbx_structure.DataSource = watchTowerStructureList;
+
+            /* 瞭望台修建单位 */
+            WatchTowerBuildUnit watchTowerBuildUnit = WatchTowerBuildUnit.林业局;
+            List<object> watchTowerBuildUnitList = CommonHelper.GetDataSource<WatchTowerBuildUnit>(watchTowerBuildUnit);
+            this.cbx_build_unit.DisplayMember = "Name";
+            this.cbx_build_unit.ValueMember = "Name";
+            this.cbx_build_unit.DataSource = watchTowerBuildUnitList;
+
 
             #endregion
 
@@ -167,43 +165,7 @@ namespace FFireManage.WatchTower
             {
                 this.coordinatesInputControl1.Longitude = this.m_WatchTower.longitude;
                 this.coordinatesInputControl1.Latitude = this.m_WatchTower.latitude;
-                this.tbx_name.Text = this.m_WatchTower.name;
-                if (this.m_WatchTower.SHAPE.Contains("POINT"))
-                {
-                    this.cbx_shape.SelectedValue = 1;
-                }
-                else if (this.m_WatchTower.SHAPE.Contains("LINEstring"))
-                {
-                    this.cbx_shape.SelectedValue = 2;
-                }
-                else if(this.m_WatchTower.SHAPE.Contains("POLYGON"))
-                {
-                    this.cbx_shape.SelectedValue = 3;
-                }
-
-                this.cbx_type.SelectedValue = this.m_WatchTower.type;
-                this.cbx_status.SelectedValue = (int)this.m_WatchTower.status;
-                this.tbx_manager.Text = this.m_WatchTower.manager;
-                this.tbx_phone.Text = this.m_WatchTower.phone;
-                this.tbx_look_area.Text = this.m_WatchTower.look_area.ToString();
-                this.tbx_look_forest_area.Text = this.m_WatchTower.look_forest_area.ToString();
-                this.tbx_look_coverage.Text = this.m_WatchTower.look_coverage.ToString();
-                this.tbx_c_area.Text = this.m_WatchTower.c_area.ToString();
-                this.tbx_telescope.Text = this.m_WatchTower.telescope.ToString();
-                this.tbx_interphone.Text = this.m_WatchTower.interphone.ToString();
-                this.tbx_compass_instrument.Text = this.m_WatchTower.compass_instrument.ToString();
-                this.tbx_telephone.Text = this.m_WatchTower.telephone.ToString();
-                this.tbx_elevation.Text = this.m_WatchTower.elevation.ToString();
-                this.tbx_radio.Text = this.m_WatchTower.radio.ToString();
-                this.cbx_structure.SelectedText = this.m_WatchTower.structure;
-                this.tbx_build_unit.Text = this.m_WatchTower.build_unit;
-                try
-                {
-                    this.dtp_build_year.Value = Convert.ToDateTime(this.m_WatchTower.build_year);
-                }
-                catch
-                { }
-                this.tbx_video_surveillance.Text = this.m_WatchTower.video_surveillance;
+                SmartForm.Fill(this.tabPage_baseInfo.Controls, this.m_WatchTower);
 
                 this.tbx_note.Text = this.m_WatchTower.note;
                 this.mediaControl1.MediaFiles = this.m_WatchTower.mediaFiles;
@@ -215,28 +177,7 @@ namespace FFireManage.WatchTower
 
                     this.coordinatesInputControl1.Enabled = false;
                     this.pacControl11.Enabled = false;
-                    this.tbx_name.Enabled = false;
-                    
-                    
-                    this.cbx_status.Enabled = false;
-                    this.cbx_type.Enabled = false;
-                    this.cbx_status.Enabled = false;
-                    this.tbx_manager.Enabled = false;
-                    this.tbx_phone.Enabled = false;
-                    this.tbx_look_area.Enabled = false;
-                    this.tbx_look_forest_area.Enabled = false;
-                    this.tbx_look_coverage.Enabled = false;
-                    this.tbx_c_area.Enabled = false;
-                    this.tbx_telescope.Enabled = false;
-                    this.tbx_interphone.Enabled = false;
-                    this.tbx_compass_instrument.Enabled = false;
-                    this.tbx_telephone.Enabled = false;
-                    this.tbx_elevation.Enabled = false;
-                    this.tbx_radio.Enabled = false;
-                    this.cbx_structure.Enabled = false;
-                    this.tbx_build_unit.Enabled = false;
-                    this.dtp_build_year.Enabled = false;
-                    this.tbx_video_surveillance.Enabled = false;
+                    SmartForm.SetControlsEnabled(this.tabPage_baseInfo.Controls, null);
                     this.tbx_note.Enabled = false;
 
                 }
@@ -248,6 +189,22 @@ namespace FFireManage.WatchTower
         {
             if (!IsCondition())
                 return;
+            IDictionary<string, string> dict = new Dictionary<string, string>();
+            try
+            {
+                this.tabControl1.SelectedTab = this.tabPage_baseInfo;
+                dict = this.m_WatchTower.ObjectDescriptionToDict();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            if (!SmartForm.Validator(this.tabPage_baseInfo.Controls, dict))
+            {
+                return;
+            }
+
             if (m_OperationType == OperationType.Add)
             {
                 this.m_WatchTower = new Fire_Observatory();
@@ -255,32 +212,13 @@ namespace FFireManage.WatchTower
             this.m_WatchTower.longitude = this.coordinatesInputControl1.Longitude;
             this.m_WatchTower.latitude = this.coordinatesInputControl1.Latitude;
             this.m_WatchTower.pac = this.pacControl11.LocalPac;
-            this.m_WatchTower.name = this.tbx_name.Text;
-            if((int)this.cbx_shape.SelectedValue==1)
-            {
-                this.m_WatchTower.SHAPE = GDALHelper.LngLatToWktPoint(this.m_WatchTower.longitude, this.m_WatchTower.latitude);
-            }
+            this.m_WatchTower.SHAPE = Converters.LngLatToWKT(this.m_WatchTower.longitude, this.m_WatchTower.latitude);
 
-            this.m_WatchTower.type = this.cbx_type.Text;
-            this.m_WatchTower.status = (int)this.cbx_status.SelectedValue;
-            this.m_WatchTower.manager = this.tbx_manager.Text;
-            this.m_WatchTower.phone = this.tbx_phone.Text;
-            this.m_WatchTower.look_area = Convert.ToDouble(this.tbx_look_area.Text.Trim());
-            this.m_WatchTower.look_forest_area = Convert.ToDouble(this.tbx_look_forest_area.Text.Trim());
-            this.m_WatchTower.look_coverage = Convert.ToDouble(this.tbx_look_coverage.Text.Trim());
-            this.m_WatchTower.c_area = Convert.ToDouble(this.tbx_c_area.Text.Trim());
-            this.m_WatchTower.telescope = Convert.ToInt32(this.tbx_telescope.Text.Trim());
-            this.m_WatchTower.interphone = Convert.ToInt32(this.tbx_interphone.Text.Trim());
-            this.m_WatchTower.compass_instrument = Convert.ToInt32(this.tbx_compass_instrument.Text.Trim());
-            this.m_WatchTower.telephone = Convert.ToInt32(this.tbx_telephone.Text.Trim());
-            this.m_WatchTower.elevation = Convert.ToDouble(this.tbx_elevation.Text.Trim());
-            this.m_WatchTower.radio = Convert.ToInt32(this.tbx_radio.Text.Trim());
-            this.m_WatchTower.structure = this.cbx_structure.Text;
-            this.m_WatchTower.build_unit = this.tbx_build_unit.Text;
-            this.m_WatchTower.build_year = this.dtp_build_year.Value.ToString("yyyy-MM-dd hh:mm:ss");
-            this.m_WatchTower.video_surveillance = this.tbx_video_surveillance.Text;
+            //自动从窗体控件上取值
+            this.m_WatchTower = SmartForm.GetEntity<Fire_Observatory>(this.tabPage_baseInfo.Controls, this.m_WatchTower);
             this.m_WatchTower.note = this.tbx_note.Text.Trim();
             this.m_WatchTower.mediaByteDict = this.mediaControl1.MediaByteDict;
+            this.m_WatchTower.build_year = this.dtp_build_year.Value.ToString("yyyy-MM-dd hh:mm:ss");
 
             if (m_OperationType == OperationType.Add)
             {
@@ -504,7 +442,7 @@ namespace FFireManage.WatchTower
             try
             {
                 double num = Convert.ToDouble(this.tbx_elevation.Text.Trim());
-                
+
             }
             catch
             {
@@ -531,14 +469,6 @@ namespace FFireManage.WatchTower
                 this.tbx_radio.Focus();
                 return false;
             }
-            if(this.tbx_build_unit.Text.Trim()=="")
-            {
-                MessageBox.Show(this, "请输入修建单位", "信息提示");
-                this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                this.tbx_build_unit.Focus();
-                return false;
-            }
-
             return true;
         }
     }

@@ -31,6 +31,8 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_location = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.coordinatesInputControl1 = new FFireManage.Controls.CoordinatesInputControl();
+            this.pacControl11 = new FFireManage.Controls.PACControl1();
             this.tabPage_baseInfo = new System.Windows.Forms.TabPage();
             this.tbx_content = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -57,11 +59,9 @@
             this.tabPage_note = new System.Windows.Forms.TabPage();
             this.tbx_note = new System.Windows.Forms.TextBox();
             this.tabPage_mediaInfo = new System.Windows.Forms.TabPage();
+            this.mediaControl1 = new FFireManage.Controls.MediaControl();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.coordinatesInputControl1 = new FFireManage.Controls.CoordinatesInputControl();
-            this.pacControl11 = new FFireManage.Controls.PACControl1();
-            this.mediaControl1 = new FFireManage.Controls.MediaControl();
             this.tabControl1.SuspendLayout();
             this.tabPage_location.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -106,6 +106,26 @@
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "经纬度坐标";
+            // 
+            // coordinatesInputControl1
+            // 
+            this.coordinatesInputControl1.Latitude = 0D;
+            this.coordinatesInputControl1.Location = new System.Drawing.Point(6, 14);
+            this.coordinatesInputControl1.Longitude = 0D;
+            this.coordinatesInputControl1.MaximumSize = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.MinimumSize = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.Name = "coordinatesInputControl1";
+            this.coordinatesInputControl1.Size = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.TabIndex = 0;
+            // 
+            // pacControl11
+            // 
+            this.pacControl11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pacControl11.Location = new System.Drawing.Point(36, 202);
+            this.pacControl11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pacControl11.Name = "pacControl11";
+            this.pacControl11.Size = new System.Drawing.Size(529, 38);
+            this.pacControl11.TabIndex = 11;
             // 
             // tabPage_baseInfo
             // 
@@ -175,7 +195,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(59, 17);
             this.label7.TabIndex = 167;
-            this.label7.Text = "修建单位:";
+            this.label7.Text = "修建时间:";
             // 
             // tbx_management_unit
             // 
@@ -377,6 +397,15 @@
             this.tabPage_mediaInfo.Text = "多媒体文件";
             this.tabPage_mediaInfo.UseVisualStyleBackColor = true;
             // 
+            // mediaControl1
+            // 
+            this.mediaControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mediaControl1.Location = new System.Drawing.Point(3, 3);
+            this.mediaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.mediaControl1.Name = "mediaControl1";
+            this.mediaControl1.Size = new System.Drawing.Size(716, 332);
+            this.mediaControl1.TabIndex = 0;
+            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -398,35 +427,6 @@
             this.btnOK.Text = "确定(&O)";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // coordinatesInputControl1
-            // 
-            this.coordinatesInputControl1.Latitude = 0D;
-            this.coordinatesInputControl1.Location = new System.Drawing.Point(6, 14);
-            this.coordinatesInputControl1.Longitude = 0D;
-            this.coordinatesInputControl1.MaximumSize = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.MinimumSize = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.Name = "coordinatesInputControl1";
-            this.coordinatesInputControl1.Size = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.TabIndex = 0;
-            // 
-            // pacControl11
-            // 
-            this.pacControl11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pacControl11.Location = new System.Drawing.Point(36, 202);
-            this.pacControl11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pacControl11.Name = "pacControl11";
-            this.pacControl11.Size = new System.Drawing.Size(529, 38);
-            this.pacControl11.TabIndex = 11;
-            // 
-            // mediaControl1
-            // 
-            this.mediaControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mediaControl1.Location = new System.Drawing.Point(3, 3);
-            this.mediaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.mediaControl1.Name = "mediaControl1";
-            this.mediaControl1.Size = new System.Drawing.Size(716, 336);
-            this.mediaControl1.TabIndex = 0;
             // 
             // FormWarningBoards
             // 
