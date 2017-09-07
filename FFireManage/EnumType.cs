@@ -307,21 +307,6 @@ namespace FFireManage
     }
     #endregion
 
-    #region 停机坪
-
-    /// <summary>
-    /// 停机坪状态
-    /// </summary>
-    public enum TramacStatus
-    {
-        优秀 = 1,
-        良好 = 2,
-        一般 = 3,
-        差 = 4,
-        废弃
-    }
-    #endregion
-
     #region 森林防火物资储备库
 
     /// <summary>

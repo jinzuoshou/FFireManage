@@ -56,7 +56,6 @@ namespace FFireDataDocking
         private List<Fire_PBrigade> tempFirePBrigadeList = null;
         private List<Fire_Office> tempFireOfficeList = null;
         private List<Fire_Observatory> tempObservatoryList = null;
-        private List<Fire_WarningBoards> tempWarningBoardsList = null;
         private List<Fire_Warehouse> tempFireWarehouseList = null;
         private List<Fire_RadioStation> tempFireRadioStationList = null;
         private List<Fire_ImportantUnits> tempFireImportantUnitsList = null;
@@ -1488,7 +1487,12 @@ namespace FFireDataDocking
                 featureClassDict.Add("Fire_WarningBoards", featureClass);
             }
 
-            List<Fire_WarningBoards> entities = featureClass.GetEntities<Fire_WarningBoards>();
+            IQueryFilter queryFilter = new QueryFilterClass()
+            {
+                WhereClause = "id is null"
+            };
+            List<Fire_WarningBoards> entities = featureClass.GetEntities<Fire_WarningBoards>(queryFilter);
+            //List<Fire_WarningBoards> entities = featureClass.GetEntities<Fire_WarningBoards>();
             if (entities != null)
             {
                 entities.ForEach((f) =>
@@ -1499,10 +1503,10 @@ namespace FFireDataDocking
                     {
                         f.build_year = string.Format("{0}-00-00 00:00:00", f.build_year);
                     }
+                    f.manager = (f.manager == null && f.manager == "") ? " " : f.manager;
                 });
             }
             entities.OrderBy(w => w.OBJECTID);
-            this.tempWarningBoardsList = entities;
             foreach (Fire_WarningBoards warningBoards in entities)
             {
                 Task task = Task.Factory.StartNew(() =>
@@ -1510,6 +1514,7 @@ namespace FFireDataDocking
                     this.m_WarningBoardsController.Add(warningBoards);
                 });
                 task.Wait();
+                
             }
             MessageBox.Show(this, "大型警示牌入库成功");
         }
@@ -1541,7 +1546,10 @@ namespace FFireDataDocking
                 if (File.Exists(filePath))
                 {
                     string fileName = System.IO.Path.GetFileName(filePath);
-                    fileDict.Add(fileName, filePath);
+                    FileInfo fiInput = new FileInfo(filePath);
+                    double len = fiInput.Length;
+                    if (len < 1 * 1024 * 1024 * 30)
+                        fileDict.Add(fileName, filePath);
                 }
             }
             return fileDict;
@@ -1557,7 +1565,7 @@ namespace FFireDataDocking
                     {"pac","450000" },
                     {"fetchType",3},
                     {"page", 1},
-                    {"rows",1000},
+                    {"rows",2200},
                     {"sort","id"},
                     {"order","desc"}
                 });
@@ -1566,6 +1574,30 @@ namespace FFireDataDocking
             MessageBox.Show(this, "大型警示牌本地库id更新成功");
         }
 
+        private bool UpdateId(IFeatureClass featureClass,Fire_WarningBoards entity)
+        {
+            int idFieldIndex = featureClass.FindField("id");
+            IQueryFilter queryFilter = new QueryFilterClass
+            {
+                SubFields = "id",
+                WhereClause = string.Format("pac=\'{0}\' and longitude={1} and latitude={2} and name=\'{3}\' and address=\'{4}\' and type=\'{5}\'", entity.pac, entity.longitude, entity.latitude, entity.name, entity.address,entity.type)
+            };
+
+            // Create a ComReleaser for buffer management.  
+            using (ComReleaser comReleaser = new ComReleaser())
+            {
+                // Create a feature buffer containing the values to be updated.  
+                IFeatureBuffer featureBuffer = featureClass.CreateFeatureBuffer();
+                featureBuffer.set_Value(idFieldIndex, entity.id);
+                comReleaser.ManageLifetime(featureBuffer);
+
+                // Cast the class to ITable and perform the updates.  
+                ITable table = (ITable)featureClass;
+                IRowBuffer rowBuffer = (IRowBuffer)featureBuffer;
+                table.UpdateSearchedRows(queryFilter, rowBuffer);
+                return true;
+            }
+        }
         private void btnDeleteAllWarningBoards_Click(object sender, EventArgs e)
         {
             IsDelete = true;
@@ -1653,7 +1685,7 @@ namespace FFireDataDocking
                                 }
                                 foreach (Fire_WarningBoards entity in entities)
                                 {
-                                    if (this.UpdateId(featureClass, entity.pac, entity.longitude, entity.latitude, entity.id))
+                                    if (this.UpdateId(featureClass,entity))
                                     {
                                         warningBoardsLog.Info(string.Format("{0}本地库更新{1}成功", entity.name + ":" + entity.address, entity.id));
                                     }
@@ -1681,10 +1713,7 @@ namespace FFireDataDocking
                 if (e != null)
                 {
                     string content = e.Content;
-                    if (tempWarningBoardsList.Count == 0)
-                        return;
-                    Fire_WarningBoards warningBoards = tempWarningBoardsList[0];
-                    tempWarningBoardsList.RemoveAt(0);
+                   
                     try
                     {
                         BaseResultInfo<string> result = JsonHelper.JSONToObject<BaseResultInfo<string>>(content);
@@ -1692,24 +1721,6 @@ namespace FFireDataDocking
                         if (result.status == 10000)
                         {
                             warningBoardsLog.Info(string.Format("{0}插入{1}", result.obj, result.msg));
-
-                            warningBoards.id = result.obj;
-                            IFeatureClass featureClass = null;
-                            if (featureClassDict.ContainsKey("Fire_WarningBoards"))
-                            {
-                                featureClass = featureClassDict["Fire_WarningBoards"];
-                            }
-                            else
-                            {
-                                featureClass = (workspace as IFeatureWorkspace).OpenFeatureClass("Fire_WarningBoards");
-                            }
-                            if (featureClass != null)
-                            {
-                                if (this.SetValue(featureClass, warningBoards.OBJECTID, warningBoards.id))
-                                {
-                                    warningBoardsLog.Info(string.Format("本地库插入{0}成功", warningBoards.id));
-                                }
-                            }
                         }
                         else
                         {

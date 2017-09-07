@@ -196,7 +196,5 @@ namespace FFireManage.Service
                 }
             });
         }
-
-       
     }
 }

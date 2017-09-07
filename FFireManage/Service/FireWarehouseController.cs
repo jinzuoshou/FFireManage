@@ -141,7 +141,7 @@ namespace FFireManage.Service
             if (parameterDict != null)
             {
                 if (!parameterDict.ContainsKey("f"))
-                    parameterDict.Add("f", null);
+                    parameterDict.Add("f", 4271002);
                 this.ExecutePost(parameterDict, OnAddMediaEvent, fileDict);
             }
         }
@@ -163,7 +163,7 @@ namespace FFireManage.Service
             if (parameterDict != null)
             {
                 if (!parameterDict.ContainsKey("f"))
-                    parameterDict.Add("f", 4271002);
+                    parameterDict.Add("f", 4273002);
                 this.ExecuteGet(parameterDict, OnDeleteMediaEvent);
             }
         }

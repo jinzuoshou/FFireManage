@@ -1,0 +1,6 @@
+2017-09-06 20:50:04,365 ERROR - Cannot acquire a lock.
+2017-09-06 20:58:24,594 ERROR - 插入Parameter error [manager],must not be empty.
+2017-09-06 20:58:24,610 ERROR - 插入Parameter error [phone],must not be empty.
+2017-09-06 20:58:24,615 ERROR - 插入Parameter error [manager],must not be empty.
+2017-09-06 20:58:26,122 ERROR - 插入Parameter error [phone],must not be empty.
+2017-09-06 20:59:38,292 ERROR - Cannot acquire a lock.
