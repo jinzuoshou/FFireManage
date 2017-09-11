@@ -295,16 +295,6 @@ namespace FFireManage
         差 = 4,
         废弃 = 5
     }
-
-    /// <summary>
-    /// 林区危险及重要性设备设施形状
-    /// </summary>
-    public enum DFacilitiesType
-    {
-        类型1 = 1,
-        类型2 = 2,
-        类型3 = 3
-    }
     #endregion
 
     #region 森林防火物资储备库

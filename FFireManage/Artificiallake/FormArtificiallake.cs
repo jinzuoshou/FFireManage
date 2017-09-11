@@ -120,12 +120,6 @@ namespace FFireManage.Artificiallake
             }
 
 
-            /* 航空灭火蓄水池形状 */
-            Shape artificiallakeShape = Shape.点;
-            List<object> artificiallakeShapeList = CommonHelper.GetDataSource<Shape>(artificiallakeShape);
-            this.cbx_shape.DisplayMember = "Name";
-            this.cbx_shape.ValueMember = "Value";
-            this.cbx_shape.DataSource = artificiallakeShapeList;
 
             /* 航空灭火蓄水池状态 */
             ArtificiallakeStatus artificiallakeStatus = ArtificiallakeStatus.优秀;
@@ -148,13 +142,6 @@ namespace FFireManage.Artificiallake
             this.cbx_isTakeWater.ValueMember = "Name";
             this.cbx_isTakeWater.DataSource = isTakeWaterList;
 
-            /* 航空灭火蓄水池管理单位 */
-            ALManagementUnit aLManagementUnit = ALManagementUnit.管理单位1;
-            List<object> aLManagementUnitList = CommonHelper.GetDataSource<ALManagementUnit>(aLManagementUnit);
-            this.cbx_managementUnit.DisplayMember = "Name";
-            this.cbx_managementUnit.ValueMember = "Value";
-            this.cbx_managementUnit.DataSource = aLManagementUnitList;
-
             #endregion
 
             #region 初始化行政区信息
@@ -174,32 +161,8 @@ namespace FFireManage.Artificiallake
             {
                 this.coordinatesInputControl1.Longitude = this.m_Artificiallake.longitude;
                 this.coordinatesInputControl1.Latitude = this.m_Artificiallake.latitude;
-                this.tbx_name.Text = this.m_Artificiallake.name;
-                if (this.m_Artificiallake.shape.Contains("POINT"))
-                {
-                    this.cbx_shape.SelectedValue = 1;
-                    this.cbx_shape.Enabled = false;
-                }
-                else if (this.m_Artificiallake.shape.Contains("LINEstring"))
-                {
-                    this.cbx_shape.SelectedValue = 2;
-                    this.cbx_shape.Enabled = false;
-                }
-                else if (this.m_Artificiallake.shape.Contains("POLYGON"))
-                {
-                    this.cbx_shape.SelectedValue = 3;
-                    this.cbx_shape.Enabled = false;
-                }
-                this.cbx_status.SelectedValue = (int)this.m_Artificiallake.status;
-                this.cbx_managementUnit.SelectedValue = (int)this.m_Artificiallake.management_unit;
-                this.cbx_isTakeWater.SelectedValue = this.m_Artificiallake.is_take_water;
-                this.tbx_manager.Text = this.m_Artificiallake.manager;
-                this.tbx_phone.Text = this.m_Artificiallake.phone;
-                this.tbx_volume.Text = this.m_Artificiallake.volume.ToString();
-                this.tbx_storageArea.Text = this.m_Artificiallake.storage_area.ToString();
-                this.tbx_storageCapacity.Text = this.m_Artificiallake.storage_capacity.ToString();
-                this.tbx_maximumDepth.Text = this.m_Artificiallake.maximum_depth.ToString();
-                this.tbx_trafficCondition.Text = this.m_Artificiallake.traffic_condition;
+
+                SmartForm.Fill(this.tabPage_baseInfo.Controls, this.m_Artificiallake);
 
                 this.tbx_note.Text = this.m_Artificiallake.note;
                 this.mediaControl1.MediaFiles = this.m_Artificiallake.mediaFiles;
@@ -211,17 +174,8 @@ namespace FFireManage.Artificiallake
 
                     this.coordinatesInputControl1.Enabled = false;
                     this.pacControl11.Enabled = false;
-                    this.tbx_name.Enabled = false;
-                    this.cbx_status.Enabled = false;
-                    this.cbx_managementUnit.Enabled = false;
-                    this.cbx_isTakeWater.Enabled = false;
-                    this.tbx_manager.Enabled = false;
-                    this.tbx_phone.Enabled = false;
-                    this.tbx_volume.Enabled = false;
-                    this.tbx_storageArea.Enabled = false;
-                    this.tbx_storageCapacity.Enabled = false;
-                    this.tbx_maximumDepth.Enabled = false;
-                    this.tbx_trafficCondition.Enabled = false;
+
+                    SmartForm.SetControlsEnabled(this.tabPage_baseInfo.Controls, null);
 
                     this.tbx_note.Enabled = false;
 
@@ -234,29 +188,40 @@ namespace FFireManage.Artificiallake
         {
             if (!IsCondition())
                 return;
+
+            IDictionary<string, string> dict = new Dictionary<string, string>();
+            try
+            {
+                this.tabControl1.SelectedTab = this.tabPage_baseInfo;
+                dict = m_Artificiallake.ObjectDescriptionToDict();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+            if (!SmartForm.Validator(this.tabPage_baseInfo.Controls, dict))
+            {
+                return;
+            }
             if (m_OperationType == OperationType.Add)
             {
                 this.m_Artificiallake = new Fire_Artificiallake();
             }
-            this.m_Artificiallake.name = this.tbx_name.Text;
+
+            if (m_OperationType == OperationType.Add)
+            {
+                this.m_Artificiallake = new Fire_Artificiallake();
+            }
             this.m_Artificiallake.longitude = this.coordinatesInputControl1.Longitude;
             this.m_Artificiallake.latitude = this.coordinatesInputControl1.Latitude;
             this.m_Artificiallake.pac = this.pacControl11.LocalPac;
-            if ((int)this.cbx_shape.SelectedValue == 1)
-            {
-                this.m_Artificiallake.shape = GDALHelper.LngLatToWktPoint(this.m_Artificiallake.longitude, this.m_Artificiallake.latitude);
-            }
-            this.m_Artificiallake.status = (int)this.cbx_status.SelectedValue;
-            this.m_Artificiallake.is_cableway = this.cbx_isCableway.SelectedValue.ToString();
-            this.m_Artificiallake.is_take_water = this.cbx_isTakeWater.SelectedValue.ToString();
-            this.m_Artificiallake.manager = this.tbx_manager.Text; ;
-            this.m_Artificiallake.phone = this.tbx_phone.Text;
-            this.m_Artificiallake.volume = Convert.ToDouble(this.tbx_volume.Text);
-            this.m_Artificiallake.storage_area = Convert.ToDouble(this.tbx_storageArea.Text.Trim());
-            this.m_Artificiallake.storage_capacity = Convert.ToDouble(this.tbx_storageCapacity.Text.Trim());
-            this.m_Artificiallake.maximum_depth = Convert.ToDouble(this.tbx_maximumDepth.Text.Trim());
-            this.m_Artificiallake.management_unit = (int)this.cbx_managementUnit.SelectedValue;
-            this.m_Artificiallake.traffic_condition = this.tbx_trafficCondition.Text.Trim();
+            this.m_Artificiallake.city_name = this.pacControl11.City;
+            this.m_Artificiallake.county_name = this.pacControl11.County;
+            this.m_Artificiallake.shape = GDALHelper.LngLatToWktPoint(this.m_Artificiallake.longitude, this.m_Artificiallake.latitude);
+
+            //自动从窗体控件上取值
+            m_Artificiallake = SmartForm.GetEntity<Fire_Artificiallake>(this.tabPage_baseInfo.Controls, this.m_Artificiallake);
 
             this.m_Artificiallake.note = this.tbx_note.Text.Trim();
             this.m_Artificiallake.mediaByteDict = this.mediaControl1.MediaByteDict;
@@ -303,48 +268,6 @@ namespace FFireManage.Artificiallake
                 this.tbx_name.Focus();
                 return false;
             }
-            if (this.cbx_shape.SelectedValue == null)
-            {
-                MessageBox.Show(this, "请选择航空灭火蓄水池形状", "信息提示");
-                this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                this.cbx_shape.Focus();
-                return false;
-            }
-            if (this.cbx_status.SelectedValue == null)
-            {
-                MessageBox.Show(this, "请选择航空灭火蓄水池状态", "信息提示");
-                this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                this.cbx_status.Focus();
-                return false;
-            }
-            if (this.cbx_isCableway.SelectedValue == null)
-            {
-                MessageBox.Show(this, "请选择航空灭火蓄水池是否有电线索道", "信息提示");
-                this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                this.cbx_isCableway.Focus();
-                return false;
-            }
-            if (this.cbx_isTakeWater.SelectedValue == null)
-            {
-                MessageBox.Show(this, "请选择航空灭火蓄水池能否吊桶取水", "信息提示");
-                this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                this.cbx_isTakeWater.Focus();
-                return false;
-            }
-            if (this.tbx_manager.Text.Trim() == "")
-            {
-                MessageBox.Show(this, "请输入管理员", "信息提示");
-                this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                this.tbx_manager.Focus();
-                return false;
-            }
-            if (this.tbx_phone.Text.Trim() == "")
-            {
-                MessageBox.Show(this, "请选输入管理员电话", "信息提示");
-                this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                this.tbx_phone.Focus();
-                return false;
-            }
             try
             {
                 double num = Convert.ToDouble(this.tbx_volume.Text.Trim());
@@ -365,12 +288,12 @@ namespace FFireManage.Artificiallake
             }
             try
             {
-                double num = Convert.ToDouble(this.tbx_storageArea.Text.Trim());
+                double num = Convert.ToDouble(this.tbx_storage_area.Text.Trim());
                 if (num < 0)
                 {
                     MessageBox.Show(this, "请输入正确的蓄水面积", "信息提示");
                     this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                    this.tbx_storageArea.Focus();
+                    this.tbx_storage_area.Focus();
                     return false;
                 }
             }
@@ -378,17 +301,17 @@ namespace FFireManage.Artificiallake
             {
                 MessageBox.Show(this, "请输入正确的蓄水面积", "信息提示");
                 this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                this.tbx_storageArea.Focus();
+                this.tbx_storage_area.Focus();
                 return false;
             }
             try
             {
-                double num = Convert.ToDouble(this.tbx_storageCapacity.Text.Trim());
+                double num = Convert.ToDouble(this.tbx_storage_capacity.Text.Trim());
                 if (num < 0)
                 {
                     MessageBox.Show(this, "请输入正确的蓄水容量", "信息提示");
                     this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                    this.tbx_storageCapacity.Focus();
+                    this.tbx_storage_capacity.Focus();
                     return false;
                 }
             }
@@ -396,17 +319,17 @@ namespace FFireManage.Artificiallake
             {
                 MessageBox.Show(this, "请输入正确的蓄水容量", "信息提示");
                 this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                this.tbx_storageCapacity.Focus();
+                this.tbx_storage_capacity.Focus();
                 return false;
             }
             try
             {
-                double num = Convert.ToDouble(this.tbx_storageCapacity.Text.Trim());
+                double num = Convert.ToDouble(this.tbx_storage_capacity.Text.Trim());
                 if (num < 0)
                 {
                     MessageBox.Show(this, "请输入正确的蓄水容量", "信息提示");
                     this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                    this.tbx_storageCapacity.Focus();
+                    this.tbx_storage_capacity.Focus();
                     return false;
                 }
             }
@@ -414,17 +337,17 @@ namespace FFireManage.Artificiallake
             {
                 MessageBox.Show(this, "请输入正确的蓄水容量", "信息提示");
                 this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                this.tbx_storageCapacity.Focus();
+                this.tbx_storage_capacity.Focus();
                 return false;
             }
             try
             {
-                double num = Convert.ToDouble(this.tbx_maximumDepth.Text.Trim());
+                double num = Convert.ToDouble(this.tbx_maximum_depth.Text.Trim());
                 if (num < 0)
                 {
                     MessageBox.Show(this, "请输入正确的最大深度", "信息提示");
                     this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                    this.tbx_maximumDepth.Focus();
+                    this.tbx_maximum_depth.Focus();
                     return false;
                 }
             }
@@ -432,21 +355,7 @@ namespace FFireManage.Artificiallake
             {
                 MessageBox.Show(this, "请输入正确的最大深度", "信息提示");
                 this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                this.tbx_maximumDepth.Focus();
-                return false;
-            }
-            if (this.cbx_managementUnit.SelectedValue == null)
-            {
-                MessageBox.Show(this, "请选择航空灭火蓄水池管理单位", "信息提示");
-                this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                this.cbx_managementUnit.Focus();
-                return false;
-            }
-            if(this.tbx_trafficCondition.Text.Trim()=="")
-            {
-                MessageBox.Show(this, "请输入交通情况", "信息提示");
-                this.tabControl1.SelectedTab = this.tabPage_baseInfo;
-                this.tbx_trafficCondition.Focus();
+                this.tbx_maximum_depth.Focus();
                 return false;
             }
             return true;

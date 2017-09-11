@@ -95,7 +95,7 @@ namespace FFireManage.Service
                 {
                     parameterDict.Add("f", 4182001);
                 }
-                this.ExecutePost(parameterDict, OnEditEvent,entity:entity);
+                this.ExecutePost(parameterDict, OnEditEvent);
             }
         }
 

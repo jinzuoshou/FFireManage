@@ -19,22 +19,26 @@ namespace FFireManage
 		/// <summary>
 		/// 名称
 		/// </summary>
+        [Custom(Description = "名称")]
 		public string name { get; set; }
 
-		/// <summary>
-		/// 地址
-		/// </summary>
-		public string address { get; set; }
+        /// <summary>
+        /// 地址
+        /// </summary>
+        [Custom(Description = "地址")]
+        public string address { get; set; }
 
-		/// <summary>
-		/// 管理员
-		/// </summary>
-		public string manager { get; set; }
+        /// <summary>
+        /// 管理员
+        /// </summary>
+        [Custom(Description = "管理员")]
+        public string manager { get; set; }
 
-		/// <summary>
-		/// 管理员电话
-		/// </summary>
-		public string phone { get; set; }
+        /// <summary>
+        /// 管理员电话
+        /// </summary>
+        [Custom(Description = "管理员电话")]
+        public string phone { get; set; }
 
 		/// <summary>
 		/// 经度
@@ -46,16 +50,17 @@ namespace FFireManage
 		/// </summary>
 		public double latitude { get; set; }
 
-		/// <summary>
-		/// 类型
-		/// </summary>
-        [Custom(IsEnumValue =true,EnumType  =typeof(DFacilitiesType))]
-		public int type { get; set; }
+        /// <summary>
+        /// 类型
+        /// </summary>
+        [Custom(Description = "类型")]
+        public string type { get; set; }
 
-		/// <summary>
-		/// 重要设施或危险品名称
-		/// </summary>
-		public string content { get; set; }
+        /// <summary>
+        /// 重要设施或危险品名称
+        /// </summary>
+        [Custom(Description = "重要设施或危险品名称")]
+        public string content { get; set; }
 
         /// <summary>
         /// 建立时间
@@ -110,10 +115,11 @@ namespace FFireManage
         [Custom(IsRequired = false)]
         public string video { get; set; }
 
-		/// <summary>
-		/// 说明
-		/// </summary>
-		public string note { get; set; }
+        /// <summary>
+        /// 说明
+        /// </summary>
+        [Custom(Description = "说明")]
+        public string note { get; set; }
 
 		/// <summary>
 		/// 唯一编号

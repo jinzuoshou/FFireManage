@@ -19,11 +19,13 @@ namespace FFireManage
 		/// <summary>
 		/// 名称
 		/// </summary>
+        [Custom(Description = "名称")]
 		public string name { get; set; }
 
 		/// <summary>
 		/// 地址
 		/// </summary>
+        [Custom(Description = "地址")]
 		public string address { get; set; }
 
 		/// <summary>
@@ -83,6 +85,7 @@ namespace FFireManage
 		/// <summary>
 		/// 状态
 		/// </summary>
+        [Custom(EnumType =typeof(ArtificiallakeStatus))]
 		public int status { get; set; }
 
 		/// <summary>
@@ -152,6 +155,16 @@ namespace FFireManage
 		/// 行政区划代码
 		/// </summary>
 		public string pac { get; set; }
+
+        /// <summary>
+        /// 地区
+        /// </summary>
+        public string city_name { get; set; }
+
+        /// <summary>
+        /// 县名
+        /// </summary>
+        public string county_name { get; set; }
 
         /// <summary>
         /// 媒体字典

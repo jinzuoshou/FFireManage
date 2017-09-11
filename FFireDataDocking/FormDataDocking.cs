@@ -1503,7 +1503,8 @@ namespace FFireDataDocking
                     {
                         f.build_year = string.Format("{0}-00-00 00:00:00", f.build_year);
                     }
-                    f.manager = (f.manager == null && f.manager == "") ? " " : f.manager;
+                    f.manager = (f.manager == null || f.manager == "") ? " " : f.manager;
+                    f.phone = (f.phone == null || f.phone == "") ? " " : f.phone;
                 });
             }
             entities.OrderBy(w => w.OBJECTID);
@@ -1580,7 +1581,7 @@ namespace FFireDataDocking
             IQueryFilter queryFilter = new QueryFilterClass
             {
                 SubFields = "id",
-                WhereClause = string.Format("pac=\'{0}\' and longitude={1} and latitude={2} and name=\'{3}\' and address=\'{4}\' and type=\'{5}\'", entity.pac, entity.longitude, entity.latitude, entity.name, entity.address,entity.type)
+                WhereClause = string.Format("pac=\'{0}\' and longitude={1} and latitude={2} and name=\'{3}\' and manager=\'{4}\'", entity.pac, entity.longitude, entity.latitude, entity.name, entity.manager)
             };
 
             // Create a ComReleaser for buffer management.  
@@ -1674,6 +1675,24 @@ namespace FFireDataDocking
                             }
                             else
                             {
+                                Dictionary<string, Fire_WarningBoards> trueDict = new Dictionary<string, Fire_WarningBoards>();
+                                List<Fire_WarningBoards> mustList = new List<Fire_WarningBoards>();
+                                foreach (var entity in entities)
+                                {
+                                    string key = entity.name + entity.manager + entity.longitude.ToString() + entity.latitude.ToString() + entity.pac;
+                                    if (!trueDict.ContainsKey(key))
+                                    {
+                                        trueDict.Add(key, entity);
+                                    }
+                                    else
+                                    {
+                                        mustList.Add(entity);
+                                    }
+                                }
+                                foreach(var entity in mustList)
+                                {
+                                    this.m_WarningBoardsController.Delete(entity.id);
+                                }
                                 IFeatureClass featureClass = null;
                                 if (featureClassDict.ContainsKey("Fire_WarningBoards"))
                                 {
@@ -1683,7 +1702,8 @@ namespace FFireDataDocking
                                 {
                                     featureClass = (workspace as IFeatureWorkspace).OpenFeatureClass("Fire_WarningBoards");
                                 }
-                                foreach (Fire_WarningBoards entity in entities)
+                                
+                                foreach (Fire_WarningBoards entity in trueDict.Values)
                                 {
                                     if (this.UpdateId(featureClass,entity))
                                     {

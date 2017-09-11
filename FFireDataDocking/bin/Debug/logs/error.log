@@ -1,6 +1,5 @@
-2017-09-06 20:50:04,365 ERROR - Cannot acquire a lock.
-2017-09-06 20:58:24,594 ERROR - 插入Parameter error [manager],must not be empty.
-2017-09-06 20:58:24,610 ERROR - 插入Parameter error [phone],must not be empty.
-2017-09-06 20:58:24,615 ERROR - 插入Parameter error [manager],must not be empty.
-2017-09-06 20:58:26,122 ERROR - 插入Parameter error [phone],must not be empty.
-2017-09-06 20:59:38,292 ERROR - Cannot acquire a lock.
+2017-09-11 12:48:26,474 ERROR - 已添加了具有相同键的项。
+2017-09-11 13:01:09,809 ERROR - An expected Field was not found or could not be retrieved properly. [Fire_WarningBoards]
+2017-09-11 13:04:08,634 ERROR - An expected Field was not found or could not be retrieved properly. [Fire_WarningBoards]
+2017-09-11 13:10:53,432 ERROR - An expected Field was not found or could not be retrieved properly. [Fire_WarningBoards]
+2017-09-11 13:18:27,233 ERROR - Cannot acquire a lock.
