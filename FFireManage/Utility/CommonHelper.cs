@@ -4,66 +4,19 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace FFireManage.Utility
 {
     public static class CommonHelper
     {
         /// <summary>
-        /// 实体对象拼接http访问的参数字符串
-        /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
-        public static string ObjectToUrlParas(this object obj)
-        {
-            try
-            {
-                Type type = obj.GetType(); //获取类型
-                PropertyInfo[] propertyInfos = type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty | BindingFlags.GetField); //获取指定名称的属性
-                StringBuilder strBuild = new StringBuilder();
-                for (int i = 0; i < propertyInfos.Length; i++)
-                {
-                    PropertyInfo propertyInfo = propertyInfos[i];
-                    
-                    object[] objAttrs = propertyInfo.GetCustomAttributes(typeof(CustomAttribute), true);
-                    bool isRequired = true;
-                    if (objAttrs.Length > 0)
-                    {
-                        CustomAttribute attr = objAttrs[0] as CustomAttribute;
-                        if (attr != null)
-                        {
-                            isRequired = attr.IsRequired;
-                        }
-                    }
-                    if (isRequired)
-                    {
-                        string name = propertyInfo.Name;
-                        object value = propertyInfo.GetValue(obj, null);
-                        if (value != null)
-                        {
-                            strBuild.AppendFormat("{0}={1}&", name, value);
-                        }
-                        else
-                        {
-                            strBuild.AppendFormat("{0}=&", name);
-                        }
-                    }
-                }
-                return strBuild.ToString();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-        }
-
-        /// <summary>
         /// 实体对象属性拼接字典
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static Dictionary<string,object> ObjectToDict(this object obj)
+        public static Dictionary<string,object> ObjectToDict<T>(this T obj) 
+        where T:class,new()
         {
             try
             {
@@ -100,9 +53,9 @@ namespace FFireManage.Utility
                 }
                 return valueDict;
             }
-            catch (Exception ex)
+            catch 
             {
-                throw ex;
+                return new Dictionary<string, object>();
             }
 
         }
@@ -113,7 +66,7 @@ namespace FFireManage.Utility
         /// <typeparam name="T"></typeparam>
         /// <param name="obj"></param>
         /// <returns></returns>
-        public static List<object> GetDataSource<T>(T obj) 
+        public static List<object> GetDataSource<T>(T obj) where T:new()
         {
             List<object> objList = new List<object>();
             if(obj is Enum)
@@ -130,6 +83,7 @@ namespace FFireManage.Utility
         }
 
         public static IDictionary<string, string> ObjectDescriptionToDict<T>(this T obj)
+        where T:class,new()
         {
             try
             {
@@ -161,9 +115,9 @@ namespace FFireManage.Utility
                 }
                 return valueDict;
             }
-            catch (Exception ex)
+            catch
             {
-                throw ex;
+                return new Dictionary<string, string>();
             }
 
         }
@@ -175,15 +129,7 @@ namespace FFireManage.Utility
         /// <returns></returns>
         public static bool IsNumberic(this string oText)
         {
-            try
-            {
-                int var1 = Convert.ToInt32(oText);
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            return Regex.IsMatch(oText, @"^[+-]?\d*[.]?\d*$");
         }
     }
 }
