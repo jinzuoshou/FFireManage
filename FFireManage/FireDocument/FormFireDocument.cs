@@ -170,6 +170,8 @@ namespace FFireManage.FireDocument
                     this.tbx_village_name.Enabled = false;
                     SmartForm.SetControlsEnabled(this.tabPage_baseInfo.Controls,null);
 
+                    this.mediaControl1.MainToolStrip.Visible = false;
+
                     this.tbx_description.Enabled = false;
 
 

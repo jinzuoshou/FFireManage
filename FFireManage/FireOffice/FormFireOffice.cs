@@ -180,6 +180,7 @@ namespace FFireManage.FireOffice
 
                     this.tbx_note.Enabled = false;
 
+                    this.mediaControl1.MainToolStrip.Visible = false;
 
                 }
             }

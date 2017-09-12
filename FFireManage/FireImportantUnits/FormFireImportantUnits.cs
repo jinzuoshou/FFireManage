@@ -166,7 +166,7 @@ namespace FFireManage.FireImportantUnits
 
                     this.tbx_note.Enabled = false;
 
-
+                    this.mediaControl1.MainToolStrip.Visible = false;
                 }
             }
             #endregion

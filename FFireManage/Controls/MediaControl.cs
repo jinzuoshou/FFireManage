@@ -28,19 +28,32 @@ namespace FFireManage.Controls
         {
             get
             {
-                this.MediaBytes();
+                this.GetMediaFileDict();
                 return mediaByteDict;
             }
         }
 
         public List<MediaFile> MediaFiles
         {
+            get 
+            {
+                return this._mediaFiles; 
+            }
             set
             {
                 this._mediaFiles = value;
                 this.UpdateShowMediaThumbImg(this._mediaFiles);
             }
         }
+
+        public ToolStrip MainToolStrip
+        {
+            get { return this.toolStrip1; }
+        }
+
+        public event EventHandler AddEvent;
+        public event EventHandler DeleteEvent;
+        public event EventHandler DeleteAllEvent;
         
         #endregion
 
@@ -92,7 +105,12 @@ namespace FFireManage.Controls
                         this.listView1.Items.Insert(0, new_item);
                     }
                 }
+                if (AddEvent != null)
+                {
+                    AddEvent(this.mediaByteDict, new EventArgs());
+                }
             }
+            
         }
 
         private void btnAddAudio_Click(object sender, EventArgs e)
@@ -120,6 +138,10 @@ namespace FFireManage.Controls
                     new_item.ImageIndex = 3;
 
                     this.listView1.Items.Insert(0, new_item);
+                }
+                if (AddEvent != null)
+                {
+                    AddEvent(this.mediaByteDict, new EventArgs());
                 }
             }
         }
@@ -156,11 +178,19 @@ namespace FFireManage.Controls
                     this.listView1.Items.Insert(0, new_item);
                 }
             }
+            if (AddEvent != null)
+            {
+                AddEvent(this.mediaByteDict, new EventArgs());
+            }
         }
 
         private void btnDeleteMedias_Click(object sender, EventArgs e)
         {
             this.listView1.Items.Clear();
+            if(this.DeleteAllEvent!=null)
+            {
+                this.DeleteAllEvent(this.MediaFiles, new EventArgs());
+            }
         }
         #endregion
 
@@ -427,10 +457,18 @@ namespace FFireManage.Controls
             if (currentItem == null)
                 return;
             this.listView1.Items.Remove(currentItem);
+            MediaFile mediaFile = currentItem.Tag as MediaFile;
+            if (mediaFile != null && string.IsNullOrEmpty(mediaFile.id))
+            {
+                if (DeleteEvent != null)
+                {
+                    DeleteEvent(mediaFile, new EventArgs());
+                }
+            }
         }
         #endregion
 
-        private void MediaBytes()
+        private void GetMediaFileDict()
         {
             for(int i=0; i<this.listView1.Items.Count;i++)
             {

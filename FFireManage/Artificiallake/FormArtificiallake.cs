@@ -177,6 +177,8 @@ namespace FFireManage.Artificiallake
 
                     SmartForm.SetControlsEnabled(this.tabPage_baseInfo.Controls, null);
 
+                    this.mediaControl1.MainToolStrip.Visible = false;
+
                     this.tbx_note.Enabled = false;
 
                 }
@@ -218,7 +220,7 @@ namespace FFireManage.Artificiallake
             this.m_Artificiallake.pac = this.pacControl11.LocalPac;
             this.m_Artificiallake.city_name = this.pacControl11.City;
             this.m_Artificiallake.county_name = this.pacControl11.County;
-            this.m_Artificiallake.shape = GDALHelper.LngLatToWktPoint(this.m_Artificiallake.longitude, this.m_Artificiallake.latitude);
+            this.m_Artificiallake.shape = Converters.LngLatToWKT(this.m_Artificiallake.longitude, this.m_Artificiallake.latitude);
 
             //自动从窗体控件上取值
             m_Artificiallake = SmartForm.GetEntity<Fire_Artificiallake>(this.tabPage_baseInfo.Controls, this.m_Artificiallake);

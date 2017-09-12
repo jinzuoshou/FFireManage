@@ -182,6 +182,8 @@ namespace FFireManage.FireForestBelt
                     SmartForm.SetControlsEnabled(this.tabPage_baseInfo.Controls, null);
 
                     this.tbx_note.Enabled = false;
+
+                    this.mediaControl1.MainToolStrip.Visible = false;
                 }
             }
             #endregion

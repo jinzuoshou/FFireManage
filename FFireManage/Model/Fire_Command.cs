@@ -24,27 +24,32 @@ namespace FFireManage
 		/// <summary>
 		/// 名称
 		/// </summary>
-		public string name { get; set; }
+        [Custom(Description = "名称")]
+        public string name { get; set; }
 
-		/// <summary>
-		/// 所在地点
-		/// </summary>
-		public string address { get; set; }
+        /// <summary>
+        /// 所在地点
+        /// </summary>
+        [Custom(Description = "所在地点")]
+        public string address { get; set; }
 
-		/// <summary>
-		/// 值班电话
-		/// </summary>
-		public string phone { get; set; }
+        /// <summary>
+        /// 值班电话
+        /// </summary>
+        [Custom(Description = "值班电话")]
+        public string phone { get; set; }
 
-		/// <summary>
-		/// 办公室主任
-		/// </summary>
-		public string director { get; set; }
+        /// <summary>
+        /// 办公室主任
+        /// </summary>
+        [Custom(Description = "办公室主任")]
+        public string director { get; set; }
 
-		/// <summary>
-		/// 主任电话
-		/// </summary>
-		public string dir_phone { get; set; }
+        /// <summary>
+        /// 主任电话
+        /// </summary>
+        [Custom(Description = "主任电话")]
+        public string dir_phone { get; set; }
 
 		/// <summary>
 		/// 经度
@@ -100,10 +105,11 @@ namespace FFireManage
         [Custom(IsRequired = false)]
         public string video { get; set; }
 
-		/// <summary>
-		/// 说明
-		/// </summary>
-		public string note { get; set; }
+        /// <summary>
+        /// 说明
+        /// </summary>
+        [Custom(Description = "说明")]
+        public string note { get; set; }
 
         /// <summary>
         /// 建立时间
@@ -129,15 +135,17 @@ namespace FFireManage
         [Custom(IsRequired = false)]
         public string mod_pers { get; set; }
 
-		/// <summary>
-		/// 指挥长
-		/// </summary>
-		public string commander { get; set; }
+        /// <summary>
+        /// 指挥长
+        /// </summary>
+        [Custom(Description = "指挥长")]
+        public string commander { get; set; }
 
-		/// <summary>
-		/// 指挥长电话
-		/// </summary>
-		public string commander_phone { get; set; }
+        /// <summary>
+        /// 指挥长电话
+        /// </summary>
+        [Custom(Description = "指挥长电话")]
+        public string commander_phone { get; set; }
 
 		/// <summary>
 		/// 唯一编号

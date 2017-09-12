@@ -159,7 +159,7 @@ namespace FFireManage.SatelliteGroundStation
 
                     this.tbx_note.Enabled = false;
 
-
+                    this.mediaControl1.MainToolStrip.Visible = false;
                 }
             }
             #endregion

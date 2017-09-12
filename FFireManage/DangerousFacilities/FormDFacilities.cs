@@ -156,6 +156,8 @@ namespace FFireManage.DangerousFacilities
                     this.coordinatesInputControl1.Enabled = false;
                     this.pacControl11.Enabled = false;
 
+                    this.mediaControl1.MainToolStrip.Visible = false;
+
                     SmartForm.SetControlsEnabled(this.tabPage_baseInfo.Controls, null);
                 }
             }
@@ -188,6 +190,7 @@ namespace FFireManage.DangerousFacilities
             this.m_DangerousFacilities.longitude = this.coordinatesInputControl1.Longitude;
             this.m_DangerousFacilities.latitude = this.coordinatesInputControl1.Latitude;
             this.m_DangerousFacilities.pac = this.pacControl11.LocalPac;
+            this.m_DangerousFacilities.shape = Converters.LngLatToWKT(this.m_DangerousFacilities.longitude, this.m_DangerousFacilities.latitude);
             //自动从窗体控件上取值
             m_DangerousFacilities = SmartForm.GetEntity<Fire_DangerousFacilities>(this.tabPage_baseInfo.Controls, this.m_DangerousFacilities);
             this.m_DangerousFacilities.mediaByteDict = this.mediaControl1.MediaByteDict;

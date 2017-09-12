@@ -34,6 +34,8 @@
             this.coordinatesInputControl1 = new FFireManage.Controls.CoordinatesInputControl();
             this.pacControl11 = new FFireManage.Controls.PACControl1();
             this.tabPage_baseInfo = new System.Windows.Forms.TabPage();
+            this.tbx_address = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.cbx_status = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -62,8 +64,6 @@
             this.mediaControl1 = new FFireManage.Controls.MediaControl();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.tbx_address = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage_location.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -163,6 +163,24 @@
             this.tabPage_baseInfo.Text = "基本信息";
             this.tabPage_baseInfo.UseVisualStyleBackColor = true;
             // 
+            // tbx_address
+            // 
+            this.tbx_address.AccessibleDescription = "length:^.{0,79}$:{0}1~80";
+            this.tbx_address.AccessibleName = "address";
+            this.tbx_address.Location = new System.Drawing.Point(376, 18);
+            this.tbx_address.Name = "tbx_address";
+            this.tbx_address.Size = new System.Drawing.Size(185, 23);
+            this.tbx_address.TabIndex = 35;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(333, 21);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(35, 17);
+            this.label13.TabIndex = 34;
+            this.label13.Text = "地址:";
+            // 
             // label12
             // 
             this.label12.AutoSize = true;
@@ -174,6 +192,7 @@
             // 
             // cbx_status
             // 
+            this.cbx_status.AccessibleName = "status";
             this.cbx_status.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_status.FormattingEnabled = true;
             this.cbx_status.Location = new System.Drawing.Point(376, 218);
@@ -192,6 +211,7 @@
             // 
             // cbx_institutions
             // 
+            this.cbx_institutions.AccessibleName = "institutions";
             this.cbx_institutions.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_institutions.FormattingEnabled = true;
             this.cbx_institutions.Location = new System.Drawing.Point(376, 175);
@@ -210,6 +230,7 @@
             // 
             // cbx_type
             // 
+            this.cbx_type.AccessibleName = "type";
             this.cbx_type.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_type.FormattingEnabled = true;
             this.cbx_type.Location = new System.Drawing.Point(87, 175);
@@ -228,6 +249,8 @@
             // 
             // tbx_phone
             // 
+            this.tbx_phone.AccessibleDescription = "length:^.{0,29}$:{0}1~30";
+            this.tbx_phone.AccessibleName = "phone";
             this.tbx_phone.Location = new System.Drawing.Point(87, 133);
             this.tbx_phone.Name = "tbx_phone";
             this.tbx_phone.Size = new System.Drawing.Size(185, 23);
@@ -235,10 +258,13 @@
             // 
             // tbx_num_people
             // 
+            this.tbx_num_people.AccessibleName = "num_people";
             this.tbx_num_people.Location = new System.Drawing.Point(376, 134);
+            this.tbx_num_people.MaxLength = 4;
             this.tbx_num_people.Name = "tbx_num_people";
             this.tbx_num_people.Size = new System.Drawing.Size(185, 23);
             this.tbx_num_people.TabIndex = 26;
+            this.tbx_num_people.Text = "0";
             // 
             // label7
             // 
@@ -260,6 +286,8 @@
             // 
             // tbx_commander_phone
             // 
+            this.tbx_commander_phone.AccessibleDescription = "length:^.{0,29}$:{0}1~30";
+            this.tbx_commander_phone.AccessibleName = "commander_phone";
             this.tbx_commander_phone.Location = new System.Drawing.Point(376, 96);
             this.tbx_commander_phone.Name = "tbx_commander_phone";
             this.tbx_commander_phone.Size = new System.Drawing.Size(185, 23);
@@ -276,6 +304,8 @@
             // 
             // tbx_commander
             // 
+            this.tbx_commander.AccessibleDescription = "length:^.{0,19}$:{0}1~20";
+            this.tbx_commander.AccessibleName = "commander";
             this.tbx_commander.Location = new System.Drawing.Point(87, 96);
             this.tbx_commander.Name = "tbx_commander";
             this.tbx_commander.Size = new System.Drawing.Size(185, 23);
@@ -292,6 +322,8 @@
             // 
             // tbx_dir_phone
             // 
+            this.tbx_dir_phone.AccessibleDescription = "length:^.{0,29}$:{0}1~30";
+            this.tbx_dir_phone.AccessibleName = "dir_phone";
             this.tbx_dir_phone.Location = new System.Drawing.Point(376, 57);
             this.tbx_dir_phone.Name = "tbx_dir_phone";
             this.tbx_dir_phone.Size = new System.Drawing.Size(185, 23);
@@ -308,6 +340,8 @@
             // 
             // tbx_director
             // 
+            this.tbx_director.AccessibleDescription = "length:^.{0,7}$:{0}1~8";
+            this.tbx_director.AccessibleName = "director";
             this.tbx_director.Location = new System.Drawing.Point(87, 57);
             this.tbx_director.Name = "tbx_director";
             this.tbx_director.Size = new System.Drawing.Size(185, 23);
@@ -324,6 +358,7 @@
             // 
             // cbx_level
             // 
+            this.cbx_level.AccessibleName = "level";
             this.cbx_level.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbx_level.FormattingEnabled = true;
             this.cbx_level.Location = new System.Drawing.Point(87, 221);
@@ -342,6 +377,8 @@
             // 
             // tbx_note
             // 
+            this.tbx_note.AccessibleDescription = "length:^.{0,1023}$:{0}1~1024";
+            this.tbx_note.AccessibleName = "note";
             this.tbx_note.Location = new System.Drawing.Point(85, 263);
             this.tbx_note.Multiline = true;
             this.tbx_note.Name = "tbx_note";
@@ -350,6 +387,8 @@
             // 
             // tbx_name
             // 
+            this.tbx_name.AccessibleDescription = "required;length:^.{0,49}$:{0}1~50";
+            this.tbx_name.AccessibleName = "name";
             this.tbx_name.Location = new System.Drawing.Point(87, 18);
             this.tbx_name.Name = "tbx_name";
             this.tbx_name.Size = new System.Drawing.Size(185, 23);
@@ -405,22 +444,6 @@
             this.btnOK.Text = "确定(&O)";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // tbx_address
-            // 
-            this.tbx_address.Location = new System.Drawing.Point(374, 18);
-            this.tbx_address.Name = "tbx_address";
-            this.tbx_address.Size = new System.Drawing.Size(185, 23);
-            this.tbx_address.TabIndex = 35;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(333, 21);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(35, 17);
-            this.label13.TabIndex = 34;
-            this.label13.Text = "地址:";
             // 
             // FormFireCommand
             // 
