@@ -20,6 +20,8 @@ namespace FFireManage.Utility
         {
             try
             {
+                if (obj == null)
+                    obj = (T)Activator.CreateInstance<T>();
                 Type type = obj.GetType(); //获取类型
                 PropertyInfo[] propertyInfos = type.GetProperties(BindingFlags.Public | BindingFlags.Instance | BindingFlags.GetProperty | BindingFlags.GetField); //获取指定名称的属性
                 Dictionary<string, object> valueDict = new Dictionary<string, object>();

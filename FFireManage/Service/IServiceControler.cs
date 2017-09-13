@@ -41,6 +41,7 @@ namespace FFireManage.Service
         void Edit(T entity);
         void Delete(Dictionary<string, object> parameterDict);
         void AddMedia(Dictionary<string, object> parameterDict, Dictionary<string, object> fileDict);
+        void AddMedias(Dictionary<string, object> parameterDict, Dictionary<string, object> fileDict);
         void DeleteMedia(Dictionary<string, object> parameterDict);
     }
 
@@ -97,6 +98,7 @@ namespace FFireManage.Service
             if (AddMediaEvent != null)
                 AddMediaEvent(sender, e);
         }
+
         protected void OnDeleteMediaEvent(object sender, ServiceEventArgs e)
         {
             if (DeleteMediaEvent != null)
@@ -112,6 +114,8 @@ namespace FFireManage.Service
         public virtual void Get(Dictionary<string, object> parameterDict) { }
 
         public virtual void AddMedia(Dictionary<string, object> parameterDict, Dictionary<string, object> fileDict){ }
+
+        public virtual void AddMedias(Dictionary<string, object> parameterDict, Dictionary<string, object> fileDict){ }
 
         public virtual void DeleteMedia(Dictionary<string, object> parameterDict){ }
 
@@ -196,5 +200,6 @@ namespace FFireManage.Service
                 }
             });
         }
+
     }
 }

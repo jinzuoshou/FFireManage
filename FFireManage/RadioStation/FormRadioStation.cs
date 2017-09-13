@@ -111,10 +111,12 @@ namespace FFireManage.RadioStation
             else if (m_OperationType == OperationType.Edit)
             {
                 this.Text = "编辑无线电台站";
+                this.mediaControl1.IsMultiselect = false;
             }
             else if (m_OperationType == OperationType.Check)
             {
                 this.Text = "查看无线电台站";
+                this.mediaControl1.MainToolStrip.Visible = false;
             }
 
             /* 瞭望台状态 */
@@ -336,6 +338,12 @@ namespace FFireManage.RadioStation
                 return false;
             }
             return true;
+        }
+
+        private void FormRadioStation_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //释放ImageList加载的图片
+            this.mediaControl1.Dispose();
         }
     }
 }

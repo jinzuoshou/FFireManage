@@ -15,20 +15,126 @@ namespace FFireManage.FirePBrigade
 {
     public partial class FormFirePBrigade : Form
     {
+        #region private fields
         private Fire_PBrigade m_FirePBrigade = null;
         private OperationType m_OperationType;
         private FirePBrigadeController m_FirePBrigadeController = null;
+        #endregion
 
+        #region constructor
         public FormFirePBrigade(OperationType type, Fire_PBrigade firePBrigade = null)
         {
             InitializeComponent();
 
             this.m_OperationType = type;
             this.m_FirePBrigade = firePBrigade;
-            this.m_FirePBrigadeController = new FirePBrigadeController();
 
+            this.m_FirePBrigadeController = new FirePBrigadeController();
             this.m_FirePBrigadeController.AddEvent += M_ServiceController_AddEvent;
             this.m_FirePBrigadeController.EditEvent += M_ServiceController_EditEvent;
+            this.m_FirePBrigadeController.AddMediaEvent += M_FirePBrigadeController_AddMediaEvent;
+            this.m_FirePBrigadeController.DeleteMediaEvent += M_FirePBrigadeController_DeleteMediaEvent;
+
+            this.mediaControl1.AddEvent += MediaControl1_AddEvent;
+            this.mediaControl1.DeleteEvent += MediaControl1_DeleteEvent;
+        }
+        #endregion
+
+        #region event methods
+        private void MediaControl1_DeleteEvent(object sender, EventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null && this.m_OperationType != OperationType.Add)
+                {
+                    MediaFile content = sender as MediaFile;
+                    if (content != null)
+                    {
+                        this.m_FirePBrigadeController.DeleteMedia(content.id);
+                    }
+                }
+            }));
+        }
+
+        private void MediaControl1_AddEvent(object sender, EventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null && this.m_OperationType != OperationType.Add)
+                {
+                    Dictionary<string, object> content = sender as Dictionary<string, object>;
+                    if (content != null)
+                    {
+                        this.m_FirePBrigadeController.AddMedia(this.m_FirePBrigade.id, content);
+                    }
+                }
+            }));
+        }
+
+        private void M_FirePBrigadeController_DeleteMediaEvent(object sender, ServiceEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(this, sender.ToString(), "提示");
+                }
+            }));
+        }
+
+        private void M_FirePBrigadeController_AddMediaEvent(object sender, ServiceEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(this, sender.ToString(), "提示");
+                }
+            }));
         }
 
         private void M_ServiceController_AddEvent(object sender, ServiceEventArgs e)
@@ -111,10 +217,12 @@ namespace FFireManage.FirePBrigade
             else if (m_OperationType == OperationType.Edit)
             {
                 this.Text = "编辑专业森林消防队";
+                this.mediaControl1.IsMultiselect = false;
             }
             else if (m_OperationType == OperationType.Check)
             {
                 this.Text = "查看专业森林消防队";
+                this.mediaControl1.MainToolStrip.Visible = false;
             }
 
             /* 专业森林防火队状态 */
@@ -215,6 +323,14 @@ namespace FFireManage.FirePBrigade
             this.Close();
         }
 
+        private void FormFirePBrigade_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // 释放ImageList中的动态图片资源
+            this.mediaControl1.Dispose();
+        }
+        #endregion
+
+        #region private member methods
         /// <summary>
         /// 判断是否满足数据提交条件
         /// </summary>
@@ -237,5 +353,7 @@ namespace FFireManage.FirePBrigade
             }
             return true;
         }
+        #endregion
+
     }
 }

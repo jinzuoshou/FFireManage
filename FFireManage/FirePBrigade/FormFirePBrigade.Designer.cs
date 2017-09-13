@@ -1277,6 +1277,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormFirePBrigade";
             this.Text = "新增专业森林消防队";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormFirePBrigade_FormClosed);
             this.Load += new System.EventHandler(this.FormFireForestBelt_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage_location.ResumeLayout(false);

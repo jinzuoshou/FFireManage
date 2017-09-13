@@ -29,6 +29,107 @@ namespace FFireManage.SatelliteGroundStation
 
             this.m_SatelliteGroundStationControler.AddEvent += M_ServiceController_AddEvent;
             this.m_SatelliteGroundStationControler.EditEvent += M_ServiceController_EditEvent;
+            this.m_SatelliteGroundStationControler.AddMediaEvent += M_SatelliteGroundStationControler_AddMediaEvent;
+            this.m_SatelliteGroundStationControler.DeleteMediaEvent += M_SatelliteGroundStationControler_DeleteMediaEvent;
+
+            this.mediaControl1.AddEvent += MediaControl1_AddEvent;
+            this.mediaControl1.DeleteEvent += MediaControl1_DeleteEvent;
+        }
+
+        private void M_SatelliteGroundStationControler_DeleteMediaEvent(object sender, ServiceEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(this, sender.ToString(), "提示");
+                }
+            }));
+        }
+
+        private void M_SatelliteGroundStationControler_AddMediaEvent(object sender, ServiceEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(this, sender.ToString(), "提示");
+                }
+            }));
+        }
+
+        private void MediaControl1_DeleteEvent(object sender, EventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null && this.m_OperationType != OperationType.Add)
+                {
+                    MediaFile content = sender as MediaFile;
+                    if (content != null)
+                    {
+                        this.m_SatelliteGroundStationControler.DeleteMedia(content.id);
+                    }
+                }
+            }));
+        }
+
+        private void MediaControl1_AddEvent(object sender, EventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null && this.m_OperationType != OperationType.Add)
+                {
+                    Dictionary<string,object> content = sender as Dictionary<string, object>;
+                    if (content != null)
+                    {
+                        this.m_SatelliteGroundStationControler.AddMedia(this.m_SatelliteGroundStation.id, content);
+                    }
+                }
+            }));
         }
 
         private void M_ServiceController_AddEvent(object sender, ServiceEventArgs e)
@@ -111,10 +212,12 @@ namespace FFireManage.SatelliteGroundStation
             else if (m_OperationType == OperationType.Edit)
             {
                 this.Text = "编辑卫星地面站";
+                this.mediaControl1.IsMultiselect = false;
             }
             else if (m_OperationType == OperationType.Check)
             {
                 this.Text = "查看卫星地面站";
+                this.mediaControl1.MainToolStrip.Visible = false;
             }
                      
 
@@ -236,6 +339,20 @@ namespace FFireManage.SatelliteGroundStation
                 return false;
             }
             return true;
+        }
+
+        private void FormSatelliteGroundStation_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //释放加载资源
+            int i = -1;
+            foreach (Image img in this.mediaControl1.LargeImageList.Images)
+            {
+                i++;
+                if (i > 4)
+                {
+                    img.Dispose();
+                }
+            }
         }
     }
 }

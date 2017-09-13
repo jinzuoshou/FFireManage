@@ -209,7 +209,8 @@ namespace FFireManage.Service
             Dictionary<string, object> parameterDict = new Dictionary<string, object>()
             {
                 {"f",4221002 },
-                {"id",id }
+                {"id",id },
+                {"file",(fileDict!=null && fileDict.Count>0)?fileDict["file"]:null }
             };
             this.ExecutePost(parameterDict, OnAddMediaEvent, fileDict);
         }
@@ -231,7 +232,7 @@ namespace FFireManage.Service
             Dictionary<string, object> parameterDict = new Dictionary<string, object>()
             {
                 {"f", 4223002},
-                {"id",id }
+                {"id",id },
             };
             this.ExecuteGet(parameterDict, OnDeleteMediaEvent);
         }

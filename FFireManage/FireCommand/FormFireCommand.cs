@@ -107,10 +107,12 @@ namespace FFireManage.FireCommand
             else if (m_OperationType == OperationType.Edit)
             {
                 this.Text = "编辑森林防火指挥部";
+                this.mediaControl1.IsMultiselect = false;
             }
             else if (m_OperationType == OperationType.Check)
             {
                 this.Text = "查看森林防火指挥部";
+                this.mediaControl1.MainToolStrip.Visible = false;
             }
 
             /* 森林防火指挥部类型 */
@@ -174,7 +176,6 @@ namespace FFireManage.FireCommand
 
                     this.pacControl11.Enabled = false;
 
-                    this.mediaControl1.MainToolStrip.Visible = false;
 
                 }
             }

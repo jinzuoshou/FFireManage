@@ -111,10 +111,12 @@ namespace FFireManage.FireImportantUnits
             else if (m_OperationType == OperationType.Edit)
             {
                 this.Text = "编辑重点防火单位";
+                this.mediaControl1.IsMultiselect = false;
             }
             else if (m_OperationType == OperationType.Check)
             {
                 this.Text = "查看重点防火单位";
+                this.mediaControl1.MainToolStrip.Visible = false;
             }
 
             /* 专业森林防火队类型 */

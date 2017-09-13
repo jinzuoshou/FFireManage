@@ -111,10 +111,12 @@ namespace FFireManage.FireWarehouse
             else if (m_OperationType == OperationType.Edit)
             {
                 this.Text = "编辑防火物资储备库";
+                this.mediaControl1.IsMultiselect = false;
             }
             else if (m_OperationType == OperationType.Check)
             {
                 this.Text = "查看防火物资储备库";
+                this.mediaControl1.MainToolStrip.Visible = false;
             }
 
             /* 防火物资储备库类型 */
@@ -165,8 +167,6 @@ namespace FFireManage.FireWarehouse
                     SmartForm.SetControlsEnabled(this.tabPage_baseInfo.Controls,null);
 
                     this.tbx_note.Enabled = false;
-
-                    this.mediaControl1.MainToolStrip.Visible = false;
                 }
             }
             #endregion

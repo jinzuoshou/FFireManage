@@ -1265,7 +1265,7 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // FormFirePBrigade
+            // FormFireHBrigade
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1275,8 +1275,9 @@
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.Name = "FormFirePBrigade";
+            this.Name = "FormFireHBrigade";
             this.Text = "新增专业森林消防队";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormFireHBrigade_FormClosed);
             this.Load += new System.EventHandler(this.FormFireForestBelt_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage_location.ResumeLayout(false);

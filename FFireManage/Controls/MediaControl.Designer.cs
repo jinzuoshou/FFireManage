@@ -33,14 +33,13 @@
             this.listView1 = new System.Windows.Forms.ListView();
             this.m_LargeImageList = new System.Windows.Forms.ImageList(this.components);
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnAddImage = new System.Windows.Forms.ToolStripButton();
+            this.btnAddAudio = new System.Windows.Forms.ToolStripButton();
+            this.btnAddVideo = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.MenuItem_addRemark = new System.Windows.Forms.ToolStripMenuItem();
             this.MenuItem_deleteMediaFile = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnAddImage = new System.Windows.Forms.ToolStripButton();
-            this.btnAddAudio = new System.Windows.Forms.ToolStripButton();
-            this.btnAddVideo = new System.Windows.Forms.ToolStripButton();
-            this.btnDeleteMedias = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -73,39 +72,11 @@
             this.btnAddImage,
             this.btnAddAudio,
             this.btnAddVideo,
-            this.toolStripSeparator1,
-            this.btnDeleteMedias});
+            this.toolStripSeparator1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(671, 27);
             this.toolStrip1.TabIndex = 1;
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.MenuItem_addRemark,
-            this.MenuItem_deleteMediaFile});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(153, 70);
-            // 
-            // MenuItem_addRemark
-            // 
-            this.MenuItem_addRemark.Name = "MenuItem_addRemark";
-            this.MenuItem_addRemark.Size = new System.Drawing.Size(152, 22);
-            this.MenuItem_addRemark.Text = "添加备注";
-            this.MenuItem_addRemark.Click += new System.EventHandler(this.MenuItem_addRemark_Click);
-            // 
-            // MenuItem_deleteMediaFile
-            // 
-            this.MenuItem_deleteMediaFile.Name = "MenuItem_deleteMediaFile";
-            this.MenuItem_deleteMediaFile.Size = new System.Drawing.Size(152, 22);
-            this.MenuItem_deleteMediaFile.Text = "删除媒体文件";
-            this.MenuItem_deleteMediaFile.Click += new System.EventHandler(this.MenuItem_deleteMediaFile_Click);
             // 
             // btnAddImage
             // 
@@ -134,14 +105,32 @@
             this.btnAddVideo.Text = "添加视频";
             this.btnAddVideo.Click += new System.EventHandler(this.btnAddVideo_Click);
             // 
-            // btnDeleteMedias
+            // toolStripSeparator1
             // 
-            this.btnDeleteMedias.Image = global::FFireManage.Properties.Resources.deleteMedias24;
-            this.btnDeleteMedias.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnDeleteMedias.Name = "btnDeleteMedias";
-            this.btnDeleteMedias.Size = new System.Drawing.Size(104, 24);
-            this.btnDeleteMedias.Text = "移除所有媒体";
-            this.btnDeleteMedias.Click += new System.EventHandler(this.btnDeleteMedias_Click);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuItem_addRemark,
+            this.MenuItem_deleteMediaFile});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(149, 48);
+            // 
+            // MenuItem_addRemark
+            // 
+            this.MenuItem_addRemark.Name = "MenuItem_addRemark";
+            this.MenuItem_addRemark.Size = new System.Drawing.Size(148, 22);
+            this.MenuItem_addRemark.Text = "添加备注";
+            this.MenuItem_addRemark.Click += new System.EventHandler(this.MenuItem_addRemark_Click);
+            // 
+            // MenuItem_deleteMediaFile
+            // 
+            this.MenuItem_deleteMediaFile.Name = "MenuItem_deleteMediaFile";
+            this.MenuItem_deleteMediaFile.Size = new System.Drawing.Size(148, 22);
+            this.MenuItem_deleteMediaFile.Text = "删除媒体文件";
+            this.MenuItem_deleteMediaFile.Click += new System.EventHandler(this.MenuItem_deleteMediaFile_Click);
             // 
             // MediaControl
             // 
@@ -168,7 +157,6 @@
         private System.Windows.Forms.ToolStripButton btnAddVideo;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton btnDeleteMedias;
         private System.Windows.Forms.ToolStripMenuItem MenuItem_addRemark;
         private System.Windows.Forms.ToolStripMenuItem MenuItem_deleteMediaFile;
         private System.Windows.Forms.ImageList m_LargeImageList;

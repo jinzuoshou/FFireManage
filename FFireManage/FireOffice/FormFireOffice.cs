@@ -111,10 +111,12 @@ namespace FFireManage.FireOffice
             else if (m_OperationType == OperationType.Edit)
             {
                 this.Text = "编辑森林防火办公室";
+                this.mediaControl1.IsMultiselect = false;
             }
             else if (m_OperationType == OperationType.Check)
             {
                 this.Text = "查看森林防火办公室";
+                this.mediaControl1.MainToolStrip.Visible = false;
             }
 
             /* 森林防火办公室状态 */

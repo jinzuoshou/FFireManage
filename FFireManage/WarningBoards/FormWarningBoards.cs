@@ -111,10 +111,12 @@ namespace FFireManage.WarningBoards
             else if (m_OperationType == OperationType.Edit)
             {
                 this.Text = "编辑大型警示牌";
+                this.mediaControl1.IsMultiselect = false;
             }
             else if (m_OperationType == OperationType.Check)
             {
                 this.Text = "查看大型警示牌";
+                this.mediaControl1.MainToolStrip.Visible = false;
             }
 
             /* 大型警示牌类型 */
@@ -165,8 +167,6 @@ namespace FFireManage.WarningBoards
                     SmartForm.SetControlsEnabled(this.tabPage_baseInfo.Controls,null);
 
                     this.tbx_note.Enabled = false;
-
-                    this.mediaControl1.MainToolStrip.Visible = false;
                 }
             }
             #endregion

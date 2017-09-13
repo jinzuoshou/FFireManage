@@ -13,9 +13,10 @@ namespace FFireManage.Controls
     {
         MediaRemarkEventManageClass ImageRemarkEventManageClass = new MediaRemarkEventManageClass();
 
-        public ImageRemarkForm()
+        public ImageRemarkForm(string remark)
         {
             InitializeComponent();
+            this.textBox_Value.Text = remark;
         }
 
         private void button_OK_Click(object sender, EventArgs e)

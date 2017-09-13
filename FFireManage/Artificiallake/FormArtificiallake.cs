@@ -113,10 +113,12 @@ namespace FFireManage.Artificiallake
             else if (m_OperationType == OperationType.Edit)
             {
                 this.Text = "编辑航空灭火蓄水池";
+                this.mediaControl1.IsMultiselect = false;
             }
             else if (m_OperationType == OperationType.Check)
             {
                 this.Text = "查看航空灭火蓄水池";
+                this.mediaControl1.MainToolStrip.Visible = false;
             }
 
 

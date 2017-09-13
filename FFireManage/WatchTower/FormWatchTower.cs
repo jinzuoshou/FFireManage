@@ -78,9 +78,7 @@ namespace FFireManage.WatchTower
 
                         if (result.status == 10000)
                         {
-
                             this.DialogResult = DialogResult.OK;
-                            this.Close();
                         }
                         else
                         {
@@ -111,10 +109,12 @@ namespace FFireManage.WatchTower
             else if (m_OperationType == OperationType.Edit)
             {
                 this.Text = "编辑瞭望台";
+                this.mediaControl1.IsMultiselect = false;
             }
             else if (m_OperationType == OperationType.Check)
             {
                 this.Text = "查看瞭望台";
+                this.mediaControl1.MainToolStrip.Visible = false;
             }
 
             /* 瞭望台类型 */
@@ -471,6 +471,11 @@ namespace FFireManage.WatchTower
                 return false;
             }
             return true;
+        }
+
+        private void FormWatchTower_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.mediaControl1.Dispose();
         }
     }
 }

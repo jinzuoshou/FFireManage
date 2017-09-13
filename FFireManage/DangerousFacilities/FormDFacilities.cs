@@ -111,10 +111,12 @@ namespace FFireManage.DangerousFacilities
             else if (m_OperationType == OperationType.Edit)
             {
                 this.Text = "编辑林区危险及重要设施";
+                this.mediaControl1.IsMultiselect = false;
             }
             else if (m_OperationType == OperationType.Check)
             {
                 this.Text = "查看林区危险及重要设施";
+                this.mediaControl1.MainToolStrip.Visible = false;
             }
 
             /* 林区危险及重要性设备设施状态 */

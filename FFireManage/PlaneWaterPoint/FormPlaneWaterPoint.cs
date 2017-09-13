@@ -106,15 +106,17 @@ namespace FFireManage.PlaneWaterPoint
 
             if (m_OperationType == OperationType.Add)
             {
-                this.Text = "新增专业森林消防队";
+                this.Text = "新增飞机吊桶取水点";
             }
             else if (m_OperationType == OperationType.Edit)
             {
-                this.Text = "编辑专业森林消防队";
+                this.Text = "编辑飞机吊桶取水点";
+                this.mediaControl1.IsMultiselect = false;
             }
             else if (m_OperationType == OperationType.Check)
             {
-                this.Text = "查看专业森林消防队";
+                this.Text = "查看飞机吊桶取水点";
+                this.mediaControl1.MainToolStrip.Visible = false;
             }
 
             /* 飞机吊桶取水点状态 */

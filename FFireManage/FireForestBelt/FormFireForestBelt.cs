@@ -110,10 +110,12 @@ namespace FFireManage.FireForestBelt
             else if (m_OperationType == OperationType.Edit)
             {
                 this.Text = "编辑防护林带";
+                this.mediaControl1.IsMultiselect = false;
             }
             else if (m_OperationType == OperationType.Check)
             {
                 this.Text = "查看防护林带";
+                this.mediaControl1.MainToolStrip.Visible = false;
             }
 
             /* 防护林带营造单位 */
@@ -305,6 +307,12 @@ namespace FFireManage.FireForestBelt
                 return false;
             }
             return true;
+        }
+
+        private void FormFireForestBelt_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            //释放ImageList加载的图片资源
+            this.mediaControl1.Dispose();
         }
     }
 }

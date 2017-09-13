@@ -34,6 +34,10 @@
             this.coordinatesInputControl1 = new FFireManage.Controls.CoordinatesInputControl();
             this.pacControl11 = new FFireManage.Controls.PACControl1();
             this.tabPage_baseInfo = new System.Windows.Forms.TabPage();
+            this.tbx_management_unit = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.tbx_base_type = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.tbx_address = new System.Windows.Forms.TextBox();
             this.cbx_build_unit = new System.Windows.Forms.ComboBox();
             this.cbx_structure = new System.Windows.Forms.ComboBox();
@@ -80,10 +84,6 @@
             this.mediaControl1 = new FFireManage.Controls.MediaControl();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.label16 = new System.Windows.Forms.Label();
-            this.tbx_base_type = new System.Windows.Forms.TextBox();
-            this.tbx_management_unit = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage_location.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -105,7 +105,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(742, 449);
+            this.tabControl1.Size = new System.Drawing.Size(742, 438);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage_location
@@ -116,7 +116,7 @@
             this.tabPage_location.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage_location.Name = "tabPage_location";
             this.tabPage_location.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage_location.Size = new System.Drawing.Size(734, 419);
+            this.tabPage_location.Size = new System.Drawing.Size(734, 407);
             this.tabPage_location.TabIndex = 2;
             this.tabPage_location.Text = "位置信息";
             this.tabPage_location.UseVisualStyleBackColor = true;
@@ -205,10 +205,48 @@
             this.tabPage_baseInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage_baseInfo.Name = "tabPage_baseInfo";
             this.tabPage_baseInfo.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage_baseInfo.Size = new System.Drawing.Size(734, 419);
+            this.tabPage_baseInfo.Size = new System.Drawing.Size(734, 408);
             this.tabPage_baseInfo.TabIndex = 0;
             this.tabPage_baseInfo.Text = "基本信息";
             this.tabPage_baseInfo.UseVisualStyleBackColor = true;
+            // 
+            // tbx_management_unit
+            // 
+            this.tbx_management_unit.AccessibleDescription = "length:^.{0,29}$:{0}1~30";
+            this.tbx_management_unit.AccessibleName = "management_unit";
+            this.tbx_management_unit.Location = new System.Drawing.Point(439, 354);
+            this.tbx_management_unit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbx_management_unit.Name = "tbx_management_unit";
+            this.tbx_management_unit.Size = new System.Drawing.Size(215, 23);
+            this.tbx_management_unit.TabIndex = 73;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(364, 357);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(59, 17);
+            this.label22.TabIndex = 72;
+            this.label22.Text = "管理单位:";
+            // 
+            // tbx_base_type
+            // 
+            this.tbx_base_type.AccessibleDescription = "length:^.{0,29}$:{0}1~30";
+            this.tbx_base_type.AccessibleName = "base_type";
+            this.tbx_base_type.Location = new System.Drawing.Point(101, 354);
+            this.tbx_base_type.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tbx_base_type.Name = "tbx_base_type";
+            this.tbx_base_type.Size = new System.Drawing.Size(215, 23);
+            this.tbx_base_type.TabIndex = 71;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(27, 357);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(59, 17);
+            this.label16.TabIndex = 70;
+            this.label16.Text = "基地类型:";
             // 
             // tbx_address
             // 
@@ -597,7 +635,7 @@
             this.tabPage_note.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage_note.Name = "tabPage_note";
             this.tabPage_note.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage_note.Size = new System.Drawing.Size(734, 419);
+            this.tabPage_note.Size = new System.Drawing.Size(734, 407);
             this.tabPage_note.TabIndex = 3;
             this.tabPage_note.Text = "说明";
             this.tabPage_note.UseVisualStyleBackColor = true;
@@ -610,7 +648,7 @@
             this.tbx_note.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tbx_note.Multiline = true;
             this.tbx_note.Name = "tbx_note";
-            this.tbx_note.Size = new System.Drawing.Size(728, 411);
+            this.tbx_note.Size = new System.Drawing.Size(728, 399);
             this.tbx_note.TabIndex = 13;
             // 
             // tabPage_mediaInfo
@@ -620,7 +658,7 @@
             this.tabPage_mediaInfo.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.tabPage_mediaInfo.Name = "tabPage_mediaInfo";
             this.tabPage_mediaInfo.Padding = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tabPage_mediaInfo.Size = new System.Drawing.Size(734, 419);
+            this.tabPage_mediaInfo.Size = new System.Drawing.Size(734, 407);
             this.tabPage_mediaInfo.TabIndex = 1;
             this.tabPage_mediaInfo.Text = "多媒体文件";
             this.tabPage_mediaInfo.UseVisualStyleBackColor = true;
@@ -630,16 +668,16 @@
             this.mediaControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.mediaControl1.Location = new System.Drawing.Point(3, 4);
             this.mediaControl1.Name = "mediaControl1";
-            this.mediaControl1.Size = new System.Drawing.Size(728, 411);
+            this.mediaControl1.Size = new System.Drawing.Size(728, 399);
             this.mediaControl1.TabIndex = 0;
             // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancel.Location = new System.Drawing.Point(625, 490);
+            this.btnCancel.Location = new System.Drawing.Point(625, 485);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(87, 35);
+            this.btnCancel.Size = new System.Drawing.Size(87, 25);
             this.btnCancel.TabIndex = 6;
             this.btnCancel.Text = "取消(&C)";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -648,58 +686,20 @@
             // btnOK
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(513, 490);
+            this.btnOK.Location = new System.Drawing.Point(513, 485);
             this.btnOK.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(87, 35);
+            this.btnOK.Size = new System.Drawing.Size(87, 25);
             this.btnOK.TabIndex = 5;
             this.btnOK.Text = "确定(&O)";
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(27, 357);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(59, 17);
-            this.label16.TabIndex = 70;
-            this.label16.Text = "基地类型:";
-            // 
-            // tbx_base_type
-            // 
-            this.tbx_base_type.AccessibleDescription = "length:^.{0,29}$:{0}1~30";
-            this.tbx_base_type.AccessibleName = "base_type";
-            this.tbx_base_type.Location = new System.Drawing.Point(101, 354);
-            this.tbx_base_type.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbx_base_type.Name = "tbx_base_type";
-            this.tbx_base_type.Size = new System.Drawing.Size(215, 23);
-            this.tbx_base_type.TabIndex = 71;
-            // 
-            // tbx_management_unit
-            // 
-            this.tbx_management_unit.AccessibleDescription = "length:^.{0,29}$:{0}1~30";
-            this.tbx_management_unit.AccessibleName = "management_unit";
-            this.tbx_management_unit.Location = new System.Drawing.Point(439, 354);
-            this.tbx_management_unit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.tbx_management_unit.Name = "tbx_management_unit";
-            this.tbx_management_unit.Size = new System.Drawing.Size(215, 23);
-            this.tbx_management_unit.TabIndex = 73;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(364, 357);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(59, 17);
-            this.label22.TabIndex = 72;
-            this.label22.Text = "管理单位:";
-            // 
             // FormWatchTower
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(754, 558);
+            this.ClientSize = new System.Drawing.Size(754, 531);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.tabControl1);
@@ -707,6 +707,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormWatchTower";
             this.Text = "新增瞭望台";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormWatchTower_FormClosed);
             this.Load += new System.EventHandler(this.FormWatchTower_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage_location.ResumeLayout(false);

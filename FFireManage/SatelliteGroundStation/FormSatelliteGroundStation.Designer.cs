@@ -31,7 +31,12 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_location = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.coordinatesInputControl1 = new FFireManage.Controls.CoordinatesInputControl();
+            this.pacControl11 = new FFireManage.Controls.PACControl1();
             this.tabPage_baseInfo = new System.Windows.Forms.TabPage();
+            this.txt_ip = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.txt_waveband = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.tbx_type = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,18 +52,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tbx_name = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.tbx_antdiameter = new FFireManage.Controls.NTextBox();
             this.tabPage_note = new System.Windows.Forms.TabPage();
             this.tbx_note = new System.Windows.Forms.TextBox();
             this.tabPage_mediaInfo = new System.Windows.Forms.TabPage();
+            this.mediaControl1 = new FFireManage.Controls.MediaControl();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.txt_waveband = new System.Windows.Forms.TextBox();
-            this.coordinatesInputControl1 = new FFireManage.Controls.CoordinatesInputControl();
-            this.pacControl11 = new FFireManage.Controls.PACControl1();
-            this.tbx_antdiameter = new FFireManage.Controls.NTextBox();
-            this.mediaControl1 = new FFireManage.Controls.MediaControl();
-            this.label6 = new System.Windows.Forms.Label();
-            this.txt_ip = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage_location.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -104,6 +104,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "经纬度坐标";
             // 
+            // coordinatesInputControl1
+            // 
+            this.coordinatesInputControl1.Latitude = 0D;
+            this.coordinatesInputControl1.Location = new System.Drawing.Point(6, 14);
+            this.coordinatesInputControl1.Longitude = 0D;
+            this.coordinatesInputControl1.MaximumSize = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.MinimumSize = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.Name = "coordinatesInputControl1";
+            this.coordinatesInputControl1.Size = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.TabIndex = 0;
+            // 
+            // pacControl11
+            // 
+            this.pacControl11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pacControl11.Location = new System.Drawing.Point(36, 202);
+            this.pacControl11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pacControl11.Name = "pacControl11";
+            this.pacControl11.Size = new System.Drawing.Size(529, 38);
+            this.pacControl11.TabIndex = 11;
+            // 
             // tabPage_baseInfo
             // 
             this.tabPage_baseInfo.AutoScroll = true;
@@ -133,6 +153,33 @@
             this.tabPage_baseInfo.TabIndex = 0;
             this.tabPage_baseInfo.Text = "基本信息";
             this.tabPage_baseInfo.UseVisualStyleBackColor = true;
+            // 
+            // txt_ip
+            // 
+            this.txt_ip.AccessibleDescription = "required;length:^.{0,19}$:{0}1~20";
+            this.txt_ip.AccessibleName = "ip";
+            this.txt_ip.Location = new System.Drawing.Point(98, 149);
+            this.txt_ip.Name = "txt_ip";
+            this.txt_ip.Size = new System.Drawing.Size(195, 23);
+            this.txt_ip.TabIndex = 100;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(37, 149);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(55, 17);
+            this.label6.TabIndex = 74;
+            this.label6.Text = "IP地址：";
+            // 
+            // txt_waveband
+            // 
+            this.txt_waveband.AccessibleDescription = "required;length:^.{0,7}$:{0}1~8";
+            this.txt_waveband.AccessibleName = "waveband";
+            this.txt_waveband.Location = new System.Drawing.Point(101, 109);
+            this.txt_waveband.Name = "txt_waveband";
+            this.txt_waveband.Size = new System.Drawing.Size(195, 23);
+            this.txt_waveband.TabIndex = 99;
             // 
             // label10
             // 
@@ -271,6 +318,16 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "名称:";
             // 
+            // tbx_antdiameter
+            // 
+            this.tbx_antdiameter.AccessibleName = "antdiameter";
+            this.tbx_antdiameter.Location = new System.Drawing.Point(436, 106);
+            this.tbx_antdiameter.MaxLength = 4;
+            this.tbx_antdiameter.Name = "tbx_antdiameter";
+            this.tbx_antdiameter.Size = new System.Drawing.Size(220, 23);
+            this.tbx_antdiameter.TabIndex = 87;
+            this.tbx_antdiameter.Text = "0";
+            // 
             // tabPage_note
             // 
             this.tabPage_note.Controls.Add(this.tbx_note);
@@ -303,6 +360,15 @@
             this.tabPage_mediaInfo.Text = "多媒体文件";
             this.tabPage_mediaInfo.UseVisualStyleBackColor = true;
             // 
+            // mediaControl1
+            // 
+            this.mediaControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mediaControl1.Location = new System.Drawing.Point(3, 3);
+            this.mediaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.mediaControl1.Name = "mediaControl1";
+            this.mediaControl1.Size = new System.Drawing.Size(716, 439);
+            this.mediaControl1.TabIndex = 0;
+            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -325,72 +391,6 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // txt_waveband
-            // 
-            this.txt_waveband.AccessibleDescription = "required;length:^.{0,7}$:{0}1~8";
-            this.txt_waveband.AccessibleName = "waveband";
-            this.txt_waveband.Location = new System.Drawing.Point(101, 109);
-            this.txt_waveband.Name = "txt_waveband";
-            this.txt_waveband.Size = new System.Drawing.Size(195, 23);
-            this.txt_waveband.TabIndex = 99;
-            // 
-            // coordinatesInputControl1
-            // 
-            this.coordinatesInputControl1.Latitude = 0D;
-            this.coordinatesInputControl1.Location = new System.Drawing.Point(6, 14);
-            this.coordinatesInputControl1.Longitude = 0D;
-            this.coordinatesInputControl1.MaximumSize = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.MinimumSize = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.Name = "coordinatesInputControl1";
-            this.coordinatesInputControl1.Size = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.TabIndex = 0;
-            // 
-            // pacControl11
-            // 
-            this.pacControl11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pacControl11.Location = new System.Drawing.Point(36, 202);
-            this.pacControl11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pacControl11.Name = "pacControl11";
-            this.pacControl11.Size = new System.Drawing.Size(529, 38);
-            this.pacControl11.TabIndex = 11;
-            // 
-            // tbx_antdiameter
-            // 
-            this.tbx_antdiameter.AccessibleName = "antdiameter";
-            this.tbx_antdiameter.Location = new System.Drawing.Point(436, 106);
-            this.tbx_antdiameter.MaxLength = 4;
-            this.tbx_antdiameter.Name = "tbx_antdiameter";
-            this.tbx_antdiameter.Size = new System.Drawing.Size(220, 23);
-            this.tbx_antdiameter.TabIndex = 87;
-            this.tbx_antdiameter.Text = "0";
-            // 
-            // mediaControl1
-            // 
-            this.mediaControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mediaControl1.Location = new System.Drawing.Point(3, 3);
-            this.mediaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.mediaControl1.Name = "mediaControl1";
-            this.mediaControl1.Size = new System.Drawing.Size(716, 439);
-            this.mediaControl1.TabIndex = 0;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(37, 149);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(55, 17);
-            this.label6.TabIndex = 74;
-            this.label6.Text = "IP地址：";
-            // 
-            // txt_ip
-            // 
-            this.txt_ip.AccessibleDescription = "required;length:^.{0,19}$:{0}1~20";
-            this.txt_ip.AccessibleName = "ip";
-            this.txt_ip.Location = new System.Drawing.Point(98, 149);
-            this.txt_ip.Name = "txt_ip";
-            this.txt_ip.Size = new System.Drawing.Size(195, 23);
-            this.txt_ip.TabIndex = 100;
-            // 
             // FormSatelliteGroundStation
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -403,6 +403,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormSatelliteGroundStation";
             this.Text = "新增卫星地面站";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormSatelliteGroundStation_FormClosed);
             this.Load += new System.EventHandler(this.FormFireForestBelt_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage_location.ResumeLayout(false);

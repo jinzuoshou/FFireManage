@@ -35,10 +35,6 @@ namespace FFireManage.Controls
 
         public List<MediaFile> MediaFiles
         {
-            get 
-            {
-                return this._mediaFiles; 
-            }
             set
             {
                 this._mediaFiles = value;
@@ -51,9 +47,23 @@ namespace FFireManage.Controls
             get { return this.toolStrip1; }
         }
 
-        public event EventHandler AddEvent;
-        public event EventHandler DeleteEvent;
-        public event EventHandler DeleteAllEvent;
+        public ImageList LargeImageList
+        {
+            get { return this.m_LargeImageList; }
+        }
+
+        private bool _isMultiselect = true;
+        /// <summary>
+        /// 是否支持选择多个媒体文件
+        /// </summary>
+        public bool IsMultiselect
+        {
+            set { this._isMultiselect = value; }
+        }
+
+        public event EventHandler AddEvent;         // 单个媒体文件上传触发事件
+        public event EventHandler AddMultiEvent;    // 多个媒体文件上传触发事件
+        public event EventHandler DeleteEvent;      // 删除单个媒体文件触发事件
         
         #endregion
 
@@ -72,7 +82,7 @@ namespace FFireManage.Controls
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "图片文件(*.jpg,*.png,*.bmp,*.gif,*.jpeg)|*.jpg;*.png;*.bmp;*.gif;*.jpeg";
-            openFileDialog.Multiselect = true;
+            openFileDialog.Multiselect = _isMultiselect;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 for (int i = 0; i < openFileDialog.FileNames.Length; i++)
@@ -105,9 +115,13 @@ namespace FFireManage.Controls
                         this.listView1.Items.Insert(0, new_item);
                     }
                 }
-                if (AddEvent != null)
+                if (!_isMultiselect && AddEvent != null)
                 {
-                    AddEvent(this.mediaByteDict, new EventArgs());
+                    AddEvent(this.MediaByteDict, new EventArgs());
+                }
+                else if(_isMultiselect && AddEvent != null)
+                {
+                    AddMultiEvent(this.MediaByteDict, new EventArgs());
                 }
             }
             
@@ -117,7 +131,7 @@ namespace FFireManage.Controls
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "音频文件(*.wav,*.mp3)|*.wav;*.mp3";
-            openFileDialog.Multiselect = true;
+            openFileDialog.Multiselect = _isMultiselect;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 for (int i = 0; i < openFileDialog.FileNames.Length; i++)
@@ -139,9 +153,13 @@ namespace FFireManage.Controls
 
                     this.listView1.Items.Insert(0, new_item);
                 }
-                if (AddEvent != null)
+                if (!_isMultiselect && AddEvent != null)
                 {
-                    AddEvent(this.mediaByteDict, new EventArgs());
+                    AddEvent(this.MediaByteDict, new EventArgs());
+                }
+                else if (_isMultiselect && AddEvent != null)
+                {
+                    AddMultiEvent(this.MediaByteDict, new EventArgs());
                 }
             }
         }
@@ -150,7 +168,7 @@ namespace FFireManage.Controls
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "视频文件(*.avi,*.mp4,*.rmvb,*.flv)|*.avi;*.mp4;*.rmvb;*.flv";
-            openFileDialog.Multiselect = true;
+            openFileDialog.Multiselect = _isMultiselect;
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 for (int i = 0; i < openFileDialog.FileNames.Length; i++)
@@ -177,20 +195,16 @@ namespace FFireManage.Controls
 
                     this.listView1.Items.Insert(0, new_item);
                 }
+                if (!_isMultiselect && AddEvent != null)
+                {
+                    AddEvent(this.MediaByteDict, new EventArgs());
+                }
+                else if (_isMultiselect && AddEvent != null)
+                {
+                    AddMultiEvent(this.MediaByteDict, new EventArgs());
+                }
             }
-            if (AddEvent != null)
-            {
-                AddEvent(this.mediaByteDict, new EventArgs());
-            }
-        }
-
-        private void btnDeleteMedias_Click(object sender, EventArgs e)
-        {
-            this.listView1.Items.Clear();
-            if(this.DeleteAllEvent!=null)
-            {
-                this.DeleteAllEvent(this.MediaFiles, new EventArgs());
-            }
+            
         }
         #endregion
 
@@ -379,10 +393,17 @@ namespace FFireManage.Controls
 
                 string file = info.fileUrl;
                 string t_file = this.t_path + "\\" + Path.GetFileName(file);
-                formProcess = new FormDownloadMediaProcess();
-                formProcess.Show();
+                if (File.Exists(t_file))
+                {
+                    OpenMediaFile(t_file, info);
+                }
+                else
+                {
+                    formProcess = new FormDownloadMediaProcess();
+                    formProcess.Show();
 
-                ImageHelper.GetWebImage(service.GetHomeUrl() + "/" + file, t_file, formProcess.UpdateMediaDownloadProgress, OpenMediaFile, info);
+                    ImageHelper.GetWebImage(service.GetHomeUrl() + "/" + file, t_file, formProcess.UpdateMediaDownloadProgress, OpenMediaFile, info);
+                }
             }
         }
 
@@ -429,19 +450,20 @@ namespace FFireManage.Controls
                 currentItem = this.listView1.GetItemAt(e.X, e.Y);
                 if (currentItem == null)
                     return;
-                this.contextMenuStrip1.Show(this, e.Location);
+                if(this.toolStrip1.Visible)
+                    this.contextMenuStrip1.Show(this, e.Location);
             }
         }
 
         /// <summary>
-        /// 添加备注
+        /// 添加备注 
         /// </summary>
         private void MenuItem_addRemark_Click(object sender, EventArgs e)
         {
             if (currentItem == null)
                 return;
 
-            ImageRemarkForm frm = new ImageRemarkForm();
+            ImageRemarkForm frm = new ImageRemarkForm(currentItem.Text);
 
             if (frm.ShowDialog() == DialogResult.OK)
             {
@@ -456,18 +478,28 @@ namespace FFireManage.Controls
         {
             if (currentItem == null)
                 return;
-            this.listView1.Items.Remove(currentItem);
+
             MediaFile mediaFile = currentItem.Tag as MediaFile;
-            if (mediaFile != null && string.IsNullOrEmpty(mediaFile.id))
+            if (mediaFile != null && !string.IsNullOrEmpty(mediaFile.id))
             {
-                if (DeleteEvent != null)
+                DialogResult result = MessageBox.Show(this, "是否删除该媒体文件,删除后不可恢复", "信息提示", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                if (result == DialogResult.Yes)
                 {
-                    DeleteEvent(mediaFile, new EventArgs());
+                    this.listView1.Items.Remove(currentItem);
+                    if (DeleteEvent != null)
+                    {
+                        DeleteEvent(mediaFile, new EventArgs());
+                    }
                 }
+            }
+            else
+            {
+                this.listView1.Items.Remove(currentItem);
             }
         }
         #endregion
 
+        #region Other Methods
         private void GetMediaFileDict()
         {
             for(int i=0; i<this.listView1.Items.Count;i++)
@@ -478,14 +510,38 @@ namespace FFireManage.Controls
                     MediaFile media = item.Tag as MediaFile;
                     if (media == null)
                         continue;
-                    if((media.fileUrl==null || media.fileUrl=="") && (media.local_file!=null || media.local_file!= ""))
+                    if((media.fileUrl==null || media.fileUrl=="") && (media.local_file!=null || media.local_file!= "")) 
                     {
-                        if(!mediaByteDict.ContainsKey(media.fileName))
-                            //byte[] mediaBytes = ImageHelper.ImgToByteArray(media.local_file);
-                            mediaByteDict.Add(media.fileName, media.local_file);
+                        if (_isMultiselect == false && AddEvent != null)
+                        {
+                            if (!mediaByteDict.ContainsKey("file"))
+                                //byte[] mediaBytes = ImageHelper.ImgToByteArray(media.local_file);
+                                mediaByteDict.Add("file", media.local_file);
+                        }
+                        else
+                        {
+                            if (!mediaByteDict.ContainsKey(media.fileName))
+                                //byte[] mediaBytes = ImageHelper.ImgToByteArray(media.local_file);
+                                mediaByteDict.Add(media.fileName, media.local_file);
+                        }
                     }
                 }
             }
         }
+
+        public new void Dispose()
+        {
+            //释放加载的媒体资源
+            int i = -1;
+            foreach (Image img in this.m_LargeImageList.Images)
+            {
+                i++;
+                if (i > 4)
+                {
+                    img.Dispose();
+                }
+            }
+        }
+        #endregion
     }
 }

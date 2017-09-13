@@ -114,10 +114,12 @@ namespace FFireManage.FireDocument
             else if (m_OperationType == OperationType.Edit)
             {
                 this.Text = "编辑火灾档案";
+                this.mediaControl1.IsMultiselect = false;
             }
             else if (m_OperationType == OperationType.Check)
             {
                 this.Text = "查看火灾档案";
+                this.mediaControl1.MainToolStrip.Visible = false;
             }
 
             /* 坡位 */
@@ -168,9 +170,8 @@ namespace FFireManage.FireDocument
                     this.pacControl11.Enabled = false;
                     this.tbx_town_name.Enabled = false;
                     this.tbx_village_name.Enabled = false;
-                    SmartForm.SetControlsEnabled(this.tabPage_baseInfo.Controls,null);
 
-                    this.mediaControl1.MainToolStrip.Visible = false;
+                    SmartForm.SetControlsEnabled(this.tabPage_baseInfo.Controls,null);
 
                     this.tbx_description.Enabled = false;
 
