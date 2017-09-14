@@ -32,7 +32,7 @@ namespace FFireManage.Service
     /// 修改备注：无
     /// 版本：1.0
     /// </remarks>
-    public class PlanewaterpointControler : BaseServiceControler<Fire_Planewaterpoint>
+    public class PlanewaterPointControler : BaseServiceControler<Fire_Planewaterpoint>
     {
         /// <summary>
         /// 获取飞机吊桶取水点列表
@@ -209,7 +209,8 @@ namespace FFireManage.Service
             Dictionary<string, object> parameterDict = new Dictionary<string, object>()
             {
                 {"f",4251002 },
-                {"id",id }
+                {"id",id },
+                {"file",(fileDict!=null && fileDict.Count>0)?fileDict["file"]:null }
             };
             this.ExecutePost(parameterDict, OnAddMediaEvent, fileDict);
         }

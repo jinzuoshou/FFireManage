@@ -31,9 +31,12 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage_location = new System.Windows.Forms.TabPage();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.coordinatesInputControl1 = new FFireManage.Controls.CoordinatesInputControl();
+            this.pacControl11 = new FFireManage.Controls.PACControl1();
             this.tabPage_baseInfo = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.tbx_note = new System.Windows.Forms.TextBox();
+            this.tbx_num_people = new FFireManage.Controls.NTextBox();
             this.label51 = new System.Windows.Forms.Label();
             this.cbx_institutions = new System.Windows.Forms.ComboBox();
             this.label50 = new System.Windows.Forms.Label();
@@ -54,12 +57,9 @@
             this.tbx_name = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage_mediaInfo = new System.Windows.Forms.TabPage();
+            this.mediaControl1 = new FFireManage.Controls.MediaControl();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.coordinatesInputControl1 = new FFireManage.Controls.CoordinatesInputControl();
-            this.pacControl11 = new FFireManage.Controls.PACControl1();
-            this.tbx_num_people = new FFireManage.Controls.NTextBox();
-            this.mediaControl1 = new FFireManage.Controls.MediaControl();
             this.tabControl1.SuspendLayout();
             this.tabPage_location.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -102,6 +102,26 @@
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "经纬度坐标";
+            // 
+            // coordinatesInputControl1
+            // 
+            this.coordinatesInputControl1.Latitude = 0D;
+            this.coordinatesInputControl1.Location = new System.Drawing.Point(6, 14);
+            this.coordinatesInputControl1.Longitude = 0D;
+            this.coordinatesInputControl1.MaximumSize = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.MinimumSize = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.Name = "coordinatesInputControl1";
+            this.coordinatesInputControl1.Size = new System.Drawing.Size(300, 140);
+            this.coordinatesInputControl1.TabIndex = 0;
+            // 
+            // pacControl11
+            // 
+            this.pacControl11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.pacControl11.Location = new System.Drawing.Point(36, 202);
+            this.pacControl11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.pacControl11.Name = "pacControl11";
+            this.pacControl11.Size = new System.Drawing.Size(529, 38);
+            this.pacControl11.TabIndex = 11;
             // 
             // tabPage_baseInfo
             // 
@@ -153,6 +173,16 @@
             this.tbx_note.Name = "tbx_note";
             this.tbx_note.Size = new System.Drawing.Size(558, 189);
             this.tbx_note.TabIndex = 171;
+            // 
+            // tbx_num_people
+            // 
+            this.tbx_num_people.AccessibleName = "num_people";
+            this.tbx_num_people.Location = new System.Drawing.Point(425, 143);
+            this.tbx_num_people.MaxLength = 4;
+            this.tbx_num_people.Name = "tbx_num_people";
+            this.tbx_num_people.Size = new System.Drawing.Size(220, 23);
+            this.tbx_num_people.TabIndex = 170;
+            this.tbx_num_people.Text = "0";
             // 
             // label51
             // 
@@ -340,6 +370,15 @@
             this.tabPage_mediaInfo.Text = "多媒体文件";
             this.tabPage_mediaInfo.UseVisualStyleBackColor = true;
             // 
+            // mediaControl1
+            // 
+            this.mediaControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.mediaControl1.Location = new System.Drawing.Point(3, 3);
+            this.mediaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.mediaControl1.Name = "mediaControl1";
+            this.mediaControl1.Size = new System.Drawing.Size(716, 405);
+            this.mediaControl1.TabIndex = 0;
+            // 
             // btnCancel
             // 
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -362,45 +401,6 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // coordinatesInputControl1
-            // 
-            this.coordinatesInputControl1.Latitude = 0D;
-            this.coordinatesInputControl1.Location = new System.Drawing.Point(6, 14);
-            this.coordinatesInputControl1.Longitude = 0D;
-            this.coordinatesInputControl1.MaximumSize = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.MinimumSize = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.Name = "coordinatesInputControl1";
-            this.coordinatesInputControl1.Size = new System.Drawing.Size(300, 140);
-            this.coordinatesInputControl1.TabIndex = 0;
-            // 
-            // pacControl11
-            // 
-            this.pacControl11.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.pacControl11.Location = new System.Drawing.Point(36, 202);
-            this.pacControl11.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.pacControl11.Name = "pacControl11";
-            this.pacControl11.Size = new System.Drawing.Size(529, 38);
-            this.pacControl11.TabIndex = 11;
-            // 
-            // tbx_num_people
-            // 
-            this.tbx_num_people.AccessibleName = "num_people";
-            this.tbx_num_people.Location = new System.Drawing.Point(425, 143);
-            this.tbx_num_people.MaxLength = 4;
-            this.tbx_num_people.Name = "tbx_num_people";
-            this.tbx_num_people.Size = new System.Drawing.Size(220, 23);
-            this.tbx_num_people.TabIndex = 170;
-            this.tbx_num_people.Text = "0";
-            // 
-            // mediaControl1
-            // 
-            this.mediaControl1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.mediaControl1.Location = new System.Drawing.Point(3, 3);
-            this.mediaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.mediaControl1.Name = "mediaControl1";
-            this.mediaControl1.Size = new System.Drawing.Size(716, 409);
-            this.mediaControl1.TabIndex = 0;
-            // 
             // FormFireOffice
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -413,7 +413,8 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormFireOffice";
             this.Text = "新增森林防火办公室";
-            this.Load += new System.EventHandler(this.FormFireForestBelt_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormFireOffice_FormClosed);
+            this.Load += new System.EventHandler(this.FormFireOffice_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage_location.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

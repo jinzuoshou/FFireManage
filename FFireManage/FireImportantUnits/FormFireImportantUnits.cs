@@ -15,20 +15,125 @@ namespace FFireManage.FireImportantUnits
 {
     public partial class FormFireImportantUnits : Form
     {
+        #region fields
         private Fire_ImportantUnits m_FireImportantUnits = null;
         private OperationType m_OperationType;
         private FireImportantUnitsController m_FireIUnitsController = null;
+        #endregion
 
+        #region constructor
         public FormFireImportantUnits(OperationType type, Fire_ImportantUnits fireImportantUnits = null)
         {
             InitializeComponent();
 
             this.m_OperationType = type;
             this.m_FireImportantUnits = fireImportantUnits;
-            this.m_FireIUnitsController = new FireImportantUnitsController();
 
+            this.m_FireIUnitsController = new FireImportantUnitsController();
             this.m_FireIUnitsController.AddEvent += M_ServiceController_AddEvent;
             this.m_FireIUnitsController.EditEvent += M_ServiceController_EditEvent;
+            this.m_FireIUnitsController.AddMediaEvent += M_FireIUnitsController_AddMediaEvent;
+            this.m_FireIUnitsController.DeleteMediaEvent += M_FireIUnitsController_DeleteMediaEvent;
+
+            this.mediaControl1.AddEvent += MediaControl1_AddEvent;
+            this.mediaControl1.DeleteEvent += MediaControl1_DeleteEvent;
+        }
+        #endregion
+
+        #region event methods
+        private void MediaControl1_DeleteEvent(object sender, EventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null && this.m_OperationType != OperationType.Add)
+                {
+                    MediaFile content = sender as MediaFile;
+                    if (content != null)
+                    {
+                        this.m_FireIUnitsController.DeleteMedia(content.id);
+                    }
+                }
+            }));
+        }
+
+        private void MediaControl1_AddEvent(object sender, EventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null && this.m_OperationType != OperationType.Add)
+                {
+                    Dictionary<string, object> content = sender as Dictionary<string, object>;
+                    if (content != null)
+                    {
+                        this.m_FireIUnitsController.AddMedia(this.m_FireImportantUnits.id, content);
+                    }
+                }
+            }));
+        }
+        private void M_FireIUnitsController_DeleteMediaEvent(object sender, ServiceEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(this, sender.ToString(), "提示");
+                }
+            }));
+        }
+
+        private void M_FireIUnitsController_AddMediaEvent(object sender, ServiceEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(this, sender.ToString(), "提示");
+                }
+            }));
         }
 
         private void M_ServiceController_AddEvent(object sender, ServiceEventArgs e)
@@ -100,7 +205,7 @@ namespace FFireManage.FireImportantUnits
             }));
         }
 
-        private void FormFireForestBelt_Load(object sender, EventArgs e)
+        private void FormFireImportantUnits_Load(object sender, EventArgs e)
         {
             #region 初始化控件内容
 
@@ -223,6 +328,13 @@ namespace FFireManage.FireImportantUnits
             this.Close();
         }
 
+        private void FormFireImportantUnits_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.mediaControl1.Dispose();
+        }
+        #endregion
+
+        #region members methods
         /// <summary>
         /// 判断是否满足数据提交条件
         /// </summary>
@@ -245,5 +357,6 @@ namespace FFireManage.FireImportantUnits
             }
             return true;
         }
+        #endregion
     }
 }

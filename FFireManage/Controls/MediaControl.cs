@@ -119,7 +119,7 @@ namespace FFireManage.Controls
                 {
                     AddEvent(this.MediaByteDict, new EventArgs());
                 }
-                else if(_isMultiselect && AddEvent != null)
+                else if(_isMultiselect && AddMultiEvent != null)
                 {
                     AddMultiEvent(this.MediaByteDict, new EventArgs());
                 }

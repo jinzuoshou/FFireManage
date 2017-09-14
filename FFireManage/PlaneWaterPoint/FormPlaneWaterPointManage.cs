@@ -18,7 +18,7 @@ namespace FFireManage.PlaneWaterPoint
     {
         #region 字段
         private Fire_Planewaterpoint currentFire_Planewaterpoint = null;
-        private PlanewaterpointControler m_PlanewaterpointControler = null;
+        private PlanewaterPointControler m_PlanewaterpointControler = null;
         private List<Fire_Planewaterpoint> m_Fire_PlanewaterpointList = null;
         #endregion
 
@@ -27,7 +27,7 @@ namespace FFireManage.PlaneWaterPoint
         {
             InitializeComponent();
 
-            this.m_PlanewaterpointControler = new PlanewaterpointControler();
+            this.m_PlanewaterpointControler = new PlanewaterPointControler();
             this.m_PlanewaterpointControler.QueryEvent += m_ServiceController_QueryEvent;
             this.m_PlanewaterpointControler.DeleteEvent += m_ServiceController_DeleteEvent;
         }

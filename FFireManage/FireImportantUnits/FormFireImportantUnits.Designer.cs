@@ -34,6 +34,7 @@
             this.coordinatesInputControl1 = new FFireManage.Controls.CoordinatesInputControl();
             this.pacControl11 = new FFireManage.Controls.PACControl1();
             this.tabPage_baseInfo = new System.Windows.Forms.TabPage();
+            this.label9 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.tbx_note = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
@@ -58,7 +59,6 @@
             this.mediaControl1 = new FFireManage.Controls.MediaControl();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage_location.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -87,7 +87,7 @@
             this.tabPage_location.Location = new System.Drawing.Point(4, 26);
             this.tabPage_location.Name = "tabPage_location";
             this.tabPage_location.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_location.Size = new System.Drawing.Size(722, 445);
+            this.tabPage_location.Size = new System.Drawing.Size(722, 420);
             this.tabPage_location.TabIndex = 2;
             this.tabPage_location.Text = "位置信息";
             this.tabPage_location.UseVisualStyleBackColor = true;
@@ -153,6 +153,15 @@
             this.tabPage_baseInfo.TabIndex = 0;
             this.tabPage_baseInfo.Text = "基本信息";
             this.tabPage_baseInfo.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(651, 109);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(52, 17);
+            this.label9.TabIndex = 98;
+            this.label9.Text = "(平方米)";
             // 
             // label7
             // 
@@ -344,7 +353,7 @@
             this.tabPage_mediaInfo.Location = new System.Drawing.Point(4, 26);
             this.tabPage_mediaInfo.Name = "tabPage_mediaInfo";
             this.tabPage_mediaInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_mediaInfo.Size = new System.Drawing.Size(722, 445);
+            this.tabPage_mediaInfo.Size = new System.Drawing.Size(722, 420);
             this.tabPage_mediaInfo.TabIndex = 1;
             this.tabPage_mediaInfo.Text = "多媒体文件";
             this.tabPage_mediaInfo.UseVisualStyleBackColor = true;
@@ -355,7 +364,7 @@
             this.mediaControl1.Location = new System.Drawing.Point(3, 3);
             this.mediaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mediaControl1.Name = "mediaControl1";
-            this.mediaControl1.Size = new System.Drawing.Size(716, 439);
+            this.mediaControl1.Size = new System.Drawing.Size(716, 414);
             this.mediaControl1.TabIndex = 0;
             // 
             // btnCancel
@@ -380,15 +389,6 @@
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(651, 109);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(52, 17);
-            this.label9.TabIndex = 98;
-            this.label9.Text = "(平方米)";
-            // 
             // FormFireImportantUnits
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -401,7 +401,8 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormFireImportantUnits";
             this.Text = "新增重点防火单位";
-            this.Load += new System.EventHandler(this.FormFireForestBelt_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormFireImportantUnits_FormClosed);
+            this.Load += new System.EventHandler(this.FormFireImportantUnits_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage_location.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);

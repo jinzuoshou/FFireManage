@@ -101,7 +101,7 @@
             this.tabPage_location.Location = new System.Drawing.Point(4, 26);
             this.tabPage_location.Name = "tabPage_location";
             this.tabPage_location.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_location.Size = new System.Drawing.Size(722, 445);
+            this.tabPage_location.Size = new System.Drawing.Size(722, 351);
             this.tabPage_location.TabIndex = 2;
             this.tabPage_location.Text = "位置信息";
             this.tabPage_location.UseVisualStyleBackColor = true;
@@ -285,7 +285,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(37, 147);
+            this.label6.Location = new System.Drawing.Point(34, 147);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(59, 17);
             this.label6.TabIndex = 85;
@@ -366,7 +366,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(-2, 222);
+            this.label17.Location = new System.Drawing.Point(-1, 222);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(95, 17);
             this.label17.TabIndex = 51;
@@ -472,7 +472,7 @@
             this.tabPage_note.Location = new System.Drawing.Point(4, 26);
             this.tabPage_note.Name = "tabPage_note";
             this.tabPage_note.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_note.Size = new System.Drawing.Size(722, 445);
+            this.tabPage_note.Size = new System.Drawing.Size(722, 351);
             this.tabPage_note.TabIndex = 3;
             this.tabPage_note.Text = "说明";
             this.tabPage_note.UseVisualStyleBackColor = true;
@@ -484,7 +484,7 @@
             this.tbx_note.Location = new System.Drawing.Point(3, 3);
             this.tbx_note.Multiline = true;
             this.tbx_note.Name = "tbx_note";
-            this.tbx_note.Size = new System.Drawing.Size(716, 439);
+            this.tbx_note.Size = new System.Drawing.Size(716, 345);
             this.tbx_note.TabIndex = 13;
             // 
             // tabPage_mediaInfo
@@ -493,7 +493,7 @@
             this.tabPage_mediaInfo.Location = new System.Drawing.Point(4, 26);
             this.tabPage_mediaInfo.Name = "tabPage_mediaInfo";
             this.tabPage_mediaInfo.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage_mediaInfo.Size = new System.Drawing.Size(722, 445);
+            this.tabPage_mediaInfo.Size = new System.Drawing.Size(722, 351);
             this.tabPage_mediaInfo.TabIndex = 1;
             this.tabPage_mediaInfo.Text = "多媒体文件";
             this.tabPage_mediaInfo.UseVisualStyleBackColor = true;
@@ -504,7 +504,7 @@
             this.mediaControl1.Location = new System.Drawing.Point(3, 3);
             this.mediaControl1.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.mediaControl1.Name = "mediaControl1";
-            this.mediaControl1.Size = new System.Drawing.Size(716, 439);
+            this.mediaControl1.Size = new System.Drawing.Size(716, 345);
             this.mediaControl1.TabIndex = 0;
             // 
             // btnCancel
@@ -541,6 +541,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormPlaneWaterPoint";
             this.Text = "新增飞机吊桶取水点";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormPlaneWaterPoint_FormClosed);
             this.Load += new System.EventHandler(this.FormFireForestBelt_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage_location.ResumeLayout(false);

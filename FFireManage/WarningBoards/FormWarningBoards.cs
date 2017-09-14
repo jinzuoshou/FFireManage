@@ -15,20 +15,126 @@ namespace FFireManage.WarningBoards
 {
     public partial class FormWarningBoards : Form
     {
+        #region Fields
         private Fire_WarningBoards m_FireWarningBoards = null;
         private OperationType m_OperationType;
         private WarningBoardsController m_WarningBoardsController = null;
+        #endregion
 
+        #region Constructor
         public FormWarningBoards(OperationType type, Fire_WarningBoards fireWarningBoards = null)
         {
             InitializeComponent();
 
             this.m_OperationType = type;
             this.m_FireWarningBoards = fireWarningBoards;
-            this.m_WarningBoardsController = new WarningBoardsController();
 
+            this.m_WarningBoardsController = new WarningBoardsController();
             this.m_WarningBoardsController.AddEvent += m_WarningBoardsController_AddEvent;
             this.m_WarningBoardsController.EditEvent += m_WarningBoardsController_EditEvent;
+            this.m_WarningBoardsController.AddMediaEvent += M_WarningBoardsController_AddMediaEvent;
+            this.m_WarningBoardsController.DeleteMediaEvent += M_WarningBoardsController_DeleteMediaEvent;
+
+            this.mediaControl1.AddEvent += MediaControl1_AddEvent;
+            this.mediaControl1.DeleteEvent += MediaControl1_DeleteEvent;
+        }
+        #endregion
+
+        #region Event Methods
+        private void MediaControl1_DeleteEvent(object sender, EventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null && this.m_OperationType != OperationType.Add)
+                {
+                    MediaFile content = sender as MediaFile;
+                    if (content != null)
+                    {
+                        this.m_WarningBoardsController.DeleteMedia(content.id);
+                    }
+                }
+            }));
+        }
+
+        private void MediaControl1_AddEvent(object sender, EventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null && this.m_OperationType != OperationType.Add)
+                {
+                    Dictionary<string, object> content = sender as Dictionary<string, object>;
+                    if (content != null)
+                    {
+                        this.m_WarningBoardsController.AddMedia(this.m_FireWarningBoards.id, content);
+                    }
+                }
+            }));
+        }
+
+        private void M_WarningBoardsController_DeleteMediaEvent(object sender, ServiceEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(this, sender.ToString(), "提示");
+                }
+            }));
+        }
+
+        private void M_WarningBoardsController_AddMediaEvent(object sender, ServiceEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(this, sender.ToString(), "提示");
+                }
+            }));
         }
 
         private void m_WarningBoardsController_AddEvent(object sender, ServiceEventArgs e)
@@ -223,6 +329,13 @@ namespace FFireManage.WarningBoards
             this.Close();
         }
 
+        private void FormWarningBoards_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.Dispose();
+        }
+        #endregion
+
+        #region Members Methods
         /// <summary>
         /// 判断是否满足数据提交条件
         /// </summary>
@@ -245,5 +358,7 @@ namespace FFireManage.WarningBoards
             }
             return true;
         }
+        #endregion
+
     }
 }

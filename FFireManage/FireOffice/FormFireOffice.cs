@@ -15,20 +15,126 @@ namespace FFireManage.FireOffice
 {
     public partial class FormFireOffice : Form
     {
+        #region fields
         private Fire_Office m_FireOffice = null;
         private OperationType m_OperationType;
         private FireOfficeController m_FireOfficeController = null;
+        #endregion
 
+        #region constructor
         public FormFireOffice(OperationType type, Fire_Office fireOffice = null)
         {
             InitializeComponent();
 
             this.m_OperationType = type;
             this.m_FireOffice = fireOffice;
-            this.m_FireOfficeController = new FireOfficeController();
 
+            this.m_FireOfficeController = new FireOfficeController();
             this.m_FireOfficeController.AddEvent += M_ServiceController_AddEvent;
             this.m_FireOfficeController.EditEvent += M_ServiceController_EditEvent;
+            this.m_FireOfficeController.AddMediaEvent += M_FireOfficeController_AddMediaEvent;
+            this.m_FireOfficeController.DeleteMediaEvent += M_FireOfficeController_DeleteMediaEvent;
+
+            this.mediaControl1.AddEvent += MediaControl1_AddEvent;
+            this.mediaControl1.DeleteEvent += MediaControl1_DeleteEvent;
+        }
+        #endregion
+
+        #region event methods
+        private void MediaControl1_DeleteEvent(object sender, EventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null && this.m_OperationType != OperationType.Add)
+                {
+                    MediaFile content = sender as MediaFile;
+                    if (content != null)
+                    {
+                        this.m_FireOfficeController.DeleteMedia(content.id);
+                    }
+                }
+            }));
+        }
+
+        private void MediaControl1_AddEvent(object sender, EventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null && this.m_OperationType != OperationType.Add)
+                {
+                    Dictionary<string, object> content = sender as Dictionary<string, object>;
+                    if (content != null)
+                    {
+                        this.m_FireOfficeController.AddMedia(this.m_FireOffice.id, content);
+                    }
+                }
+            }));
+        }
+
+        private void M_FireOfficeController_DeleteMediaEvent(object sender, ServiceEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(this, sender.ToString(), "提示");
+                }
+            }));
+        }
+
+        private void M_FireOfficeController_AddMediaEvent(object sender, ServiceEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(this, sender.ToString(), "提示");
+                }
+            }));
         }
 
         private void M_ServiceController_AddEvent(object sender, ServiceEventArgs e)
@@ -100,7 +206,7 @@ namespace FFireManage.FireOffice
             }));
         }
 
-        private void FormFireForestBelt_Load(object sender, EventArgs e)
+        private void FormFireOffice_Load(object sender, EventArgs e)
         {
             #region 初始化控件内容
 
@@ -239,6 +345,13 @@ namespace FFireManage.FireOffice
             this.Close();
         }
 
+        private void FormFireOffice_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.mediaControl1.Dispose();
+        }
+        #endregion
+
+        #region members methods
         /// <summary>
         /// 判断是否满足数据提交条件
         /// </summary>
@@ -261,5 +374,7 @@ namespace FFireManage.FireOffice
             }
             return true;
         }
+        #endregion
+
     }
 }

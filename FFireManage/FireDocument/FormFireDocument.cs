@@ -21,19 +21,124 @@ namespace FFireManage.FireDocument
         private FireDocumentController m_FireDocumentController = null;
         #endregion
 
+        #region constructor
         public FormFireDocument(OperationType type, Fire_Document fireDocument = null)
         {
             InitializeComponent();
 
             this.m_OperationType = type;
             this.m_FireDocument = fireDocument;
-            this.m_FireDocumentController = new FireDocumentController();
 
+            this.m_FireDocumentController = new FireDocumentController();
             this.m_FireDocumentController.AddEvent += M_ServiceController_AddEvent;
             this.m_FireDocumentController.EditEvent += M_ServiceController_EditEvent;
+            this.m_FireDocumentController.AddMediaEvent += M_FireDocumentController_AddMediaEvent;
+            this.m_FireDocumentController.DeleteMediaEvent += M_FireDocumentController_DeleteMediaEvent;
+
+            this.mediaControl1.AddEvent += MediaControl1_AddEvent;
+            this.mediaControl1.DeleteEvent += MediaControl1_DeleteEvent;
         }
 
+
+        #endregion
+
         #region event methods
+
+        private void MediaControl1_DeleteEvent(object sender, EventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null && this.m_OperationType != OperationType.Add)
+                {
+                    MediaFile content = sender as MediaFile;
+                    if (content != null)
+                    {
+                        this.m_FireDocumentController.DeleteMedia(content.id);
+                    }
+                }
+            }));
+        }
+
+        private void MediaControl1_AddEvent(object sender, EventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null && this.m_OperationType != OperationType.Add)
+                {
+                    Dictionary<string, object> content = sender as Dictionary<string, object>;
+                    if (content != null)
+                    {
+                        this.m_FireDocumentController.AddMedia(this.m_FireDocument.id, content);
+                    }
+                }
+            }));
+        }
+
+        private void M_FireDocumentController_DeleteMediaEvent(object sender, ServiceEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(this, sender.ToString(), "提示");
+                }
+            }));
+        }
+
+        private void M_FireDocumentController_AddMediaEvent(object sender, ServiceEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(this, sender.ToString(), "提示");
+                }
+            }));
+        }
         private void M_ServiceController_AddEvent(object sender, ServiceEventArgs e)
         {
             this.Invoke(new MethodInvoker(delegate ()
@@ -103,7 +208,7 @@ namespace FFireManage.FireDocument
             }));
         }
 
-        private void FormFireForestBelt_Load(object sender, EventArgs e)
+        private void FormFireDocument_Load(object sender, EventArgs e)
         {
             #region 初始化控件内容
 
@@ -236,8 +341,14 @@ namespace FFireManage.FireDocument
         {
             this.Close();
         }
+
+        private void FormFireDocument_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.mediaControl1.Dispose();
+        }
         #endregion
 
+        #region members methods
         /// <summary>
         /// 判断是否满足数据提交条件
         /// </summary>
@@ -274,5 +385,7 @@ namespace FFireManage.FireDocument
             }
             return true;
         }
+        #endregion
+
     }
 }

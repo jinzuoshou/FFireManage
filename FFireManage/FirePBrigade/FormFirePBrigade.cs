@@ -206,7 +206,7 @@ namespace FFireManage.FirePBrigade
             }));
         }
 
-        private void FormFireForestBelt_Load(object sender, EventArgs e)
+        private void FormFirePBrigade_Load(object sender, EventArgs e)
         {
             #region 初始化控件内容
 

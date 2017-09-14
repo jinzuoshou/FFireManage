@@ -559,8 +559,26 @@ namespace FFireManage.Utility
             {
                 if (value is string)
                 {
-                    (control as DateTimePicker).Value = Convert.ToDateTime(value.ToString());
-                    return true;
+                    try
+                    {
+                        (control as DateTimePicker).Value = Convert.ToDateTime(value);
+                        return true;
+                    }
+                    catch
+                    {
+                        try
+                        {
+                            string year = value.ToString().Substring(0, 4);
+                            DateTime time = new DateTime(Convert.ToInt32(year), 1, 1);
+                            (control as DateTimePicker).Value = time;
+
+                            return true;
+                        }
+                        catch
+                        {
+                            return true;
+                        }
+                    }
                 }// if
                 else if (value is DateTime)
                 {

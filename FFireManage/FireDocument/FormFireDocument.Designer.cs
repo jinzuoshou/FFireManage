@@ -2957,7 +2957,8 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormFireDocument";
             this.Text = "新增火灾档案";
-            this.Load += new System.EventHandler(this.FormFireForestBelt_Load);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormFireDocument_FormClosed);
+            this.Load += new System.EventHandler(this.FormFireDocument_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage_location.ResumeLayout(false);
             this.tabPage_location.PerformLayout();

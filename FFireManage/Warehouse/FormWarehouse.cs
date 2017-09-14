@@ -15,20 +15,126 @@ namespace FFireManage.FireWarehouse
 {
     public partial class FormWarehouse : Form
     {
+        #region Fields
         private Fire_Warehouse m_Warehouse = null;
         private OperationType m_OperationType;
         private FireWarehouseController m_FireWarehouseController = null;
+        #endregion
 
+        #region Constructor
         public FormWarehouse(OperationType type, Fire_Warehouse fireWarehouse = null)
         {
             InitializeComponent();
 
             this.m_OperationType = type;
             this.m_Warehouse = fireWarehouse;
-            this.m_FireWarehouseController = new FireWarehouseController();
 
+            this.m_FireWarehouseController = new FireWarehouseController();
             this.m_FireWarehouseController.AddEvent += M_ServiceController_AddEvent;
             this.m_FireWarehouseController.EditEvent += M_ServiceController_EditEvent;
+            this.m_FireWarehouseController.AddMediaEvent += M_FireWarehouseController_AddMediaEvent;
+            this.m_FireWarehouseController.DeleteMediaEvent += M_FireWarehouseController_DeleteMediaEvent;
+
+            this.mediaControl1.AddEvent += MediaControl1_AddEvent;
+            this.mediaControl1.DeleteEvent += MediaControl1_DeleteEvent;
+        }
+        #endregion
+
+        #region Event Methods
+        private void MediaControl1_DeleteEvent(object sender, EventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null && this.m_OperationType != OperationType.Add)
+                {
+                    MediaFile content = sender as MediaFile;
+                    if (content != null)
+                    {
+                        this.m_FireWarehouseController.DeleteMedia(content.id);
+                    }
+                }
+            }));
+        }
+
+        private void MediaControl1_AddEvent(object sender, EventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null && this.m_OperationType != OperationType.Add)
+                {
+                    Dictionary<string, object> content = sender as Dictionary<string, object>;
+                    if (content != null)
+                    {
+                        this.m_FireWarehouseController.AddMedia(this.m_Warehouse.id, content);
+                    }
+                }
+            }));
+        }
+
+        private void M_FireWarehouseController_DeleteMediaEvent(object sender, ServiceEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(this, sender.ToString(), "提示");
+                }
+            }));
+        }
+
+        private void M_FireWarehouseController_AddMediaEvent(object sender, ServiceEventArgs e)
+        {
+            this.Invoke(new MethodInvoker(delegate ()
+            {
+                if (e != null)
+                {
+                    string content = e.Content;
+                    try
+                    {
+                        BaseResultInfo<object> result = JsonHelper.JSONToObject<BaseResultInfo<object>>(content);
+
+                        if (result.status == 10000)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            MessageBox.Show(this, result.msg, "提示");
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(this, ex.Message, "提示");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show(this, sender.ToString(), "提示");
+                }
+            }));
         }
 
         private void M_ServiceController_AddEvent(object sender, ServiceEventArgs e)
@@ -106,16 +212,16 @@ namespace FFireManage.FireWarehouse
 
             if (m_OperationType == OperationType.Add)
             {
-                this.Text = "新增防火物资储备库";
+                this.Text = "新增森林防火物资储备库";
             }
             else if (m_OperationType == OperationType.Edit)
             {
-                this.Text = "编辑防火物资储备库";
+                this.Text = "编辑森林防火物资储备库";
                 this.mediaControl1.IsMultiselect = false;
             }
             else if (m_OperationType == OperationType.Check)
             {
-                this.Text = "查看防火物资储备库";
+                this.Text = "查看森林防火物资储备库";
                 this.mediaControl1.MainToolStrip.Visible = false;
             }
 
@@ -223,6 +329,13 @@ namespace FFireManage.FireWarehouse
             this.Close();
         }
 
+        private void FormWarehouse_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            this.mediaControl1.Dispose();
+        }
+        #endregion
+
+        #region Members Methods
         /// <summary>
         /// 判断是否满足数据提交条件
         /// </summary>
@@ -246,9 +359,6 @@ namespace FFireManage.FireWarehouse
             return true;
         }
 
-        private void tbx_num_people_TextChanged(object sender, EventArgs e)
-        {
-
-        }
+        #endregion
     }
 }

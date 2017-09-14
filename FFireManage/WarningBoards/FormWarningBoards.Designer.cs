@@ -440,6 +440,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "FormWarningBoards";
             this.Text = "新增大型警示牌";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormWarningBoards_FormClosed);
             this.Load += new System.EventHandler(this.FormWarningBoards_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage_location.ResumeLayout(false);

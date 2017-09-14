@@ -414,7 +414,7 @@
     <Compile Include="Service\LoginController.cs" />
     <Compile Include="Service\MonitoringController.cs" />
     <Compile Include="Service\ObservatoryController.cs" />
-    <Compile Include="Service\PlanewaterpointControler.cs" />
+    <Compile Include="Service\PlanewaterPointControler.cs" />
     <Compile Include="Service\RadioStationController.cs" />
     <Compile Include="Service\SatelliteGroundStationControler.cs" />
     <Compile Include="Service\FireWarehouseController.cs" />
