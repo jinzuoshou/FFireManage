@@ -131,6 +131,8 @@ namespace FFireManage.Utility
         /// <returns></returns>
         public static bool IsNumberic(this string oText)
         {
+            if (string.IsNullOrEmpty(oText))
+                return false;
             return Regex.IsMatch(oText, @"^[+-]?\d*[.]?\d*$");
         }
     }

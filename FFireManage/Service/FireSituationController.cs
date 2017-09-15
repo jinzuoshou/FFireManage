@@ -15,9 +15,13 @@ namespace FFireManage.Service
         /// <param name="entity"></param>
         public override void Add(FireSituation entity)
         {
-            Dictionary<string, object> parameterDict = entity.ObjectToDict();
-            parameterDict.Add("f", 4191001);
-            this.ExecutePost(parameterDict, OnAddEvent, entity.MediaFileDict, entity: entity);
+            if (entity != null)
+            {
+                Dictionary<string, object> parameterDict = entity.ObjectToDict();
+                if(!parameterDict.ContainsKey("f"))
+                    parameterDict.Add("f", 4191001);
+                this.ExecutePost(parameterDict, OnAddEvent, entity.MediaFileDict, entity: entity);
+            }
         }
 
         /// <summary>
@@ -40,10 +44,13 @@ namespace FFireManage.Service
         /// <param name="entity"></param>
         public override void Edit(FireSituation entity)
         {
-            Dictionary<string, object> parameterDict = entity.ObjectToDict();
-            if (!parameterDict.ContainsKey("f"))
-                parameterDict.Add("f", 4192001);
-            this.ExecutePost(parameterDict, OnEditEvent, entity.MediaFileDict);
+            if (entity != null)
+            {
+                Dictionary<string, object> parameterDict = entity.ObjectToDict();
+                if (!parameterDict.ContainsKey("f"))
+                    parameterDict.Add("f", 4192001);
+                this.ExecutePost(parameterDict, OnEditEvent, entity.MediaFileDict);
+            }
         }
 
         /// <summary>

@@ -15,7 +15,9 @@ namespace FFireManage.Utility
         /// <returns></returns>
         public static string MD5Encrypt(string input)
         {
-            return MD5Encrypt(input, new UTF8Encoding());
+            if (!string.IsNullOrEmpty(input))
+                return MD5Encrypt(input, new UTF8Encoding());
+            return string.Empty;
         }
 
         /// <summary>
@@ -26,12 +28,17 @@ namespace FFireManage.Utility
         /// <returns></returns>
         public static string MD5Encrypt(string input, int length)
         {
-            string res = MD5Encrypt(input, new UTF8Encoding());
-            if (length == 16)
+            if (!string.IsNullOrEmpty(input))
             {
-                res = res.Substring(8, 16);
+                string res = MD5Encrypt(input, new UTF8Encoding());
+                if (length == 16)
+                {
+                    res = res.Substring(8, 16);
+                }
+                return res;
             }
-            return res;
+            return string.Empty;
+
         }
 
         /// <summary>
@@ -44,16 +51,24 @@ namespace FFireManage.Utility
         {
             if (string.IsNullOrEmpty(input))
             {
-                return null;
+                return string.Empty;
             }
-            MD5CryptoServiceProvider md5Hasher = new MD5CryptoServiceProvider();
-            byte[] data = md5Hasher.ComputeHash(encode.GetBytes(input));
-            StringBuilder sBuilder = new StringBuilder();
-            for (int i = 0; i < data.Length; i++)
+
+            try
             {
-                sBuilder.Append(data[i].ToString("x2"));
+                MD5CryptoServiceProvider md5Hasher = new MD5CryptoServiceProvider();
+                byte[] data = md5Hasher.ComputeHash(encode.GetBytes(input));
+                StringBuilder sBuilder = new StringBuilder();
+                for (int i = 0; i < data.Length; i++)
+                {
+                    sBuilder.Append(data[i].ToString("x2"));
+                }
+                return sBuilder.ToString();
             }
-            return sBuilder.ToString();
+            catch
+            {
+                return string.Empty;
+            }
         }
     }
 }

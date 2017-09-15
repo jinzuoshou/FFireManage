@@ -14,11 +14,19 @@ namespace FFireManage.Utility
         /// <returns>C#格式时间</returns>  
         public static DateTime GetTime(string timeStamp)
         {
-            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
-            long lTime = Convert.ToInt64(timeStamp) * 10000;
-            TimeSpan toNow = new TimeSpan(lTime);
-            return dtStart.Add(toNow);
+            try
+            {
+                DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+                long lTime = Convert.ToInt64(timeStamp) * 10000;
+                TimeSpan toNow = new TimeSpan(lTime);
+                return dtStart.Add(toNow);
+            }
+            catch
+            {
+                return default(DateTime);
+            }
         }
+
         /// <summary>  
         /// 时间戳转为C#格式时间  
         /// </summary>  
@@ -26,10 +34,17 @@ namespace FFireManage.Utility
         /// <returns>C#格式时间</returns>  
         public static DateTime GetTime(long timeStamp)
         {
-            DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
-            long lTime = timeStamp * 10000;
-            TimeSpan toNow = new TimeSpan(lTime);
-            return dtStart.Add(toNow);
+            try
+            {
+                DateTime dtStart = TimeZone.CurrentTimeZone.ToLocalTime(new DateTime(1970, 1, 1));
+                long lTime = timeStamp * 10000;
+                TimeSpan toNow = new TimeSpan(lTime);
+                return dtStart.Add(toNow);
+            }
+            catch
+            {
+                return default(DateTime);
+            }
         }
 
 
@@ -40,8 +55,15 @@ namespace FFireManage.Utility
         /// <returns>Unix时间戳格式</returns>  
         public static long ConvertDateTimeInt(System.DateTime time)
         {
-            System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
-            return (long)(time - startTime).TotalMilliseconds;
+            try
+            {
+                System.DateTime startTime = TimeZone.CurrentTimeZone.ToLocalTime(new System.DateTime(1970, 1, 1));
+                return (long)(time - startTime).TotalMilliseconds;
+            }
+            catch
+            {
+                return default(long);
+            }
         }
     }
 }

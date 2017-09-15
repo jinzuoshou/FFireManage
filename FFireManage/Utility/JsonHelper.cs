@@ -117,9 +117,16 @@ namespace FFireManage.Utility
         /// <returns>数据行的字典</returns>
         public static Dictionary<string, object> DataRowFromJSON(string jsonText)
         {
-            return JSONToObject<Dictionary<string, object>>(jsonText);
+            try
+            {
+                return JSONToObject<Dictionary<string, object>>(jsonText);
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        
+
     }
 }

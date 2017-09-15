@@ -15,14 +15,13 @@ namespace FFireManage
         public static string HttpGet(string Url, string getData, out bool iss)
         {
             iss = false;
-            
-            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(Url + getData);
-            
-            httpWebRequest.Method = "GET";
-            httpWebRequest.ContentType = "text/xml; charset=utf-8";
-
             try
             {
+                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(Url + getData);
+
+                httpWebRequest.Method = "GET";
+                httpWebRequest.ContentType = "text/xml; charset=utf-8";
+
                 HttpWebResponse httpWebResponse = (HttpWebResponse)httpWebRequest.GetResponse();
 
                 Stream responseStream = httpWebResponse.GetResponseStream();
@@ -47,33 +46,22 @@ namespace FFireManage
         public static string HttpPost(string url, string postData, out bool iss)
         {
             iss = false;
-
-            byte[] buffer = Encoding.UTF8.GetBytes(postData.ToString());
-            
-
-            HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
-
-            httpWebRequest.Method = "POST";
-            httpWebRequest.ContentLength = buffer.Length;
-            httpWebRequest.ContentType = "application/x-www-form-urlencoded";
-            httpWebRequest.Accept =
-               "image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, */*";
-
-
             try
             {
+                byte[] buffer = Encoding.UTF8.GetBytes(postData.ToString());
+
+
+                HttpWebRequest httpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+
+                httpWebRequest.Method = "POST";
+                httpWebRequest.ContentLength = buffer.Length;
+                httpWebRequest.ContentType = "application/x-www-form-urlencoded";
+                httpWebRequest.Accept =
+                   "image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, application/msword, */*";
                 Stream newStream = httpWebRequest.GetRequestStream();
 
                 newStream.Write(buffer, 0, buffer.Length);
                 newStream.Close();
-            }
-            catch (Exception ex)
-            {
-                return ex.Message;
-            }
-
-            try
-            {
                 HttpWebResponse response = (HttpWebResponse)httpWebRequest.GetResponse();
                 StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8);
 
@@ -87,6 +75,8 @@ namespace FFireManage
             {
                 return ex.Message;
             }
+
+            
         }
     }
 }

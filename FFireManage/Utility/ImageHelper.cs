@@ -25,6 +25,8 @@ namespace FFireManage.Utility
         /// <param name="quality">质量（范围1-100）</param>
         public static void CutForSquare(System.IO.Stream fromFile, string fileSaveUrl, int side, int quality)
         {
+            if (fromFile == null)
+                return;
             //创建目录
             string dir = Path.GetDirectoryName(fileSaveUrl);
             if (!Directory.Exists(dir))
@@ -142,7 +144,8 @@ namespace FFireManage.Utility
         /// <param name="quality">质量（范围1-100）</param>
         public static void CutForSquare(Image initImage, string fileSaveUrl, int side, int quality)
         {
-
+            if (initImage == null)
+                return;
             //原图宽高均小于模版，不作处理，直接保存
             if (initImage.Width <= side && initImage.Height <= side)
             {
@@ -252,8 +255,19 @@ namespace FFireManage.Utility
         /// <param name="quality">质量（范围0-100）</param>
         public static void CutForCustom(System.IO.Stream fromFile, string fileSaveUrl, int maxWidth, int maxHeight, int quality)
         {
-            //从文件获取原始图片，并使用流中嵌入的颜色管理信息
-            System.Drawing.Image initImage = System.Drawing.Image.FromStream(fromFile, true);
+            if (fromFile == null)
+                return;
+            System.Drawing.Image initImage = null;
+            try 
+            {
+                //从文件获取原始图片，并使用流中嵌入的颜色管理信息
+                initImage = System.Drawing.Image.FromStream(fromFile, true);
+            }
+            catch
+            {
+                return;
+            }
+            
 
             //原图宽高均小于模版，不作处理，直接保存
             if (initImage.Width <= maxWidth && initImage.Height <= maxHeight)
@@ -384,6 +398,8 @@ namespace FFireManage.Utility
         /// <param name="watermarkImage">水印图片路径(为""表示不使用水印)</param>
         public static void ZoomAuto(System.IO.Stream fromFile, string savePath, System.Double targetWidth, System.Double targetHeight, bool transparent = true, string watermarkText = "", string watermarkImage = "")
         {
+            if (fromFile == null)
+                return;
             //创建目录
             string dir = Path.GetDirectoryName(savePath);
             if (!Directory.Exists(dir))
@@ -576,6 +592,8 @@ namespace FFireManage.Utility
         /// <param name="transparent">图像是否透明（默认透明）</param>
         public static void CreateImage(string oPath, string tPath, int width, int height, int quality, bool transparent = true)
         {
+            if (!File.Exists(oPath))
+                return;
             Bitmap originalBmp = new Bitmap(oPath);
             // 源图像在新图像中的位置   
             int left, top;
@@ -773,7 +791,8 @@ namespace FFireManage.Utility
         /// <returns>处理后的头像文件</returns>
         public static Image GetAvatar(string path, string url)
         {
-
+            if (string.IsNullOrEmpty(path))
+                return null;
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
@@ -836,6 +855,8 @@ namespace FFireManage.Utility
         /// <returns>生成的圆角图片</returns>
         public static Image GetRoundedImage(string imgfile, int r)
         {
+            if (string.IsNullOrEmpty(imgfile))
+                return null;
             string ext = System.IO.Path.GetExtension(imgfile).ToLower();
             if (!(ext == ".jpg" || ext == ".png" || ext == ".jpeg" || ext == ".gif" || ext == ".tif" || ext == ".bmp"))
                 return null;
@@ -958,6 +979,16 @@ namespace FFireManage.Utility
         /// <param name="path">图片保存路径</param>
         public static void GetWebImage(string url, string path)
         {
+            if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(path))
+                return;
+            try
+            {
+                System.Net.HttpWebRequest.Create(url).GetResponse();
+            }
+            catch
+            {
+                return;
+            }
             using (WebClient mywebclient = new WebClient())
             {
                 mywebclient.DownloadFile(url, path);
@@ -979,6 +1010,8 @@ namespace FFireManage.Utility
             Action<object, object> downloadFileCompletedCallback,
             object callbackData)
         {
+            if (string.IsNullOrEmpty(url) || string.IsNullOrEmpty(path))
+                return;
             try
             {
                 WebClient mywebclient = new WebClient();

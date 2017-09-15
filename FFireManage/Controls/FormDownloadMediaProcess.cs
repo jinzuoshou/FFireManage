@@ -18,6 +18,9 @@ namespace FFireManage.Controls
 
         public void UpdateMediaDownloadProgress(object filePath, object userData)
         {
+            if (filePath==null)
+                return;
+
             this.Invoke(new MethodInvoker(delegate ()
             {
                 if (filePath == null)

@@ -58,6 +58,8 @@ namespace FFireManage.Utility
         public static T GetEntity<T>(Control.ControlCollection controls, T obj = default(T))
             where T : class, new()
         {
+            if (controls == null)
+                return obj;
             return ControlHelper.EvaluateContainer<T>(controls,obj);
         }
 
@@ -77,6 +79,8 @@ namespace FFireManage.Utility
         /// </remarks>
         public static void Fill(Control.ControlCollection controls, Object data)
         {
+            if (controls == null || data == null)
+                return;
             ControlHelper.SetContainerValue(controls, data);
         }
 
@@ -87,6 +91,8 @@ namespace FFireManage.Utility
         /// <param name="dict">用于校验的字典</param>
         public static bool Validator(Control.ControlCollection controls, IDictionary<string, string> dict)
         {
+            if (controls == null || dict==null)
+                return false;
             for (int i = controls.Count - 1; i >= 0; i--)
             {
                 Control control = controls[i];
@@ -190,7 +196,11 @@ namespace FFireManage.Utility
         /// <param name="exceptControls">不需要将Enabled属性为false控件集合</param>
         public static void SetControlsEnabled(Control.ControlCollection controls,List<Control> exceptControls=null)
         {
-            foreach(Control control in controls)
+            if (controls == null)
+            {
+                return;
+            }// if
+            foreach (Control control in controls)
             {
                 if (exceptControls == null)
                     control.Enabled = false;
@@ -215,6 +225,8 @@ namespace FFireManage.Utility
         /// <returns></returns>
         public static bool IsNumeric(string value)
         {
+            if (string.IsNullOrEmpty(value))
+                return false;
             return Regex.IsMatch(value, @"^[+-]?/d*[.]?/d*$");
         }
 
@@ -225,6 +237,8 @@ namespace FFireManage.Utility
         /// <returns></returns>
         public static bool IsInt(string value)
         {
+            if (string.IsNullOrEmpty(value))
+                return false;
             return Regex.IsMatch(value, @"^[+-]?/d*$");
         }
 
@@ -451,7 +465,7 @@ namespace FFireManage.Utility
         /// </remarks>
         internal static void SetContainerValue(Control.ControlCollection controls, Object value)
         {
-            if (value == null)
+            if (value == null || controls==null)
             {
                 return;
             }// if
@@ -519,106 +533,114 @@ namespace FFireManage.Utility
         /// </remarks>
         public static bool SetValue(Control control, object value)
         {
-            if (value == null)
+            if (control == null || value == null)
                 return false;
 
-            // TODO 完成各种控件的赋值
-            if (control is Label ||
-                control is Panel ||
-                control is TabControl ||
-                control is Button ||
-                control is LinkLabel ||
-                control is GroupBox)
+            try
             {
-                return false;
-            }// if
-            else if (control is TextBox)
-            {
-                ((TextBox)control).Text = value.ToString();
-                return true;
-            } //else if
-            else if (control is RichTextBox)
-            {
-                ((RichTextBox)control).Text = value.ToString();
-                return true;
-            }// else if
-            else if (control is CheckBox)
-            {
-                if (value is bool)
+                // TODO 完成各种控件的赋值
+                if (control is Label ||
+                    control is Panel ||
+                    control is TabControl ||
+                    control is Button ||
+                    control is LinkLabel ||
+                    control is GroupBox)
                 {
-                    ((CheckBox)control).Checked = (bool)value;
-                    return true;
+                    return false;
                 }// if
-                else
+                else if (control is TextBox)
                 {
-                    (control as CheckBox).Checked = Boolean.Parse(value.ToString());
+                    ((TextBox)control).Text = value.ToString();
                     return true;
-                }// else
-            }// else if
-            else if (control is DateTimePicker)
-            {
-                if (value is string)
+                } //else if
+                else if (control is RichTextBox)
                 {
-                    try
+                    ((RichTextBox)control).Text = value.ToString();
+                    return true;
+                }// else if
+                else if (control is CheckBox)
+                {
+                    if (value is bool)
                     {
-                        (control as DateTimePicker).Value = Convert.ToDateTime(value);
+                        ((CheckBox)control).Checked = (bool)value;
                         return true;
-                    }
-                    catch
+                    }// if
+                    else
+                    {
+                        (control as CheckBox).Checked = Boolean.Parse(value.ToString());
+                        return true;
+                    }// else
+                }// else if
+                else if (control is DateTimePicker)
+                {
+                    if (value is string)
                     {
                         try
                         {
-                            string year = value.ToString().Substring(0, 4);
-                            DateTime time = new DateTime(Convert.ToInt32(year), 1, 1);
-                            (control as DateTimePicker).Value = time;
-
+                            (control as DateTimePicker).Value = Convert.ToDateTime(value);
                             return true;
                         }
                         catch
                         {
-                            return true;
-                        }
-                    }
-                }// if
-                else if (value is DateTime)
-                {
-                    (control as DateTimePicker).Value = (DateTime)(value);
-                    return true;
-                }// else if
-                else if (value is long)
-                {
-                    (control as DateTimePicker).Value = ObjectHelper.TimeStampToDateTime(Convert.ToInt64(value));
-                    return true;
-                }// else if
-            }// else if
-            else if (control is ComboBox)
-            {
-                ComboBox comboBox = control as ComboBox;
-                comboBox.SelectedValue = value;
-                if (comboBox.SelectedIndex == -1)
-                {
-                    comboBox.Text = value.ToString();
-                }// if
-                return true;
-            }// else if
-            else if (control is ListBox)
-            {
-                (control as ListBox).Text = value.ToString();
-                return true;
-            }// else if
-            else if (control is CheckedListBox)
-            {
-                (control as CheckedListBox).Text = value.ToString();
-                return true;
-            }// else if
-            else if(control is NumericUpDown)
-            {
-                (control as NumericUpDown).Value = (decimal)value;
-                return true;
-            }// else if
+                            try
+                            {
+                                string year = value.ToString().Substring(0, 4);
+                                DateTime time = new DateTime(Convert.ToInt32(year), 1, 1);
+                                (control as DateTimePicker).Value = time;
 
-            control.Text = value.ToString();
-            return true;
+                                return true;
+                            }
+                            catch
+                            {
+                                return true;
+                            }
+                        }
+                    }// if
+                    else if (value is DateTime)
+                    {
+                        (control as DateTimePicker).Value = (DateTime)(value);
+                        return true;
+                    }// else if
+                    else if (value is long)
+                    {
+                        (control as DateTimePicker).Value = ObjectHelper.TimeStampToDateTime(Convert.ToInt64(value));
+                        return true;
+                    }// else if
+                }// else if
+                else if (control is ComboBox)
+                {
+                    ComboBox comboBox = control as ComboBox;
+                    comboBox.SelectedValue = value;
+                    if (comboBox.SelectedIndex == -1)
+                    {
+                        comboBox.Text = value.ToString();
+                    }// if
+                    return true;
+                }// else if
+                else if (control is ListBox)
+                {
+                    (control as ListBox).Text = value.ToString();
+                    return true;
+                }// else if
+                else if (control is CheckedListBox)
+                {
+                    (control as CheckedListBox).Text = value.ToString();
+                    return true;
+                }// else if
+                else if (control is NumericUpDown)
+                {
+                    (control as NumericUpDown).Value = (decimal)value;
+                    return true;
+                }// else if
+
+                control.Text = value.ToString();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+
         }
     }
 

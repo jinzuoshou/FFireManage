@@ -31,6 +31,8 @@ namespace FFireManage.Service
 
         public void Feedback(Fire_Hot hot)
         {
+            if (hot == null)
+                return;
             Dictionary<string, object> parameterDict = new Dictionary<string, object>()
             {
                 {"f",4111003 },
@@ -44,16 +46,22 @@ namespace FFireManage.Service
 
         public void Audit(Dictionary<string, object> parameterDict)
         {
-            if(!parameterDict.ContainsKey("f"))
-                parameterDict.Add("f", 4112002);
-            this.ExecutePost(parameterDict, OnAuditEvent);
+            if (parameterDict != null)
+            {
+                if (!parameterDict.ContainsKey("f"))
+                    parameterDict.Add("f", 4112002);
+                this.ExecutePost(parameterDict, OnAuditEvent);
+            }
         }
 
         public void GetDetails(Dictionary<string, object> parameterDict)
         {
-            if (!parameterDict.ContainsKey("f"))
-                parameterDict.Add("f", 4110002);
-            this.ExecuteGet(parameterDict, OnGetDetailsEvent);
+            if (parameterDict != null)
+            {
+                if (!parameterDict.ContainsKey("f"))
+                    parameterDict.Add("f", 4110002);
+                this.ExecuteGet(parameterDict, OnGetDetailsEvent);
+            }
         }
 
         /// <summary>

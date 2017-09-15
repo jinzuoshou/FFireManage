@@ -459,7 +459,6 @@
     </Compile>
     <Compile Include="GlobeHelper.cs" />
     <Compile Include="Utility\CommonHelper.cs" />
-    <Compile Include="Utility\HttpHelper.cs" />
     <Compile Include="Model\Fire_ForestRemoteMonitoring.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
