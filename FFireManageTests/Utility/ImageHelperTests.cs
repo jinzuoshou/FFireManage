@@ -37,7 +37,8 @@ namespace FFireManage.Utility.Tests
                 byte[] bs = new byte[0];
                 memoryStream = new MemoryStream(bs, false);
                 disposables.Add((IDisposable)memoryStream);
-                ImageHelper.CutForCustom((Stream)memoryStream, (string)null, 0, 0, 0);
+                Stream stream = (Stream)memoryStream;
+                ImageHelper.CutForCustom(stream, (string)null, 0, 0, 0);
                 disposables.Dispose();
             }
 

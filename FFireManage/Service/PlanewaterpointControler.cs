@@ -231,7 +231,7 @@ namespace FFireManage.Service
         {
             Dictionary<string, object> parameterDict = new Dictionary<string, object>()
             {
-                {"f", 4203002},
+                {"f", 4253002},
                 {"id",id }
             };
             this.ExecuteGet(parameterDict, OnDeleteMediaEvent);

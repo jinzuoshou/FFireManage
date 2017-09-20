@@ -346,6 +346,7 @@
     <Compile Include="Model\Fire_WeatherStations.cs" />
     <Compile Include="Model\GetListResultInfo.cs" />
     <Compile Include="Model\Fire_Hot.cs" />
+    <Compile Include="Model\GridUserTableInfo.cs" />
     <Compile Include="Model\HotFeedback.cs" />
     <Compile Include="Model\MediaFile.cs" />
     <Compile Include="Model\Fire_RadioStation.cs" />
@@ -409,6 +410,7 @@
     <Compile Include="Service\FireSituationController.cs" />
     <Compile Include="Service\FireHBrigadeController.cs" />
     <Compile Include="Service\ForestBeltPointController.cs" />
+    <Compile Include="Service\GridUserTableController.cs" />
     <Compile Include="Service\HotController.cs" />
     <Compile Include="Service\IServiceControler.cs" />
     <Compile Include="Service\LoginController.cs" />

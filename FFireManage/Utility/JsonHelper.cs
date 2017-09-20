@@ -20,15 +20,17 @@ namespace FFireManage.Utility
         /// <returns>JSON格式的字符串</returns> 
         public static string ObjectToJSON(object obj)
         {
+            if (obj == null)
+                return default(string);
             JavaScriptSerializer jss = new JavaScriptSerializer();
             try
             {
                 byte[] b = Encoding.UTF8.GetBytes(jss.Serialize(obj));
                 return Encoding.UTF8.GetString(b);
             }
-            catch (Exception ex)
+            catch
             {
-                throw new Exception("JSONHelper.ObjectToJSON(): " + ex.Message);
+                return  default(string);
             }
         }
 
@@ -41,6 +43,8 @@ namespace FFireManage.Utility
         /// <returns>哈希表数组</returns> 
         public static List<Dictionary<string, object>> DataTableToList(DataTable dt)
         {
+            if (dt == null)
+                return null;
             List<Dictionary<string, object>> list
                  = new List<Dictionary<string, object>>();
 
@@ -63,6 +67,8 @@ namespace FFireManage.Utility
         /// <returns>键值对数组字典</returns> 
         public static Dictionary<string, List<Dictionary<string, object>>> DataSetToDic(DataSet ds)
         {
+            if (ds == null)
+                return null;
             Dictionary<string, List<Dictionary<string, object>>> result = new Dictionary<string, List<Dictionary<string, object>>>();
 
             foreach (DataTable dt in ds.Tables)
@@ -89,14 +95,16 @@ namespace FFireManage.Utility
         /// <returns>指定类型的对象</returns> 
         public static T JSONToObject<T>(string jsonText)
         {
+            if (string.IsNullOrEmpty(jsonText))
+                return default(T);
             JavaScriptSerializer jss = new JavaScriptSerializer();
             try
             {
                 return jss.Deserialize<T>(jsonText);
             }
-            catch (Exception ex)
+            catch
             {
-                throw new Exception("JSONHelper.JSONToObject(): " + ex.Message);
+                return default(T);
             }
         }
 

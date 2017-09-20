@@ -31,16 +31,17 @@ namespace FFireManage.Service
 
         public void Feedback(Fire_Hot hot)
         {
-            if (hot == null)
-                return;
-            Dictionary<string, object> parameterDict = new Dictionary<string, object>()
+            if (hot != null && hot.hotFeedback!=null)
             {
-                {"f",4111003 },
-                {"id",hot.id },
-                {"initiator",hot.hotFeedback.initiator },
-                {"description",hot.hotFeedback.description }
-            };
-            this.ExecutePost(parameterDict, OnFeedbackEvent, hot.hotFeedback.MediaFileDict, entity: hot);
+                Dictionary<string, object> parameterDict = new Dictionary<string, object>()
+                {
+                    {"f",4111003 },
+                    {"id",hot.id },
+                    {"initiator",hot.hotFeedback.initiator },
+                    {"description",hot.hotFeedback.description }
+                };
+                this.ExecutePost(parameterDict, OnFeedbackEvent, hot.hotFeedback.MediaFileDict, entity: hot);
+            }
 
         }
 

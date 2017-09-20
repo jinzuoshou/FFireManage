@@ -16,7 +16,6 @@ namespace FFireManage.Utility.Tests
         [TestMethod()]
         public void ObjectToJSONTest()
         {
-           
             string s;
             object boxc = (object)(default(char));
             // 用例测试1

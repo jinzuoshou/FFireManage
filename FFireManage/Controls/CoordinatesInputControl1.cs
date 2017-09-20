@@ -95,30 +95,6 @@ namespace FFireManage.Controls
 
         public void UpdateValue()
         {
-            //try
-            //{
-            //    if (this.rbtDegree.Checked == true)
-            //    {
-            //        this.longitude = Math.Round(Convert.ToDouble(tbxLongitudeDegree1.Text), 7);
-            //        this.latitude = Math.Round(Convert.ToDouble(tbxLatitudeDegree1.Text), 7);
-
-            //    }
-            //    else if (this.rbtDegreeMinutes.Checked == true)
-            //    {
-            //        this.longitude = Math.Round(Convert.ToDouble(tbxLongitudeDegree2.Text) + Convert.ToDouble(tbxLongitudeMinutes2.Text) / 60, 7);
-            //        this.latitude = Math.Round(Convert.ToDouble(tbxLatitudeDegree2.Text) + Convert.ToDouble(tbxLatitudeMinutes2.Text) / 60, 7);
-
-            //    }
-            //    else if (this.rbtDegreeMinutesSeconds.Checked == true)
-            //    {
-            //        this.longitude = Math.Round(Convert.ToDouble(tbxLongitudeDegree3.Text) + Convert.ToDouble(tbxLongitudeMinutes3.Text) / 60 + Convert.ToDouble(tbxLongitudeSeconds3.Text) / 60 / 60, 7);
-            //        this.latitude = Math.Round(Convert.ToDouble(tbxLatitudeDegree3.Text) + Convert.ToDouble(tbxLatitudeMinutes3.Text) / 60 + Convert.ToDouble(tbxLatitudeSeconds3.Text) / 60 / 60, 7);
-            //    }
-            //}
-            //catch (Exception)
-            //{
-            //}
-
             try
             {
                 if (this.rbtDegree.Checked == true)
@@ -139,7 +115,7 @@ namespace FFireManage.Controls
                     this.latitude = Convert.ToDouble(tbxLatitudeDegree3.Text) + Convert.ToDouble(tbxLatitudeMinutes3.Text) / 60 + Convert.ToDouble(tbxLatitudeSeconds3.Text) / 60 / 60;
                 }
             }
-            catch (Exception)
+            catch 
             {
             }
 

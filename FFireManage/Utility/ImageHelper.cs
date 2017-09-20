@@ -25,7 +25,7 @@ namespace FFireManage.Utility
         /// <param name="quality">质量（范围1-100）</param>
         public static void CutForSquare(System.IO.Stream fromFile, string fileSaveUrl, int side, int quality)
         {
-            if (fromFile == null)
+            if (fromFile == null || string.IsNullOrEmpty(fileSaveUrl))
                 return;
             //创建目录
             string dir = Path.GetDirectoryName(fileSaveUrl);
@@ -255,7 +255,7 @@ namespace FFireManage.Utility
         /// <param name="quality">质量（范围0-100）</param>
         public static void CutForCustom(System.IO.Stream fromFile, string fileSaveUrl, int maxWidth, int maxHeight, int quality)
         {
-            if (fromFile == null)
+            if (fromFile == null || string.IsNullOrEmpty(fileSaveUrl))
                 return;
             System.Drawing.Image initImage = null;
             try 
@@ -791,8 +791,9 @@ namespace FFireManage.Utility
         /// <returns>处理后的头像文件</returns>
         public static Image GetAvatar(string path, string url)
         {
-            if (string.IsNullOrEmpty(path))
+            if (string.IsNullOrEmpty(path) || string.IsNullOrEmpty(url))
                 return null;
+            
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
