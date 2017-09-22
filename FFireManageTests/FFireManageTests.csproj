@@ -95,6 +95,7 @@
     <Compile Include="Service\FireSituationControllerTests.cs" />
     <Compile Include="Service\FireWarehouseControllerTests.cs" />
     <Compile Include="Service\ForestBeltPointControllerTests.cs" />
+    <Compile Include="Service\GridUserTableControllerTests.cs" />
     <Compile Include="Service\HotControllerTests.cs" />
     <Compile Include="Service\LicenseControllerTests.cs" />
     <Compile Include="Service\LoginControllerTests.cs" />

@@ -267,4 +267,3 @@ D:\SourceTree\FFireManage\FFireManage\obj\x86\Debug\FFireManage.WatchTower.FormW
 D:\SourceTree\FFireManage\FFireManage\obj\x86\Debug\FFireManage.csproj.GenerateResource.Cache
 D:\SourceTree\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FireOffice.FormFireOffice.resources
 D:\SourceTree\FFireManage\FFireManage\obj\x86\Debug\FFireManage.FireOffice.FormFireOfficeManage.resources
-D:\Work\Repos\FFireManage\FFireManage\bin\Debug\FFireManage.exe.config
